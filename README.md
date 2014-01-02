@@ -155,6 +155,9 @@ It's disigned to work both client-side and server-side and to be scalable with a
 ### Asynchronous call
 * [How to](#a_howTo)
 
+### Thanks to:
+* [Benjamin Gressier](https://twitter.com/NikitaJS) (major contributor of this awesome module)
+
 ## Validation
 
 <a name="v_type" />
@@ -179,7 +182,7 @@ checked.
 __Example__
 
 ```javascript
-	var si = require('schema-inspector');
+	var inspector = require('schema-inspector');
 
 	var schema = {
 		type: 'object',
@@ -210,10 +213,10 @@ __Example__
 		ipsum: 'sit amet',
 		dolor: new Date()
 	};
-	si.validate(schema, c1); // Valid
-	si.validate(schema, c2); // Valid
-	si.validate(schema, c3); // Valid
-	si.validate(schema, c4); // Invalid: @.lorem must be a number, @dolor must be a number, a string or null
+	inspector.validate(schema, c1); // Valid
+	inspector.validate(schema, c2); // Valid
+	inspector.validate(schema, c3); // Valid
+	inspector.validate(schema, c4); // Invalid: @.lorem must be a number, @dolor must be a number, a string or null
 
 ```
 
@@ -231,7 +234,7 @@ This field indicates whether or not property has to exist.
 __Example__
 
 ```javascript
-	var si = require('schema-inspector');
+	var inspector = require('schema-inspector');
 
 	var schema1 = {
 		type: 'object',
@@ -250,10 +253,10 @@ __Example__
 	var c1 = { lorem: 'ipsum' };
 	var c2 = { };
 
-	si.validate(schema1, c1); // Valid
-	si.validate(schema1, c2); // Valid
-	si.validate(schema2, c1); // Valid
-	si.validate(schema2, c2); // Invalid: "@.lorem" is missing and not optional
+	inspector.validate(schema1, c1); // Valid
+	inspector.validate(schema1, c2); // Valid
+	inspector.validate(schema2, c1); // Valid
+	inspector.validate(schema2, c2); // Invalid: "@.lorem" is missing and not optional
 ```
 
 ---------------------------------------
@@ -270,7 +273,7 @@ If true, then we ensure no element in candidate exists more than once.
 __Example__
 
 ```javascript
-	var si = require('schema-inspector');
+	var inspector = require('schema-inspector');
 
 	var schema = {
 		type: 'array',
@@ -280,8 +283,8 @@ __Example__
 	var c1 = [12, 23, 34, 45];
 	var c2 = [12, 23, 34, 12];
 
-	si.validate(schema, c1); // Valid
-	si.validate(schema, c2); // Invalid: 12 exists twice in @.
+	inspector.validate(schema, c1); // Valid
+	inspector.validate(schema, c2); // Invalid: 12 exists twice in @.
 ```
 
 ---------------------------------------
@@ -302,7 +305,7 @@ string, it's an alias of a RegExp.
 __Example__
 
 ```javascript
-	var si = require('schema-inspector');
+	var inspector = require('schema-inspector');
 
 	var schema1 = {
 		type: 'array',
@@ -318,8 +321,8 @@ __Example__
 
 	var c2 = ['lorem@ipsum.com', 'dolor@sit.com', 'amet@consectetur'];
 
-	si.validate(schema1, c1); // Invalid: @[3] ('DSit amet') does not match /^[A-C]/
-	si.validate(schema2, c2); // Invalid: @[2] ('amet@consectetur') does not match "email" pattern.
+	inspector.validate(schema1, c1); // Invalid: @[3] ('DSit amet') does not match /^[A-C]/
+	inspector.validate(schema2, c2); // Invalid: @[2] ('amet@consectetur') does not match "email" pattern.
 ```
 
 ---------------------------------------
@@ -333,7 +336,7 @@ __Example__
 __Example__
 
 ```javascript
-	var si = require('schema-inspector');
+	var inspector = require('schema-inspector');
 
 	var schema = {
 		type: 'object',
@@ -352,8 +355,8 @@ __Example__
 		ipsum: [1, 2, 3, 4, 5]
 	};
 
-	si.validate(schema, c1); // Valid
-	si.validate(schema, c2); // Invalid: @.lorem must have a length between 4 and 8 (here 9)
+	inspector.validate(schema, c1); // Valid
+	inspector.validate(schema, c2); // Invalid: @.lorem must have a length between 4 and 8 (here 9)
 	// and @.ipsum must have a length of 6 (here 5)
 ```
 
@@ -377,7 +380,7 @@ Check whether comparison is true:
 __Example__
 
 ```javascript
-	var si = require('schema-inspector');
+	var inspector = require('schema-inspector');
 
 	var schema = {
 		type: 'object',
@@ -392,8 +395,8 @@ __Example__
 	var c1 = { lorem: 3, ipsum: 0, dolor: 6, sit: 2 };
 	var c2 = { lorem: 0, ipsum: -1, dolor: 5, sit: 3 };
 
-	si.validate(schema, c1); // Valid
-	si.validate(schema, c2); // Invalid
+	inspector.validate(schema, c1); // Valid
+	inspector.validate(schema, c2); // Invalid
 ```
 
 ---------------------------------------
@@ -410,7 +413,7 @@ optional).
 __Example__
 
 ```javascript
-	var si = require('schema-inspector');
+	var inspector = require('schema-inspector');
 
 	var schema = {
 		type: 'object',
@@ -426,9 +429,9 @@ __Example__
 	var c2 = { lorem: 0, dolor: 2  };
 	var c3 = { dolor: 2  };
 
-	si.validate(schema, c1); // Valid
-	si.validate(schema, c2); // Valid
-	si.validate(schema, c3); // Invalid: Neither @.lorem nor @.ipsum is in c3.
+	inspector.validate(schema, c1); // Valid
+	inspector.validate(schema, c2); // Valid
+	inspector.validate(schema, c3); // Invalid: Neither @.lorem nor @.ipsum is in c3.
 ```
 
 ---------------------------------------
@@ -445,7 +448,7 @@ Only key provided in field "properties" may exist in object.
 __Example__
 
 ```javascript
-	var si = require('schema-inspector');
+	var inspector = require('schema-inspector');
 
 	var schema = {
 		type: 'object',
@@ -460,8 +463,8 @@ __Example__
 	var c1 = { lorem: 0, ipsum: 1, dolor: 2  };
 	var c2 = { lorem: 0, ipsum: 1, dolor: 2, sit: 3  };
 
-	si.validate(schema, c1); // Valid
-	si.validate(schema, c2); // Invalid: @.sit should not exist.
+	inspector.validate(schema, c1); // Valid
+	inspector.validate(schema, c2); // Invalid: @.sit should not exist.
 ```
 
 ---------------------------------------
@@ -479,7 +482,7 @@ Very useful to make some custom validation.
 __Example__
 
 ```javascript
-	var si = require('schema-inspector');
+	var inspector = require('schema-inspector');
 
 	var schema = {
 		type: 'object',
@@ -500,8 +503,8 @@ __Example__
 	var c1 = { lorem: 2 };
 	var c2 = { lorem: 3 };
 
-	si.validate(schema, c1); // Valid
-	si.validate(schema, c2); // Invalid: "@.lorem must not equal 3 =(".
+	inspector.validate(schema, c1); // Valid
+	inspector.validate(schema, c2); // Invalid: "@.lorem must not equal 3 =(".
 ```
 
 ---------------------------------------
@@ -518,7 +521,7 @@ validation is called deeper in object.
 __Example__
 
 ```javascript
-	var si = require('schema-inspector');
+	var inspector = require('schema-inspector');
 
 	var schema = {
 		type: 'object',
@@ -555,8 +558,8 @@ __Example__
 		consectetur: 'adipiscing elit'
 	};
 
-	si.validate(schema, c1); // Valid
-	si.validate(schema, c2); // Invalid: @.lorem.ipsum.dolor must be a string.
+	inspector.validate(schema, c1); // Valid
+	inspector.validate(schema, c2); // Invalid: @.lorem.ipsum.dolor must be a string.
 ```
 
 ---------------------------------------
@@ -575,7 +578,7 @@ be checked with the schema which has the same position in the array.
 __Example__
 
 ```javascript
-	var si = require('schema-inspector');
+	var inspector = require('schema-inspector');
 
 	var schema1 = {
 		type: 'array',
@@ -585,9 +588,9 @@ __Example__
 	var schema2 = {
 		type: 'array',
 		items: [
-			{ type: 'number'	},
-			{ type: 'number'	},
-			{ type: 'string'	}
+			{ type: 'number' },
+			{ type: 'number' },
+			{ type: 'string' }
 		]
 	};
 
@@ -595,10 +598,10 @@ __Example__
 	var c2 = [1, 2, 'string!'];
 
 
-	si.validate(schema1, c1); // Valid
-	si.validate(schema1, c2); // Invalid: @[2] must be a number.
-	si.validate(schema2, c1); // Valid
-	si.validate(schema2, c2); // Invalid: @[2] must be a string.
+	inspector.validate(schema1, c1); // Valid
+	inspector.validate(schema1, c2); // Invalid: @[2] must be a number.
+	inspector.validate(schema2, c1); // Valid
+	inspector.validate(schema2, c2); // Invalid: @[2] must be a string.
 ```
 
 ---------------------------------------
@@ -614,7 +617,7 @@ Allow to display a more explicit property name if an error is encounted.
 __Example__
 
 ```javascript
-	var si = require('schema-inspector');
+	var inspector = require('schema-inspector');
 
 	var schema1 = {
 		type: 'object',
@@ -632,8 +635,8 @@ __Example__
 
 	var c1 = { _id: 1234567890 };
 
-	var r1 = si.validate(schema1, c1);
-	var r2 = si.validate(schema2, c1);
+	var r1 = inspector.validate(schema1, c1);
+	var r2 = inspector.validate(schema2, c1);
 	console.log(r1.format()); // Property @._id: must be string, but is number
 	console.log(r2.format()); // Property id (@._id): must be string, but is number
 ```
@@ -652,7 +655,7 @@ an error is encounted.
 __Example__
 
 ```javascript
-	var si = require('schema-inspector');
+	var inspector = require('schema-inspector');
 
 	var schema1 = {
 		type: 'object',
@@ -712,7 +715,7 @@ Cast property to the given type according to the following description:
 __Example__
 
 ```javascript
-	var si = require('schema-inspector');
+	var inspector = require('schema-inspector');
 
 	var schema = {
 		type: 'array',
@@ -740,7 +743,7 @@ because entry type is not valid (cf [type](#s_type)).
 __Example__
 
 ```javascript
-	var si = require('schema-inspector');
+	var inspector = require('schema-inspector');
 
 	var schema = {
 		type: 'object',
@@ -782,7 +785,7 @@ Property is set to `schema.def` if not provided and if optional is `false`.
 __Example__
 
 ```javascript
-	var si = require('schema-inspector');
+	var inspector = require('schema-inspector');
 
 	var schema = {
 		type: 'object',
@@ -824,7 +827,7 @@ are applied in the same order than in the array.
 __Example__
 
 ```javascript
-	var si = require('schema-inspector');
+	var inspector = require('schema-inspector');
 
 	var schema = {
 		type: 'object',
@@ -863,7 +866,7 @@ maximum.
 __Example__
 
 ```javascript
-	var si = require('schema-inspector');
+	var inspector = require('schema-inspector');
 
 	var schema = {
 		type: 'array',
@@ -895,7 +898,7 @@ __TODO:__ We must be able to choose which character we want to fill the string w
 __Example__
 
 ```javascript
-	var si = require('schema-inspector');
+	var inspector = require('schema-inspector');
 
 	var schema = {
 		type: 'array',
@@ -929,7 +932,7 @@ do not return nothing (if you do so, the new value will be `undefined`).
 __Example__
 
 ```javascript
-	var si = require('schema-inspector');
+	var inspector = require('schema-inspector');
 
 	var schema = {
 		type: 'array',
@@ -989,7 +992,7 @@ provide a custom field called "superiorMod", you can access it with name
 __Example__
 
 ```javascript
-	var si = require('schema-inspector');
+	var inspector = require('schema-inspector');
 
 	var schema = {
 		type: 'object',
@@ -1012,7 +1015,7 @@ __Example__
 		lorem: 10,
 		ipsum: 8
 	};
-	si.validate(schema, candidate, custom); // Invalid: "@.ipsum must be divisible by 3"
+	inspector.validate(schema, candidate, custom); // Invalid: "@.ipsum must be divisible by 3"
 ```
 
 ---------------------------------------
@@ -1022,16 +1025,16 @@ __Example__
 
 Sometime you want to use a custom field everywhere in your programme, so you may
 extend Schema-Inspector to do so. Just call the method
-_si.Validation.extend(customFieldObject)_ or
-_si.Sanitization.extend(customFieldObject)_. If you want to reset, simply call
-_si.Validation.reset()_ or _si.Sanitization.reset()_. You also can remove a
-specific field by calling _si.Validation.remove(field)_ or
-_si.Sanitization.remove(field)_.
+_inspector.Validation.extend(customFieldObject)_ or
+_inspector.Sanitization.extend(customFieldObject)_. If you want to reset, simply call
+_inspector.Validation.reset()_ or _inspector.Sanitization.reset()_. You also can remove a
+specific field by calling _inspector.Validation.remove(field)_ or
+_inspector.Sanitization.remove(field)_.
 
 __Example__
 
 ```javascript
-	var si = require('schema-inspector');
+	var inspector = require('schema-inspector');
 
 	var custom = {
 		divisibleBy: function (schema, candidate) {
@@ -1050,18 +1053,18 @@ __Example__
 		}
 	};
 
-	si.Validation.extend(custom);
+	inspector.Validation.extend(custom);
 
 	var candidate = {
 		lorem: 10,
 		ipsum: 8
 	};
 
-	si.validate(schema, candidate);
+	inspector.validate(schema, candidate);
 	/*
 		As you can see, no more object than schema and candidate has been provided.
 		Therefore we can use `$divisibleBy` everywhere in all schemas, for each
-		si.validate() call.
+		inspector.validate() call.
 	*/
 ```
 
@@ -1071,7 +1074,7 @@ __Example__
 Every function you declare as a custom parameter, or with `exec` field will be
 called with a context. This context allow you to access properties, like
 `this.report()` function, but also `this.origin`, which is equal to the object
-sent to `si.validate()` or `si.sanitize()`.
+sent to `inspector.validate()` or `inspector.sanitize()`.
 
 __Example__
 
@@ -1085,7 +1088,7 @@ __Example__
 		}
 	};
 	var candidate = [12, 23, 34, 45];
-	var r = si.validate(schema, candidate, custom);
+	var r = inspector.validate(schema, candidate, custom);
 	// ...
 
 ```
@@ -1112,12 +1115,12 @@ and asynchronous call.
 __Example__
 
 ```javascript
-	var si = require('schema-inspector');
+	var inspector = require('schema-inspector');
 
 	var schema = { ...	};
 	var candidate = { ... };
 
-	si.validate(schema, candidate, function (err, result) {
+	inspector.validate(schema, candidate, function (err, result) {
 		console.log(result.format());
 	});
 ```
@@ -1125,13 +1128,13 @@ __Example__
 __Example with custom field__
 
 ```javascript
-	var si = require('schema-inspector');
+	var inspector = require('schema-inspector');
 
 	var schema = { ...	};
 	var candidate = { ... };
 	var custom = { ... };
 
-	si.validate(schema, candidate, custom, function (err, result) {
+	inspector.validate(schema, candidate, custom, function (err, result) {
 		console.log(result.format());
 	});
 ```
@@ -1139,7 +1142,7 @@ __Example with custom field__
 Here a full example where you may have to use it:
 
 ```javascript
-	var si = require('schema-inspector');
+	var inspector = require('schema-inspector');
 
 	var schema = {
 		type: 'object',
@@ -1176,7 +1179,7 @@ Here a full example where you may have to use it:
 		ipsum: 25
 	};
 
-	si.validate(schema, candidate, custom, function (err, result) {
+	inspector.validate(schema, candidate, custom, function (err, result) {
 		console.log(result.format());
 	});
 ```
