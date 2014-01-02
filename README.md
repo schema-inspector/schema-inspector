@@ -1,22 +1,27 @@
 # Schema-Inspector
 
-Schema-Inspector is powerful tool to validation or sanitize javascript object.
-It's disigned to work both client-side and server-side. Although originally
-designed for use with [node.js](http://nodejs.org), it can also be used directly
-in the browser.
+Schema-Inspector is a powerful tool to validate or sanitize JavaScript objects.
+It's disigned to work both client-side and server-side.
 
-Schema-Inspector has to be very scalable, and allow asynchronous and synchronous
-calls.
+Schema-Inspector is designed to be scalable, and allow asynchronous and synchronous calls.
 
 ## Installation
+
+### Node.js
 <pre>npm install schema-inspector</pre>
 
-## Quick Examples
+### Browser
+<pre>
+	<script type="text/javascript" src="[async.js](https://raw.github.com/caolan/async/master/lib/async.js)"></script>
+	<script type="text/javascript" src="[schema-inspetor.js](https://raw.github.com/Atinux/schema-inspector/master/lib/schema-inspector.js)"></script>
+</pre>
+
+## Usage
 
 ### Synchronous call
 
 ```javascript
-	var si = require('schema-inspector');
+	var inspector = require('schema-inspector');
 
 	var schema = {
 		type: 'object',
@@ -33,7 +38,7 @@ calls.
 		lorem: 'not_ipsum',
 		dolor: [ 12, 34, 'ERROR', 45, 'INVALID' ]
 	};
-	var result = SchemaInspector.validate(schema, candidate); // Candidate is not valid
+	var result = inspector.validate(schema, candidate); // Candidate is not valid
 	console.log(result.format());
 	/*
 		Property @.lorem: must be equal to "ipsum", but is equal to "not_ipsum"
@@ -45,13 +50,13 @@ calls.
 ### Asynchronous call
 
 ```javascript
-	var si = require('schema-inspector');
+	var inspector = require('schema-inspector');
 
 	var schema = { ...	};
 
 	var candidate = { ... };
 
-	SchemaInspector.validate(schema, candidate, function (err, result) {
+	inspector.validate(schema, candidate, function (err, result) {
 		console.log(result.format());
 		/*
 			Property @.lorem: must be equal to "ipsum", but is equal to "not_ipsum"
@@ -64,7 +69,7 @@ calls.
 ### Custom fields
 
 ```javascript
-	var si = require('schema-inspector');
+	var inspector = require('schema-inspector');
 
 	var schema = {
 		type: 'array',
@@ -73,15 +78,19 @@ calls.
 
 	var custom = {
 		divisibleBy: function (schema, candidate) {
-			var dvb = schema.$divisibleBy;16
-			if (cndidate % dvb !== 0) {
+			var dvb = schema.$divisibleBy;
+			if (candidate % dvb !== 0) {
 				this.report('must be divisible by ' + dvb);
 			}
 		}
 	};
 
 	var candidate = [ 5, 10, 15, 16 ];
-	si.validate(schema, candidate, custom); // Invalid: "@[3] must be divisible by 5"
+	var result = inspector.validate(schema, candidate, custom);
+	console.log(result.format());
+	/*
+		Property @[3]: must be divisible by 5
+	*/
 ```
 
 ## In the browser
@@ -89,13 +98,10 @@ calls.
 ```html
 <script type="text/javascript" src="async.js"></script>
 <script type="text/javascript" src="schema-inspetor.js"></script>
-
 <script type="text/javascript">
-
 	SchemaInspector.validate(schema, candidate, function (err, result) {
 		alert(result.format());
 	});
-
 </script>
 ```
 
@@ -1016,7 +1022,7 @@ __Example__
 
 	var custom = {
 		divisibleBy: function (schema, candidate) {
-			var dvb = schema.$divisibleBy;16
+			var dvb = schema.$divisibleBy;
 			if (cndidate % dvb !== 0) {
 				this.report('must be divisible by ' + dvb);
 			}
