@@ -8,6 +8,9 @@ in the browser.
 Schema-Inspector has to be very scalable, and allow asynchronous and synchronous
 calls.
 
+## Installation
+```npm install schema-inspector```
+
 ## Quick Examples
 
 ### Synchronous call
@@ -961,7 +964,7 @@ saving the function and declaring `exec` several times, just use custom field.
 First you have to provide a hash containing a function for each custom field you
 want to inject. Then you can call them in your schema with $"your field name".
 For example if you
-provide a custom field called "superiorMod", you can access itwith name
+provide a custom field called "superiorMod", you can access it with name
 "$superiorMod".
 
 __Example__
@@ -979,7 +982,7 @@ __Example__
 
 	var custom = {
 		divisibleBy: function (schema, candidate) {
-			var dvb = schema.$divisibleBy;16
+			var dvb = schema.$divisibleBy;
 			if (cndidate % dvb !== 0) {
 				this.report('must be divisible by ' + dvb);
 			}

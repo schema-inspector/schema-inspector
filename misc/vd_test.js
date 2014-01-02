@@ -1,6 +1,8 @@
-var si = require('../');
+if (typeof require === 'function') {
+  var SchemaInspector = require('../');
+}
 
-si.Validation.extend({
+SchemaInspector.Validation.extend({
 	divisibleBy: function (schema, candidate) {
 		var dvb = schema.$divisibleBy;
 		if (candidate % dvb) {
@@ -19,7 +21,7 @@ var schema = {
 var obj = [ 0, 5, 10, 15, 17, 20];
 
 // -----------------------------------------------------------------------------
-var vdr = si.newValidation(schema);
+var vdr = SchemaInspector.newValidation(schema);
 
 vdr.validate(obj, function (err, r) {
 	console.log(r);

@@ -1,5 +1,3 @@
-var SchemaInspector = require('./');
-
 var schema = {
 	type: 'object',
 	properties: {
