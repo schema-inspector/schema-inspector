@@ -1,9 +1,7 @@
 # Schema-Inspector
 
-Schema-Inspector is a powerful tool to validate or sanitize JavaScript objects.
-It's disigned to work both client-side and server-side.
-
-Schema-Inspector is designed to be scalable, and allow asynchronous and synchronous calls.
+Schema-Inspector is a powerful tool to sanitize and validate JS objects.
+It's disigned to work both client-side and server-side and to be scalable with allowing asynchronous and synchronous calls.
 
 ## Installation
 
@@ -96,9 +94,24 @@ Schema-Inspector is designed to be scalable, and allow asynchronous and synchron
 ## In the browser
 
 ```html
-<script type="text/javascript" src="async.js"></script>
-<script type="text/javascript" src="schema-inspetor.js"></script>
+<script type="text/javascript" src="[async.js](https://raw.github.com/caolan/async/master/lib/async.js)"></script>
+<script type="text/javascript" src="[schema-inspetor.js](https://raw.github.com/Atinux/schema-inspector/master/lib/schema-inspector.js)"></script>
 <script type="text/javascript">
+	var schema = {
+		type: 'object',
+		properties: {
+			lorem: { type: 'string', eq: 'ipsum' },
+			dolor: {
+				type: 'array',
+				items: { type: 'number' }
+			}
+		}
+	};
+
+	var candidate = {
+		lorem: 'not_ipsum',
+		dolor: [ 12, 34, 'ERROR', 45, 'INVALID' ]
+	};
 	SchemaInspector.validate(schema, candidate, function (err, result) {
 		alert(result.format());
 	});
