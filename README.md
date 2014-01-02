@@ -9,10 +9,10 @@ It's disigned to work both client-side and server-side and to be scalable with a
 <pre>npm install schema-inspector</pre>
 
 ### Browser
-<pre>
+```html
 	<script type="text/javascript" src="[async.js](https://raw.github.com/caolan/async/master/lib/async.js)"></script>
 	<script type="text/javascript" src="[schema-inspetor.js](https://raw.github.com/Atinux/schema-inspector/master/lib/schema-inspector.js)"></script>
-</pre>
+```
 
 ## Usage
 
