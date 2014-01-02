@@ -9,7 +9,7 @@ Schema-Inspector has to be very scalable, and allow asynchronous and synchronous
 calls.
 
 ## Installation
-```npm install schema-inspector```
+<pre>npm install schema-inspector</pre>
 
 ## Quick Examples
 
