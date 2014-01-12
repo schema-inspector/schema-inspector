@@ -60,7 +60,8 @@
 <p>Schema-Inspector is a powerful tool to sanitize and validate JS objects.
 It's disigned to work both client-side and server-side and to be scalable with allowing asynchronous and synchronous calls.</p>
 
-<h2>Play with it!</h2>
+<h2>Demonstration</h2>
+<p>Update the data, sanitization and validation tabs to see in real-time the result of the schema-inspector.</p>
 <div class="play-it">
 	<div class="step step-1">
 	<h3 class="title">Data</h3>
@@ -76,30 +77,30 @@ It's disigned to work both client-side and server-side and to be scalable with a
 	<textarea>{
 	type: "object",
 	properties: {
-	name: {
-		type: "string",
-		rules: ["trim", "title"],
-		exec: function (schema, post) {
-			if (typeof post === "string")
-				post = post.replace(/\s+/g, " ");
-			return post;
+		name: {
+			type: "string",
+			rules: ["trim", "title"],
+			exec: function (schema, post) {
+				if (typeof post === "string")
+					post = post.replace(/\s+/g, " ");
+				return post;
+			}
+		},
+		age: {
+			type: "integer"
+		},
+		gender: {
+			type: "string",
+			optional: false,
+			def: "m"
+		},
+		compagnies: {
+			type: "array",
+			items: {
+				type: "string",
+				rules: ["trim", "ucfirst"]
+			}
 		}
-	},
-	age: {
-		type: "integer"
-	},
-	gender: {
-		type: "string",
-		optional: false,
-		def: "m"
-	},
-	compagnies: {
-		type: "array",
-		items: {
-		type: "string",
-		rules: ["trim", "ucfirst"]
-		}
-	}
 	}
 }</textarea>
 	</div>
@@ -109,26 +110,26 @@ It's disigned to work both client-side and server-side and to be scalable with a
 	<textarea>{
 	type: "object",
 	properties: {
-	name: {
-		type: "string",
-		minLength: 1
-	},
-	age: {
-		type: "integer",
-		gt: 0,
-		lte: 120
-	},
-	gender: {
-		type: "string",
-		eq: ["m", "f"]
-	},
-	compagnies: {
-		type: "array",
-		items: {
-		type: "string",
-		minLength: 1
+		name: {
+			type: "string",
+			minLength: 1
+		},
+		age: {
+			type: "integer",
+			gt: 0,
+			lte: 120
+		},
+		gender: {
+			type: "string",
+			eq: ["m", "f"]
+		},
+		compagnies: {
+			type: "array",
+			items: {
+			type: "string",
+			minLength: 1
+			}
 		}
-	}
 	}
 }</textarea>
 	</div>
@@ -198,29 +199,36 @@ $(function () {
 
 	window.sanitization = $('#checkSanitization').is(':checked');
 	$('#checkSanitization').change(function () {
-	window.sanitization = $(this).is(':checked');
-	checkSchemaInspector();
+		window.sanitization = $(this).is(':checked');
+		checkSchemaInspector();
 	});
 	window.validation = $('#checkValidation').is(':checked');
 	$('#checkValidation').change(function () {
-	window.validation = $(this).is(':checked');
-	checkSchemaInspector();
+		window.validation = $(this).is(':checked');
+		checkSchemaInspector();
 	});
 	checkSchemaInspector();
 
 	var $result = $('.result'),
-	$startDocumentation = $('.startDocumentation');
-	$(window).scroll(function () {
-	var scrollTop = $(window).scrollTop();
-	if ($result.hasClass('fixed') && scrollTop < (465 - 150))
-		return $result.removeClass('fixed');
-	if (!$result.hasClass('fixed') && scrollTop > (465 - 150))
-		return $result.addClass('fixed');
-	if (scrollTop >= $startDocumentation.offset().top - 150)
-		return $result.fadeOut(200);
-	else
-		return $result.fadeIn(200);
-	});
+		$startDocumentation = $('.startDocumentation'),
+		topStart = 520;
+
+	function checkScroll() {
+		var scrollTop = $(window).scrollTop();
+		if ($result.hasClass('fixed') && scrollTop < (topStart - 150)) {
+			return $result.removeClass('fixed');
+		}
+		if (!$result.hasClass('fixed') && scrollTop > (topStart - 150)) {
+			return $result.addClass('fixed');
+		}
+		console.log(scrollTop);
+		if (scrollTop >= $startDocumentation.offset().top - 150)
+			return $result.fadeOut(200);
+		else
+			return $result.fadeIn(200);
+	}
+	$(window).scroll(checkScroll);
+	setTimeout(checkScroll, 100);
 });
 </script>
 

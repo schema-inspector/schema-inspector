@@ -2,59 +2,20 @@
 @import url("non-screen.css") handheld;
 @import url("non-screen.css") only screen and (max-device-width:640px);
 
-/*.play-it {
-	position: relative;
-}
-.step {
-	position: absolute;
-	top: 0;
-	width: 300px;
-	height: 400px;
-	float: left;
-}
-.step.step-1 {
-	left: -400px;
-	width: 400px;
-}
-.step.step-2 {
-	left: 54px;
-	width: 400px;
-}
-.step.step-3 {
-	right: -400px;
-	width: 400px;
-}*/
 .step .title {
 	margin-top: 20px;
 	margin-bottom: 5px;
 }
-/*.plus-sign {
-	position: absolute;
-	top: 180px;
-	left: 15px;
-	font-size: 30px;
-	font-weight: bold;
-}
-.step textarea {
-	display: none;
-}
-*/
 .step .CodeMirror {
 	height: auto;
 }
-/*
-.play-margin {
-	height: 400px;
-	width: 100%;
-	clear: both;
-}*/
 .cm-s-solarized .cm-tab:before {
 	color: #2E464E !important;
 }
 
 .result {
 	position: absolute;
-	top: 465px;
+	top: 520px;
 	left: 0;
 	width: 300px;
 	background-color: #002b36;
