@@ -11,10 +11,11 @@ Demonstration & documentation: http://atinux.github.io/schema-inspector/
 <pre>npm install schema-inspector</pre>
 
 ### Browser
-Download [async.js](https://raw.github.com/caolan/async/master/lib/async.js) and [schema-inspetor.js](https://raw.github.com/Atinux/schema-inspector/master/lib/schema-inspector.js) and use it like this:
+<pre>bower install schema-inspector</pre>
+(Or download [async.js](https://raw.github.com/caolan/async/master/lib/async.js) and [schema-inspetor.js](https://raw.github.com/Atinux/schema-inspector/master/lib/schema-inspector.js) manually).
 ```html
-<script type="text/javascript" src="async.js"></script>
-<script type="text/javascript" src="schema-inspector.js"></script>
+<script type="text/javascript" src="bower_components/async/lib/async.js"></script>
+<script type="text/javascript" src="bower_components/schema-inspector/lib/schema-inspector.js"></script>
 ```
 
 ## Usage
