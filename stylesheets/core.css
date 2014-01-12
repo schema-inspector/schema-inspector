@@ -46,9 +46,36 @@
 	border: none;
 	margin: 0;
 }
+.result.hide {
+	display: none;
+}
 
 pre {
 	tab-size:4;
 	-moz-tab-size: 4;
 	-o-tab-size:  4;
+}
+
+@media all and (max-width: 1200px) {
+	.result {
+		background: white;
+		display: none;
+	}
+	.result.fixed {
+		display: block;
+    	position: fixed;
+		max-height: 30%;
+		overflow: auto;
+		width: 100%;
+		bottom: 0;
+		z-index: 100;
+		top: auto;
+		-webkit-box-shadow: 0 -3px 3px rgba(0,0,0,0.1)
+	}
+	.result.fixed.hide {
+		display: none;
+	}
+	.result pre {
+		background: white;
+	}
 }

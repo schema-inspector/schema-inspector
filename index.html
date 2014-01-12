@@ -3,7 +3,7 @@
 	<head>
 	<meta charset='utf-8'>
 	<meta http-equiv="X-UA-Compatible" content="chrome=1">
-	<!-- <meta name="viewport" content="width=640" /> -->
+	<meta name="viewport" content="width=640" />
 
 	<link rel="stylesheet" href="stylesheets/core.css" media="screen"/>
 	<link rel="stylesheet" href="stylesheets/mobile.css" media="handheld, only screen and (max-device-width:640px)"/>
@@ -137,13 +137,13 @@ It's disigned to work both client-side and server-side and to be scalable with a
 <script type="text/javascript">
 function getObject(editor, callback) {
 	try {
-	var s = String(editor.getValue() || '{}').replace(/\n/g, '').trim();
-	s = '{' + s.slice(1, s.length - 1) + '}';
-	// console.log(s);
-	eval('var variable = ' + s +';');
-	callback(null, variable);
+		var s = String(editor.getValue() || '{}').replace(/\n/g, '').trim();
+		s = '{' + s.slice(1, s.length - 1) + '}';
+		// console.log(s);
+		eval('var variable = ' + s +';');
+		callback(null, variable);
 	} catch (e) {
-	callback((e && e.message ? e.message : e));
+		callback((e && e.message ? e.message : e));
 	}
 }
 
@@ -176,7 +176,10 @@ function checkSchemaInspector() {
 		return $('.result').append('<div class="validation-error">'+validationResult.format().replace(/\n/g, '<br>')+'</div>');
 		}
 	}
-	$('.result').html('<div class="data-title">Result:</div><pre class="data cm-s-solarized cm-s-dark"></pre>');
+	var cl = 'data cm-s-solarized cm-s-dark';
+	if ($(window).width() < 1200)
+		cl = 'data cm-s-default';
+	$('.result').html('<div class="data-title">Result:</div><pre class="data '+cl+'"></pre>');
 	CodeMirror.runMode(JSON.stringify(res.data, null, 4), { name: "javascript", json: true }, $('.result .data')[0]);
 	});
 }
@@ -200,11 +203,21 @@ $(function () {
 	window.sanitization = $('#checkSanitization').is(':checked');
 	$('#checkSanitization').change(function () {
 		window.sanitization = $(this).is(':checked');
+		if (!sanitization) {
+			$('.step-2 .CodeMirror').hide();
+		} else {
+			$('.step-2 .CodeMirror').show();
+		}
 		checkSchemaInspector();
 	});
 	window.validation = $('#checkValidation').is(':checked');
 	$('#checkValidation').change(function () {
 		window.validation = $(this).is(':checked');
+		if (!validation) {
+			$('.step-3 .CodeMirror').hide();
+		} else {
+			$('.step-3 .CodeMirror').show();
+		}
 		checkSchemaInspector();
 	});
 	checkSchemaInspector();
@@ -221,11 +234,10 @@ $(function () {
 		if (!$result.hasClass('fixed') && scrollTop > (topStart - 150)) {
 			return $result.addClass('fixed');
 		}
-		console.log(scrollTop);
 		if (scrollTop >= $startDocumentation.offset().top - 150)
-			return $result.fadeOut(200);
+			return $result.addClass('hide');
 		else
-			return $result.fadeIn(200);
+			return $result.removeClass('hide');
 	}
 	$(window).scroll(checkScroll);
 	setTimeout(checkScroll, 100);
