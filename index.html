@@ -80,9 +80,9 @@ It's disigned to work both client-side and server-side and to be scalable with a
 		type: "string",
 		rules: ["trim", "title"],
 		exec: function (schema, post) {
-		if (typeof post === "string")
-			post = post.replace(/\s+/g, " ");
-		return post;
+			if (typeof post === "string")
+				post = post.replace(/\s+/g, " ");
+			return post;
 		}
 	},
 	age: {
