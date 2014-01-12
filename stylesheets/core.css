@@ -55,6 +55,9 @@ pre {
 	-moz-tab-size: 4;
 	-o-tab-size:  4;
 }
+.btn.run {
+	display: none;
+}
 
 @media all and (max-width: 1200px) {
 	.result {
@@ -70,12 +73,48 @@ pre {
 		bottom: 0;
 		z-index: 100;
 		top: auto;
-		-webkit-box-shadow: 0 -3px 3px rgba(0,0,0,0.1)
+		min-height: 40px;
+		box-shadow: 0 -3px 3px rgba(0,0,0,0.1);
+		-webkit-box-shadow: 0 -3px 3px rgba(0,0,0,0.1);
+		-moz-box-shadow: 0 -3px 3px rgba(0,0,0,0.1);
 	}
 	.result.fixed.hide {
 		display: none;
 	}
 	.result pre {
 		background: white;
+	}
+	.btn.run {
+		display: inline-block;
+		position: absolute;
+		right: 45px;
+		height: 40px;
+		margin: 0;
+		background-color: #e03939;
+		padding: 4px 12px;
+		line-height: 20px;
+		font-weight: bold;
+		font-size: 16px;
+		color: #FFF;
+		cursor: pointer;
+		text-align: center;
+		vertical-align: middle;
+		border: 0;
+		-webkit-text-shadow: 1px 1px 0 rgba(0,0,0,0.15);
+		text-shadow: 1px 1px 0 rgba(0,0,0,0.15);
+		outline: none;
+		-webkit-border-radius: 2px;
+		-moz-border-radius: 2px;
+		border-radius: 2px;
+	}
+	.btn.run:hover,
+	.btn.run:focus {
+		background-color: #de2c2c;
+	}
+	.btn.run:active {
+		background-color: #da2222;
+		-webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.3);
+		-moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.3);
+		box-shadow: inset 0 1px 2px rgba(0,0,0,0.3);
 	}
 }

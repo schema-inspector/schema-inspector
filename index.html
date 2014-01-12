@@ -148,39 +148,41 @@ function getObject(editor, callback) {
 }
 
 function checkSchemaInspector() {
+	$('.result').html('<button class="btn run">Refresh result</button>');
 	async.parallel({
-	data: function (next) {
-		getObject(editorData, next);
-	},
-	sanitization: function (next) {
-		if (!sanitization)
-		return next(null, null);
-		getObject(editorSanitization, next);
-	},
-	validation: function (next) {
-		if (!validation)
-		return next(null, null);
-		getObject(editorValidation, next);
-	}
-	}, function (err, res) {
-	if (err)
-		return $('.result').html('<div class="error">'+err+'</div>');
-	if (sanitization) {
-		var sanitizationResult = SchemaInspector.sanitize(res.sanitization, res.data);
-		// console.log(sanitizationResult.format());
-	}
-	if (validation) {
-		var validationResult = SchemaInspector.validate(res.validation, res.data);
-		if (!validationResult.valid) {
-		$('.result').html('<h2 class="validation-title">Validation error:</h2>');
-		return $('.result').append('<div class="validation-error">'+validationResult.format().replace(/\n/g, '<br>')+'</div>');
+		data: function (next) {
+			getObject(editorData, next);
+		},
+		sanitization: function (next) {
+			if (!sanitization)
+			return next(null, null);
+			getObject(editorSanitization, next);
+		},
+		validation: function (next) {
+			if (!validation)
+			return next(null, null);
+			getObject(editorValidation, next);
 		}
-	}
-	var cl = 'data cm-s-solarized cm-s-dark';
-	if ($(window).width() < 1200)
-		cl = 'data cm-s-default';
-	$('.result').html('<div class="data-title">Result:</div><pre class="data '+cl+'"></pre>');
-	CodeMirror.runMode(JSON.stringify(res.data, null, 4), { name: "javascript", json: true }, $('.result .data')[0]);
+		}, function (err, res) {
+		if (err)
+			return $('.result').append('<div class="error">'+err+'</div>');
+		if (sanitization) {
+			var sanitizationResult = SchemaInspector.sanitize(res.sanitization, res.data);
+			// console.log(sanitizationResult.format());
+		}
+		if (validation) {
+			var validationResult = SchemaInspector.validate(res.validation, res.data);
+			if (!validationResult.valid) {
+			$('.result').append('<h2 class="validation-title">Validation error:</h2>');
+			return $('.result').append('<div class="validation-error">'+validationResult.format().replace(/\n/g, '<br>')+'</div>');
+			}
+		}
+		var cl = 'data cm-s-solarized cm-s-dark';
+		if ($(window).width() < 1200) {
+			cl = 'data cm-s-default';
+		}
+		$('.result').append('<div class="data-title">Result:</div><pre class="data '+cl+'"></pre>');
+		CodeMirror.runMode(JSON.stringify(res.data, null, 4), { name: "javascript", json: true }, $('.result .data')[0]);
 	});
 }
 
@@ -199,6 +201,7 @@ $(function () {
 	editorData.on('change', checkSchemaInspector);
 	editorSanitization.on('change', checkSchemaInspector);
 	editorValidation.on('change', checkSchemaInspector);
+	$('body').on('click', '.btn.run', checkSchemaInspector);
 
 	window.sanitization = $('#checkSanitization').is(':checked');
 	$('#checkSanitization').change(function () {
