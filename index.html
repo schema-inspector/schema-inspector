@@ -1,60 +1,60 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset='utf-8'>
-		<meta http-equiv="X-UA-Compatible" content="chrome=1">
-		<meta name="viewport" content="width=640" />
+	<meta charset='utf-8'>
+	<meta http-equiv="X-UA-Compatible" content="chrome=1">
+	<meta name="viewport" content="width=640" />
 
-		<link rel="stylesheet" href="stylesheets/core.css" media="screen"/>
-		<link rel="stylesheet" href="stylesheets/mobile.css" media="handheld, only screen and (max-device-width:640px)"/>
-		<link rel="stylesheet" href="stylesheets/pygment_trac.css"/>
-		<link rel="stylesheet" href="http://codemirror.net/lib/codemirror.css"/>
-		<link rel="stylesheet" href="http://codemirror.net/theme/solarized.css"/>
+	<link rel="stylesheet" href="stylesheets/core.css" media="screen"/>
+	<link rel="stylesheet" href="stylesheets/mobile.css" media="handheld, only screen and (max-device-width:640px)"/>
+	<link rel="stylesheet" href="stylesheets/pygment_trac.css"/>
+	<link rel="stylesheet" href="http://codemirror.net/lib/codemirror.css"/>
+	<link rel="stylesheet" href="http://codemirror.net/theme/solarized.css"/>
 
-		<script type="text/javascript" src="javascripts/modernizr.js"></script>
-		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-		<script type="text/javascript" src="javascripts/headsmart.min.js"></script>
-		<script type="text/javascript" src="http://codemirror.net/lib/codemirror.js"></script>
-		<script type="text/javascript" src="http://codemirror.net/mode/javascript/javascript.js"></script>
-		<script type="text/javascript" src="http://codemirror.net/addon/runmode/runmode.js"></script>
-		<script type="text/javascript" src="https://rawgithub.com/caolan/async/master/lib/async.js"></script>
-		<script type="text/javascript" src="https://rawgithub.com/atinux/schema-inspector/master/lib/schema-inspector.js"></script>
-		<script type="text/javascript">
-			$(document).ready(function () {
-				$('#main_content').headsmart()
-			})
-		</script>
-		<title>Schema-inspector by Atinux</title>
+	<script type="text/javascript" src="javascripts/modernizr.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script type="text/javascript" src="javascripts/headsmart.min.js"></script>
+	<script type="text/javascript" src="http://codemirror.net/lib/codemirror.js"></script>
+	<script type="text/javascript" src="http://codemirror.net/mode/javascript/javascript.js"></script>
+	<script type="text/javascript" src="http://codemirror.net/addon/runmode/runmode.js"></script>
+	<script type="text/javascript" src="https://rawgithub.com/caolan/async/master/lib/async.js"></script>
+	<script type="text/javascript" src="https://rawgithub.com/atinux/schema-inspector/master/lib/schema-inspector.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function () {
+		$('#main_content').headsmart()
+		})
+	</script>
+	<title>Schema-inspector by Atinux</title>
 	</head>
 
 	<body>
-		<a id="forkme_banner" href="https://github.com/Atinux/schema-inspector">View on GitHub</a>
-		<div class="result"></div>
-		<div class="shell">
+	<a id="forkme_banner" href="https://github.com/Atinux/schema-inspector">View on GitHub</a>
+	<div class="result"></div>
+	<div class="shell">
 
-			<header>
-				<span class="ribbon-outer">
-					<span class="ribbon-inner">
-						<h1>Schema-inspector</h1>
-						<h2>Schema-Inspector is a powerful tool to sanitize and validate JS objects.</h2>
-					</span>
-					<span class="left-tail"></span>
-					<span class="right-tail"></span>
-				</span>
-			</header>
+		<header>
+		<span class="ribbon-outer">
+			<span class="ribbon-inner">
+			<h1>Schema-inspector</h1>
+			<h2>Schema-Inspector is a powerful tool to sanitize and validate JS objects.</h2>
+			</span>
+			<span class="left-tail"></span>
+			<span class="right-tail"></span>
+		</span>
+		</header>
 
-			<section id="downloads">
-				<span class="inner">
-					<a href="https://github.com/Atinux/schema-inspector/zipball/master" class="zip"><em>download</em> .ZIP</a><a href="https://github.com/Atinux/schema-inspector/tarball/master" class="tgz"><em>download</em> .TGZ</a>
-				</span>
-			</section>
-
-
-			<span class="banner-fix"></span>
+		<section id="downloads">
+		<span class="inner">
+			<a href="https://github.com/Atinux/schema-inspector/zipball/master" class="zip"><em>download</em> .ZIP</a><a href="https://github.com/Atinux/schema-inspector/tarball/master" class="tgz"><em>download</em> .TGZ</a>
+		</span>
+		</section>
 
 
-			<section id="main_content">
-				<h1>
+		<span class="banner-fix"></span>
+
+
+		<section id="main_content">
+		<h1>
 <a name="schema-inspector" class="anchor" href="#schema-inspector"><span class="octicon octicon-link"></span></a>Schema-Inspector</h1>
 
 <p>Schema-Inspector is a powerful tool to sanitize and validate JS objects.
@@ -63,8 +63,8 @@ It's disigned to work both client-side and server-side and to be scalable with a
 <h2>Play with it!</h2>
 <div class="play-it">
 	<div class="step step-1">
-		<h3 class="title">Data</h3>
-		<textarea>{
+	<h3 class="title">Data</h3>
+	<textarea>{
 	name: "  sebastien   	chopin ",
 	age: "21",
 	compagnies: "malea "
@@ -72,63 +72,63 @@ It's disigned to work both client-side and server-side and to be scalable with a
 	</div>
 	<!-- <div class="plus-sign">+</div> -->
 	<div class="step step-2">
-		<h3 class="title"><label><input type="checkbox" id="checkSanitization" name="sanitization" checked="checked"/> Sanitization</label></h3>
-		<textarea>{
+	<h3 class="title"><label><input type="checkbox" id="checkSanitization" name="sanitization" checked="checked"/> Sanitization</label></h3>
+	<textarea>{
 	type: "object",
 	properties: {
-		name: {
-			type: "string",
-			rules: ["trim", "title"],
-			exec: function (schema, post) {
-				if (typeof post === "string")
-					post = post.replace(/\s+/g, " ");
-				return post;
-			}
-		},
-		age: {
-			type: "integer"
-		},
-		gender: {
-			type: "string",
-			optional: false,
-			def: "m"
-		},
-		compagnies: {
-			type: "array",
-			items: {
-				type: "string",
-				rules: ["trim", "ucfirst"]
-			}
+	name: {
+		type: "string",
+		rules: ["trim", "title"],
+		exec: function (schema, post) {
+		if (typeof post === "string")
+			post = post.replace(/\s+/g, " ");
+		return post;
 		}
+	},
+	age: {
+		type: "integer"
+	},
+	gender: {
+		type: "string",
+		optional: false,
+		def: "m"
+	},
+	compagnies: {
+		type: "array",
+		items: {
+		type: "string",
+		rules: ["trim", "ucfirst"]
+		}
+	}
 	}
 }</textarea>
 	</div>
 	<!-- <div class="plus-sign" style="left: 465px;">+</div> -->
 	<div class="step step-3">
-		<h3 class="title"><label><input type="checkbox" id="checkValidation" name="validation" checked="checked"/> Validation</label></h3>
-		<textarea>{
+	<h3 class="title"><label><input type="checkbox" id="checkValidation" name="validation" checked="checked"/> Validation</label></h3>
+	<textarea>{
 	type: "object",
 	properties: {
-		name: {
-			type: "string",
-			minLength: 1
-		},
-		age: {
-			type: "integer",
-			gt: 0,
-			lte: 120
-		},
-		gender: {
-			type: "string",
-			eq: ["m", "f"]
-		},
-		compagnies: {
-			type: "array",
-			items: {
-				type: "string",
-				minLength: 1
-			}
+	name: {
+		type: "string",
+		minLength: 1
+	},
+	age: {
+		type: "integer",
+		gt: 0,
+		lte: 120
+	},
+	gender: {
+		type: "string",
+		eq: ["m", "f"]
+	},
+	compagnies: {
+		type: "array",
+		items: {
+		type: "string",
+		minLength: 1
 		}
+	}
 	}
 }</textarea>
 	</div>
@@ -136,47 +136,47 @@ It's disigned to work both client-side and server-side and to be scalable with a
 <script type="text/javascript">
 function getObject(editor, callback) {
 	try {
-		var s = String(editor.getValue() || '{}').replace(/\n/g, '').trim();
-		s = '{' + s.slice(1, s.length - 1) + '}';
-		// console.log(s);
-		eval('var variable = ' + s +';');
-		callback(null, variable);
+	var s = String(editor.getValue() || '{}').replace(/\n/g, '').trim();
+	s = '{' + s.slice(1, s.length - 1) + '}';
+	// console.log(s);
+	eval('var variable = ' + s +';');
+	callback(null, variable);
 	} catch (e) {
-		callback((e && e.message ? e.message : e));
+	callback((e && e.message ? e.message : e));
 	}
 }
 
 function checkSchemaInspector() {
 	async.parallel({
-		data: function (next) {
-			getObject(editorData, next);
-		},
-		sanitization: function (next) {
-			if (!sanitization)
-				return next(null, null);
-			getObject(editorSanitization, next);
-		},
-		validation: function (next) {
-			if (!validation)
-				return next(null, null);
-			getObject(editorValidation, next);
-		}
+	data: function (next) {
+		getObject(editorData, next);
+	},
+	sanitization: function (next) {
+		if (!sanitization)
+		return next(null, null);
+		getObject(editorSanitization, next);
+	},
+	validation: function (next) {
+		if (!validation)
+		return next(null, null);
+		getObject(editorValidation, next);
+	}
 	}, function (err, res) {
-		if (err)
-			return $('.result').html('<div class="error">'+err+'</div>');
-		if (sanitization) {
-			var sanitizationResult = SchemaInspector.sanitize(res.sanitization, res.data);
-			// console.log(sanitizationResult.format());
+	if (err)
+		return $('.result').html('<div class="error">'+err+'</div>');
+	if (sanitization) {
+		var sanitizationResult = SchemaInspector.sanitize(res.sanitization, res.data);
+		// console.log(sanitizationResult.format());
+	}
+	if (validation) {
+		var validationResult = SchemaInspector.validate(res.validation, res.data);
+		if (!validationResult.valid) {
+		$('.result').html('<h2 class="validation-title">Validation error:</h2>');
+		return $('.result').append('<div class="validation-error">'+validationResult.format().replace(/\n/g, '<br>')+'</div>');
 		}
-		if (validation) {
-			var validationResult = SchemaInspector.validate(res.validation, res.data);
-			if (!validationResult.valid) {
-				$('.result').html('<h2 class="validation-title">Validation error:</h2>');
-				return $('.result').append('<div class="validation-error">'+validationResult.format().replace(/\n/g, '<br>')+'</div>');
-			}
-		}
-		$('.result').html('<div class="data-title">Result:</div><pre class="data cm-s-solarized cm-s-dark"></pre>');
-		CodeMirror.runMode(JSON.stringify(res.data, null, 4), { name: "javascript", json: true }, $('.result .data')[0]);
+	}
+	$('.result').html('<div class="data-title">Result:</div><pre class="data cm-s-solarized cm-s-dark"></pre>');
+	CodeMirror.runMode(JSON.stringify(res.data, null, 4), { name: "javascript", json: true }, $('.result .data')[0]);
 	});
 }
 
@@ -198,27 +198,33 @@ $(function () {
 
 	window.sanitization = $('#checkSanitization').is(':checked');
 	$('#checkSanitization').change(function () {
-		window.sanitization = $(this).is(':checked');
-		checkSchemaInspector();
+	window.sanitization = $(this).is(':checked');
+	checkSchemaInspector();
 	});
 	window.validation = $('#checkValidation').is(':checked');
 	$('#checkValidation').change(function () {
-		window.validation = $(this).is(':checked');
-		checkSchemaInspector();
+	window.validation = $(this).is(':checked');
+	checkSchemaInspector();
 	});
 	checkSchemaInspector();
 
+	var $result = $('.result'),
+	$startDocumentation = $('.startDocumentation');
 	$(window).scroll(function () {
-		var $result = $('.result');
-		if ($result.hasClass('fixed') && $(window).scrollTop() < (465 - 150))
-			return $result.removeClass('fixed');
-		if (!$result.hasClass('fixed') && $(window).scrollTop() > (465 - 150))
-			return $result.addClass('fixed');
+	var scrollTop = $(window).scrollTop();
+	if ($result.hasClass('fixed') && scrollTop < (465 - 150))
+		return $result.removeClass('fixed');
+	if (!$result.hasClass('fixed') && scrollTop > (465 - 150))
+		return $result.addClass('fixed');
+	if (scrollTop >= $startDocumentation.offset().top - 150)
+		return $result.fadeOut(200);
+	else
+		return $result.fadeIn(200);
 	});
 });
 </script>
 
-<h2>
+<h2 class="startDocumentation">
 <a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
 
 <h3>
@@ -244,19 +250,19 @@ $(function () {
 <div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">inspector</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'schema-inspector'</span><span class="p">);</span>
 
 <span class="kd">var</span> <span class="nx">schema</span> <span class="o">=</span> <span class="p">{</span>
-		<span class="nx">type</span><span class="o">:</span> <span class="s1">'object'</span><span class="p">,</span>
-		<span class="nx">properties</span><span class="o">:</span> <span class="p">{</span>
-				<span class="nx">lorem</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'string'</span><span class="p">,</span> <span class="nx">eq</span><span class="o">:</span> <span class="s1">'ipsum'</span> <span class="p">},</span>
-				<span class="nx">dolor</span><span class="o">:</span> <span class="p">{</span>
-						<span class="nx">type</span><span class="o">:</span> <span class="s1">'array'</span><span class="p">,</span>
-						<span class="nx">items</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'number'</span> <span class="p">}</span>
-				<span class="p">}</span>
+    <span class="nx">type</span><span class="o">:</span> <span class="s1">'object'</span><span class="p">,</span>
+	<span class="nx">properties</span><span class="o">:</span> <span class="p">{</span>
+		<span class="nx">lorem</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'string'</span><span class="p">,</span> <span class="nx">eq</span><span class="o">:</span> <span class="s1">'ipsum'</span> <span class="p">},</span>
+		<span class="nx">dolor</span><span class="o">:</span> <span class="p">{</span>
+			<span class="nx">type</span><span class="o">:</span> <span class="s1">'array'</span><span class="p">,</span>
+			<span class="nx">items</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'number'</span> <span class="p">}</span>
 		<span class="p">}</span>
+	<span class="p">}</span>
 <span class="p">};</span>
 
 <span class="kd">var</span> <span class="nx">candidate</span> <span class="o">=</span> <span class="p">{</span>
-		<span class="nx">lorem</span><span class="o">:</span> <span class="s1">'not_ipsum'</span><span class="p">,</span>
-		<span class="nx">dolor</span><span class="o">:</span> <span class="p">[</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="s1">'ERROR'</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="s1">'INVALID'</span> <span class="p">]</span>
+	<span class="nx">lorem</span><span class="o">:</span> <span class="s1">'not_ipsum'</span><span class="p">,</span>
+	<span class="nx">dolor</span><span class="o">:</span> <span class="p">[</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="s1">'ERROR'</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="s1">'INVALID'</span> <span class="p">]</span>
 <span class="p">};</span>
 <span class="kd">var</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">inspector</span><span class="p">.</span><span class="nx">validate</span><span class="p">(</span><span class="nx">schema</span><span class="p">,</span> <span class="nx">candidate</span><span class="p">);</span> <span class="c1">// Candidate is not valid</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">format</span><span class="p">());</span>
@@ -277,12 +283,12 @@ $(function () {
 <span class="kd">var</span> <span class="nx">candidate</span> <span class="o">=</span> <span class="p">{</span> <span class="p">...</span> <span class="p">};</span>
 
 <span class="nx">inspector</span><span class="p">.</span><span class="nx">validate</span><span class="p">(</span><span class="nx">schema</span><span class="p">,</span> <span class="nx">candidate</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
-		<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">format</span><span class="p">());</span>
-		<span class="cm">/*</span>
-<span class="cm">        Property @.lorem: must be equal to "ipsum", but is equal to "not_ipsum"</span>
-<span class="cm">        Property @.dolor[2]: must be number, but is string</span>
-<span class="cm">        Property @.dolor[4]: must be number, but is string</span>
-<span class="cm">    */</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">format</span><span class="p">());</span>
+<span class="cm">/*</span>
+<span class="cm">    Property @.lorem: must be equal to "ipsum", but is equal to "not_ipsum"</span>
+<span class="cm">    Property @.dolor[2]: must be number, but is string</span>
+<span class="cm">    Property @.dolor[4]: must be number, but is string</span>
+<span class="cm">*/</span>
 <span class="p">});</span>
 </pre></div>
 
@@ -292,17 +298,17 @@ $(function () {
 <div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">inspector</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'schema-inspector'</span><span class="p">);</span>
 
 <span class="kd">var</span> <span class="nx">schema</span> <span class="o">=</span> <span class="p">{</span>
-		<span class="nx">type</span><span class="o">:</span> <span class="s1">'array'</span><span class="p">,</span>
-		<span class="nx">items</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'number'</span><span class="p">,</span> <span class="nx">$divisibleBy</span><span class="o">:</span> <span class="mi">5</span> <span class="p">}</span>
+	<span class="nx">type</span><span class="o">:</span> <span class="s1">'array'</span><span class="p">,</span>
+	<span class="nx">items</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'number'</span><span class="p">,</span> <span class="nx">$divisibleBy</span><span class="o">:</span> <span class="mi">5</span> <span class="p">}</span>
 <span class="p">};</span>
 
 <span class="kd">var</span> <span class="nx">custom</span> <span class="o">=</span> <span class="p">{</span>
-		<span class="nx">divisibleBy</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">schema</span><span class="p">,</span> <span class="nx">candidate</span><span class="p">)</span> <span class="p">{</span>
-				<span class="kd">var</span> <span class="nx">dvb</span> <span class="o">=</span> <span class="nx">schema</span><span class="p">.</span><span class="nx">$divisibleBy</span><span class="p">;</span>
-				<span class="k">if</span> <span class="p">(</span><span class="nx">candidate</span> <span class="o">%</span> <span class="nx">dvb</span> <span class="o">!==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-						<span class="k">this</span><span class="p">.</span><span class="nx">report</span><span class="p">(</span><span class="s1">'must be divisible by '</span> <span class="o">+</span> <span class="nx">dvb</span><span class="p">);</span>
-				<span class="p">}</span>
+	<span class="nx">divisibleBy</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">schema</span><span class="p">,</span> <span class="nx">candidate</span><span class="p">)</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">dvb</span> <span class="o">=</span> <span class="nx">schema</span><span class="p">.</span><span class="nx">$divisibleBy</span><span class="p">;</span>
+		<span class="k">if</span> <span class="p">(</span><span class="nx">candidate</span> <span class="o">%</span> <span class="nx">dvb</span> <span class="o">!==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+			<span class="k">this</span><span class="p">.</span><span class="nx">report</span><span class="p">(</span><span class="s1">'must be divisible by '</span> <span class="o">+</span> <span class="nx">dvb</span><span class="p">);</span>
 		<span class="p">}</span>
+	<span class="p">}</span>
 <span class="p">};</span>
 
 <span class="kd">var</span> <span class="nx">candidate</span> <span class="o">=</span> <span class="p">[</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">16</span> <span class="p">];</span>
@@ -319,24 +325,24 @@ $(function () {
 <div class="highlight highlight-html"><pre><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span> <span class="na">src=</span><span class="s">"async.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
 <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span> <span class="na">src=</span><span class="s">"schema-inspetor.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
 <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span><span class="nt">&gt;</span>
-		<span class="kd">var</span> <span class="nx">schema</span> <span class="o">=</span> <span class="p">{</span>
-				<span class="nx">type</span><span class="o">:</span> <span class="s1">'object'</span><span class="p">,</span>
-				<span class="nx">properties</span><span class="o">:</span> <span class="p">{</span>
-						<span class="nx">lorem</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'string'</span><span class="p">,</span> <span class="nx">eq</span><span class="o">:</span> <span class="s1">'ipsum'</span> <span class="p">},</span>
-						<span class="nx">dolor</span><span class="o">:</span> <span class="p">{</span>
-								<span class="nx">type</span><span class="o">:</span> <span class="s1">'array'</span><span class="p">,</span>
-								<span class="nx">items</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'number'</span> <span class="p">}</span>
-						<span class="p">}</span>
-				<span class="p">}</span>
-		<span class="p">};</span>
+<span class="kd">var</span> <span class="nx">schema</span> <span class="o">=</span> <span class="p">{</span>
+	<span class="nx">type</span><span class="o">:</span> <span class="s1">'object'</span><span class="p">,</span>
+	<span class="nx">properties</span><span class="o">:</span> <span class="p">{</span>
+		<span class="nx">lorem</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'string'</span><span class="p">,</span> <span class="nx">eq</span><span class="o">:</span> <span class="s1">'ipsum'</span> <span class="p">},</span>
+		<span class="nx">dolor</span><span class="o">:</span> <span class="p">{</span>
+			<span class="nx">type</span><span class="o">:</span> <span class="s1">'array'</span><span class="p">,</span>
+			<span class="nx">items</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'number'</span> <span class="p">}</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+<span class="p">};</span>
 
-		<span class="kd">var</span> <span class="nx">candidate</span> <span class="o">=</span> <span class="p">{</span>
-				<span class="nx">lorem</span><span class="o">:</span> <span class="s1">'not_ipsum'</span><span class="p">,</span>
-				<span class="nx">dolor</span><span class="o">:</span> <span class="p">[</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="s1">'ERROR'</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="s1">'INVALID'</span> <span class="p">]</span>
-		<span class="p">};</span>
-		<span class="nx">SchemaInspector</span><span class="p">.</span><span class="nx">validate</span><span class="p">(</span><span class="nx">schema</span><span class="p">,</span> <span class="nx">candidate</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
-				<span class="nx">alert</span><span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">format</span><span class="p">());</span>
-		<span class="p">});</span>
+<span class="kd">var</span> <span class="nx">candidate</span> <span class="o">=</span> <span class="p">{</span>
+	<span class="nx">lorem</span><span class="o">:</span> <span class="s1">'not_ipsum'</span><span class="p">,</span>
+	<span class="nx">dolor</span><span class="o">:</span> <span class="p">[</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="s1">'ERROR'</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="s1">'INVALID'</span> <span class="p">]</span>
+<span class="p">};</span>
+<span class="nx">SchemaInspector</span><span class="p">.</span><span class="nx">validate</span><span class="p">(</span><span class="nx">schema</span><span class="p">,</span> <span class="nx">candidate</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nx">alert</span><span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">format</span><span class="p">());</span>
+<span class="p">});</span>
 <span class="nt">&lt;/script&gt;</span>
 </pre></div>
 
@@ -430,33 +436,33 @@ checked.</p>
 <div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">inspector</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'schema-inspector'</span><span class="p">);</span>
 
 <span class="kd">var</span> <span class="nx">schema</span> <span class="o">=</span> <span class="p">{</span>
-		<span class="nx">type</span><span class="o">:</span> <span class="s1">'object'</span><span class="p">,</span>
-		<span class="nx">properties</span><span class="o">:</span> <span class="p">{</span>
-				<span class="nx">lorem</span><span class="o">:</span> <span class="p">{</span>  <span class="nx">type</span><span class="o">:</span> <span class="s1">'number'</span> <span class="p">},</span>
-				<span class="nx">ipsum</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'any'</span> <span class="p">},</span>
-				<span class="nx">dolor</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="p">[</span><span class="s1">'number'</span> <span class="s1">'string'</span><span class="p">,</span> <span class="s1">'null'</span><span class="p">]</span> <span class="p">}</span>
-		<span class="p">}</span>
+	<span class="nx">type</span><span class="o">:</span> <span class="s1">'object'</span><span class="p">,</span>
+	<span class="nx">properties</span><span class="o">:</span> <span class="p">{</span>
+		<span class="nx">lorem</span><span class="o">:</span> <span class="p">{</span>  <span class="nx">type</span><span class="o">:</span> <span class="s1">'number'</span> <span class="p">},</span>
+		<span class="nx">ipsum</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'any'</span> <span class="p">},</span>
+		<span class="nx">dolor</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="p">[</span><span class="s1">'number'</span> <span class="s1">'string'</span><span class="p">,</span> <span class="s1">'null'</span><span class="p">]</span> <span class="p">}</span>
+	<span class="p">}</span>
 <span class="p">};</span>
 
 <span class="kd">var</span> <span class="nx">c1</span> <span class="o">=</span> <span class="p">{</span>
-		<span class="nx">lorem</span><span class="o">:</span> <span class="mi">12</span><span class="p">,</span>
-		<span class="nx">ipsum</span><span class="o">:</span> <span class="s1">'sit amet'</span><span class="p">,</span>
-		<span class="nx">dolor</span><span class="o">:</span> <span class="mi">23</span>
+	<span class="nx">lorem</span><span class="o">:</span> <span class="mi">12</span><span class="p">,</span>
+	<span class="nx">ipsum</span><span class="o">:</span> <span class="s1">'sit amet'</span><span class="p">,</span>
+	<span class="nx">dolor</span><span class="o">:</span> <span class="mi">23</span>
 <span class="p">};</span>
 <span class="kd">var</span> <span class="nx">c2</span> <span class="o">=</span> <span class="p">{</span>
-		<span class="nx">lorem</span><span class="o">:</span> <span class="mi">12</span><span class="p">,</span>
-		<span class="nx">ipsum</span><span class="o">:</span> <span class="mi">34</span><span class="p">,</span>
-		<span class="nx">dolor</span><span class="o">:</span> <span class="s1">'sit amet'</span>
+	<span class="nx">lorem</span><span class="o">:</span> <span class="mi">12</span><span class="p">,</span>
+	<span class="nx">ipsum</span><span class="o">:</span> <span class="mi">34</span><span class="p">,</span>
+	<span class="nx">dolor</span><span class="o">:</span> <span class="s1">'sit amet'</span>
 <span class="p">};</span>
 <span class="kd">var</span> <span class="nx">c3</span> <span class="o">=</span> <span class="p">{</span>
-		<span class="nx">lorem</span><span class="o">:</span> <span class="mi">12</span><span class="p">,</span>
-		<span class="nx">ipsum</span><span class="o">:</span> <span class="p">[</span> <span class="s1">'sit amet'</span> <span class="p">],</span>
-		<span class="nx">dolor</span><span class="o">:</span> <span class="kc">null</span>
+	<span class="nx">lorem</span><span class="o">:</span> <span class="mi">12</span><span class="p">,</span>
+	<span class="nx">ipsum</span><span class="o">:</span> <span class="p">[</span> <span class="s1">'sit amet'</span> <span class="p">],</span>
+	<span class="nx">dolor</span><span class="o">:</span> <span class="kc">null</span>
 <span class="p">};</span>
 <span class="kd">var</span> <span class="nx">c4</span> <span class="o">=</span> <span class="p">{</span>
-		<span class="nx">lorem</span><span class="o">:</span> <span class="s1">'12'</span><span class="p">,</span>
-		<span class="nx">ipsum</span><span class="o">:</span> <span class="s1">'sit amet'</span><span class="p">,</span>
-		<span class="nx">dolor</span><span class="o">:</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">()</span>
+	<span class="nx">lorem</span><span class="o">:</span> <span class="s1">'12'</span><span class="p">,</span>
+	<span class="nx">ipsum</span><span class="o">:</span> <span class="s1">'sit amet'</span><span class="p">,</span>
+	<span class="nx">dolor</span><span class="o">:</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">()</span>
 <span class="p">};</span>
 <span class="nx">inspector</span><span class="p">.</span><span class="nx">validate</span><span class="p">(</span><span class="nx">schema</span><span class="p">,</span> <span class="nx">c1</span><span class="p">);</span> <span class="c1">// Valid</span>
 <span class="nx">inspector</span><span class="p">.</span><span class="nx">validate</span><span class="p">(</span><span class="nx">schema</span><span class="p">,</span> <span class="nx">c2</span><span class="p">);</span> <span class="c1">// Valid</span>
@@ -483,17 +489,17 @@ checked.</p>
 <div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">inspector</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'schema-inspector'</span><span class="p">);</span>
 
 <span class="kd">var</span> <span class="nx">schema1</span> <span class="o">=</span> <span class="p">{</span>
-		<span class="nx">type</span><span class="o">:</span> <span class="s1">'object'</span><span class="p">,</span>
-		<span class="nx">properties</span><span class="o">:</span> <span class="p">{</span>
-				<span class="nx">lorem</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'any'</span><span class="p">,</span> <span class="nx">optional</span><span class="o">:</span> <span class="kc">true</span> <span class="p">}</span>
-		<span class="p">}</span>
+	<span class="nx">type</span><span class="o">:</span> <span class="s1">'object'</span><span class="p">,</span>
+	<span class="nx">properties</span><span class="o">:</span> <span class="p">{</span>
+		<span class="nx">lorem</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'any'</span><span class="p">,</span> <span class="nx">optional</span><span class="o">:</span> <span class="kc">true</span> <span class="p">}</span>
+	<span class="p">}</span>
 <span class="p">};</span>
 
 <span class="kd">var</span> <span class="nx">schema2</span> <span class="o">=</span> <span class="p">{</span>
-		<span class="nx">type</span><span class="o">:</span> <span class="s1">'object'</span><span class="p">,</span>
-		<span class="nx">properties</span><span class="o">:</span> <span class="p">{</span>
-				<span class="nx">lorem</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'any'</span><span class="p">,</span> <span class="nx">optional</span><span class="o">:</span> <span class="kc">false</span> <span class="p">}</span> <span class="c1">// default value</span>
-		<span class="p">}</span>
+	<span class="nx">type</span><span class="o">:</span> <span class="s1">'object'</span><span class="p">,</span>
+	<span class="nx">properties</span><span class="o">:</span> <span class="p">{</span>
+		<span class="nx">lorem</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'any'</span><span class="p">,</span> <span class="nx">optional</span><span class="o">:</span> <span class="kc">false</span> <span class="p">}</span> <span class="c1">// default value</span>
+	<span class="p">}</span>
 <span class="p">};</span>
 
 <span class="kd">var</span> <span class="nx">c1</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">lorem</span><span class="o">:</span> <span class="s1">'ipsum'</span> <span class="p">};</span>
@@ -524,8 +530,8 @@ checked.</p>
 <div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">inspector</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'schema-inspector'</span><span class="p">);</span>
 
 <span class="kd">var</span> <span class="nx">schema</span> <span class="o">=</span> <span class="p">{</span>
-		<span class="nx">type</span><span class="o">:</span> <span class="s1">'array'</span><span class="p">,</span>
-		<span class="nx">uniqueness</span><span class="o">:</span> <span class="kc">true</span>
+	<span class="nx">type</span><span class="o">:</span> <span class="s1">'array'</span><span class="p">,</span>
+	<span class="nx">uniqueness</span><span class="o">:</span> <span class="kc">true</span>
 <span class="p">};</span>
 
 <span class="kd">var</span> <span class="nx">c1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">45</span><span class="p">];</span>
@@ -557,15 +563,15 @@ string, it's an alias of a RegExp.</p>
 <div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">inspector</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'schema-inspector'</span><span class="p">);</span>
 
 <span class="kd">var</span> <span class="nx">schema1</span> <span class="o">=</span> <span class="p">{</span>
-		<span class="nx">type</span><span class="o">:</span> <span class="s1">'array'</span><span class="p">,</span>
-		<span class="nx">items</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'string'</span><span class="p">,</span> <span class="nx">pattern</span><span class="o">:</span> <span class="sr">/^[A-C]/</span> <span class="p">}</span>
+	<span class="nx">type</span><span class="o">:</span> <span class="s1">'array'</span><span class="p">,</span>
+	<span class="nx">items</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'string'</span><span class="p">,</span> <span class="nx">pattern</span><span class="o">:</span> <span class="sr">/^[A-C]/</span> <span class="p">}</span>
 <span class="p">};</span>
 
 <span class="kd">var</span> <span class="nx">c1</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'Alorem'</span><span class="p">,</span> <span class="s1">'Bipsum'</span><span class="p">,</span> <span class="s1">'Cdolor'</span><span class="p">,</span> <span class="s1">'DSit amet'</span><span class="p">];</span>
 
 <span class="kd">var</span> <span class="nx">schema2</span> <span class="o">=</span> <span class="p">{</span>
-		<span class="nx">type</span><span class="o">:</span> <span class="s1">'array'</span><span class="p">,</span>
-		<span class="nx">items</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'string'</span><span class="p">,</span> <span class="nx">pattern</span><span class="o">:</span> <span class="s1">'email'</span> <span class="p">}</span>
+	<span class="nx">type</span><span class="o">:</span> <span class="s1">'array'</span><span class="p">,</span>
+	<span class="nx">items</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'string'</span><span class="p">,</span> <span class="nx">pattern</span><span class="o">:</span> <span class="s1">'email'</span> <span class="p">}</span>
 <span class="p">};</span>
 
 <span class="kd">var</span> <span class="nx">c2</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'lorem@ipsum.com'</span><span class="p">,</span> <span class="s1">'dolor@sit.com'</span><span class="p">,</span> <span class="s1">'amet@consectetur'</span><span class="p">];</span>
@@ -589,20 +595,20 @@ string, it's an alias of a RegExp.</p>
 <div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">inspector</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'schema-inspector'</span><span class="p">);</span>
 
 <span class="kd">var</span> <span class="nx">schema</span> <span class="o">=</span> <span class="p">{</span>
-		<span class="nx">type</span><span class="o">:</span> <span class="s1">'object'</span><span class="p">,</span>
-		<span class="nx">properties</span><span class="o">:</span> <span class="p">{</span>
-				<span class="nx">lorem</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'string'</span><span class="p">,</span> <span class="nx">minLength</span><span class="o">:</span> <span class="mi">4</span><span class="p">,</span> <span class="nx">maxLength</span><span class="o">:</span> <span class="mi">8</span> <span class="p">},</span>
-				<span class="nx">ipsum</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'array'</span><span class="p">,</span> <span class="nx">exactLength</span><span class="o">:</span> <span class="mi">6</span> <span class="p">},</span>
-		<span class="p">}</span>
+	<span class="nx">type</span><span class="o">:</span> <span class="s1">'object'</span><span class="p">,</span>
+	<span class="nx">properties</span><span class="o">:</span> <span class="p">{</span>
+		<span class="nx">lorem</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'string'</span><span class="p">,</span> <span class="nx">minLength</span><span class="o">:</span> <span class="mi">4</span><span class="p">,</span> <span class="nx">maxLength</span><span class="o">:</span> <span class="mi">8</span> <span class="p">},</span>
+		<span class="nx">ipsum</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'array'</span><span class="p">,</span> <span class="nx">exactLength</span><span class="o">:</span> <span class="mi">6</span> <span class="p">},</span>
+	<span class="p">}</span>
 <span class="p">};</span>
 <span class="kd">var</span> <span class="nx">c1</span> <span class="o">=</span> <span class="p">{</span>
-		<span class="nx">lorem</span><span class="o">:</span> <span class="s1">'12345'</span><span class="p">,</span>
-		<span class="nx">ipsum</span><span class="o">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
+	<span class="nx">lorem</span><span class="o">:</span> <span class="s1">'12345'</span><span class="p">,</span>
+	<span class="nx">ipsum</span><span class="o">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
 <span class="p">};</span>
 
 <span class="kd">var</span> <span class="nx">c2</span> <span class="o">=</span> <span class="p">{</span>
-		<span class="nx">lorem</span><span class="o">:</span> <span class="s1">'123456789'</span><span class="p">,</span>
-		<span class="nx">ipsum</span><span class="o">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+	<span class="nx">lorem</span><span class="o">:</span> <span class="s1">'123456789'</span><span class="p">,</span>
+	<span class="nx">ipsum</span><span class="o">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
 <span class="p">};</span>
 
 <span class="nx">inspector</span><span class="p">.</span><span class="nx">validate</span><span class="p">(</span><span class="nx">schema</span><span class="p">,</span> <span class="nx">c1</span><span class="p">);</span> <span class="c1">// Valid</span>
@@ -640,13 +646,13 @@ string, it's an alias of a RegExp.</p>
 <div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">inspector</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'schema-inspector'</span><span class="p">);</span>
 
 <span class="kd">var</span> <span class="nx">schema</span> <span class="o">=</span> <span class="p">{</span>
-		<span class="nx">type</span><span class="o">:</span> <span class="s1">'object'</span><span class="p">,</span>
-		<span class="nx">properties</span><span class="o">:</span> <span class="p">{</span>
-				<span class="nx">lorem</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'number'</span><span class="p">,</span> <span class="nx">gt</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">lt</span><span class="o">:</span> <span class="mi">5</span> <span class="p">},</span> <span class="c1">// Between ]0; 5[</span>
-				<span class="nx">ipsum</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'number'</span><span class="p">,</span> <span class="nx">gte</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">lte</span><span class="o">:</span> <span class="mi">5</span> <span class="p">},</span> <span class="c1">// Between [0; 5]</span>
-				<span class="nx">dolor</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'number'</span><span class="p">,</span> <span class="nx">eq</span><span class="o">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span> <span class="p">},</span> <span class="c1">// Equal to 0, 3, 6 or 9</span>
-				<span class="nx">sit</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'number'</span><span class="p">,</span> <span class="nx">ne</span><span class="o">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span> <span class="p">}</span> <span class="c1">// Not equal to 0, 3, 6 nor 9</span>
-		<span class="p">}</span>
+	<span class="nx">type</span><span class="o">:</span> <span class="s1">'object'</span><span class="p">,</span>
+	<span class="nx">properties</span><span class="o">:</span> <span class="p">{</span>
+		<span class="nx">lorem</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'number'</span><span class="p">,</span> <span class="nx">gt</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">lt</span><span class="o">:</span> <span class="mi">5</span> <span class="p">},</span> <span class="c1">// Between ]0; 5[</span>
+		<span class="nx">ipsum</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'number'</span><span class="p">,</span> <span class="nx">gte</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">lte</span><span class="o">:</span> <span class="mi">5</span> <span class="p">},</span> <span class="c1">// Between [0; 5]</span>
+		<span class="nx">dolor</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'number'</span><span class="p">,</span> <span class="nx">eq</span><span class="o">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span> <span class="p">},</span> <span class="c1">// Equal to 0, 3, 6 or 9</span>
+		<span class="nx">sit</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'number'</span><span class="p">,</span> <span class="nx">ne</span><span class="o">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span> <span class="p">}</span> <span class="c1">// Not equal to 0, 3, 6 nor 9</span>
+	<span class="p">}</span>
 <span class="p">};</span>
 
 <span class="kd">var</span> <span class="nx">c1</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">lorem</span><span class="o">:</span> <span class="mi">3</span><span class="p">,</span> <span class="nx">ipsum</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">dolor</span><span class="o">:</span> <span class="mi">6</span><span class="p">,</span> <span class="nx">sit</span><span class="o">:</span> <span class="mi">2</span> <span class="p">};</span>
@@ -674,13 +680,13 @@ optional).</p>
 <div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">inspector</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'schema-inspector'</span><span class="p">);</span>
 
 <span class="kd">var</span> <span class="nx">schema</span> <span class="o">=</span> <span class="p">{</span>
-		<span class="nx">type</span><span class="o">:</span> <span class="s1">'object'</span><span class="p">,</span>
-		<span class="nx">someKeys</span><span class="o">:</span> <span class="p">[</span><span class="s1">'lorem'</span><span class="p">,</span> <span class="s1">'ipsum'</span><span class="p">]</span>
-		<span class="nx">properties</span><span class="o">:</span> <span class="p">{</span>
-				<span class="nx">lorem</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'any'</span><span class="p">,</span> <span class="nx">optional</span><span class="o">:</span> <span class="kc">true</span> <span class="p">},</span>
-				<span class="nx">ipsum</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'any'</span><span class="p">,</span> <span class="nx">optional</span><span class="o">:</span> <span class="kc">true</span> <span class="p">},</span>
-				<span class="nx">dolor</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'any'</span> <span class="p">}</span>
-		<span class="p">}</span>
+	<span class="nx">type</span><span class="o">:</span> <span class="s1">'object'</span><span class="p">,</span>
+	<span class="nx">someKeys</span><span class="o">:</span> <span class="p">[</span><span class="s1">'lorem'</span><span class="p">,</span> <span class="s1">'ipsum'</span><span class="p">]</span>
+	<span class="nx">properties</span><span class="o">:</span> <span class="p">{</span>
+		<span class="nx">lorem</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'any'</span><span class="p">,</span> <span class="nx">optional</span><span class="o">:</span> <span class="kc">true</span> <span class="p">},</span>
+		<span class="nx">ipsum</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'any'</span><span class="p">,</span> <span class="nx">optional</span><span class="o">:</span> <span class="kc">true</span> <span class="p">},</span>
+		<span class="nx">dolor</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'any'</span> <span class="p">}</span>
+	<span class="p">}</span>
 <span class="p">};</span>
 
 <span class="kd">var</span> <span class="nx">c1</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">lorem</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">ipsum</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">dolor</span><span class="o">:</span> <span class="mi">2</span>  <span class="p">};</span>
@@ -711,13 +717,13 @@ optional).</p>
 <div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">inspector</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'schema-inspector'</span><span class="p">);</span>
 
 <span class="kd">var</span> <span class="nx">schema</span> <span class="o">=</span> <span class="p">{</span>
-		<span class="nx">type</span><span class="o">:</span> <span class="s1">'object'</span><span class="p">,</span>
-		<span class="nx">strict</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-		<span class="nx">properties</span><span class="o">:</span> <span class="p">{</span>
-				<span class="nx">lorem</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'any'</span> <span class="p">},</span>
-				<span class="nx">ipsum</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'any'</span> <span class="p">},</span>
-				<span class="nx">dolor</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'any'</span> <span class="p">}</span>
-		<span class="p">}</span>
+	<span class="nx">type</span><span class="o">:</span> <span class="s1">'object'</span><span class="p">,</span>
+	<span class="nx">strict</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+	<span class="nx">properties</span><span class="o">:</span> <span class="p">{</span>
+		<span class="nx">lorem</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'any'</span> <span class="p">},</span>
+		<span class="nx">ipsum</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'any'</span> <span class="p">},</span>
+		<span class="nx">dolor</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'any'</span> <span class="p">}</span>
+	<span class="p">}</span>
 <span class="p">};</span>
 
 <span class="kd">var</span> <span class="nx">c1</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">lorem</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">ipsum</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">dolor</span><span class="o">:</span> <span class="mi">2</span>  <span class="p">};</span>
@@ -746,19 +752,19 @@ Very useful to make some custom validation.</p>
 <div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">inspector</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'schema-inspector'</span><span class="p">);</span>
 
 <span class="kd">var</span> <span class="nx">schema</span> <span class="o">=</span> <span class="p">{</span>
-		<span class="nx">type</span><span class="o">:</span> <span class="s1">'object'</span><span class="p">,</span>
-		<span class="nx">properties</span><span class="o">:</span> <span class="p">{</span>
-				<span class="nx">lorem</span><span class="o">:</span> <span class="p">{</span>
-						<span class="nx">type</span><span class="o">:</span> <span class="s1">'number'</span><span class="p">,</span>
-						<span class="nx">exec</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">schema</span><span class="p">,</span> <span class="nx">post</span><span class="p">)</span> <span class="p">{</span>
-								<span class="c1">// here scheme === schema.properties.lorem and post === @.lorem</span>
-								<span class="k">if</span> <span class="p">(</span><span class="nx">post</span> <span class="o">===</span> <span class="mi">3</span><span class="p">)</span> <span class="p">{</span>
-										<span class="c1">// As soon as `this.report()` is called, candidate is not valid.</span>
-										<span class="k">this</span><span class="p">.</span><span class="nx">report</span><span class="p">(</span><span class="s1">'must not equal 3 =('</span><span class="p">);</span> <span class="c1">// Ok...it's exactly like "ne: 3"</span>
-								<span class="p">}</span>
-						<span class="p">}</span>
+	<span class="nx">type</span><span class="o">:</span> <span class="s1">'object'</span><span class="p">,</span>
+	<span class="nx">properties</span><span class="o">:</span> <span class="p">{</span>
+		<span class="nx">lorem</span><span class="o">:</span> <span class="p">{</span>
+			<span class="nx">type</span><span class="o">:</span> <span class="s1">'number'</span><span class="p">,</span>
+			<span class="nx">exec</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">schema</span><span class="p">,</span> <span class="nx">post</span><span class="p">)</span> <span class="p">{</span>
+				<span class="c1">// here scheme === schema.properties.lorem and post === @.lorem</span>
+				<span class="k">if</span> <span class="p">(</span><span class="nx">post</span> <span class="o">===</span> <span class="mi">3</span><span class="p">)</span> <span class="p">{</span>
+					<span class="c1">// As soon as `this.report()` is called, candidate is not valid.</span>
+					<span class="k">this</span><span class="p">.</span><span class="nx">report</span><span class="p">(</span><span class="s1">'must not equal 3 =('</span><span class="p">);</span> <span class="c1">// Ok...it's exactly like "ne: 3"</span>
 				<span class="p">}</span>
+			<span class="p">}</span>
 		<span class="p">}</span>
+	<span class="p">}</span>
 <span class="p">};</span>
 
 <span class="kd">var</span> <span class="nx">c1</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">lorem</span><span class="o">:</span> <span class="mi">2</span> <span class="p">};</span>
@@ -786,38 +792,38 @@ validation is called deeper in object.</p>
 <div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">inspector</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'schema-inspector'</span><span class="p">);</span>
 
 <span class="kd">var</span> <span class="nx">schema</span> <span class="o">=</span> <span class="p">{</span>
-		<span class="nx">type</span><span class="o">:</span> <span class="s1">'object'</span><span class="p">,</span>
-		<span class="nx">properties</span><span class="o">:</span> <span class="p">{</span>
-				<span class="nx">lorem</span><span class="o">:</span> <span class="p">{</span>
-						<span class="nx">type</span><span class="o">:</span> <span class="s1">'object'</span><span class="p">,</span>
-						<span class="nx">properties</span><span class="o">:</span> <span class="p">{</span>
-								<span class="nx">ipsum</span><span class="o">:</span> <span class="p">{</span>
-										<span class="nx">type</span><span class="o">:</span> <span class="s1">'object'</span><span class="p">,</span>
-										<span class="nx">properties</span><span class="o">:</span> <span class="p">{</span>
-												<span class="nx">dolor</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'string'</span> <span class="p">}</span>
-										<span class="p">}</span>
-								<span class="p">}</span>
-						<span class="p">}</span>
-				<span class="p">},</span>
-				<span class="nx">consectetur</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'string'</span> <span class="p">}</span>
-		<span class="p">}</span>
+	<span class="nx">type</span><span class="o">:</span> <span class="s1">'object'</span><span class="p">,</span>
+	<span class="nx">properties</span><span class="o">:</span> <span class="p">{</span>
+		<span class="nx">lorem</span><span class="o">:</span> <span class="p">{</span>
+			<span class="nx">type</span><span class="o">:</span> <span class="s1">'object'</span><span class="p">,</span>
+			<span class="nx">properties</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">ipsum</span><span class="o">:</span> <span class="p">{</span>
+					<span class="nx">type</span><span class="o">:</span> <span class="s1">'object'</span><span class="p">,</span>
+					<span class="nx">properties</span><span class="o">:</span> <span class="p">{</span>
+						<span class="nx">dolor</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'string'</span> <span class="p">}</span>
+					<span class="p">}</span>
+				<span class="p">}</span>
+			<span class="p">}</span>
+		<span class="p">},</span>
+		<span class="nx">consectetur</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'string'</span> <span class="p">}</span>
+	<span class="p">}</span>
 <span class="p">};</span>
 
 <span class="kd">var</span> <span class="nx">c1</span> <span class="o">=</span> <span class="p">{</span>
-		<span class="nx">lorem</span><span class="o">:</span> <span class="p">{</span>
-				<span class="nx">ipsum</span><span class="o">:</span> <span class="p">{</span>
-						<span class="nx">dolor</span><span class="o">:</span> <span class="s1">'sit amet'</span>
-				<span class="p">}</span>
-		<span class="p">},</span>
-		<span class="nx">consectetur</span><span class="o">:</span> <span class="s1">'adipiscing elit'</span>
+	<span class="nx">lorem</span><span class="o">:</span> <span class="p">{</span>
+		<span class="nx">ipsum</span><span class="o">:</span> <span class="p">{</span>
+			<span class="nx">dolor</span><span class="o">:</span> <span class="s1">'sit amet'</span>
+		<span class="p">}</span>
+	<span class="p">},</span>
+	<span class="nx">consectetur</span><span class="o">:</span> <span class="s1">'adipiscing elit'</span>
 <span class="p">};</span>
 <span class="kd">var</span> <span class="nx">c2</span> <span class="o">=</span> <span class="p">{</span>
-		<span class="nx">lorem</span><span class="o">:</span> <span class="p">{</span>
-				<span class="nx">ipsum</span><span class="o">:</span> <span class="p">{</span>
-						<span class="nx">dolor</span><span class="o">:</span> <span class="mi">12</span>
-				<span class="p">}</span>
-		<span class="p">},</span>
-		<span class="nx">consectetur</span><span class="o">:</span> <span class="s1">'adipiscing elit'</span>
+	<span class="nx">lorem</span><span class="o">:</span> <span class="p">{</span>
+		<span class="nx">ipsum</span><span class="o">:</span> <span class="p">{</span>
+			<span class="nx">dolor</span><span class="o">:</span> <span class="mi">12</span>
+		<span class="p">}</span>
+	<span class="p">},</span>
+	<span class="nx">consectetur</span><span class="o">:</span> <span class="s1">'adipiscing elit'</span>
 <span class="p">};</span>
 
 <span class="nx">inspector</span><span class="p">.</span><span class="nx">validate</span><span class="p">(</span><span class="nx">schema</span><span class="p">,</span> <span class="nx">c1</span><span class="p">);</span> <span class="c1">// Valid</span>
@@ -844,17 +850,17 @@ be checked with the schema which has the same position in the array.</p>
 <div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">inspector</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'schema-inspector'</span><span class="p">);</span>
 
 <span class="kd">var</span> <span class="nx">schema1</span> <span class="o">=</span> <span class="p">{</span>
-		<span class="nx">type</span><span class="o">:</span> <span class="s1">'array'</span><span class="p">,</span>
-		<span class="nx">items</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'number'</span> <span class="p">}</span>
+	<span class="nx">type</span><span class="o">:</span> <span class="s1">'array'</span><span class="p">,</span>
+	<span class="nx">items</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'number'</span> <span class="p">}</span>
 <span class="p">};</span>
 
 <span class="kd">var</span> <span class="nx">schema2</span> <span class="o">=</span> <span class="p">{</span>
-		<span class="nx">type</span><span class="o">:</span> <span class="s1">'array'</span><span class="p">,</span>
-		<span class="nx">items</span><span class="o">:</span> <span class="p">[</span>
-				<span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'number'</span> <span class="p">},</span>
-				<span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'number'</span> <span class="p">},</span>
-				<span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'string'</span> <span class="p">}</span>
-		<span class="p">]</span>
+	<span class="nx">type</span><span class="o">:</span> <span class="s1">'array'</span><span class="p">,</span>
+	<span class="nx">items</span><span class="o">:</span> <span class="p">[</span>
+		<span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'number'</span> <span class="p">},</span>
+		<span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'number'</span> <span class="p">},</span>
+		<span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'string'</span> <span class="p">}</span>
+	<span class="p">]</span>
 <span class="p">};</span>
 
 <span class="kd">var</span> <span class="nx">c1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">];</span>
@@ -884,17 +890,17 @@ be checked with the schema which has the same position in the array.</p>
 <div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">inspector</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'schema-inspector'</span><span class="p">);</span>
 
 <span class="kd">var</span> <span class="nx">schema1</span> <span class="o">=</span> <span class="p">{</span>
-		<span class="nx">type</span><span class="o">:</span> <span class="s1">'object'</span><span class="p">,</span>
-		<span class="nx">properties</span><span class="o">:</span> <span class="p">{</span>
-				<span class="nx">_id</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'string'</span><span class="p">}</span>
-		<span class="p">}</span>
+	<span class="nx">type</span><span class="o">:</span> <span class="s1">'object'</span><span class="p">,</span>
+	<span class="nx">properties</span><span class="o">:</span> <span class="p">{</span>
+		<span class="nx">_id</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'string'</span><span class="p">}</span>
+	<span class="p">}</span>
 <span class="p">};</span>
 
 <span class="kd">var</span> <span class="nx">schema2</span> <span class="o">=</span> <span class="p">{</span>
-		<span class="nx">type</span><span class="o">:</span> <span class="s1">'object'</span><span class="p">,</span>
-		<span class="nx">properties</span><span class="o">:</span> <span class="p">{</span>
-				<span class="nx">_id</span><span class="o">:</span> <span class="p">{</span> <span class="nx">alias</span><span class="o">:</span> <span class="s1">'id'</span><span class="p">,</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'string'</span><span class="p">}</span>
-		<span class="p">}</span>
+	<span class="nx">type</span><span class="o">:</span> <span class="s1">'object'</span><span class="p">,</span>
+	<span class="nx">properties</span><span class="o">:</span> <span class="p">{</span>
+		<span class="nx">_id</span><span class="o">:</span> <span class="p">{</span> <span class="nx">alias</span><span class="o">:</span> <span class="s1">'id'</span><span class="p">,</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'string'</span><span class="p">}</span>
+	<span class="p">}</span>
 <span class="p">};</span>
 
 <span class="kd">var</span> <span class="nx">c1</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">_id</span><span class="o">:</span> <span class="mi">1234567890</span> <span class="p">};</span>
@@ -923,17 +929,17 @@ an error is encounted.</p>
 <div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">inspector</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'schema-inspector'</span><span class="p">);</span>
 
 <span class="kd">var</span> <span class="nx">schema1</span> <span class="o">=</span> <span class="p">{</span>
-		<span class="nx">type</span><span class="o">:</span> <span class="s1">'object'</span><span class="p">,</span>
-		<span class="nx">properties</span><span class="o">:</span> <span class="p">{</span>
-				<span class="nx">_id</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'string'</span> <span class="p">}</span>
-		<span class="p">}</span>
+	<span class="nx">type</span><span class="o">:</span> <span class="s1">'object'</span><span class="p">,</span>
+	<span class="nx">properties</span><span class="o">:</span> <span class="p">{</span>
+		<span class="nx">_id</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'string'</span> <span class="p">}</span>
+	<span class="p">}</span>
 <span class="p">};</span>
 
 <span class="kd">var</span> <span class="nx">schema2</span> <span class="o">=</span> <span class="p">{</span>
-		<span class="nx">type</span><span class="o">:</span> <span class="s1">'object'</span><span class="p">,</span>
-		<span class="nx">properties</span><span class="o">:</span> <span class="p">{</span>
-				<span class="nx">_id</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'string'</span><span class="p">,</span> <span class="nx">error</span><span class="o">:</span> <span class="s1">'must be a valid ID.'</span> <span class="p">}</span>
-		<span class="p">}</span>
+	<span class="nx">type</span><span class="o">:</span> <span class="s1">'object'</span><span class="p">,</span>
+	<span class="nx">properties</span><span class="o">:</span> <span class="p">{</span>
+		<span class="nx">_id</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'string'</span><span class="p">,</span> <span class="nx">error</span><span class="o">:</span> <span class="s1">'must be a valid ID.'</span> <span class="p">}</span>
+	<span class="p">}</span>
 <span class="p">};</span>
 
 <span class="kd">var</span> <span class="nx">c1</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">_id</span><span class="o">:</span> <span class="mi">1234567890</span> <span class="p">};</span>
@@ -1007,7 +1013,7 @@ an error is encounted.</p>
 <ul>
 <li>number                (1361790386000 -&gt; Mon Feb 25 2013 12:06:26 GMT+0100 (CET))</li>
 <li>string                ("2013-02-25T11:06:26.704Z" -&gt; Mon Feb 25 2013 12:06:26 GMT+0100 (CET))
-														("Mon Feb 25 2013 12:06:26 GMT+0100 (CET)" -&gt; Mon Feb 25 2013 12:06:26 GMT+0100 (CET))</li>
+							("Mon Feb 25 2013 12:06:26 GMT+0100 (CET)" -&gt; Mon Feb 25 2013 12:06:26 GMT+0100 (CET))</li>
 </ul>
 </li>
 </ul><p><strong>Example</strong></p>
@@ -1015,8 +1021,8 @@ an error is encounted.</p>
 <div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">inspector</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'schema-inspector'</span><span class="p">);</span>
 
 <span class="kd">var</span> <span class="nx">schema</span> <span class="o">=</span> <span class="p">{</span>
-		<span class="nx">type</span><span class="o">:</span> <span class="s1">'array'</span><span class="p">,</span>
-		<span class="nx">items</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'string'</span> <span class="p">}</span>
+	<span class="nx">type</span><span class="o">:</span> <span class="s1">'array'</span><span class="p">,</span>
+	<span class="nx">items</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'string'</span> <span class="p">}</span>
 <span class="p">};</span>
 
 <span class="kd">var</span> <span class="nx">c</span> <span class="o">=</span> <span class="p">[</span><span class="mf">12.23</span><span class="p">,</span> <span class="o">-</span><span class="mi">34</span><span class="p">,</span> <span class="kc">true</span><span class="p">,</span> <span class="kc">false</span><span class="p">,</span> <span class="s1">'true'</span><span class="p">,</span> <span class="s1">'false'</span><span class="p">,</span> <span class="p">[</span><span class="mi">123</span><span class="p">,</span> <span class="mi">234</span><span class="p">,</span> <span class="mi">345</span><span class="p">]];</span>
@@ -1045,19 +1051,19 @@ because entry type is not valid (cf <a href="#s_type">type</a>).</p>
 <div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">inspector</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'schema-inspector'</span><span class="p">);</span>
 
 <span class="kd">var</span> <span class="nx">schema</span> <span class="o">=</span> <span class="p">{</span>
-		<span class="nx">type</span><span class="o">:</span> <span class="s1">'object'</span><span class="p">,</span>
-		<span class="nx">properties</span><span class="o">:</span> <span class="p">{</span>
-				<span class="nx">lorem</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'number'</span><span class="p">,</span> <span class="nx">def</span><span class="o">:</span> <span class="mi">10</span> <span class="p">},</span>
-				<span class="nx">ipsum</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'string'</span><span class="p">,</span> <span class="nx">def</span><span class="o">:</span> <span class="s1">'NikitaJS'</span><span class="p">,</span> <span class="nx">optional</span><span class="o">:</span> <span class="kc">false</span> <span class="p">},</span>
-				<span class="nx">dolor</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'string'</span> <span class="p">}</span>
-		<span class="p">}</span>
+	<span class="nx">type</span><span class="o">:</span> <span class="s1">'object'</span><span class="p">,</span>
+	<span class="nx">properties</span><span class="o">:</span> <span class="p">{</span>
+		<span class="nx">lorem</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'number'</span><span class="p">,</span> <span class="nx">def</span><span class="o">:</span> <span class="mi">10</span> <span class="p">},</span>
+		<span class="nx">ipsum</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'string'</span><span class="p">,</span> <span class="nx">def</span><span class="o">:</span> <span class="s1">'NikitaJS'</span><span class="p">,</span> <span class="nx">optional</span><span class="o">:</span> <span class="kc">false</span> <span class="p">},</span>
+		<span class="nx">dolor</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'string'</span> <span class="p">}</span>
+	<span class="p">}</span>
 <span class="p">};</span>
 
 <span class="kd">var</span> <span class="nx">c</span> <span class="o">=</span> <span class="p">{</span>
-		<span class="nx">lorem</span><span class="o">:</span> <span class="p">[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">23</span><span class="p">],</span>    <span class="c1">// convertion to number is about to fail</span>
-																				<span class="c1">// (array -&gt; number is not possible)</span>
-																				<span class="c1">// ipsum is not privided</span>
-		<span class="nx">dolor</span><span class="o">:</span> <span class="s1">'sit amet'</span> <span class="c1">// "dolor" is already a string</span>
+	<span class="nx">lorem</span><span class="o">:</span> <span class="p">[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">23</span><span class="p">],</span>    <span class="c1">// convertion to number is about to fail</span>
+										<span class="c1">// (array -&gt; number is not possible)</span>
+										<span class="c1">// ipsum is not privided</span>
+	<span class="nx">dolor</span><span class="o">:</span> <span class="s1">'sit amet'</span> <span class="c1">// "dolor" is already a string</span>
 <span class="p">};</span>
 
 <span class="kd">var</span> <span class="nx">r</span> <span class="o">=</span> <span class="nx">SchemaInspector</span><span class="p">.</span><span class="nx">sanitize</span><span class="p">(</span><span class="nx">schema</span><span class="p">,</span> <span class="nx">c</span><span class="p">);</span>
@@ -1089,12 +1095,12 @@ because entry type is not valid (cf <a href="#s_type">type</a>).</p>
 <div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">inspector</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'schema-inspector'</span><span class="p">);</span>
 
 <span class="kd">var</span> <span class="nx">schema</span> <span class="o">=</span> <span class="p">{</span>
-		<span class="nx">type</span><span class="o">:</span> <span class="s1">'object'</span><span class="p">,</span>
-		<span class="nx">properties</span><span class="o">:</span> <span class="p">{</span>
-				<span class="nx">lorem</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'number'</span><span class="p">,</span> <span class="nx">optional</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span> <span class="nx">def</span><span class="o">:</span> <span class="mi">12</span> <span class="p">},</span>
-				<span class="nx">ipsum</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'string'</span><span class="p">,</span> <span class="nx">optional</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span> <span class="nx">def</span><span class="o">:</span> <span class="mi">23</span> <span class="p">},</span>
-				<span class="nx">dolor</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'string'</span><span class="p">,</span> <span class="nx">def</span><span class="o">:</span> <span class="err">'</span><span class="nx">NikitaJS</span><span class="p">,</span> <span class="nx">def</span><span class="o">:</span> <span class="mi">34</span> <span class="p">}</span> <span class="c1">// (optional: true)</span>
-		<span class="p">}</span>
+	<span class="nx">type</span><span class="o">:</span> <span class="s1">'object'</span><span class="p">,</span>
+	<span class="nx">properties</span><span class="o">:</span> <span class="p">{</span>
+		<span class="nx">lorem</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'number'</span><span class="p">,</span> <span class="nx">optional</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span> <span class="nx">def</span><span class="o">:</span> <span class="mi">12</span> <span class="p">},</span>
+		<span class="nx">ipsum</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'string'</span><span class="p">,</span> <span class="nx">optional</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span> <span class="nx">def</span><span class="o">:</span> <span class="mi">23</span> <span class="p">},</span>
+		<span class="nx">dolor</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'string'</span><span class="p">,</span> <span class="nx">def</span><span class="o">:</span> <span class="err">'</span><span class="nx">NikitaJS</span><span class="p">,</span> <span class="nx">def</span><span class="o">:</span> <span class="mi">34</span> <span class="p">}</span> <span class="c1">// (optional: true)</span>
+	<span class="p">}</span>
 <span class="p">};</span>
 
 <span class="kd">var</span> <span class="nx">c</span> <span class="o">=</span> <span class="p">{</span> <span class="p">};</span>
@@ -1143,16 +1149,16 @@ are applied in the same order than in the array.</p>
 <div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">inspector</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'schema-inspector'</span><span class="p">);</span>
 
 <span class="kd">var</span> <span class="nx">schema</span> <span class="o">=</span> <span class="p">{</span>
-		<span class="nx">type</span><span class="o">:</span> <span class="s1">'object'</span><span class="p">,</span>
-		<span class="nx">properties</span><span class="o">:</span> <span class="p">{</span>
-				<span class="nx">lorem</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'string'</span><span class="p">,</span> <span class="nx">rules</span><span class="o">:</span> <span class="s1">'upper'</span> <span class="p">},</span>
-				<span class="nx">ipsum</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'string'</span><span class="p">,</span> <span class="nx">rules</span><span class="o">:</span> <span class="p">[</span> <span class="s1">'trim'</span><span class="p">,</span> <span class="s1">'title'</span><span class="p">]</span> <span class="p">}</span>
-		<span class="p">}</span>
+	<span class="nx">type</span><span class="o">:</span> <span class="s1">'object'</span><span class="p">,</span>
+	<span class="nx">properties</span><span class="o">:</span> <span class="p">{</span>
+		<span class="nx">lorem</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'string'</span><span class="p">,</span> <span class="nx">rules</span><span class="o">:</span> <span class="s1">'upper'</span> <span class="p">},</span>
+		<span class="nx">ipsum</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'string'</span><span class="p">,</span> <span class="nx">rules</span><span class="o">:</span> <span class="p">[</span> <span class="s1">'trim'</span><span class="p">,</span> <span class="s1">'title'</span><span class="p">]</span> <span class="p">}</span>
+	<span class="p">}</span>
 <span class="p">};</span>
 
 <span class="kd">var</span> <span class="nx">c</span> <span class="o">=</span> <span class="p">{</span>
-		<span class="nx">lorem</span><span class="o">:</span> <span class="s1">' tHiS is sParTa! '</span><span class="p">,</span>
-		<span class="nx">ipsum</span><span class="o">:</span> <span class="s1">'   tHiS is sParTa!    '</span>
+	<span class="nx">lorem</span><span class="o">:</span> <span class="s1">' tHiS is sParTa! '</span><span class="p">,</span>
+	<span class="nx">ipsum</span><span class="o">:</span> <span class="s1">'   tHiS is sParTa!    '</span>
 <span class="p">};</span>
 
 <span class="kd">var</span> <span class="nx">r</span> <span class="o">=</span> <span class="nx">SchemaInspector</span><span class="p">.</span><span class="nx">sanitize</span><span class="p">(</span><span class="nx">schema</span><span class="p">,</span> <span class="nx">c</span><span class="p">);</span>
@@ -1183,8 +1189,8 @@ maximum.</p>
 <div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">inspector</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'schema-inspector'</span><span class="p">);</span>
 
 <span class="kd">var</span> <span class="nx">schema</span> <span class="o">=</span> <span class="p">{</span>
-		<span class="nx">type</span><span class="o">:</span> <span class="s1">'array'</span><span class="p">,</span>
-		<span class="nx">items</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'number'</span><span class="p">,</span> <span class="nx">min</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span> <span class="nx">max</span><span class="o">:</span> <span class="mi">20</span> <span class="p">}</span>
+	<span class="nx">type</span><span class="o">:</span> <span class="s1">'array'</span><span class="p">,</span>
+	<span class="nx">items</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'number'</span><span class="p">,</span> <span class="nx">min</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span> <span class="nx">max</span><span class="o">:</span> <span class="mi">20</span> <span class="p">}</span>
 <span class="p">};</span>
 
 <span class="kd">var</span> <span class="nx">c</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">25</span><span class="p">];</span>
@@ -1216,8 +1222,8 @@ maximum.</p>
 <div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">inspector</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'schema-inspector'</span><span class="p">);</span>
 
 <span class="kd">var</span> <span class="nx">schema</span> <span class="o">=</span> <span class="p">{</span>
-		<span class="nx">type</span><span class="o">:</span> <span class="s1">'array'</span><span class="p">,</span>
-		<span class="nx">items</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'string'</span><span class="p">,</span> <span class="nx">minLength</span><span class="o">:</span> <span class="mi">8</span><span class="p">,</span> <span class="nx">maxLength</span><span class="o">:</span> <span class="mi">11</span> <span class="p">}</span>
+	<span class="nx">type</span><span class="o">:</span> <span class="s1">'array'</span><span class="p">,</span>
+	<span class="nx">items</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'string'</span><span class="p">,</span> <span class="nx">minLength</span><span class="o">:</span> <span class="mi">8</span><span class="p">,</span> <span class="nx">maxLength</span><span class="o">:</span> <span class="mi">11</span> <span class="p">}</span>
 <span class="p">};</span>
 
 <span class="kd">var</span> <span class="nx">c</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'short'</span><span class="p">,</span> <span class="s1">'mediumSize'</span><span class="p">,</span> <span class="s1">'tooLongForThisSchema'</span><span class="p">];</span>
@@ -1251,17 +1257,17 @@ do not return nothing (if you do so, the new value will be <code>undefined</code
 <div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">inspector</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'schema-inspector'</span><span class="p">);</span>
 
 <span class="kd">var</span> <span class="nx">schema</span> <span class="o">=</span> <span class="p">{</span>
-		<span class="nx">type</span><span class="o">:</span> <span class="s1">'array'</span><span class="p">,</span>
-		<span class="nx">items</span><span class="o">:</span> <span class="p">{</span>
-				<span class="nx">type</span><span class="o">:</span> <span class="s1">'string'</span><span class="p">,</span>
-				<span class="nx">exec</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">schema</span><span class="p">,</span> <span class="nx">post</span><span class="p">)</span> <span class="p">{</span>
-						<span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">post</span> <span class="o">===</span> <span class="s1">'string'</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="sr">/^nikita$/i</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">post</span><span class="p">))</span> <span class="p">{</span>
-								<span class="k">this</span><span class="p">.</span><span class="nx">report</span><span class="p">();</span>
-								<span class="k">return</span> <span class="s1">'_INVALID_'</span><span class="p">;</span>
-						<span class="p">}</span>
-						<span class="k">return</span> <span class="nx">post</span><span class="p">;</span>
-				<span class="p">}</span>
+	<span class="nx">type</span><span class="o">:</span> <span class="s1">'array'</span><span class="p">,</span>
+	<span class="nx">items</span><span class="o">:</span> <span class="p">{</span>
+		<span class="nx">type</span><span class="o">:</span> <span class="s1">'string'</span><span class="p">,</span>
+		<span class="nx">exec</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">schema</span><span class="p">,</span> <span class="nx">post</span><span class="p">)</span> <span class="p">{</span>
+			<span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">post</span> <span class="o">===</span> <span class="s1">'string'</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="sr">/^nikita$/i</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">post</span><span class="p">))</span> <span class="p">{</span>
+				<span class="k">this</span><span class="p">.</span><span class="nx">report</span><span class="p">();</span>
+				<span class="k">return</span> <span class="s1">'_INVALID_'</span><span class="p">;</span>
+			<span class="p">}</span>
+			<span class="k">return</span> <span class="nx">post</span><span class="p">;</span>
 		<span class="p">}</span>
+	<span class="p">}</span>
 <span class="p">};</span>
 
 <span class="kd">var</span> <span class="nx">c</span> <span class="o">=</span> <span class="p">[</span> <span class="s1">'Nikita'</span><span class="p">,</span> <span class="s1">'lol'</span><span class="p">,</span> <span class="s1">'NIKITA'</span><span class="p">,</span> <span class="s1">'thisIsGonnaBeSanitized!'</span> <span class="p">];</span>
@@ -1317,25 +1323,25 @@ provide a custom field called "superiorMod", you can access it with name
 <div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">inspector</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'schema-inspector'</span><span class="p">);</span>
 
 <span class="kd">var</span> <span class="nx">schema</span> <span class="o">=</span> <span class="p">{</span>
-		<span class="nx">type</span><span class="o">:</span> <span class="s1">'object'</span><span class="p">,</span>
-		<span class="nx">properties</span><span class="o">:</span> <span class="p">{</span>
-				<span class="nx">lorem</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'number'</span><span class="p">,</span> <span class="nx">$divisibleBy</span><span class="o">:</span> <span class="mi">5</span> <span class="p">},</span>
-				<span class="nx">ipsum</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'number'</span><span class="p">,</span> <span class="nx">$divisibleBy</span><span class="o">:</span> <span class="mi">3</span> <span class="p">}</span>
-		<span class="p">}</span>
+	<span class="nx">type</span><span class="o">:</span> <span class="s1">'object'</span><span class="p">,</span>
+	<span class="nx">properties</span><span class="o">:</span> <span class="p">{</span>
+		<span class="nx">lorem</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'number'</span><span class="p">,</span> <span class="nx">$divisibleBy</span><span class="o">:</span> <span class="mi">5</span> <span class="p">},</span>
+		<span class="nx">ipsum</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'number'</span><span class="p">,</span> <span class="nx">$divisibleBy</span><span class="o">:</span> <span class="mi">3</span> <span class="p">}</span>
+	<span class="p">}</span>
 <span class="p">};</span>
 
 <span class="kd">var</span> <span class="nx">custom</span> <span class="o">=</span> <span class="p">{</span>
-		<span class="nx">divisibleBy</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">schema</span><span class="p">,</span> <span class="nx">candidate</span><span class="p">)</span> <span class="p">{</span>
-				<span class="kd">var</span> <span class="nx">dvb</span> <span class="o">=</span> <span class="nx">schema</span><span class="p">.</span><span class="nx">$divisibleBy</span><span class="p">;</span>
-				<span class="k">if</span> <span class="p">(</span><span class="nx">cndidate</span> <span class="o">%</span> <span class="nx">dvb</span> <span class="o">!==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-						<span class="k">this</span><span class="p">.</span><span class="nx">report</span><span class="p">(</span><span class="s1">'must be divisible by '</span> <span class="o">+</span> <span class="nx">dvb</span><span class="p">);</span>
-				<span class="p">}</span>
+	<span class="nx">divisibleBy</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">schema</span><span class="p">,</span> <span class="nx">candidate</span><span class="p">)</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">dvb</span> <span class="o">=</span> <span class="nx">schema</span><span class="p">.</span><span class="nx">$divisibleBy</span><span class="p">;</span>
+		<span class="k">if</span> <span class="p">(</span><span class="nx">cndidate</span> <span class="o">%</span> <span class="nx">dvb</span> <span class="o">!==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+			<span class="k">this</span><span class="p">.</span><span class="nx">report</span><span class="p">(</span><span class="s1">'must be divisible by '</span> <span class="o">+</span> <span class="nx">dvb</span><span class="p">);</span>
 		<span class="p">}</span>
+	<span class="p">}</span>
 <span class="p">};</span>
 
 <span class="kd">var</span> <span class="nx">c</span> <span class="o">=</span> <span class="p">{</span>
-		<span class="nx">lorem</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
-		<span class="nx">ipsum</span><span class="o">:</span> <span class="mi">8</span>
+	<span class="nx">lorem</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
+	<span class="nx">ipsum</span><span class="o">:</span> <span class="mi">8</span>
 <span class="p">};</span>
 <span class="nx">inspector</span><span class="p">.</span><span class="nx">validate</span><span class="p">(</span><span class="nx">schema</span><span class="p">,</span> <span class="nx">candidate</span><span class="p">,</span> <span class="nx">custom</span><span class="p">);</span> <span class="c1">// Invalid: "@.ipsum must be divisible by 3"</span>
 </pre></div>
@@ -1358,27 +1364,27 @@ specific field by calling <em>inspector.Validation.remove(field)</em> or
 <div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">inspector</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'schema-inspector'</span><span class="p">);</span>
 
 <span class="kd">var</span> <span class="nx">custom</span> <span class="o">=</span> <span class="p">{</span>
-		<span class="nx">divisibleBy</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">schema</span><span class="p">,</span> <span class="nx">candidate</span><span class="p">)</span> <span class="p">{</span>
-				<span class="kd">var</span> <span class="nx">dvb</span> <span class="o">=</span> <span class="nx">schema</span><span class="p">.</span><span class="nx">$divisibleBy</span><span class="p">;</span>
-				<span class="k">if</span> <span class="p">(</span><span class="nx">cndidate</span> <span class="o">%</span> <span class="nx">dvb</span> <span class="o">!==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-						<span class="k">this</span><span class="p">.</span><span class="nx">report</span><span class="p">(</span><span class="s1">'must be divisible by '</span> <span class="o">+</span> <span class="nx">dvb</span><span class="p">);</span>
-				<span class="p">}</span>
+	<span class="nx">divisibleBy</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">schema</span><span class="p">,</span> <span class="nx">candidate</span><span class="p">)</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">dvb</span> <span class="o">=</span> <span class="nx">schema</span><span class="p">.</span><span class="nx">$divisibleBy</span><span class="p">;</span>
+		<span class="k">if</span> <span class="p">(</span><span class="nx">cndidate</span> <span class="o">%</span> <span class="nx">dvb</span> <span class="o">!==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+			<span class="k">this</span><span class="p">.</span><span class="nx">report</span><span class="p">(</span><span class="s1">'must be divisible by '</span> <span class="o">+</span> <span class="nx">dvb</span><span class="p">);</span>
 		<span class="p">}</span>
+	<span class="p">}</span>
 <span class="p">};</span>
 
 <span class="kd">var</span> <span class="nx">schema</span> <span class="o">=</span> <span class="p">{</span>
-		<span class="nx">type</span><span class="o">:</span> <span class="s1">'object'</span><span class="p">,</span>
-		<span class="nx">properties</span><span class="o">:</span> <span class="p">{</span>
-				<span class="nx">lorem</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'number'</span><span class="p">,</span> <span class="nx">$divisibleBy</span><span class="o">:</span> <span class="mi">5</span> <span class="p">},</span>
-				<span class="nx">ipsum</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'number'</span><span class="p">,</span> <span class="nx">$divisibleBy</span><span class="o">:</span> <span class="mi">3</span> <span class="p">}</span>
-		<span class="p">}</span>
+	<span class="nx">type</span><span class="o">:</span> <span class="s1">'object'</span><span class="p">,</span>
+	<span class="nx">properties</span><span class="o">:</span> <span class="p">{</span>
+		<span class="nx">lorem</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'number'</span><span class="p">,</span> <span class="nx">$divisibleBy</span><span class="o">:</span> <span class="mi">5</span> <span class="p">},</span>
+		<span class="nx">ipsum</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'number'</span><span class="p">,</span> <span class="nx">$divisibleBy</span><span class="o">:</span> <span class="mi">3</span> <span class="p">}</span>
+	<span class="p">}</span>
 <span class="p">};</span>
 
 <span class="nx">inspector</span><span class="p">.</span><span class="nx">Validation</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">custom</span><span class="p">);</span>
 
 <span class="kd">var</span> <span class="nx">candidate</span> <span class="o">=</span> <span class="p">{</span>
-		<span class="nx">lorem</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
-		<span class="nx">ipsum</span><span class="o">:</span> <span class="mi">8</span>
+	<span class="nx">lorem</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
+	<span class="nx">ipsum</span><span class="o">:</span> <span class="mi">8</span>
 <span class="p">};</span>
 
 <span class="nx">inspector</span><span class="p">.</span><span class="nx">validate</span><span class="p">(</span><span class="nx">schema</span><span class="p">,</span> <span class="nx">candidate</span><span class="p">);</span>
@@ -1404,10 +1410,10 @@ sent to <code>inspector.validate()</code> or <code>inspector.sanitize()</code>.<
 <div class="highlight highlight-javascript"><pre><span class="c1">// ...</span>
 <span class="kd">var</span> <span class="nx">schema</span> <span class="o">=</span> <span class="p">{</span> <span class="p">...</span> <span class="p">};</span>
 <span class="kd">var</span> <span class="nx">custom</span> <span class="o">=</span> <span class="p">{</span>
-		<span class="nx">divisibleBy</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">schema</span><span class="p">,</span> <span class="nx">candidate</span><span class="p">)</span> <span class="p">{</span>
-				<span class="c1">// this.origin === [12, 23, 34, 45]</span>
-				<span class="c1">// ...</span>
-		<span class="p">}</span>
+	<span class="nx">divisibleBy</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">schema</span><span class="p">,</span> <span class="nx">candidate</span><span class="p">)</span> <span class="p">{</span>
+		<span class="c1">// this.origin === [12, 23, 34, 45]</span>
+		<span class="c1">// ...</span>
+	<span class="p">}</span>
 <span class="p">};</span>
 <span class="kd">var</span> <span class="nx">candidate</span> <span class="o">=</span> <span class="p">[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">45</span><span class="p">];</span>
 <span class="kd">var</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">inspector</span><span class="p">.</span><span class="nx">validate</span><span class="p">(</span><span class="nx">schema</span><span class="p">,</span> <span class="nx">candidate</span><span class="p">,</span> <span class="nx">custom</span><span class="p">);</span>
@@ -1444,7 +1450,7 @@ and asynchronous call.</p>
 <span class="kd">var</span> <span class="nx">candidate</span> <span class="o">=</span> <span class="p">{</span> <span class="p">...</span> <span class="p">};</span>
 
 <span class="nx">inspector</span><span class="p">.</span><span class="nx">validate</span><span class="p">(</span><span class="nx">schema</span><span class="p">,</span> <span class="nx">candidate</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
-		<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">format</span><span class="p">());</span>
+	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">format</span><span class="p">());</span>
 <span class="p">});</span>
 </pre></div>
 
@@ -1457,7 +1463,7 @@ and asynchronous call.</p>
 <span class="kd">var</span> <span class="nx">custom</span> <span class="o">=</span> <span class="p">{</span> <span class="p">...</span> <span class="p">};</span>
 
 <span class="nx">inspector</span><span class="p">.</span><span class="nx">validate</span><span class="p">(</span><span class="nx">schema</span><span class="p">,</span> <span class="nx">candidate</span><span class="p">,</span> <span class="nx">custom</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
-		<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">format</span><span class="p">());</span>
+	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">format</span><span class="p">());</span>
 <span class="p">});</span>
 </pre></div>
 
@@ -1466,60 +1472,60 @@ and asynchronous call.</p>
 <div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">inspector</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'schema-inspector'</span><span class="p">);</span>
 
 <span class="kd">var</span> <span class="nx">schema</span> <span class="o">=</span> <span class="p">{</span>
-		<span class="nx">type</span><span class="o">:</span> <span class="s1">'object'</span><span class="p">,</span>
-		<span class="nx">properties</span><span class="o">:</span> <span class="p">{</span>
-				<span class="nx">lorem</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'number'</span><span class="p">,</span> <span class="nx">$divisibleBy</span><span class="o">:</span> <span class="mi">4</span> <span class="p">},</span>
-				<span class="nx">ipsum</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'number'</span><span class="p">,</span> <span class="nx">$divisibleBy</span><span class="o">:</span> <span class="mi">5</span> <span class="p">},</span>
-				<span class="nx">dolor</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'number'</span><span class="p">,</span> <span class="nx">$divisibleBy</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">optional</span><span class="o">:</span> <span class="kc">true</span> <span class="p">}</span>
-		<span class="p">}</span>
+	<span class="nx">type</span><span class="o">:</span> <span class="s1">'object'</span><span class="p">,</span>
+	<span class="nx">properties</span><span class="o">:</span> <span class="p">{</span>
+		<span class="nx">lorem</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'number'</span><span class="p">,</span> <span class="nx">$divisibleBy</span><span class="o">:</span> <span class="mi">4</span> <span class="p">},</span>
+		<span class="nx">ipsum</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'number'</span><span class="p">,</span> <span class="nx">$divisibleBy</span><span class="o">:</span> <span class="mi">5</span> <span class="p">},</span>
+		<span class="nx">dolor</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'number'</span><span class="p">,</span> <span class="nx">$divisibleBy</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">optional</span><span class="o">:</span> <span class="kc">true</span> <span class="p">}</span>
+	<span class="p">}</span>
 <span class="p">};</span>
 
 <span class="kd">var</span> <span class="nx">custom</span> <span class="o">=</span> <span class="p">{</span>
-		<span class="nx">divisibleBy</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">schema</span><span class="p">,</span> <span class="nx">candidate</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// Third parameter is declared:</span>
-				<span class="c1">// Schema-Inspector will wait this function to call this `callback` to keep running.</span>
-				<span class="kd">var</span> <span class="nx">dvb</span> <span class="o">=</span> <span class="nx">schema</span><span class="p">.</span><span class="nx">$divisibleBy</span><span class="p">;</span>
-				<span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">dvb</span> <span class="o">!==</span> <span class="s1">'number'</span> <span class="o">||</span> <span class="k">typeof</span> <span class="nx">candidate</span> <span class="o">!==</span> <span class="s1">'number'</span><span class="p">)</span> <span class="p">{</span>
-						<span class="k">return</span> <span class="nx">callback</span><span class="p">();</span>
-				<span class="p">}</span>
-				<span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-				<span class="nx">process</span><span class="p">.</span><span class="nx">nextTick</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-						<span class="k">if</span> <span class="p">(</span><span class="nx">dvb</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-								<span class="k">return</span> <span class="nx">callback</span><span class="p">(</span><span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">'Schema error: Divisor must not equal 0'</span><span class="p">));</span>
-						<span class="p">}</span>
-						<span class="kd">var</span> <span class="nx">r</span> <span class="o">=</span> <span class="nx">candidate</span> <span class="o">/</span> <span class="nx">dvb</span><span class="p">;</span>
-						<span class="k">if</span> <span class="p">((</span><span class="nx">r</span> <span class="o">|</span> <span class="mi">0</span><span class="p">)</span> <span class="o">!==</span> <span class="nx">r</span><span class="p">)</span>  <span class="p">{</span>
-								<span class="nx">self</span><span class="p">.</span><span class="nx">report</span><span class="p">(</span><span class="s1">'should be divisible by '</span> <span class="o">+</span> <span class="nx">dvb</span><span class="p">);</span>
-						<span class="p">}</span>
-						<span class="nx">callback</span><span class="p">();</span>
-				<span class="p">});</span>
+	<span class="nx">divisibleBy</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">schema</span><span class="p">,</span> <span class="nx">candidate</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// Third parameter is declared:</span>
+		<span class="c1">// Schema-Inspector will wait this function to call this `callback` to keep running.</span>
+		<span class="kd">var</span> <span class="nx">dvb</span> <span class="o">=</span> <span class="nx">schema</span><span class="p">.</span><span class="nx">$divisibleBy</span><span class="p">;</span>
+		<span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">dvb</span> <span class="o">!==</span> <span class="s1">'number'</span> <span class="o">||</span> <span class="k">typeof</span> <span class="nx">candidate</span> <span class="o">!==</span> <span class="s1">'number'</span><span class="p">)</span> <span class="p">{</span>
+			<span class="k">return</span> <span class="nx">callback</span><span class="p">();</span>
 		<span class="p">}</span>
+		<span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+		<span class="nx">process</span><span class="p">.</span><span class="nx">nextTick</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+			<span class="k">if</span> <span class="p">(</span><span class="nx">dvb</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+				<span class="k">return</span> <span class="nx">callback</span><span class="p">(</span><span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">'Schema error: Divisor must not equal 0'</span><span class="p">));</span>
+			<span class="p">}</span>
+			<span class="kd">var</span> <span class="nx">r</span> <span class="o">=</span> <span class="nx">candidate</span> <span class="o">/</span> <span class="nx">dvb</span><span class="p">;</span>
+			<span class="k">if</span> <span class="p">((</span><span class="nx">r</span> <span class="o">|</span> <span class="mi">0</span><span class="p">)</span> <span class="o">!==</span> <span class="nx">r</span><span class="p">)</span>  <span class="p">{</span>
+				<span class="nx">self</span><span class="p">.</span><span class="nx">report</span><span class="p">(</span><span class="s1">'should be divisible by '</span> <span class="o">+</span> <span class="nx">dvb</span><span class="p">);</span>
+			<span class="p">}</span>
+			<span class="nx">callback</span><span class="p">();</span>
+		<span class="p">});</span>
+	<span class="p">}</span>
 <span class="p">};</span>
 
 <span class="kd">var</span> <span class="nx">candidate</span> <span class="o">=</span> <span class="p">{</span>
-		<span class="nx">lorem</span><span class="o">:</span> <span class="mi">12</span><span class="p">,</span>
-		<span class="nx">ipsum</span><span class="o">:</span> <span class="mi">25</span>
+	<span class="nx">lorem</span><span class="o">:</span> <span class="mi">12</span><span class="p">,</span>
+	<span class="nx">ipsum</span><span class="o">:</span> <span class="mi">25</span>
 <span class="p">};</span>
 
 <span class="nx">inspector</span><span class="p">.</span><span class="nx">validate</span><span class="p">(</span><span class="nx">schema</span><span class="p">,</span> <span class="nx">candidate</span><span class="p">,</span> <span class="nx">custom</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
-		<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">format</span><span class="p">());</span>
+	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">format</span><span class="p">());</span>
 <span class="p">});</span>
 </pre></div>
-			</section>
+		</section>
 
-			<footer>
-				<span class="ribbon-outer">
-					<span class="ribbon-inner">
-						<p>this project by <a href="https://github.com/Atinux">Atinux</a> can be found on <a href="https://github.com/Atinux/schema-inspector">GitHub</a></p>
-					</span>
-					<span class="left-tail"></span>
-					<span class="right-tail"></span>
-				</span>
-				<p>Generated with <a href="http://pages.github.com">GitHub Pages</a> using Merlot</p>
-				<span class="octocat"></span>
-			</footer>
+		<footer>
+		<span class="ribbon-outer">
+			<span class="ribbon-inner">
+			<p>this project by <a href="https://github.com/Atinux">Atinux</a> can be found on <a href="https://github.com/Atinux/schema-inspector">GitHub</a></p>
+			</span>
+			<span class="left-tail"></span>
+			<span class="right-tail"></span>
+		</span>
+		<p>Generated with <a href="http://pages.github.com">GitHub Pages</a> using Merlot</p>
+		<span class="octocat"></span>
+		</footer>
 
-		</div>
+	</div>
 
-		
+	
 	</body>
 </html>

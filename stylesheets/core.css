@@ -85,3 +85,9 @@
 	border: none;
 	margin: 0;
 }
+
+pre {
+	tab-size:4;
+	-moz-tab-size: 4;
+	-o-tab-size:  4;
+}
