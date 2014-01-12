@@ -2,6 +2,7 @@
 
 Schema-Inspector is a powerful tool to sanitize and validate JS objects.
 It's disigned to work both client-side and server-side and to be scalable with allowing asynchronous and synchronous calls.
+Demonstration & documentation: http://atinux.github.io/schema-inspector/
 
 ## Installation
 
