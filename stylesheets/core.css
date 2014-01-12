@@ -1,3 +1,87 @@
 @import url("screen.css");
 @import url("non-screen.css") handheld;
 @import url("non-screen.css") only screen and (max-device-width:640px);
+
+/*.play-it {
+	position: relative;
+}
+.step {
+	position: absolute;
+	top: 0;
+	width: 300px;
+	height: 400px;
+	float: left;
+}
+.step.step-1 {
+	left: -400px;
+	width: 400px;
+}
+.step.step-2 {
+	left: 54px;
+	width: 400px;
+}
+.step.step-3 {
+	right: -400px;
+	width: 400px;
+}*/
+.step .title {
+	margin-top: 20px;
+	margin-bottom: 5px;
+}
+/*.plus-sign {
+	position: absolute;
+	top: 180px;
+	left: 15px;
+	font-size: 30px;
+	font-weight: bold;
+}
+.step textarea {
+	display: none;
+}
+*/
+.step .CodeMirror {
+	height: auto;
+}
+/*
+.play-margin {
+	height: 400px;
+	width: 100%;
+	clear: both;
+}*/
+.cm-s-solarized .cm-tab:before {
+	color: #2E464E !important;
+}
+
+.result {
+	position: absolute;
+	top: 465px;
+	left: 0;
+	width: 300px;
+	background-color: #002b36;
+	color: #ccc;
+	padding: 15px;
+	font-weight: bold;
+	font-family: "Lucida Sans Typewriter", "Lucida Console", Monaco, "Bitstream Vera Sans Mono", monospace;
+	box-shadow: inset 7px 0 12px -6px #000;
+	-webkit-box-shadow: inset 7px 0 12px -6px #000;
+	-moz-box-shadow: inset 7px 0 12px -6px #000;
+}
+.result.fixed {
+	position: fixed;
+	top: 150px;
+}
+.result .error,
+.result .validation-title {
+	color: #cb4b16;
+	font-size: 17px;
+}
+.result .validation-error {
+	font-weight: normal;
+	color: rgb(150, 112, 77);
+}
+.result pre {
+	width: 100%;
+	padding: 0;
+	border: none;
+	margin: 0;
+}
