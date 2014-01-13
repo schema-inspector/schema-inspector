@@ -47,6 +47,44 @@ exports.sanitization = function () {
 			candidate.should.eql([d.toString(), d.toString()]);
 		});
 
+		test('candidate #4 | object -> string', function () {
+			var obj = { test: true };
+			var candidate = [obj, JSON.stringify(obj)];
+
+			var result = si.sanitize(schema, candidate);
+			console.log(result, candidate);
+			result.should.be.an.Object;
+			result.should.have.property('reporting').with.be.an.instanceof(Array)
+			.and.be.lengthOf(1);
+			result.reporting[0].property.should.be.equal('@[0]');
+			candidate.should.eql([JSON.stringify(obj), JSON.stringify(obj)]);
+		});
+
+		test('candidate #5 | array -> string', function () {
+			var candidate = [ [ 'one', 'two', true ] ];
+
+			var result = si.sanitize(schema, candidate);
+			result.should.be.an.Object;
+			result.should.have.property('reporting').with.be.an.instanceof(Array)
+			.and.be.lengthOf(1);
+			result.reporting[0].property.should.be.equal('@[0]');
+			candidate.should.eql([ 'one,two,true' ]);
+		});
+
+		test('candidate #6 | array -> string with joinWith="|"', function () {
+			var candidate = [ [ 'one', 'two', true ] ];
+
+			schema.items.joinWith = '|';
+			var result = si.sanitize(schema, candidate);
+			delete schema.items.joinWith;
+			console.log(result);
+			result.should.be.an.Object;
+			result.should.have.property('reporting').with.be.an.instanceof(Array)
+			.and.be.lengthOf(1);
+			result.reporting[0].property.should.be.equal('@[0]');
+			candidate.should.eql([ 'one|two|true' ]);
+		});
+
 	}); // suite "schema #1"
 
 	suite('schema #2 (type casting [integer])', function () {
@@ -91,7 +129,6 @@ exports.sanitization = function () {
 			var candidate = [ new Date(300), date, new Date("2014-01-01"), new Date("INVALID")];
 
 			var result = si.sanitize(schema, candidate);
-			console.log(candidate);
 			result.should.be.an.Object;
 			result.should.have.property('reporting').with.be.an.instanceof(Array)
 			.and.be.lengthOf(4);
@@ -1273,8 +1310,9 @@ exports.sanitization = function () {
 		test('candidate #6 | "one;two;three" -> [ "one", "two", "three" ]', function () {
 			var candidate = { tab: 'one;two;three' };
 
-			schema.properties.tab.splitBy = ';';
+			schema.properties.tab.splitWith = ';';
 			var result = si.sanitize(schema, candidate);
+			delete schema.properties.tab.splitWith;
 			result.should.be.an.Object;
 			result.should.have.property('reporting').with.be.an.instanceof(Array)
 			.and.be.lengthOf(1);

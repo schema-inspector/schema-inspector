@@ -701,30 +701,45 @@ console.log(r2.format()); // Property @._id: must be a valid ID.
 
 Cast property to the given type according to the following description:
 * **to number from**:
-	* string			("12.34": 12.34)
-	* date				(new Date("2014-01-01"): 1388534400000)
+	* string
+		* "12.34" -> 12.34
+	* date
+		* new Date("2014-01-01") -> 1388534400000)
 * **to integer from**:
-	* number 			(12.34: 12)
-	* string			("12.34": 12)
-	* boolean			(true: 1, false: 0)
-	* date				(new Date("2014-01-01"): 1388534400000)
+	* number
+		* 12.34 -> 12
+	* string
+		* "12.34" -> 12
+	* boolean
+		* true -> 1
+		* false -> 0
+	* date
+		* new Date("2014-01-01") -> 1388534400000
 * **to string from**:
-	* boolean			(true: "true")
-	* number			(12.34: "12.34")
-	* integer			(12: "12")
-	* date				([object Date]: "Mon Feb 25 2013 12:03:25 GMT+0100 (CET)")
-	* array				([12, 23, 44]: '12,34,45')
+	* boolean
+		* true -> "true"
+	* number
+		* 12.34 -> "12.34"
+	* integer
+		* 12 -> "12"
+	* date
+		* new Date("2014-01-01") -> "Wed Jan 01 2014 01:00:00 GMT+0100 (CET)"
+	* array
+		* [12, 23, 44] -> '12,34,45'
+		* To join with a custom string, use **joinWith** key (example: { type: "string", joinWith: "|" } will transform [12, 23, 44] to "12|23|44").
 * **to date from**:
-	* number			(1361790386000 -> Mon Feb 25 2013 12:06:26 GMT+0100 (CET))
-	* string			("2013-02-25T11:06:26.704Z" -> Mon Feb 25 2013 12:06:26 GMT+0100 (CET))
-						("Mon Feb 25 2013 12:06:26 GMT+0100 (CET)" -> Mon Feb 25 2013 12:06:26 GMT+0100 (CET))
+	* number
+		* 1361790386000 -> Wed Jan 01 2014 01:00:00 GMT+0100 (CET)
+	* string
+		* "2014-01-01 -> Wed Jan 01 2014 01:00:00 GMT+0100 (CET)
+		* "Wed Jan 01 2014 01:00:00 GMT+0100 (CET)" -> Wed Jan 01 2014 01:00:00 GMT+0100 (CET)
 * **to object from**:
-	* string 			('{"love":"open source"}' -> { love: "open source" })
-
+	* string
+		* '{"love":"open source"}' -> { love: "open source" }
 * **to array from**:
 	* string 			("one,two,three" -> ["one", "two", "three"])
 	* anything except undefined and array 	(23 -> [ 23 ])
--> To split a string to an array by a string other than ",", use the key **splitBy** (example: { type: "array", splitBy: "|"" } will transform "one|two|three" to ["one", "two", "three"])
+	* To split with a custom string (other than ","), use the key **splitWith** (example: { type: "array", splitBy: "|"" } will transform "one|two|three" to ["one", "two", "three"]).*
 
 __Example__
 
