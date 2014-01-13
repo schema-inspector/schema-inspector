@@ -366,7 +366,7 @@ $(function () {
 <span class="p">});</span>
 <span class="nt">&lt;/script&gt;</span>
 </pre></div>
-
+<p>In the example below, <code>inspector</code> variable will be used, for the client-side, use <code>SchemaInspector</code> instead of <code>inspector</code>.</p>
 <h2>
 <a name="documentation" class="anchor" href="#documentation"><span class="octicon octicon-link"></span></a>Documentation</h2>
 
@@ -965,8 +965,8 @@ an error is encounted.</p>
 
 <span class="kd">var</span> <span class="nx">c1</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">_id</span><span class="o">:</span> <span class="mi">1234567890</span> <span class="p">};</span>
 
-<span class="kd">var</span> <span class="nx">r1</span> <span class="o">=</span> <span class="nx">SchemaInspector</span><span class="p">.</span><span class="nx">validate</span><span class="p">(</span><span class="nx">schema1</span><span class="p">,</span> <span class="nx">c1</span><span class="p">);</span>
-<span class="kd">var</span> <span class="nx">r2</span> <span class="o">=</span> <span class="nx">SchemaInspector</span><span class="p">.</span><span class="nx">validate</span><span class="p">(</span><span class="nx">schema2</span><span class="p">,</span> <span class="nx">c1</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">r1</span> <span class="o">=</span> <span class="nx">inspector</span><span class="p">.</span><span class="nx">validate</span><span class="p">(</span><span class="nx">schema1</span><span class="p">,</span> <span class="nx">c1</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">r2</span> <span class="o">=</span> <span class="nx">inspector</span><span class="p">.</span><span class="nx">validate</span><span class="p">(</span><span class="nx">schema2</span><span class="p">,</span> <span class="nx">c1</span><span class="p">);</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">r1</span><span class="p">.</span><span class="nx">format</span><span class="p">());</span> <span class="c1">// Property @._id: must be string, but is number.</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">r2</span><span class="p">.</span><span class="nx">format</span><span class="p">());</span> <span class="c1">// Property @._id: must be a valid ID.</span>
 </pre></div>
@@ -1140,7 +1140,7 @@ an error is encounted.</p>
 
 <span class="kd">var</span> <span class="nx">c</span> <span class="o">=</span> <span class="p">[</span><span class="mf">12.23</span><span class="p">,</span> <span class="o">-</span><span class="mi">34</span><span class="p">,</span> <span class="kc">true</span><span class="p">,</span> <span class="kc">false</span><span class="p">,</span> <span class="s1">'true'</span><span class="p">,</span> <span class="s1">'false'</span><span class="p">,</span> <span class="p">[</span><span class="mi">123</span><span class="p">,</span> <span class="mi">234</span><span class="p">,</span> <span class="mi">345</span><span class="p">]];</span>
 
-<span class="kd">var</span> <span class="nx">r</span> <span class="o">=</span> <span class="nx">SchemaInspector</span><span class="p">.</span><span class="nx">sanitize</span><span class="p">(</span><span class="nx">schema</span><span class="p">,</span> <span class="nx">c</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">r</span> <span class="o">=</span> <span class="nx">inspector</span><span class="p">.</span><span class="nx">sanitize</span><span class="p">(</span><span class="nx">schema</span><span class="p">,</span> <span class="nx">c</span><span class="p">);</span>
 <span class="cm">/*</span>
 <span class="cm">    c: ['12.23', '-34', 'true', 'false', 'true', 'false', '123,234,345']</span>
 <span class="cm">*/</span>
@@ -1179,7 +1179,7 @@ because entry type is not valid (cf <a href="#s_type">type</a>).</p>
 	<span class="nx">dolor</span><span class="o">:</span> <span class="s1">'sit amet'</span> <span class="c1">// "dolor" is already a string</span>
 <span class="p">};</span>
 
-<span class="kd">var</span> <span class="nx">r</span> <span class="o">=</span> <span class="nx">SchemaInspector</span><span class="p">.</span><span class="nx">sanitize</span><span class="p">(</span><span class="nx">schema</span><span class="p">,</span> <span class="nx">c</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">r</span> <span class="o">=</span> <span class="nx">inspector</span><span class="p">.</span><span class="nx">sanitize</span><span class="p">(</span><span class="nx">schema</span><span class="p">,</span> <span class="nx">c</span><span class="p">);</span>
 <span class="cm">/*</span>
 <span class="cm">    c: {</span>
 <span class="cm">        lorem: 10,</span>
@@ -1218,7 +1218,7 @@ because entry type is not valid (cf <a href="#s_type">type</a>).</p>
 
 <span class="kd">var</span> <span class="nx">c</span> <span class="o">=</span> <span class="p">{</span> <span class="p">};</span>
 
-<span class="kd">var</span> <span class="nx">r</span> <span class="o">=</span> <span class="nx">SchemaInspector</span><span class="p">.</span><span class="nx">sanitize</span><span class="p">(</span><span class="nx">schema</span><span class="p">,</span> <span class="nx">c</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">r</span> <span class="o">=</span> <span class="nx">inspector</span><span class="p">.</span><span class="nx">sanitize</span><span class="p">(</span><span class="nx">schema</span><span class="p">,</span> <span class="nx">c</span><span class="p">);</span>
 <span class="cm">/*</span>
 <span class="cm">    c: {</span>
 <span class="cm">        lorem: 12 // Only lorem is set to 12 because it is not optional.</span>
@@ -1274,7 +1274,7 @@ are applied in the same order than in the array.</p>
 	<span class="nx">ipsum</span><span class="o">:</span> <span class="s1">'   tHiS is sParTa!    '</span>
 <span class="p">};</span>
 
-<span class="kd">var</span> <span class="nx">r</span> <span class="o">=</span> <span class="nx">SchemaInspector</span><span class="p">.</span><span class="nx">sanitize</span><span class="p">(</span><span class="nx">schema</span><span class="p">,</span> <span class="nx">c</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">r</span> <span class="o">=</span> <span class="nx">inspector</span><span class="p">.</span><span class="nx">sanitize</span><span class="p">(</span><span class="nx">schema</span><span class="p">,</span> <span class="nx">c</span><span class="p">);</span>
 <span class="cm">/*</span>
 <span class="cm">    c: {</span>
 <span class="cm">        lorem: ' THIS IS SPARTA! ',</span>
@@ -1308,7 +1308,7 @@ maximum.</p>
 
 <span class="kd">var</span> <span class="nx">c</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">25</span><span class="p">];</span>
 
-<span class="kd">var</span> <span class="nx">r</span> <span class="o">=</span> <span class="nx">SchemaInspector</span><span class="p">.</span><span class="nx">sanitize</span><span class="p">(</span><span class="nx">schema</span><span class="p">,</span> <span class="nx">c</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">r</span> <span class="o">=</span> <span class="nx">inspector</span><span class="p">.</span><span class="nx">sanitize</span><span class="p">(</span><span class="nx">schema</span><span class="p">,</span> <span class="nx">c</span><span class="p">);</span>
 <span class="cm">/*</span>
 <span class="cm">    c: [10, 10, 15, 20, 20]</span>
 <span class="cm">    c[0] (5) was less than min (10), so it's been set to 10.</span>
@@ -1341,7 +1341,7 @@ maximum.</p>
 
 <span class="kd">var</span> <span class="nx">c</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'short'</span><span class="p">,</span> <span class="s1">'mediumSize'</span><span class="p">,</span> <span class="s1">'tooLongForThisSchema'</span><span class="p">];</span>
 
-<span class="kd">var</span> <span class="nx">r</span> <span class="o">=</span> <span class="nx">SchemaInspector</span><span class="p">.</span><span class="nx">sanitize</span><span class="p">(</span><span class="nx">schema</span><span class="p">,</span> <span class="nx">c</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">r</span> <span class="o">=</span> <span class="nx">inspector</span><span class="p">.</span><span class="nx">sanitize</span><span class="p">(</span><span class="nx">schema</span><span class="p">,</span> <span class="nx">c</span><span class="p">);</span>
 <span class="cm">/*</span>
 <span class="cm">    c: ['short---', 'mediumSize', 'tooLongForT']</span>
 <span class="cm">*/</span>
@@ -1385,7 +1385,7 @@ do not return nothing (if you do so, the new value will be <code>undefined</code
 
 <span class="kd">var</span> <span class="nx">c</span> <span class="o">=</span> <span class="p">[</span> <span class="s1">'Nikita'</span><span class="p">,</span> <span class="s1">'lol'</span><span class="p">,</span> <span class="s1">'NIKITA'</span><span class="p">,</span> <span class="s1">'thisIsGonnaBeSanitized!'</span> <span class="p">];</span>
 
-<span class="kd">var</span> <span class="nx">r</span> <span class="o">=</span> <span class="nx">SchemaInspector</span><span class="p">.</span><span class="nx">sanitize</span><span class="p">(</span><span class="nx">schema</span><span class="p">,</span> <span class="nx">c</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">r</span> <span class="o">=</span> <span class="nx">inspector</span><span class="p">.</span><span class="nx">sanitize</span><span class="p">(</span><span class="nx">schema</span><span class="p">,</span> <span class="nx">c</span><span class="p">);</span>
 <span class="cm">/*</span>
 <span class="cm">    c: [ 'Nikita', '_INVALID_', 'NIKITA', '_INVALID_' ]</span>
 <span class="cm">*/</span>
