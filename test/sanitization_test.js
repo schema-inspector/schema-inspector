@@ -52,7 +52,7 @@ exports.sanitization = function () {
 	suite('schema #2 (type casting [integer])', function () {
 		var schema = {
 			type: 'array',
-			items: { type: 'integer', def: 0 }
+			items: { type: 'integer', def: -1 }
 		};
 
 		test('candidate #1 | string -> integer', function () {
@@ -69,7 +69,7 @@ exports.sanitization = function () {
 			result.reporting[4].property.should.be.equal('@[4]');
 			result.reporting[5].property.should.be.equal('@[5]');
 			result.reporting[6].property.should.be.equal('@[6]');
-			candidate.should.be.eql([0, 4, 3, 2, 1, 1500, 16, 0]);
+			candidate.should.be.eql([-1, 4, 3, 2, 1, 1500, 16, -1]); // default is -1
 		});
 
 		test('candidate #2 | number -> integer', function () {
@@ -86,12 +86,28 @@ exports.sanitization = function () {
 			candidate.should.be.eql([12, -12, 12, -12, 0, 12]);
 		});
 
+		test('candidate #3 | date -> integer', function () {
+			var date = new Date();
+			var candidate = [ new Date(300), date, new Date("2014-01-01"), new Date("INVALID")];
+
+			var result = si.sanitize(schema, candidate);
+			console.log(candidate);
+			result.should.be.an.Object;
+			result.should.have.property('reporting').with.be.an.instanceof(Array)
+			.and.be.lengthOf(4);
+			result.reporting[0].property.should.be.equal('@[0]');
+			result.reporting[1].property.should.be.equal('@[1]');
+			result.reporting[2].property.should.be.equal('@[2]');
+			result.reporting[3].property.should.be.equal('@[3]');
+			candidate.should.be.eql([300, +date, 1388534400000, -1]);
+		});
+
 	}); // suite "schema #2"
 
 	suite('schema #3 (type casting [number])', function () {
 		var schema = {
 			type: 'array',
-			items: { type: 'number', def: 0 }
+			items: { type: 'number', def: -1 }
 		};
 
 		test('candidate #1 | string -> number', function () {
@@ -106,7 +122,23 @@ exports.sanitization = function () {
 			result.reporting[2].property.should.be.equal('@[2]');
 			result.reporting[3].property.should.be.equal('@[3]');
 			result.reporting[4].property.should.be.equal('@[4]');
-			candidate.should.be.eql([0, -4, -3.234, 2, 1.234, 14.45, 0]);
+			candidate.should.be.eql([-1, -4, -3.234, 2, 1.234, 14.45, -1]); // default is -1
+		});
+
+		test('candidate #2 | date -> number (same as integer)', function () {
+			var date = new Date();
+			var candidate = [ new Date(300), date, new Date("2013-12-01"), new Date("INVALID")];
+
+			var result = si.sanitize(schema, candidate);
+			console.log(candidate);
+			result.should.be.an.Object;
+			result.should.have.property('reporting').with.be.an.instanceof(Array)
+			.and.be.lengthOf(4);
+			result.reporting[0].property.should.be.equal('@[0]');
+			result.reporting[1].property.should.be.equal('@[1]');
+			result.reporting[2].property.should.be.equal('@[2]');
+			result.reporting[3].property.should.be.equal('@[3]');
+			candidate.should.be.eql([300, +date, +new Date("2013-12-01"), -1]);
 		});
 
 	}); // suite "schema #3"
@@ -161,7 +193,7 @@ exports.sanitization = function () {
 			type: 'object',
 			properties: {
 				json: { type: 'object' },
-				objt:{ type: 'object' }
+				objt: { type: 'object' }
 			}
 		};
 
@@ -1225,6 +1257,29 @@ exports.sanitization = function () {
 			result.reporting[0].property.should.be.equal('@.tab[0]');
 			result.reporting[1].property.should.be.equal('@.tab[1]');
 			candidate.should.eql({ tab: [ '15', 'true' ] });
+		});
+
+		test('candidate #5 | "one,two,three" -> [ "one", "two", "three" ]', function () {
+			var candidate = { tab: 'one,two,three' };
+
+			var result = si.sanitize(schema, candidate);
+			result.should.be.an.Object;
+			result.should.have.property('reporting').with.be.an.instanceof(Array)
+			.and.be.lengthOf(1);
+			result.reporting[0].property.should.be.equal('@.tab');
+			candidate.should.eql({ tab: [ 'one', 'two', 'three' ] });
+		});
+
+		test('candidate #6 | "one;two;three" -> [ "one", "two", "three" ]', function () {
+			var candidate = { tab: 'one;two;three' };
+
+			schema.properties.tab.splitBy = ';';
+			var result = si.sanitize(schema, candidate);
+			result.should.be.an.Object;
+			result.should.have.property('reporting').with.be.an.instanceof(Array)
+			.and.be.lengthOf(1);
+			result.reporting[0].property.should.be.equal('@.tab');
+			candidate.should.eql({ tab: [ 'one', 'two', 'three' ] });
 		});
 
 	}); // suite "schema #17"
