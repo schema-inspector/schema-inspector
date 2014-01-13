@@ -124,6 +124,8 @@ console.log(result.format());
 </script>
 ```
 
+In the example below, `inspector` variable will be used, for the client-side, use `SchemaInspector` instead of `inspector`.
+
 ## Documentation
 
 ### Validation
@@ -678,8 +680,8 @@ var schema2 = {
 
 var c1 = { _id: 1234567890 };
 
-var r1 = SchemaInspector.validate(schema1, c1);
-var r2 = SchemaInspector.validate(schema2, c1);
+var r1 = inspector.validate(schema1, c1);
+var r2 = inspector.validate(schema2, c1);
 console.log(r1.format()); // Property @._id: must be string, but is number.
 console.log(r2.format()); // Property @._id: must be a valid ID.
 ```
@@ -752,11 +754,11 @@ var schema = {
 	items: { type: 'string' }
 };
 
-var c = [12.23, -34, true, false, 'true', 'false', [123, 234, 345]];
+var c = [ 12.23, -34, true, false, 'true', 'false', [123, 234, 345], { obj: "yes" } ];
 
-var r = SchemaInspector.sanitize(schema, c);
+var r = inspector.sanitize(schema, c);
 /*
-	c: ['12.23', '-34', 'true', 'false', 'true', 'false', '123,234,345']
+	c: [ '12.23', '-34', 'true', 'false', 'true', 'false', '123,234,345', '{"obj":"yes"}' ]
 */
 ```
 
@@ -791,7 +793,7 @@ var c = {
 	dolor: 'sit amet' // "dolor" is already a string
 };
 
-var r = SchemaInspector.sanitize(schema, c);
+var r = inspector.sanitize(schema, c);
 /*
 	c: {
 		lorem: 10,
@@ -828,7 +830,7 @@ var schema = {
 
 var c = { };
 
-var r = SchemaInspector.sanitize(schema, c);
+var r = inspector.sanitize(schema, c);
 /*
 	c: {
 		lorem: 12 // Only lorem is set to 12 because it is not optional.
@@ -872,7 +874,7 @@ var c = {
 	ipsum: '   tHiS is sParTa!    '
 };
 
-var r = SchemaInspector.sanitize(schema, c);
+var r = inspector.sanitize(schema, c);
 /*
 	c: {
 		lorem: ' THIS IS SPARTA! ',
@@ -905,7 +907,7 @@ var schema = {
 
 var c = [5, 10, 15, 20, 25];
 
-var r = SchemaInspector.sanitize(schema, c);
+var r = inspector.sanitize(schema, c);
 /*
 	c: [10, 10, 15, 20, 20]
 	c[0] (5) was less than min (10), so it's been set to 10.
@@ -937,7 +939,7 @@ var schema = {
 
 var c = ['short', 'mediumSize', 'tooLongForThisSchema'];
 
-var r = SchemaInspector.sanitize(schema, c);
+var r = inspector.sanitize(schema, c);
 /*
 	c: ['short---', 'mediumSize', 'tooLongForT']
 */
@@ -980,7 +982,7 @@ var schema = {
 
 var c = [ 'Nikita', 'lol', 'NIKITA', 'thisIsGonnaBeSanitized!' ];
 
-var r = SchemaInspector.sanitize(schema, c);
+var r = inspector.sanitize(schema, c);
 /*
 	c: [ 'Nikita', '_INVALID_', 'NIKITA', '_INVALID_' ]
 */
@@ -1035,7 +1037,7 @@ var schema = {
 var custom = {
 	divisibleBy: function (schema, candidate) {
 		var dvb = schema.$divisibleBy;
-		if (cndidate % dvb !== 0) {
+		if (candidate % dvb !== 0) {
 			this.report('must be divisible by ' + dvb);
 		}
 	}
@@ -1069,7 +1071,7 @@ var inspector = require('schema-inspector');
 var custom = {
 	divisibleBy: function (schema, candidate) {
 		var dvb = schema.$divisibleBy;
-		if (cndidate % dvb !== 0) {
+		if (candidate % dvb !== 0) {
 			this.report('must be divisible by ' + dvb);
 		}
 	}
