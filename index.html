@@ -54,14 +54,16 @@
 
 
 		<section id="main_content">
-		<h1>
+		<h1 class="hidden">Schema-Inspector - Validate and Sanitize JS Objects Like a Boss</h1>
+
+		<h1 style="margin-top: 0;">
 <a name="schema-inspector" class="anchor" href="#schema-inspector"><span class="octicon octicon-link"></span></a>Schema-Inspector</h1>
 
 <p>Schema-Inspector is a powerful tool to sanitize and validate JS objects.
 It's disigned to work both client-side and server-side and to be scalable with allowing asynchronous and synchronous calls.</p>
 
-<h2>Demonstration</h2>
-<p>Update the data, sanitization and validation tabs to see in real-time the result of the schema-inspector.</p>
+<h2>Try it by yourself</h2>
+<p>Update the data, sanitization and validation tabs to see in real-time the result of the Schema-inspector.</p>
 <div class="play-it">
 	<div class="step step-1">
 	<h3 class="title">Data</h3>
@@ -177,11 +179,7 @@ function checkSchemaInspector() {
 			return $('.result').append('<div class="validation-error">'+validationResult.format().replace(/\n/g, '<br>')+'</div>');
 			}
 		}
-		var cl = 'data cm-s-solarized cm-s-dark';
-		if ($(window).width() < 1200) {
-			cl = 'data cm-s-default';
-		}
-		$('.result').append('<div class="data-title">Result:</div><pre class="data '+cl+'"></pre>');
+		$('.result').append('<div class="data-title">Result:</div><pre class="data cm-s-default"></pre>');
 		CodeMirror.runMode(JSON.stringify(res.data, null, 4), { name: "javascript", json: true }, $('.result .data')[0]);
 	});
 }
@@ -194,7 +192,7 @@ $(function () {
 	CodeMirror.defaults.tabSize = 2;
 	CodeMirror.defaults.indentWithTabs = true;
 	CodeMirror.defaults.viewportMargin = Infinity;
-	window.editorData = CodeMirror.fromTextArea($('.step-1 textarea')[0], { viewportMargin: Infinity });
+	window.editorData = CodeMirror.fromTextArea($('.step-1 textarea')[0], { autofocus: true });
 	window.editorSanitization = CodeMirror.fromTextArea($('.step-2 textarea')[0]);
 	window.editorValidation = CodeMirror.fromTextArea($('.step-3 textarea')[0]);
 

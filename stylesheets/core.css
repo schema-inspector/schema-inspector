@@ -18,14 +18,14 @@
 	top: 520px;
 	left: 0;
 	width: 300px;
-	background-color: #002b36;
-	color: #ccc;
+	background: white;
+	color: #999;
 	padding: 15px;
 	font-weight: bold;
 	font-family: "Lucida Sans Typewriter", "Lucida Console", Monaco, "Bitstream Vera Sans Mono", monospace;
-	box-shadow: inset 7px 0 12px -6px #000;
-	-webkit-box-shadow: inset 7px 0 12px -6px #000;
-	-moz-box-shadow: inset 7px 0 12px -6px #000;
+	box-shadow: 0 3px 3px rgba(0,0,0,0.1);
+	-webkit-box-shadow: 0 3px 3px rgba(0,0,0,0.1);
+	-moz-box-shadow: 0 3px 3px rgba(0,0,0,0.1);
 }
 .result.fixed {
 	position: fixed;
@@ -45,6 +45,7 @@
 	padding: 0;
 	border: none;
 	margin: 0;
+	background: white;
 }
 .result.hide {
 	display: none;
@@ -56,6 +57,9 @@ pre {
 	-o-tab-size:  4;
 }
 .btn.run {
+	display: none;
+}
+.hidden {
 	display: none;
 }
 
