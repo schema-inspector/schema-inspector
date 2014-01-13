@@ -996,48 +996,140 @@ an error is encounted.</p>
 <code>date</code> (constructor === Date)</li>
 <li>
 <code>object</code> (constructor === Object)</li>
+<li>
+<code>array</code> (constructor === Array)</li>
 </ul>
 </li>
 </ul><p>Cast property to the given type according to the following description:</p>
-
 <ul>
 <li>
 <strong>to number from</strong>:
 
 <ul>
-<li>string            ("12.34": 12.34)</li>
+<li>string
+
+<ul>
+<li>"12.34" -&gt; 12.34</li>
+</ul>
+</li>
+<li>date
+
+<ul>
+<li>new Date("2014-01-01") -&gt; 1388534400000)</li>
+</ul>
+</li>
 </ul>
 </li>
 <li>
 <strong>to integer from</strong>:
 
 <ul>
-<li>number            (12.34: 12)</li>
-<li>string            ("12.34": 12)</li>
-<li>boolean           (true: 1, false: 0)</li>
+<li>number
+
+<ul>
+<li>12.34 -&gt; 12</li>
+</ul>
+</li>
+<li>string
+
+<ul>
+<li>"12.34" -&gt; 12</li>
+</ul>
+</li>
+<li>boolean
+
+<ul>
+<li>true -&gt; 1</li>
+<li>false -&gt; 0</li>
+</ul>
+</li>
+<li>date
+
+<ul>
+<li>new Date("2014-01-01") -&gt; 1388534400000</li>
+</ul>
+</li>
 </ul>
 </li>
 <li>
 <strong>to string from</strong>:
 
 <ul>
-<li>boolean               (true: "true")</li>
-<li>number                (12.34: "12.34")</li>
-<li>integer               (12: "12")</li>
-<li>date                  ([object Date]: "Mon Feb 25 2013 12:03:25 GMT+0100 (CET)")</li>
-<li>array                 ([12, 23, 44]: '12,34,45')</li>
+<li>boolean
+
+<ul>
+<li>true -&gt; "true"</li>
+</ul>
+</li>
+<li>number
+
+<ul>
+<li>12.34 -&gt; "12.34"</li>
+</ul>
+</li>
+<li>integer
+
+<ul>
+<li>12 -&gt; "12"</li>
+</ul>
+</li>
+<li>date
+
+<ul>
+<li>new Date("2014-01-01") -&gt; "Wed Jan 01 2014 01:00:00 GMT+0100 (CET)"</li>
+</ul>
+</li>
+<li>array
+
+<ul>
+<li>[12, 23, 44] -&gt; '12,34,45'</li>
+<li>To join with a custom string, use <strong>joinWith</strong> key (example: { type: "string", joinWith: "|" } will transform [12, 23, 44] to "12|23|44").</li>
+</ul>
+</li>
 </ul>
 </li>
 <li>
 <strong>to date from</strong>:
 
 <ul>
-<li>number                (1361790386000 -&gt; Mon Feb 25 2013 12:06:26 GMT+0100 (CET))</li>
-<li>string                ("2013-02-25T11:06:26.704Z" -&gt; Mon Feb 25 2013 12:06:26 GMT+0100 (CET))
-							("Mon Feb 25 2013 12:06:26 GMT+0100 (CET)" -&gt; Mon Feb 25 2013 12:06:26 GMT+0100 (CET))</li>
+<li>number
+
+<ul>
+<li>1361790386000 -&gt; Wed Jan 01 2014 01:00:00 GMT+0100 (CET)</li>
 </ul>
 </li>
-</ul><p><strong>Example</strong></p>
+<li>string
+
+<ul>
+<li>"2014-01-01 -&gt; Wed Jan 01 2014 01:00:00 GMT+0100 (CET)</li>
+<li>"Wed Jan 01 2014 01:00:00 GMT+0100 (CET)" -&gt; Wed Jan 01 2014 01:00:00 GMT+0100 (CET)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<strong>to object from</strong>:
+
+<ul>
+<li>string
+
+<ul>
+<li>'{"love":"open source"}' -&gt; { love: "open source" }</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<strong>to array from</strong>:
+
+<ul>
+<li>string            ("one,two,three" -&gt; ["one", "two", "three"])</li>
+<li>anything except undefined and array   (23 -&gt; [ 23 ])</li>
+<li>To split with a custom string (other than ","), use the key <strong>splitWith</strong> (example: { type: "array", splitBy: "|"" } will transform "one|two|three" to ["one", "two", "three"]).*</li>
+</ul>
+</li>
+</ul>
+<p><strong>Example</strong></p>
 
 <div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">inspector</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'schema-inspector'</span><span class="p">);</span>
 
