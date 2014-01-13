@@ -1,4 +1,4 @@
-# Schema-Inspector
+[![schema-inspector logo](https://raw2.github.com/Atinux/schema-inspector/master/misc/schema-inspector.png)](http://expressjs.com/)
 
 Schema-Inspector is a powerful tool to sanitize and validate JS objects.
 It's disigned to work both client-side and server-side and to be scalable with allowing asynchronous and synchronous calls.
