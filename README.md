@@ -698,6 +698,7 @@ console.log(r2.format()); // Property @._id: must be a valid ID.
 	* `boolean`
 	* `date` (constructor === Date)
 	* `object` (constructor === Object)
+	* `array` (constructor === Array)
 
 Cast property to the given type according to the following description:
 * **to number from**:
