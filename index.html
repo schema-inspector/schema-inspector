@@ -143,18 +143,24 @@ It's disigned to work both client-side and server-side and to be scalable with a
 <script type="text/javascript">
 function getObject(editor, callback) {
 	try {
-		var s = String(editor.getValue() || '{}').replace(/([^(http:|https:|ftp:)])\/\/[^\n\r]*(?:[\n\r]+|$)/gi, '$1').replace(/\n/g, '').trim();
-		s = (s[0] !== '{' && s[0] !== '[' ? '{' : s[0]) + s.slice(1, s.length - 1) + (s[s.length - 1] !== '}' && s[s.length - 1] !== ']' ? '}' : s[s.length - 1]);
-		// console.log(s);
-		eval('var variable = ' + s +';');
-		callback(null, variable);
+		var data = JSON.parse(editor.getValue() || '{}');
+		callback(null, data);
 	} catch (e) {
-		callback((e && e.message ? e.message : e));
+		try {
+			var s = String(editor.getValue() || '{}').replace(/([^(http:|https:|ftp:)])\/\/[^\n\r]*(?:[\n\r]+|$)/gi, '$1').replace(/\n/g, '').trim();
+			s = (s[0] !== '{' && s[0] !== '[' ? '{' : s[0]) + s.slice(1, s.length - 1) + (s[s.length - 1] !== '}' && s[s.length - 1] !== ']' ? '}' : s[s.length - 1]);
+			// console.log(s);
+			eval('var variable = ' + s +';');
+			callback(null, variable);
+		} catch (e) {
+			callback((e && e.message ? e.message : e));
+		}
 	}
 }
 
 function checkSchemaInspector() {
 	$('.result').html('<button class="btn run">Refresh result</button>');
+	$('.result').append('<button class="btn maximize">Maximize</button>');
 	async.parallel({
 		data: function (next) {
 			getObject(editorData, next);
@@ -178,6 +184,7 @@ function checkSchemaInspector() {
 		}
 		if (validation) {
 			var validationResult = SchemaInspector.validate(res.validation, res.data);
+			console.log(validationResult, res.validation, res.data);
 			if (!validationResult.valid) {
 			$('.result').append('<h2 class="validation-title">Validation error:</h2>');
 			return $('.result').append('<div class="validation-error">'+validationResult.format().replace(/\n/g, '<br>')+'</div>');
@@ -204,6 +211,11 @@ $(function () {
 	editorSanitization.on('change', checkSchemaInspector);
 	editorValidation.on('change', checkSchemaInspector);
 	$('body').on('click', '.btn.run', checkSchemaInspector);
+	$('body').on('click', '.btn.maximize', function () {
+		$('.result').toggleClass('full');
+		if ($('.result').hasClass('full')) { $(this).text('Reduce'); }
+		else { $(this).text('Maximize'); }
+	});
 
 	window.sanitization = $('#checkSanitization').is(':checked');
 	$('#checkSanitization').change(function () {

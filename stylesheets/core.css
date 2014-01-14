@@ -34,6 +34,23 @@
 .result.fixed {
 	position: fixed;
 	top: 150px;
+	left: 0;
+	max-height: 60%;
+	overflow: auto;
+	z-index: 100;
+}
+.result.full {
+	position: fixed;
+	z-index: 100;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	width: auto;
+	height: auto;
+	max-height: none;
+}
+.result.full .btn.maximize {
+	position: fixed;
 }
 .result .error,
 .result .validation-title {
@@ -60,8 +77,55 @@ pre {
 	-moz-tab-size: 4;
 	-o-tab-size:  4;
 }
+.btn {
+	display: inline-block;
+	position: absolute;
+	right: 45px;
+	height: 40px;
+	margin: 0;
+	background-color: #e03939;
+	padding: 4px 12px;
+	line-height: 20px;
+	font-weight: bold;
+	font-size: 16px;
+	color: #FFF;
+	cursor: pointer;
+	text-align: center;
+	vertical-align: middle;
+	border: 0;
+	outline: none;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+}
+.btn.maximize {
+	right: 15px;
+	top: 14px;
+	height: 25px;
+	background: white;
+	font-weight: normal;
+	border: 1px #ddd solid;
+	color: rgb(167, 167, 167);
+	text-shadow: none;
+	font-size: 14px;
+	padding: 0 12px;
+}
+.btn.maximuze:focus {
+	background-color: white;
+}
+.btn.maximize:hover {
+	background-color: #EEE;
+}
+.btn.maximize:active {
+	background-color: #EEE;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.2);
+	-moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.2);
+	box-shadow: inset 0 1px 1px rgba(0,0,0,0.2);
+}
 .btn.run {
 	display: none;
+	-webkit-text-shadow: 1px 1px 0 rgba(0,0,0,0.15);
+	text-shadow: 1px 1px 0 rgba(0,0,0,0.15);
 }
 .hidden {
 	display: none;
@@ -79,7 +143,6 @@ pre {
 		overflow: auto;
 		width: 100%;
 		bottom: 0;
-		z-index: 100;
 		top: auto;
 		min-height: 40px;
 		box-shadow: 0 -3px 3px rgba(0,0,0,0.1);
@@ -92,28 +155,11 @@ pre {
 	.result pre {
 		background: white;
 	}
+	.btn.maximize {
+		display: none;
+	}
 	.btn.run {
 		display: inline-block;
-		position: absolute;
-		right: 45px;
-		height: 40px;
-		margin: 0;
-		background-color: #e03939;
-		padding: 4px 12px;
-		line-height: 20px;
-		font-weight: bold;
-		font-size: 16px;
-		color: #FFF;
-		cursor: pointer;
-		text-align: center;
-		vertical-align: middle;
-		border: 0;
-		-webkit-text-shadow: 1px 1px 0 rgba(0,0,0,0.15);
-		text-shadow: 1px 1px 0 rgba(0,0,0,0.15);
-		outline: none;
-		-webkit-border-radius: 2px;
-		-moz-border-radius: 2px;
-		border-radius: 2px;
 	}
 	.btn.run:hover,
 	.btn.run:focus {
