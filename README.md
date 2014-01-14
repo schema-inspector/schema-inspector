@@ -731,7 +731,7 @@ Cast property to the given type according to the following description:
 		* [12, 23, 44] -> '12,34,45'
 		* To join with a custom string, use **joinWith** key (example: { type: "string", joinWith: "|" } will transform [12, 23, 44] to "12|23|44").
 * **to date from**:
-	* number
+	* number / integer
 		* 1361790386000 -> Wed Jan 01 2014 01:00:00 GMT+0100 (CET)
 	* string
 		* "2014-01-01 -> Wed Jan 01 2014 01:00:00 GMT+0100 (CET)
