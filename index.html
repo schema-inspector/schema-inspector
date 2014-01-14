@@ -144,7 +144,7 @@ It's disigned to work both client-side and server-side and to be scalable with a
 function getObject(editor, callback) {
 	try {
 		var s = String(editor.getValue() || '{}').replace(/([^(http:|https:|ftp:)])\/\/[^\n\r]*(?:[\n\r]+|$)/gi, '$1').replace(/\n/g, '').trim();
-		s = '{' + s.slice(1, s.length - 1) + '}';
+		s = (s[0] !== '{' && s[0] !== '[' ? '{' : s[0]) + s.slice(1, s.length - 1) + (s[s.length - 1] !== '}' && s[s.length - 1] !== ']' ? '}' : s[s.length - 1]);
 		// console.log(s);
 		eval('var variable = ' + s +';');
 		callback(null, variable);
