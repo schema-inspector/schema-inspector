@@ -607,8 +607,8 @@ var c2 = [1, 2, 'string!'];
 
 inspector.validate(schema1, c1); // Valid
 inspector.validate(schema1, c2); // Invalid: @[2] must be a number.
-inspector.validate(schema2, c1); // Valid
-inspector.validate(schema2, c2); // Invalid: @[2] must be a string.
+inspector.validate(schema2, c1); // Invalid: @[2] must be a string.
+inspector.validate(schema2, c2); // Valid
 ```
 
 ---------------------------------------
