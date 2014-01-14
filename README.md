@@ -149,7 +149,7 @@ In the example below, `inspector` variable will be used, for the client-side, us
 * [def](#s_def)
 * [optional](#s_optional)
 * [rules](#s_rules)
-* [min, min](#s_comparators)
+* [min, max](#s_comparators)
 * [minLength, maxLength](#s_length)
 * [exec](#s_exec)
 * [properties](#s_properties)
