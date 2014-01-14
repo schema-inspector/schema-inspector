@@ -24,7 +24,7 @@
 		$('#main_content').headsmart()
 		})
 	</script>
-	<title>Schema-Inspector - Validate and Sanitize JS Objects Like a Boss</title>
+	<title>Schema-Inspector - A powerful tool to validate and sanitize JS objects</title>
 	<meta name="description" content="Schema-Inspector is a powerful tool to sanitize and validate JS objects. It's disigned to work both client-side and server-side and to be scalable with allowing asynchronous and synchronous calls." />
 	</head>
 
@@ -37,7 +37,7 @@
 		<span class="ribbon-outer">
 			<span class="ribbon-inner">
 			<h1>Schema-inspector</h1>
-			<h2>Validate and Sanitize JS Objects Like a Boss!</h2>
+			<h2>A powerful tool to sanitize and validate JS objects.</h2>
 			</span>
 			<span class="left-tail"></span>
 			<span class="right-tail"></span>
@@ -67,48 +67,50 @@ It's disigned to work both client-side and server-side and to be scalable with a
 	<div class="step step-1">
 	<h3 class="title">Data</h3>
 	<textarea>{
-	name: "  sebastien   	chopin ",
+	// You can edit the data here
+	name: "  sebastien chopin ",
 	age: "21",
-	compagnies: "malea, pantera"
+	compagnies: "malea, pantera",
+	birthday: 722517795000
 }</textarea>
 	</div>
 	<!-- <div class="plus-sign">+</div> -->
 	<div class="step step-2">
-	<h3 class="title"><label><input type="checkbox" id="checkSanitization" name="sanitization" checked="checked"/> Sanitization</label></h3>
+	<h3 class="title"><label><input type="checkbox" id="checkSanitization" name="sanitization" checked="checked"/> Sanitization</label> - <a href="index.html#sanitization-1" target="_blank" class="doc">See the sanitization doc</a></h3>
 	<textarea>{
+	// You can edit the sanitization too
 	type: "object",
 	properties: {
 		name: {
 			type: "string",
 			rules: ["trim", "title"],
-			exec: function (schema, post) {
-				if (typeof post === "string")
-					post = post.replace(/\s+/g, " ");
-				return post;
-			}
 		},
 		age: {
 			type: "integer"
 		},
-		gender: {
-			type: "string",
-			optional: false,
-			def: "m"
-		},
 		compagnies: {
-			type: "array",
+			type: "array", // split with "," by default
 			items: {
 				type: "string",
 				rules: ["trim", "ucfirst"]
 			}
+		},
+		gender: {
+			type: "string",
+			optional: false,
+			def: "m" // if not given, will be "m"
+		},
+		birthday: {
+			type: "date" // transform timestamp to date
 		}
 	}
 }</textarea>
 	</div>
 	<!-- <div class="plus-sign" style="left: 465px;">+</div> -->
 	<div class="step step-3">
-	<h3 class="title"><label><input type="checkbox" id="checkValidation" name="validation" checked="checked"/> Validation</label></h3>
+	<h3 class="title"><label><input type="checkbox" id="checkValidation" name="validation" checked="checked"/> Validation</label> - <a href="index.html#validation-1" target="_blank" class="doc">See the validation doc</a></h3>
 	<textarea>{
+	// And the validation!
 	type: "object",
 	properties: {
 		name: {
@@ -130,6 +132,9 @@ It's disigned to work both client-side and server-side and to be scalable with a
 				type: "string",
 				minLength: 1
 			}
+		},
+		birthday: {
+			type: "date"
 		}
 	}
 }</textarea>
@@ -138,7 +143,7 @@ It's disigned to work both client-side and server-side and to be scalable with a
 <script type="text/javascript">
 function getObject(editor, callback) {
 	try {
-		var s = String(editor.getValue() || '{}').replace(/\n/g, '').trim();
+		var s = String(editor.getValue() || '{}').replace(/([^(http:|https:|ftp:)])\/\/[^\n\r]*(?:[\n\r]+|$)/gi, '$1').replace(/\n/g, '').trim();
 		s = '{' + s.slice(1, s.length - 1) + '}';
 		// console.log(s);
 		eval('var variable = ' + s +';');
@@ -1092,7 +1097,7 @@ an error is encounted.</p>
 <strong>to date from</strong>:
 
 <ul>
-<li>number
+<li>number / integer
 
 <ul>
 <li>1361790386000 -&gt; Wed Jan 01 2014 01:00:00 GMT+0100 (CET)</li>
