@@ -3,7 +3,7 @@
 Schema-Inspector is a powerful tool to sanitize and validate JS objects.
 It's disigned to work both client-side and server-side and to be scalable with allowing asynchronous and synchronous calls.
 
-[![Build Status](https://travis-ci.org/Atinux/schema-inspector.png?branch=master)](https://travis-ci.org/Atinux/schema-inspector)
+[![Build Status](https://travis-ci.org/Atinux/schema-inspector.png?branch=master)](https://travis-ci.org/Atinux/schema-inspector) [![Dependencies Status](https://david-dm.org/atinux/schema-inspector.png)](https://david-dm.org/atinux/schema-inspector) [![NPM version](https://badge.fury.io/js/schema-inspector.png)](http://badge.fury.io/js/schema-inspector)
 
 Demonstration & documentation: http://atinux.github.io/schema-inspector/
 
