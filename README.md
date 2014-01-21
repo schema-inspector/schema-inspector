@@ -166,6 +166,9 @@ In the example below, `inspector` variable will be used, for the client-side, us
 ### Thanks to:
 * [Benjamin Gressier](https://twitter.com/NikitaJS) (major contributor of this awesome module)
 
+### Roadmap:
+* [V2.0 - With json-schema.org](https://github.com/Atinux/schema-inspector/issues/milestones?with_issues=no)
+
 ## Validation
 
 <a name="v_type" />
