@@ -1,7 +1,7 @@
 [![schema-inspector logo](https://raw2.github.com/Atinux/schema-inspector/master/misc/schema-inspector.png)](http://atinux.github.io/schema-inspector/)
 
 Schema-Inspector is a powerful tool to sanitize and validate JS objects.
-It's disigned to work both client-side and server-side and to be scalable with allowing asynchronous and synchronous calls.
+It's designed to work both client-side and server-side and to be scalable with allowing asynchronous and synchronous calls.
 
 [![Build Status](https://travis-ci.org/Atinux/schema-inspector.png?branch=master)](https://travis-ci.org/Atinux/schema-inspector) [![Dependencies Status](https://david-dm.org/atinux/schema-inspector.png)](https://david-dm.org/atinux/schema-inspector) [![NPM version](https://badge.fury.io/js/schema-inspector.png)](http://badge.fury.io/js/schema-inspector)
 
@@ -124,7 +124,7 @@ console.log(result.format());
 </script>
 ```
 
-In the example below, `inspector` variable will be used, for the client-side, use `SchemaInspector` instead of `inspector`.
+In the example below, the `inspector` variable will be used.  For the client-side use `SchemaInspector` instead of `inspector`.
 
 ## Documentation
 
@@ -1058,7 +1058,7 @@ inspector.validate(schema, candidate, custom); // Invalid: "@.ipsum must be divi
 <a name="cf_extension" />
 ### extension
 
-Sometime you want to use a custom field everywhere in your programme, so you may
+Sometime you want to use a custom field everywhere in your program, so you may
 extend Schema-Inspector to do so. Just call the method
 _inspector.Validation.extend(customFieldObject)_ or
 _inspector.Sanitization.extend(customFieldObject)_. If you want to reset, simply call
@@ -1107,7 +1107,7 @@ inspector.validate(schema, candidate);
 ### Context
 
 Every function you declare as a custom parameter, or with `exec` field will be
-called with a context. This context allow you to access properties, like
+called with a context. This context allows you to access properties, like
 `this.report()` function, but also `this.origin`, which is equal to the object
 sent to `inspector.validate()` or `inspector.sanitize()`.
 
@@ -1132,7 +1132,7 @@ var result = inspector.validate(schema, candidate, custom);
 <a name="a_howTo" />
 ### How to
 
-All the example above used synchronous call (the simplest). But sometime you
+All of the examples above used synchronous calls (the simplest). But sometimes you
 want to call validation or sanitization asynchronously, in particular with
 `exec` and custom fields. It's pretty simple: To do so, just send a callback
 as extra parameter. It takes 2 parameters: error and result. Actually
@@ -1173,7 +1173,7 @@ inspector.validate(schema, candidate, custom, function (err, result) {
 });
 ```
 
-Here a full example where you may have to use it:
+Here is a full example where you may have to use it:
 
 ```javascript
 var inspector = require('schema-inspector');
