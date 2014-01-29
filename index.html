@@ -25,7 +25,7 @@
 		})
 	</script>
 	<title>Schema-Inspector - A powerful tool to validate and sanitize JS objects</title>
-	<meta name="description" content="Schema-Inspector is a powerful tool to sanitize and validate JS objects. It's disigned to work both client-side and server-side and to be scalable with allowing asynchronous and synchronous calls." />
+	<meta name="description" content="Schema-Inspector is a powerful tool to sanitize and validate JS objects. It's designed to work both client-side and server-side and to be scalable with allowing asynchronous and synchronous calls." />
 	</head>
 
 	<body>
@@ -59,7 +59,7 @@
 <a name="schema-inspector" class="anchor" href="#schema-inspector"><span class="octicon octicon-link"></span></a>Schema-Inspector</h1>
 
 <p>Schema-Inspector is a powerful tool to sanitize and validate JS objects.
-It's disigned to work both client-side and server-side and to be scalable with allowing asynchronous and synchronous calls.</p>
+It's designed to work both client-side and server-side and to be scalable with allowing asynchronous and synchronous calls.</p>
 
 <h2>Try it by yourself</h2>
 <p>Update the data, sanitization and validation tabs to see in real-time the result of the Schema-inspector.</p>
@@ -383,7 +383,7 @@ $(function () {
 <span class="p">});</span>
 <span class="nt">&lt;/script&gt;</span>
 </pre></div>
-<p>In the example below, <code>inspector</code> variable will be used, for the client-side, use <code>SchemaInspector</code> instead of <code>inspector</code>.</p>
+<p>In the example below, the <code>inspector</code> variable will be used, for the client-side, use <code>SchemaInspector</code> instead of <code>inspector</code>.</p>
 <h2>
 <a name="documentation" class="anchor" href="#documentation"><span class="octicon octicon-link"></span></a>Documentation</h2>
 
@@ -1481,7 +1481,7 @@ provide a custom field called "superiorMod", you can access it with name
 <h3>
 <a name="extension" class="anchor" href="#extension"><span class="octicon octicon-link"></span></a>extension</h3>
 
-<p>Sometime you want to use a custom field everywhere in your programme, so you may
+<p>Sometime you want to use a custom field everywhere in your program, so you may
 extend Schema-Inspector to do so. Just call the method
 <em>inspector.Validation.extend(customFieldObject)</em> or
 <em>inspector.Sanitization.extend(customFieldObject)</em>. If you want to reset, simply call
@@ -1531,7 +1531,7 @@ specific field by calling <em>inspector.Validation.remove(field)</em> or
 <a name="context" class="anchor" href="#context"><span class="octicon octicon-link"></span></a>Context</h3>
 
 <p>Every function you declare as a custom parameter, or with <code>exec</code> field will be
-called with a context. This context allow you to access properties, like
+called with a context. This context allows you to access properties, like
 <code>this.report()</code> function, but also <code>this.origin</code>, which is equal to the object
 sent to <code>inspector.validate()</code> or <code>inspector.sanitize()</code>.</p>
 
@@ -1558,7 +1558,7 @@ sent to <code>inspector.validate()</code> or <code>inspector.sanitize()</code>.<
 <h3>
 <a name="how-to" class="anchor" href="#how-to"><span class="octicon octicon-link"></span></a>How to</h3>
 
-<p>All the example above used synchronous call (the simplest). But sometime you
+<p>All of the examples above used synchronous call (the simplest). But sometimes you
 want to call validation or sanitization asynchronously, in particular with
 <code>exec</code> and custom fields. It's pretty simple: To do so, just send a callback
 as extra parameter. It takes 2 parameters: error and result. Actually
@@ -1597,7 +1597,7 @@ and asynchronous call.</p>
 <span class="p">});</span>
 </pre></div>
 
-<p>Here a full example where you may have to use it:</p>
+<p>Here is a full example where you may have to use it:</p>
 
 <div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">inspector</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'schema-inspector'</span><span class="p">);</span>
 
