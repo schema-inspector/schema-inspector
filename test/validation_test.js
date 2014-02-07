@@ -1435,6 +1435,43 @@ exports.validation = function () {
 			.and.be.lengthOf(1);
 			result.error[0].property.should.equal('@');
 		});
+
+		test('candidat #3 with deep someKeys and no parent key given [valid]', function () {
+			var schema = {
+				properties: {
+					parent: {
+						someKeys: ['a', 'b'],
+						optional: true,
+					}
+				}
+			};
+			var candidate = {};
+			var result = si.validate(schema, candidate);
+			result.should.be.an.Object;
+			result.should.have.property('valid').with.equal(true);
+			result.should.have.property('error').with.be.an.instanceof(Array)
+			.and.be.lengthOf(0);
+		});
+
+		test('candidat #4 with deep someKeys and no parent key given [fail]', function () {
+			var schema = {
+				properties: {
+					parent: {
+						someKeys: ['a', 'b'],
+						optional: true,
+					}
+				}
+			};
+			var candidate = {
+				parent: {}
+			};
+			var result = si.validate(schema, candidate);
+			result.should.be.an.Object;
+			result.should.have.property('valid').with.equal(false);
+			result.should.have.property('error').with.be.an.instanceof(Array)
+			.and.be.lengthOf(1);
+			result.error[0].message.should.be.equal('must have at least key "a" or "b"');
+		});
 	}); // suite "schema #17"
 
 	suite('schema #18 ("strict" field)', function () {

@@ -52,7 +52,6 @@ exports.sanitization = function () {
 			var candidate = [obj, JSON.stringify(obj)];
 
 			var result = si.sanitize(schema, candidate);
-			console.log(result, candidate);
 			result.should.be.an.Object;
 			result.should.have.property('reporting').with.be.an.instanceof(Array)
 			.and.be.lengthOf(1);
@@ -77,7 +76,6 @@ exports.sanitization = function () {
 			schema.items.joinWith = '|';
 			var result = si.sanitize(schema, candidate);
 			delete schema.items.joinWith;
-			console.log(result);
 			result.should.be.an.Object;
 			result.should.have.property('reporting').with.be.an.instanceof(Array)
 			.and.be.lengthOf(1);
@@ -167,7 +165,6 @@ exports.sanitization = function () {
 			var candidate = [ new Date(300), date, new Date("2013-12-01"), new Date("INVALID")];
 
 			var result = si.sanitize(schema, candidate);
-			console.log(candidate);
 			result.should.be.an.Object;
 			result.should.have.property('reporting').with.be.an.instanceof(Array)
 			.and.be.lengthOf(4);
