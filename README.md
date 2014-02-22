@@ -724,7 +724,7 @@ var c1 = { _id: 1234567890 };
 var r1 = inspector.validate(schema1, c1);
 var r2 = inspector.validate(schema2, c1);
 console.log(r1.error[0].code); // null
-console.log(r2.error[1].code); // 'id-format'
+console.log(r2.error[0].code); // 'id-format'
 ```
 
 ## Sanitization
