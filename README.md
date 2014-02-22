@@ -376,8 +376,8 @@ inspector.validate(schema, c2); // Invalid: @.lorem must have a length between 4
 <a name="v_comparators" />
 ### lt, lte, gt, gte, eq, ne
 
-* **type**: number.
-* **usable on**: number.
+* **type**: number (string, number and boolean for eq).
+* **usable on**: number (string, number and boolean for eq).
 
 Check whether comparison is true:
 
