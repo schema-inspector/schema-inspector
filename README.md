@@ -142,6 +142,7 @@ In the example below, the `inspector` variable will be used.  For the client-sid
 * [items](#v_items)
 * [alias](#v_alias)
 * [error](#v_error)
+* [code](#v_code)
 
 ### Sanitization
 
@@ -375,8 +376,8 @@ inspector.validate(schema, c2); // Invalid: @.lorem must have a length between 4
 <a name="v_comparators" />
 ### lt, lte, gt, gte, eq, ne
 
-* **type**: number.
-* **usable on**: number.
+* **type**: number (string, number and boolean for eq).
+* **usable on**: number (string, number and boolean for eq).
 
 Check whether comparison is true:
 
@@ -486,7 +487,7 @@ inspector.validate(schema, c2); // Invalid: @.sit should not exist.
 * **usable on**: any.
 
 Custom checker =). "exec" functions take two three parameter
-(schema, post [, callback]). To report an error, use `this.report([message])`.
+(schema, post [, callback]). To report an error, use `this.report([message], [code])`.
 Very useful to make some custom validation.
 
 __Example__
@@ -687,6 +688,43 @@ var r1 = inspector.validate(schema1, c1);
 var r2 = inspector.validate(schema2, c1);
 console.log(r1.format()); // Property @._id: must be string, but is number.
 console.log(r2.format()); // Property @._id: must be a valid ID.
+```
+
+---------------------------------------
+
+<a name="v_code" />
+### code
+
+* **type**: string.
+* **usable on**: any.
+
+This field contains a user code for displaying a more uniform system to personnalize error message.
+
+__Example__
+
+```javascript
+var inspector = require('schema-inspector');
+
+var schema1 = {
+	type: 'object',
+	properties: {
+		_id: { type: 'string' }
+	}
+};
+
+var schema2 = {
+	type: 'object',
+	properties: {
+		_id: { type: 'string', code: 'id-format' }
+	}
+};
+
+var c1 = { _id: 1234567890 };
+
+var r1 = inspector.validate(schema1, c1);
+var r2 = inspector.validate(schema2, c1);
+console.log(r1.error[0].code); // null
+console.log(r2.error[0].code); // 'id-format'
 ```
 
 ## Sanitization
