@@ -186,6 +186,7 @@ In the example below, the `inspector` variable will be used.  For the client-sid
 	* `date` (constructor === Date)
 	* `object` (constructor === Object)
 	* `array` (constructor === Array)
+	* A function (candidate isinstance)
 	* `any` (it can be anything)
 
 Allow to check property type. If the given value is incorrect, then type is not
@@ -196,39 +197,47 @@ __Example__
 ```javascript
 var inspector = require('schema-inspector');
 
+function Class() {}
+
 var schema = {
 	type: 'object',
 	properties: {
 		lorem: {  type: 'number' },
 		ipsum: { type: 'any' },
-		dolor: { type: ['number' 'string', 'null'] }
+		dolor: { type: ['number' 'string', 'null'] },
+		sit: {type: Class}
 	}
 };
 
 var c1 = {
 	lorem: 12,
 	ipsum: 'sit amet',
-	dolor: 23
+	dolor: 23,
+	sit: new Class()
 };
 var c2 = {
 	lorem: 12,
 	ipsum: 34,
 	dolor: 'sit amet'
+	sit: new Class();
 };
 var c3 = {
 	lorem: 12,
 	ipsum: [ 'sit amet' ],
-	dolor: null
+	dolor: null,
+	sit: new Class();
 };
 var c4 = {
 	lorem: '12',
 	ipsum: 'sit amet',
-	dolor: new Date()
+	dolor: new Date(),
+	sit: {}
 };
+
 inspector.validate(schema, c1); // Valid
 inspector.validate(schema, c2); // Valid
 inspector.validate(schema, c3); // Valid
-inspector.validate(schema, c4); // Invalid: @.lorem must be a number, @dolor must be a number, a string or null
+inspector.validate(schema, c4); // Invalid: @.lorem must be a number, @dolor must be a number, a string or null, @.sit must be a Class
 ```
 
 ---------------------------------------
