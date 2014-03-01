@@ -205,7 +205,7 @@ var schema = {
 		lorem: {  type: 'number' },
 		ipsum: { type: 'any' },
 		dolor: { type: ['number' 'string', 'null'] },
-		sit: {type: Class}
+		sit: { type: Class }
 	}
 };
 
@@ -237,7 +237,7 @@ var c4 = {
 inspector.validate(schema, c1); // Valid
 inspector.validate(schema, c2); // Valid
 inspector.validate(schema, c3); // Valid
-inspector.validate(schema, c4); // Invalid: @.lorem must be a number, @dolor must be a number, a string or null, @.sit must be a Class
+inspector.validate(schema, c4); // Invalid: @.lorem must be a number, @dolor must be a number, a string or null, @.sit must be an instance of Class, but is object
 ```
 
 ---------------------------------------
