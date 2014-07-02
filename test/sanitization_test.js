@@ -1180,20 +1180,17 @@ exports.sanitization = function () {
 		};
 
 		var custom = {
-			superiorMod: function (schema, post, callback) {
+			superiorMod: function (schema, post) {
 				var spm = schema.$superiorMod;
 				if (typeof spm !== 'number' || typeof post !== 'number') {
-					callback();
+					return post;
 				}
-				var self = this;
-				process.nextTick(function () {
-					var mod = post % spm;
-					if (mod !== 0) {
-						self.report();
-						return callback(null, post + spm - mod);
-					}
-					callback(null, post);
-				});
+				var mod = post % spm;
+				if (mod !== 0) {
+					this.report();
+					return (post + spm - mod);
+				}
+				return post;
 			}
 		};
 
@@ -1204,13 +1201,11 @@ exports.sanitization = function () {
 				lorem: 5
 			};
 
-			si.sanitize(schema, candidate, function (err, result) {
-				should.not.exist(err);
-				result.should.be.an.Object;
-				result.should.have.property('reporting').with.be.an.instanceof(Array)
-				.and.be.lengthOf(0);
-				done();
-			});
+			var result = si.sanitize(schema, candidate);
+			result.should.be.an.Object;
+			result.should.have.property('reporting').with.be.an.instanceof(Array)
+			.and.be.lengthOf(0);
+			done();
 		});
 
 		test('candidat #2', function (done) {
@@ -1218,15 +1213,13 @@ exports.sanitization = function () {
 				lorem: 7
 			};
 
-			si.sanitize(schema, candidate, function (err, result) {
-				should.not.exist(err);
-				result.should.be.an.Object;
-				result.should.have.property('reporting').with.be.an.instanceof(Array)
-				.and.be.lengthOf(1);
-				result.reporting[0].property.should.be.equal('@.lorem');
-				candidate.lorem.should.equal(10);
-				done();
-			});
+			var result = si.sanitize(schema, candidate);
+			result.should.be.an.Object;
+			result.should.have.property('reporting').with.be.an.instanceof(Array)
+			.and.be.lengthOf(1);
+			result.reporting[0].property.should.be.equal('@.lorem');
+			candidate.lorem.should.equal(10);
+			done();
 		});
 
 		test('Reseting default schema', function () {
