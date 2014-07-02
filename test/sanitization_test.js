@@ -1310,5 +1310,54 @@ exports.sanitization = function () {
 			candidate.should.eql({ tab: [ 'one', 'two', 'three' ] });
 		});
 
-	}); // suite "schema #17"
+	});
+	// suite "schema #18"
+	suite('schema #18 (strict option)', function () {
+		var schema = {
+			type: 'object',
+			strict: true,
+			properties: {
+				good: { type: 'string' }
+			}
+		};
+
+		test('candidate #1 | remove useless keys', function () {
+			var candidate = {
+				good: 'key',
+				bad: 'key'
+			};
+
+			var result = si.sanitize(schema, candidate);
+			result.should.be.an.Object;
+			candidate.should.be.eql({ good: 'key' });
+		});
+
+		test('candidate #2 | remove nothing because candidate is not an object', function () {
+			var candidate = 'coucou';
+
+			var result = si.sanitize(schema, candidate);
+			result.should.be.an.Object;
+			result.should.have.property('reporting').with.be.an.instanceof(Array)
+			.and.be.lengthOf(0);
+			candidate.should.be.eql('coucou');
+		});
+
+		test('candidate #3 | remove nothing because candidate is not an object', function () {
+			var schema1 = {
+				type: 'object',
+				strict: true
+			};
+			var candidate = {
+				good: 'key',
+				bad: 'key'
+			};
+
+			var result = si.sanitize(schema1, candidate);
+			result.should.be.an.Object;
+			result.should.have.property('reporting').with.be.an.instanceof(Array)
+			.and.be.lengthOf(0);
+			candidate.should.be.eql(candidate);
+		});
+
+	});
 };
