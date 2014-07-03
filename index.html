@@ -21,8 +21,8 @@
 	<script type="text/javascript" src="https://rawgithub.com/atinux/schema-inspector/master/lib/schema-inspector.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function () {
-		$('#main_content').headsmart()
-		})
+			$('#main_content').headsmart();
+		});
 	</script>
 	<title>Schema-Inspector - A powerful tool to validate and sanitize JS objects</title>
 	<meta name="description" content="Schema-Inspector is a powerful tool to sanitize and validate JS objects. It's designed to work both client-side and server-side and to be scalable with allowing asynchronous and synchronous calls." />
@@ -413,6 +413,7 @@ $(function () {
 <li><a href="#s_rules">rules</a></li>
 <li><a href="#s_comparators">min, min</a></li>
 <li><a href="#s_length">minLength, maxLength</a></li>
+<li><a href="#s_strict">strict</a></li>
 <li><a href="#s_exec">exec</a></li>
 <li><a href="#s_properties">properties</a></li>
 <li><a href="#s_items">items</a></li>
@@ -748,7 +749,7 @@ optional).</p>
 <strong>default</strong>: false.</li>
 <li>
 <strong>usable on</strong>: object.</li>
-</ul><p>Only key provided in field "properties" may exist in object.</p>
+</ul><p>Only keys provided in field "properties" may exist in object.</p>
 
 <p><strong>Example</strong></p>
 
@@ -1361,6 +1362,37 @@ maximum.</p>
 <span class="kd">var</span> <span class="nx">r</span> <span class="o">=</span> <span class="nx">inspector</span><span class="p">.</span><span class="nx">sanitize</span><span class="p">(</span><span class="nx">schema</span><span class="p">,</span> <span class="nx">c</span><span class="p">);</span>
 <span class="cm">/*</span>
 <span class="cm">    c: ['short---', 'mediumSize', 'tooLongForT']</span>
+<span class="cm">*/</span>
+</pre></div>
+
+<hr><p><a name="s_strict"></a></p>
+<h3 class="header-level-3">
+<a name="strict" class="anchor" href="#strict"><span class="octicon octicon-link"></span></a>strict</h3>
+<ul>
+<li>
+<strong>type</strong>: boolean.</li>
+<li>
+<strong>default</strong>: false.</li>
+<li>
+<strong>usable on</strong>: object.</li>
+</ul>
+<p>Only keys provided in field "properties" will exist in object, others will be deleted.</p>
+<p><strong>Example</strong></p>
+<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">inspector</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'schema-inspector'</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">schema</span> <span class="o">=</span> <span class="p">{</span>
+	<span class="nx">type</span><span class="o">:</span> <span class="s1">'object'</span><span class="p">,</span>
+	<span class="nx">strict</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+	<span class="nx">properties</span><span class="o">:</span> <span class="p">{</span>
+		<span class="nx">good</span><span class="o">:</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">'string'</span> <span class="p">}</span>
+	<span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kd">var</span> <span class="nx">c</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">good</span><span class="o">:</span> <span class="s1">'yes'</span><span class="p">,</span> <span class="nx">bad</span><span class="o">:</span> <span class="s1">'nope'</span> <span class="p">};</span>
+
+<span class="kd">var</span> <span class="nx">r</span> <span class="o">=</span> <span class="nx">inspector</span><span class="p">.</span><span class="nx">sanitize</span><span class="p">(</span><span class="nx">schema</span><span class="p">,</span> <span class="nx">c</span><span class="p">);</span>
+<span class="cm">/*</span>
+<span class="cm">    c: { good: 'yes' }</span>
 <span class="cm">*/</span>
 </pre></div>
 
