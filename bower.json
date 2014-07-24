@@ -28,6 +28,6 @@
     "test"
   ],
   "dependencies": {
-    "async": "~0.2.5"
+    "async": "*"
   }
 }
