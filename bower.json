@@ -10,7 +10,7 @@
     }
   ],
   "description": "Schema-Inspector is a powerful tool to sanitize and validate JS objects.",
-  "main": "./lib/schema-inspector.js",
+  "main": "index.js",
   "keywords": [
     "schema-inspector",
     "validation",
