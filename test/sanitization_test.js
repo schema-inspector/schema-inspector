@@ -1,5 +1,5 @@
 var should = require('should');
-var si = require('../lib/schema-inspector');
+var si = require('../');
 
 exports.sanitization = function () {
 	suite('schema #1 (type casting [string])', function () {

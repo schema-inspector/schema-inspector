@@ -1,5 +1,5 @@
 var should = require('should');
-var si = require('../lib/schema-inspector');
+var si = require('../');
 
 exports.validation = function () {
 	suite('schema #1 (Several types of test in the same inspection)', function () {
