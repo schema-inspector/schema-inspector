@@ -1,5 +1,5 @@
 var should = require('should');
-var si = require('../lib/schema-inspector');
+var si = require('../');
 
 const NB_TEST = 25;
 

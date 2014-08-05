@@ -152,6 +152,7 @@ In the example below, the `inspector` variable will be used.  For the client-sid
 * [rules](#s_rules)
 * [min, max](#s_comparators)
 * [minLength, maxLength](#s_length)
+* [strict](#s_strict)
 * [exec](#s_exec)
 * [properties](#s_properties)
 * [items](#s_items)
@@ -205,7 +206,7 @@ var schema = {
 		lorem: {  type: 'number' },
 		ipsum: { type: 'any' },
 		dolor: { type: ['number' 'string', 'null'] },
-		sit: {type: Class}
+		sit: { type: Class }
 	}
 };
 
@@ -237,7 +238,7 @@ var c4 = {
 inspector.validate(schema, c1); // Valid
 inspector.validate(schema, c2); // Valid
 inspector.validate(schema, c3); // Valid
-inspector.validate(schema, c4); // Invalid: @.lorem must be a number, @dolor must be a number, a string or null, @.sit must be a Class
+inspector.validate(schema, c4); // Invalid: @.lorem must be a number, @dolor must be a number, a string or null, @.sit must be an instance of Class, but is object
 ```
 
 ---------------------------------------
@@ -995,6 +996,42 @@ var r = inspector.sanitize(schema, c);
 */
 ```
 
+---------------------------------------
+
+<a name="s_strict" />
+### strict
+
+* **type**: boolean.
+* **default**: false.
+* **usable on**: any.
+
+Only key provided in field "properties" will exist in object, others will be deleted.
+
+__Example__
+
+```javascript
+var inspector = require('schema-inspector');
+
+var schema = {
+	type: 'object',
+	strict: true,
+	properties: {
+		good: { type: 'string' }
+	}
+};
+
+var c = {
+	good: 'yes',
+	bad: 'nope'
+};
+
+var r = inspector.sanitize(schema, c);
+/*
+	c: {
+		good: 'yes'
+	}
+*/
+```
 ---------------------------------------
 
 <a name="s_exec" />

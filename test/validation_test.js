@@ -1,5 +1,5 @@
 var should = require('should');
-var si = require('../lib/schema-inspector');
+var si = require('../');
 
 exports.validation = function () {
 	suite('schema #1 (Several types of test in the same inspection)', function () {
@@ -93,13 +93,15 @@ exports.validation = function () {
 	}); // suite "schema #1"
 
 	suite('schema #1.1 (Types tests)', function () {
+		function F() {};
 		var schema = {
 			type: 'array',
 			items: [
 				{ type: 'function' },
 				{ type: 'string' },
 				{ type: 'number' },
-				{ type: 'integer' }
+				{ type: 'integer' },
+				{ type: F },
 			]
 		};
 
@@ -108,7 +110,8 @@ exports.validation = function () {
 				function () {},
 				'Nikita',
 				1234.1234,
-				1234
+				1234,
+				new F()
 			];
 			var result = si.validate(schema, candidate);
 			result.should.be.an.Object;
@@ -118,19 +121,23 @@ exports.validation = function () {
 		});
 
 		test('candidate #2', function () {
+			function G() {};
 			var candidate = [
 				null,
 				'Nikita',
 				1234,
-				1234.1234
+				1234.1234,
+				new G()
 			];
 			var result = si.validate(schema, candidate);
 			result.should.be.an.Object;
 			result.should.have.property('valid').with.equal(false);
 			result.should.have.property('error').with.be.an.instanceof(Array)
-			.and.be.lengthOf(2);
+			.and.be.lengthOf(3);
 			result.error[0].property.should.equal('@[0]');
 			result.error[1].property.should.equal('@[3]');
+			result.error[2].property.should.equal('@[4]');
+			result.error[2].message.should.equal('must be and instance of F, but is an instance of G');
 		});
 	}); // suite "schema #1.1"
 
