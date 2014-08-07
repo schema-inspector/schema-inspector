@@ -464,7 +464,7 @@ inspector.validate(schema, c3); // Invalid: Neither @.lorem nor @.ipsum is in c3
 * **default**: false.
 * **usable on**: object.
 
-Only key provided in field "properties" may exist in object.
+Only keys provided in field "properties" may exist in object. Strict will be ignored if properties has the special key '*'.
 
 __Example__
 
@@ -539,6 +539,8 @@ inspector.validate(schema, c2); // Invalid: "@.lorem must not equal 3 =(".
 For each property in the field "properties", whose value must be a schema,
 validation is called deeper in object.
 
+The special property '*' is validated against any properties not specifically listed.
+
 __Example__
 
 ```javascript
@@ -558,7 +560,8 @@ var schema = {
 				}
 			}
 		},
-		consectetur: { type: 'string' }
+		consectetur: { type: 'string' },
+		'*': { type: 'integer' }
 	}
 };
 
@@ -568,7 +571,8 @@ var c1 = {
 			dolor: 'sit amet'
 		}
 	},
-	consectetur: 'adipiscing elit'
+	consectetur: 'adipiscing elit',
+	adipiscing: 12
 };
 var c2 = {
 	lorem: {
