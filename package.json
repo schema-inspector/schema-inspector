@@ -1,7 +1,7 @@
 {
   "name": "schema-inspector",
   "description": "Schema-Inspector is a powerful tool to sanitize and validate JS objects.",
-  "version": "1.4.8",
+  "version": "1.4.9",
   "main": "index.js",
   "author": {
     "name": "Aaron Blum",
