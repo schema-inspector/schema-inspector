@@ -5,7 +5,7 @@ It's designed to work both client-side and server-side and to be scalable with a
 
 [![Build Status](https://travis-ci.org/Atinux/schema-inspector.png?branch=master)](https://travis-ci.org/Atinux/schema-inspector) [![Dependencies Status](https://david-dm.org/atinux/schema-inspector.png)](https://david-dm.org/atinux/schema-inspector) [![NPM version](https://badge.fury.io/js/schema-inspector.png)](http://badge.fury.io/js/schema-inspector)
 
-Demonstration & documentation: http://atinux.github.io/schema-inspector/
+**See a live example:** http://atinux.github.io/schema-inspector/
 
 ## Installation
 
