@@ -2,6 +2,28 @@
 @import url("non-screen.css") handheld;
 @import url("non-screen.css") only screen and (max-device-width:640px);
 
+
+.play-it {
+	position: relative;
+	width: 100%;
+	margin-top: 30px;
+}
+.step {
+	width: 25%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	overflow: auto;
+}
+.step-2 {
+	left: 25%;
+}
+.step-3 {
+	left: 50%;
+}
+.step-4 {
+	left: 75%;
+}
 .step .title {
 	margin-top: 20px;
 	margin-bottom: 5px;
@@ -18,39 +40,12 @@
 }
 
 .result {
-	position: absolute;
-	top: 520px;
-	left: 0;
-	width: 300px;
 	background: white;
+	min-height: 587px;
 	color: #999;
 	padding: 15px;
 	font-weight: bold;
 	font-family: "Lucida Sans Typewriter", "Lucida Console", Monaco, "Bitstream Vera Sans Mono", monospace;
-	box-shadow: 0 3px 3px rgba(0,0,0,0.1);
-	-webkit-box-shadow: 0 3px 3px rgba(0,0,0,0.1);
-	-moz-box-shadow: 0 3px 3px rgba(0,0,0,0.1);
-}
-.result.fixed {
-	position: fixed;
-	top: 150px;
-	left: 0;
-	max-height: 60%;
-	overflow: auto;
-	z-index: 100;
-}
-.result.full {
-	position: fixed;
-	z-index: 100;
-	top: 0;
-	bottom: 0;
-	right: 0;
-	width: auto;
-	height: auto;
-	max-height: none;
-}
-.result.full .btn.maximize {
-	position: fixed;
 }
 .result .error,
 .result .validation-title {
@@ -67,9 +62,6 @@
 	border: none;
 	margin: 0;
 	background: white;
-}
-.result.hide {
-	display: none;
 }
 
 pre {
@@ -132,32 +124,6 @@ pre {
 }
 
 @media all and (max-width: 1200px) {
-	.result {
-		background: white;
-		display: none;
-	}
-	.result.fixed {
-		display: block;
-    	position: fixed;
-		max-height: 30%;
-		overflow: auto;
-		width: 100%;
-		bottom: 0;
-		top: auto;
-		min-height: 40px;
-		box-shadow: 0 -3px 3px rgba(0,0,0,0.1);
-		-webkit-box-shadow: 0 -3px 3px rgba(0,0,0,0.1);
-		-moz-box-shadow: 0 -3px 3px rgba(0,0,0,0.1);
-	}
-	.result.fixed.hide {
-		display: none;
-	}
-	.result pre {
-		background: white;
-	}
-	.btn.maximize {
-		display: none;
-	}
 	.btn.run {
 		display: inline-block;
 	}
@@ -170,6 +136,21 @@ pre {
 		-webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.3);
 		-moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.3);
 		box-shadow: inset 0 1px 2px rgba(0,0,0,0.3);
+	}
+	.step {
+		width: 50%;
+		height: 400px;
+	}
+	.step-2 {
+		left: 50%;
+	}
+	.step-3 {
+		top: 400px;
+		left: 0;
+	}
+	.step-4 {
+		top: 400px;
+		left: 50%;
 	}
 }
 
