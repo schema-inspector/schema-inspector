@@ -151,6 +151,7 @@
 		</div>
 	</div>
 <script type="text/javascript">
+window.showError = true;
 function getObject(editor, callback) {
 	try {
 		var data = JSON.parse(editor.getValue() || '{}');
@@ -169,7 +170,6 @@ function getObject(editor, callback) {
 }
 
 function checkSchemaInspector() {
-	$('.result').html('<button class="btn run">Refresh result</button>');
 	async.parallel({
 		data: function (next) {
 			getObject(editorData, next);
@@ -184,16 +184,18 @@ function checkSchemaInspector() {
 			return next(null, null);
 			getObject(editorValidation, next);
 		}
-		}, function (err, res) {
-		if (err)
-			return $('.result').append('<div class="error">'+err+'</div>');
+	}, function (err, res) {
+		if (err) {
+			if (!window.showError)
+				return;
+			return $('.result').html('<div class="error">'+err+'</div>');
+		}
+		$('.result').html('<button class="btn run">Refresh result</button>');
 		if (sanitization) {
 			var sanitizationResult = SchemaInspector.sanitize(res.sanitization, res.data);
-			// console.log(sanitizationResult.format());
 		}
 		if (validation) {
 			var validationResult = SchemaInspector.validate(res.validation, res.data);
-			console.log(validationResult, res.validation, res.data);
 			if (!validationResult.valid) {
 			$('.result').append('<h2 class="validation-title">Validation error:</h2>');
 			return $('.result').append('<div class="validation-error">'+validationResult.format().replace(/\n/g, '<br>')+'</div>');
