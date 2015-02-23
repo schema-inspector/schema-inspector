@@ -52,10 +52,10 @@
 	// You can edit the data here
 	name: "  sebastien chopin ",
 	age: "22",
-	compagnies: "malea, pantera",
-	birthday: 722517795000
+	languages: "javaScript, html,  css",
+	birthday: 722517795000,
+	french: 1
 }
-
 
 
 
@@ -85,30 +85,30 @@
 	// You can edit the sanitization too
 	type: "object",
 	properties: {
-		name: {
-			type: "string",
-			rules: ["trim", "title"],
+		name: { type: "string", rules: ["trim", "title"] },
+		age: { type: "integer" },
+		// split with "," by default
+		languages: {
+			type: "array",
+			items: { type: "string", rules: ["trim", "upper"] }
 		},
-		age: {
-			type: "integer"
-		},
-		compagnies: {
-			type: "array", // split with "," by default
-			items: {
-				type: "string",
-				rules: ["trim", "ucfirst"]
-			}
-		},
-		gender: {
-			type: "string",
-			optional: false,
-			def: "m" // if not given, will be "m"
-		},
-		birthday: {
-			type: "date" // transform timestamp to date
-		}
+		// transform timestamp to date
+		birthday: { type: "date" },
+		french: { type: "boolean" },
+		// if not given, will be "m"
+		gender: { type: "string", optional: false, def: "m" },
 	}
 }
+
+
+
+
+
+
+
+
+
+
 </textarea>
 		</div>
 		<div class="step step-3">
@@ -117,31 +117,31 @@
 	// And the validation!
 	type: "object",
 	properties: {
-		name: {
-			type: "string",
-			minLength: 1
-		},
-		age: {
-			type: "integer",
-			gt: 0,
-			lte: 120
-		},
-		gender: {
-			type: "string",
-			eq: ["m", "f"]
-		},
-		compagnies: {
+		name: { type: "string", minLength: 1 },
+		age: { type: "integer", gt: 0, lte: 99 },
+		gender: { type: "string", eq: ["m", "f"] },
+		languages: {
 			type: "array",
-			items: {
-				type: "string",
-				minLength: 1
-			}
+			items: { type: "string", minLength: 1 }
 		},
-		birthday: {
-			type: "date"
-		}
+		birthday: { type: "date" },
+		french: { type: "boolean" }
 	}
-}</textarea>
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+</textarea>
 		</div>
 		<div class="step step-4">
 			<h3 class="title">Result:</h3>
