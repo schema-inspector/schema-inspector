@@ -201,6 +201,7 @@ function checkSchemaInspector() {
 		}
 		$('.result').append('<pre class="data cm-s-default"></pre>');
 		CodeMirror.runMode(JSON.stringify(res.data, null, 4), { name: "javascript", json: true }, $('.result .data')[0]);
+		setTimeout(checkSchemaInspector, 100);
 	});
 }
 
