@@ -112,9 +112,6 @@ In the example below, the `inspector` variable will be used.  For the client-sid
 ### Thanks to:
 * [Benjamin Gressier](https://twitter.com/NikitaJS) (major contributor of this awesome module)
 
-### Roadmap:
-* [V2.0 - With json-schema.org](https://github.com/Atinux/schema-inspector/issues/milestones?with_issues=no)
-
 ## Validation
 
 <a name="v_type" />
@@ -199,7 +196,7 @@ This field indicates whether or not property has to exist.
 __Example__
 
 ```javascript
-var inspector = require('schema-inspector');
+var inspector = require('Roadspector');
 
 var schema1 = {
 	type: 'object',
@@ -855,6 +852,8 @@ var r = inspector.sanitize(schema, c);
 Apply the given rule to a string. If several rules are given (array), then they
 are applied in the same order than in the array.
 
+![sanitization min/max](http://atinux.github.io/schema-inspector/images/doc/sanitization-rules.gif)
+
 __Example__
 
 ```javascript
@@ -894,7 +893,7 @@ Define minimum and maximum value for a property. If it's less than minimum,
 then it's set to minimum. If it's greater than maximum, then it's set to
 maximum.
 
-[![sanitization min/max](http://atinux.github.io/schema-inspector/images/doc/sanitization-min-max.gif)](http://atinux.github.io/schema-inspector/)
+![sanitization min/max](http://atinux.github.io/schema-inspector/images/doc/sanitization-min-max.gif)
 
 __Example__
 
