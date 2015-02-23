@@ -23,6 +23,7 @@ It's designed to work both client-side and server-side and to be scalable with a
 ## How it looks like
 
 [![schema-inspector demo](http://atinux.github.io/schema-inspector/images/doc/example.png)](http://atinux.github.io/schema-inspector/)
+*Click to see it live!*
 
 ## Usage
 
