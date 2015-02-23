@@ -700,11 +700,10 @@ console.log(r2.error[0].code); // 'id-format'
 
 Cast property to the given type according to the following description:
 * **to number from**:
-	* string
-		* "12.34" -> 12.34
+	* string (ex: "12.34" -> 12.34)
 ![sanitization string to number](http://atinux.github.io/schema-inspector/images/doc/sanitization-type-string-to-number.gif)
-	* date
-		* new Date("2014-01-01") -> 1388534400000)
+	* date (ex: new Date("2014-01-01") -> 1388534400000)
+![sanitization string to number](http://atinux.github.io/schema-inspector/images/doc/sanitization-type-date-to-number.gif)
 * **to integer from**:
 	* number
 		* 12.34 -> 12
