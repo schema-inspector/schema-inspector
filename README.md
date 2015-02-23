@@ -22,78 +22,34 @@ It's designed to work both client-side and server-side and to be scalable with a
 
 ## Usage
 
-### Synchronous call
-
 ```javascript
 var inspector = require('schema-inspector');
 
+// Your object you want to validate (can be a JSON from your API)
+var candidate = {
+	type: 'sms',
+	to: [ 12, 'email@example.com', 'test']
+};
+
+// Your validation schema
 var schema = {
 	type: 'object',
 	properties: {
-		lorem: { type: 'string', eq: 'ipsum' },
-		dolor: {
+		type: { type: 'string', eq: 'email' },
+		to: {
 			type: 'array',
-			items: { type: 'number' }
+			items: { type: 'string', pattern: 'email' }
 		}
 	}
 };
 
-var candidate = {
-	lorem: 'not_ipsum',
-	dolor: [ 12, 34, 'ERROR', 45, 'INVALID' ]
-};
 var result = inspector.validate(schema, candidate); // Candidate is not valid
-console.log(result.format());
-/*
-	Property @.lorem: must be equal to "ipsum", but is equal to "not_ipsum"
-	Property @.dolor[2]: must be number, but is string
-	Property @.dolor[4]: must be number, but is string
-*/
-```
-
-### Asynchronous call
-
-```javascript
-var inspector = require('schema-inspector');
-
-var schema = { ...	};
-
-var candidate = { ... };
-
-inspector.validate(schema, candidate, function (err, result) {
+if (!result.valid)
 	console.log(result.format());
-	/*
-		Property @.lorem: must be equal to "ipsum", but is equal to "not_ipsum"
-		Property @.dolor[2]: must be number, but is string
-		Property @.dolor[4]: must be number, but is string
-	*/
-});
-```
-
-### Custom fields
-
-```javascript
-var inspector = require('schema-inspector');
-
-var schema = {
-	type: 'array',
-	items: { type: 'number', $divisibleBy: 5 }
-};
-
-var custom = {
-	divisibleBy: function (schema, candidate) {
-		var dvb = schema.$divisibleBy;
-		if (candidate % dvb !== 0) {
-			this.report('must be divisible by ' + dvb);
-		}
-	}
-};
-
-var candidate = [ 5, 10, 15, 16 ];
-var result = inspector.validate(schema, candidate, custom);
-console.log(result.format());
 /*
-	Property @[3]: must be divisible by 5
+	Property @.type: must be equal to "email", but is equal to "sms"
+	Property @.to[0]: must be a string, but is number
+	Property @.dolor[4]: must match [email], but is equal to "test"
 */
 ```
 
@@ -103,23 +59,11 @@ console.log(result.format());
 <script type="text/javascript" src="async.js"></script>
 <script type="text/javascript" src="schema-inspetor.js"></script>
 <script type="text/javascript">
-	var schema = {
-		type: 'object',
-		properties: {
-			lorem: { type: 'string', eq: 'ipsum' },
-			dolor: {
-				type: 'array',
-				items: { type: 'number' }
-			}
-		}
-	};
-
-	var candidate = {
-		lorem: 'not_ipsum',
-		dolor: [ 12, 34, 'ERROR', 45, 'INVALID' ]
-	};
+	var schema = { /* ... */ };
+	var candidate = { /* ... */ };
 	SchemaInspector.validate(schema, candidate, function (err, result) {
-		alert(result.format());
+		if (!result.valid)
+			return alert(result.format());
 	});
 </script>
 ```
@@ -949,6 +893,8 @@ var r = inspector.sanitize(schema, c);
 Define minimum and maximum value for a property. If it's less than minimum,
 then it's set to minimum. If it's greater than maximum, then it's set to
 maximum.
+
+[![sanitization min/max](http://atinux.github.io/schema-inspector/images/doc/sanitization-min-max.gif)](http://atinux.github.io/schema-inspector/)
 
 __Example__
 
