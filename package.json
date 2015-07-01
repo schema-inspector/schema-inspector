@@ -1,10 +1,10 @@
 {
   "name": "schema-inspector",
   "description": "Schema-Inspector is a powerful tool to sanitize and validate JS objects.",
-  "version": "1.5.1",
+  "version": "1.5.2",
   "main": "index.js",
   "author": {
-    "name": "Aaron Blum",
+    "name": "Sebastien Chopin",
     "url" : "https://twitter.com/atinux"
   },
   "maintainers": ["atinux"],
