@@ -406,7 +406,8 @@ exports.sanitization = function () {
 						one: { type: 'integer', optional: false, def: 1 },
 						two: { type: 'integer', optional: false, def: 2 },
 						three: { type: 'integer', optional: false, def: 3 },
-						four: { type: 'integer', optional: false, def: 4 }
+						four: { type: 'integer', optional: false, def: 4 },
+						five: { type: 'integer', optional: "false", def: 5 }
 					}
 				}
 			}
@@ -424,14 +425,16 @@ exports.sanitization = function () {
 			var result = si.sanitize(schema, candidate);
 			result.should.be.an.Object;
 			result.should.have.property('reporting').with.be.an.instanceof(Array)
-			.and.be.lengthOf(1);
+			.and.be.lengthOf(2);
 			result.reporting[0].property.should.be.equal('@.hash.four');
+			result.reporting[1].property.should.be.equal('@.hash.five');
 			candidate.should.eql({
 				hash: {
 					one: 11,
 					two: 22,
 					three: 33,
-					four: 4
+					four: 4,
+					five: 5
 				}
 			});
 		});
@@ -446,16 +449,18 @@ exports.sanitization = function () {
 			var result = si.sanitize(schema, candidate);
 			result.should.be.an.Object;
 			result.should.have.property('reporting').with.be.an.instanceof(Array)
-			.and.be.lengthOf(3);
+			.and.be.lengthOf(4);
 			result.reporting[0].property.should.be.equal('@.hash.one');
 			result.reporting[1].property.should.be.equal('@.hash.three');
 			result.reporting[2].property.should.be.equal('@.hash.four');
+			result.reporting[3].property.should.be.equal('@.hash.five');
 			candidate.should.eql({
 				hash: {
 					one: 1,
 					two: 22,
 					three: 3,
-					four: 4
+					four: 4,
+					five: 5
 				}
 			});
 		});
@@ -470,16 +475,18 @@ exports.sanitization = function () {
 			var result = si.sanitize(schema, candidate);
 			result.should.be.an.Object;
 			result.should.have.property('reporting').with.be.an.instanceof(Array)
-			.and.be.lengthOf(3);
+			.and.be.lengthOf(4);
 			result.reporting[0].property.should.be.equal('@.hash.one');
 			result.reporting[1].property.should.be.equal('@.hash.two');
 			result.reporting[2].property.should.be.equal('@.hash.three');
+			result.reporting[3].property.should.be.equal('@.hash.five');
 			candidate.should.eql({
 				hash: {
 					one: 1,
 					two: 2,
 					three: 3,
-					four: 44
+					four: 44,
+					five: 5
 				}
 			});
 		});
@@ -553,7 +560,8 @@ exports.sanitization = function () {
 					def: {},
 					type: 'object',
 					properties: {
-						ipsum: { type: 'string', def: 'Nikita', optional: true }
+						ipsum: { type: 'string', def: 'Nikita', optional: true },
+						ipsum2: { type: 'string', def: 'Atinux', optional: 'true' },
 					}
 				}
 			}
@@ -568,11 +576,13 @@ exports.sanitization = function () {
 			var result = si.sanitize(schema, candidate);
 			result.should.be.an.Object;
 			result.should.have.property('reporting').with.be.an.instanceof(Array)
-			.and.be.lengthOf(1);
+			.and.be.lengthOf(2);
 			result.reporting[0].property.should.be.equal('@.lorem.ipsum');
+			result.reporting[1].property.should.be.equal('@.lorem.ipsum2');
 			candidate.should.eql({
 				lorem: {
-					ipsum: 'Nikita'
+					ipsum: 'Nikita',
+					ipsum2: 'Atinux'
 				}
 			});
 		});
@@ -584,12 +594,14 @@ exports.sanitization = function () {
 			var result = si.sanitize(schema, candidate);
 			result.should.be.an.Object;
 			result.should.have.property('reporting').with.be.an.instanceof(Array)
-			.and.be.lengthOf(2);
+			.and.be.lengthOf(3);
 			result.reporting[0].property.should.be.equal('@.lorem');
 			result.reporting[1].property.should.be.equal('@.lorem.ipsum');
+			result.reporting[2].property.should.be.equal('@.lorem.ipsum2');
 			candidate.should.eql({
 				lorem: {
-					ipsum: 'Nikita'
+					ipsum: 'Nikita',
+					ipsum2: 'Atinux'
 				}
 			});
 		});
@@ -604,7 +616,8 @@ exports.sanitization = function () {
 					optional: true,
 					def: {},
 					properties: {
-						ipsum: { def: 'Nikita', optional: true }
+						ipsum: { def: 'Nikita', optional: true },
+						ipsum2: { def: 'Nikita', optional: 'true' }
 					}
 				}
 			}
