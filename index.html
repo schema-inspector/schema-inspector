@@ -130,8 +130,12 @@ function getObject(editor, callback) {
 	} catch (e) {
 		try {
 			var s = String(editor.getValue() || '{}').replace(/([^(http:|https:|ftp:)])\/\/[^\n\r]*(?:[\n\r]+|$)/gi, '$1').replace(/\n/g, '').trim();
-			s = (s[0] !== '{' && s[0] !== '[' ? '{' : s[0]) + s.slice(1, s.length - 1) + (s[s.length - 1] !== '}' && s[s.length - 1] !== ']' ? '}' : s[s.length - 1]);
-			// console.log(s);
+			if (parseInt(s, 10).toString() === s) {
+				s = parseInt(s, 10);
+			}
+			else {
+				s = (s[0] !== '{' && s[0] !== '[' ? '{' : s[0]) + s.slice(1, s.length - 1) + (s[s.length - 1] !== '}' && s[s.length - 1] !== ']' ? '}' : s[s.length - 1]);
+			}
 			eval('var variable = ' + s +';');
 			callback(null, variable);
 		} catch (e) {
@@ -164,6 +168,7 @@ function checkSchemaInspector() {
 		$('.result').html('<button class="btn run">Refresh result</button>');
 		if (sanitization) {
 			var sanitizationResult = SchemaInspector.sanitize(res.sanitization, res.data);
+			res.data = sanitizationResult.data;
 		}
 		if (validation) {
 			var validationResult = SchemaInspector.validate(res.validation, res.data);
