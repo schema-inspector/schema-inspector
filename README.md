@@ -759,7 +759,7 @@ var c = [ 12.23, -34, true, false, 'true', 'false', [123, 234, 345], { obj: "yes
 
 var r = inspector.sanitize(schema, c);
 /*
-	c: [ '12.23', '-34', 'true', 'false', 'true', 'false', '123,234,345', '{"obj":"yes"}' ]
+	r.data: [ '12.23', '-34', 'true', 'false', 'true', 'false', '123,234,345', '{"obj":"yes"}' ]
 */
 ```
 
@@ -796,7 +796,7 @@ var c = {
 
 var r = inspector.sanitize(schema, c);
 /*
-	c: {
+	r.data: {
 		lorem: 10,
 		ipsum: 'NikitaJS',
 		dolor: 'sit amet'
@@ -833,7 +833,7 @@ var c = { };
 
 var r = inspector.sanitize(schema, c);
 /*
-	c: {
+	r.data: {
 		lorem: 12 // Only lorem is set to 12 because it is not optional.
 	}
 */
@@ -879,7 +879,7 @@ var c = {
 
 var r = inspector.sanitize(schema, c);
 /*
-	c: {
+	r.data: {
 		lorem: ' THIS IS SPARTA! ',
 		ipsum: 'This Is Sparta!' // has been trimed, then titled
 	}
@@ -914,7 +914,7 @@ var c = [5, 10, 15, 20, 25];
 
 var r = inspector.sanitize(schema, c);
 /*
-	c: [10, 10, 15, 20, 20]
+	r.data: [10, 10, 15, 20, 20]
 	c[0] (5) was less than min (10), so it's been set to 10.
 	c[4] (25) was greater than max (20), so it's been set to 20.
 */
@@ -946,7 +946,7 @@ var c = ['short', 'mediumSize', 'tooLongForThisSchema'];
 
 var r = inspector.sanitize(schema, c);
 /*
-	c: ['short---', 'mediumSize', 'tooLongForT']
+	r.data: ['short---', 'mediumSize', 'tooLongForT']
 */
 ```
 
@@ -981,7 +981,7 @@ var c = {
 
 var r = inspector.sanitize(schema, c);
 /*
-	c: {
+	r.data: {
 		good: 'yes'
 	}
 */
@@ -1025,7 +1025,7 @@ var c = [ 'Nikita', 'lol', 'NIKITA', 'thisIsGonnaBeSanitized!' ];
 
 var r = inspector.sanitize(schema, c);
 /*
-	c: [ 'Nikita', '_INVALID_', 'NIKITA', '_INVALID_' ]
+	r.data: [ 'Nikita', '_INVALID_', 'NIKITA', '_INVALID_' ]
 */
 ```
 

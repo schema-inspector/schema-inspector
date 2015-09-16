@@ -137,6 +137,15 @@ exports.sanitization = function () {
 			candidate.should.be.eql([300, +date, 1388534400000, -1]);
 		});
 
+		test('candidate #4 | string -> integer', function () {
+			var result = si.sanitize({ type: 'integer' }, '42');
+			result.should.be.an.Object;
+			result.should.have.property('reporting').with.be.an.instanceof(Array)
+			.and.be.lengthOf(1);
+			result.reporting[0].property.should.be.equal('@');
+			result.data.should.be.eql(42);
+		});
+
 	}); // suite "schema #2"
 
 	suite('schema #3 (type casting [number])', function () {
@@ -355,6 +364,15 @@ exports.sanitization = function () {
 			candidate.should.eql({
 				lorem: { ipsum: [123, '234', 345] }
 			});
+		});
+
+		test('candidate #2', function () {
+			var result = si.sanitize({ type: 'array', optional: false, def: [], items: { type: 'object' } }, { prop: 'value' });
+			result.should.be.an.Object;
+			result.should.have.property('reporting').with.be.an.instanceof(Array)
+			.and.be.lengthOf(1);
+			result.reporting[0].property.should.be.equal('@');
+			result.data.should.eql([ { prop: 'value' } ]);
 		});
 
 	}); // suite "schema #7"
@@ -909,6 +927,31 @@ exports.sanitization = function () {
 				.and.be.lengthOf(2);
 				result.reporting[0].property.should.be.equal('@.lorem.ipsum.dolor');
 				result.reporting[1].property.should.be.equal('@.lorem.ipsum.dolor.sit.amet');
+				done();
+			});
+		});
+
+		test('candidate #4', function (done) {
+			var customSchema = {
+				type: 'array',
+				items: {
+					type: 'object',
+					properties: {
+						prop: {
+							exec: function (schema, post, cb) {
+								cb(null, 'coucou');
+							}
+						}
+					}
+				}
+			};
+			si.sanitize(customSchema, { prop: 'value' }, function (err, result) {
+				should.not.exist(err);
+				result.should.be.an.Object;
+				result.should.have.property('reporting').with.be.an.instanceof(Array)
+				.and.be.lengthOf(1);
+				result.reporting[0].property.should.be.equal('@');
+				result.data.should.be.eql([ { prop: 'coucou' } ]);
 				done();
 			});
 		});
