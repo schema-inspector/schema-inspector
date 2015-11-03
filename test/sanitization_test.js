@@ -146,6 +146,15 @@ exports.sanitization = function () {
 			result.data.should.be.eql(42);
 		});
 
+		test('candidate #5 | string -> integer or def: null', function () {
+			var result = si.sanitize({ type: 'integer', def: null }, 'abc');
+			result.should.be.an.Object;
+			result.should.have.property('reporting').with.be.an.instanceof(Array)
+			.and.be.lengthOf(1);
+			result.reporting[0].property.should.be.equal('@');
+			should.equal(result.data, null);
+		});
+
 	}); // suite "schema #2"
 
 	suite('schema #3 (type casting [number])', function () {
