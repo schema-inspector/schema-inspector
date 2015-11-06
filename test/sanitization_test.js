@@ -155,6 +155,34 @@ exports.sanitization = function () {
 			should.equal(result.data, null);
 		});
 
+		test('candidate #6 | object with properties -> number and def: 0', function () {
+			var s = {
+				type: 'object',
+				optional: false,
+				def: {},
+				properties: {
+					orderProducts: { type: 'number', def: 0 }, // if he gives ''
+					orderServices: { type: 'number', def: 0 }, // if he gives ''
+				}
+			};
+			var result = si.sanitize(s, {});
+			result.data.should.be.eql({})
+		});
+
+		test('candidate #6 | object with properties -> number and def: 0', function () {
+			var s = {
+				type: 'object',
+				optional: false,
+				def: {},
+				properties: {
+					orderProducts: { type: 'number', def: 0 }, // if he gives ''
+					orderServices: { type: 'number', def: 0 }, // if he gives ''
+				}
+			};
+			var result = si.sanitize(s, { orderProducts: '', orderServices: '' });
+			result.data.should.be.eql({ orderProducts: 0, orderServices: 0 });
+		});
+
 	}); // suite "schema #2"
 
 	suite('schema #3 (type casting [number])', function () {
