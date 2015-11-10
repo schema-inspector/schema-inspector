@@ -741,9 +741,9 @@ Cast property to the given type according to the following description:
 	* string
 		* '{"love":"open source"}' -> { love: "open source" }
 * **to array from**:
-	* string 			("one,two,three" -> ["one", "two", "three"])
+	* string 			("one,two,three" -> ["one", "two", "three"], '[1,"two",{"three":true}]' -> [ 1, 'two', { three: true } ])
 	* anything except undefined and array 	(23 -> [ 23 ])
-	* To split with a custom string (other than ","), use the key **splitWith** (example: { type: "array", splitBy: "|"" } will transform "one|two|three" to ["one", "two", "three"]).*
+	* To split with a custom string (other than ","), use the key **splitWith** (example: { type: "array", splitWith: "|"" } will transform "one|two|three" to ["one", "two", "three"]).*
 
 __Example__
 

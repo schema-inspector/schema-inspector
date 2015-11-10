@@ -1403,6 +1403,19 @@ exports.sanitization = function () {
 			candidate.should.eql({ tab: [ 'one', 'two', 'three' ] });
 		});
 
+		test('candidate #7 | "[JSON String]" -> [ 1, "two", { three: true } ]', function () {
+			var candidate = { tab: JSON.stringify([1, 'two', { three: true }]) };
+
+			schema.properties.tab.items.type = 'any';
+			var result = si.sanitize(schema, candidate);
+			schema.properties.tab.items.type = 'string';
+			result.should.be.an.Object;
+			result.should.have.property('reporting').with.be.an.instanceof(Array)
+			.and.be.lengthOf(1);
+			result.reporting[0].property.should.be.equal('@.tab');
+			candidate.should.eql({ tab: [ 1, 'two', { three: true } ] });
+		});
+
 	});
 	// suite "schema #18"
 	suite('schema #18 (strict option)', function () {
