@@ -30,33 +30,62 @@ It's designed to work both client-side and server-side and to be scalable with a
 ```javascript
 var inspector = require('schema-inspector');
 
-// Your object you want to validate (can be a JSON from your API)
-var candidate = {
-	type: 'sms',
-	to: [ 12, 'email@example.com', 'test']
+// Data that we want to sanitize and validate
+var data = {
+	firstname: 'sterling  ',
+	lastname: '  archer',
+	jobs: 'Special agent, cocaine Dealer',
+	email: 'NEVER!',
 };
 
-// Your validation schema
-var schema = {
+// Sanitization Schema
+var sanitization = {
 	type: 'object',
 	properties: {
-		type: { type: 'string', eq: 'email' },
-		to: {
+		firstname: { type: 'string', rules: ['trim', 'title'] },
+		lastname: { type: 'string', rules: ['trim', 'title'] },
+		jobs: {
 			type: 'array',
-			items: { type: 'string', pattern: 'email' }
-		}
+			splitWith: ',',
+			items: { type: 'string', rules: ['trim', 'title'] }
+		},
+		email: { type: 'string', rules: ['trim', 'lower'] }
 	}
 };
+// Let's update the data
+inspector.sanitize(sanitization, data);
+/*
+data is now:
+{
+	firstname: 'Sterling',
+	lastname: 'Archer',
+	jobs: ['Special Agent', 'Cocaine Dealer'],
+	email: 'never!'
+}
+*/
 
-var result = inspector.validate(schema, candidate); // Candidate is not valid
+// Validation schema
+var validation = {
+	type: 'object',
+	properties: {
+		firstname: { type: 'string', minLength: 1 },
+		lastname: { type: 'string', minLength: 1 },
+		jobs: {
+			type: 'array',
+			items: { type: 'string', minLength: 1 }
+		},
+		email: { type: 'string', pattern: 'email' }
+	}
+};
+var result = inspector.validate(schema, candidate);
 if (!result.valid)
 	console.log(result.format());
 /*
-	Property @.type: must be equal to "email", but is equal to "sms"
-	Property @.to[0]: must be a string, but is number
-	Property @.dolor[4]: must match [email], but is equal to "test"
+	Property @.email: must match [email], but is equal to "never!"
 */
 ```
+
+**Tips:** it's recommended to use one schema for the sanitzation and another for the validation, 
 
 ## In the browser
 
