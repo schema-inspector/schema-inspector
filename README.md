@@ -85,7 +85,7 @@ if (!result.valid)
 */
 ```
 
-**Tips:** it's recommended to use one schema for the sanitzation and another for the validation, 
+**Tips:** it's recommended to use one schema for the sanitzation and another for the validation,
 
 ## In the browser
 
@@ -159,7 +159,7 @@ In the example below, the `inspector` variable will be used.  For the client-sid
 	* `integer`
 	* `boolean`
 	* `null`
-	* `date` (constructor === Date)
+	* `date` (instanceof Date)
 	* `object` (constructor === Object)
 	* `array` (constructor === Array)
 	* A function (candidate isinstance)
