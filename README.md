@@ -77,7 +77,7 @@ var validation = {
 		email: { type: 'string', pattern: 'email' }
 	}
 };
-var result = inspector.validate(schema, candidate);
+var result = inspector.validate(validation, data);
 if (!result.valid)
 	console.log(result.format());
 /*
