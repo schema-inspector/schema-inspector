@@ -2095,10 +2095,10 @@ exports.validation = function () {
 
 	}); // suite "schema #14"
 
-	suite('schema #22 (date with dateValid: true)', function () {
+	suite('schema #22 (date with validDate: true)', function () {
 		var schema = {
 			type: 'object',
-			items: { type: 'date', dateValid: true }
+			items: { type: 'date', validDate: true }
 		};
 
 		test('candidate #1', function () {

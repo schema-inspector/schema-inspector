@@ -159,7 +159,7 @@ In the example below, the `inspector` variable will be used.  For the client-sid
 	* `integer`
 	* `boolean`
 	* `null`
-	* `date` (instanceof Date), you can use the `dateValid: true` to check if the date is valid
+	* `date` (instanceof Date), you can use the `validDate: true` to check if the date is valid
 	* `object` (constructor === Object)
 	* `array` (constructor === Array)
 	* A function (candidate isinstance)
