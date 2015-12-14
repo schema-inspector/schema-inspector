@@ -2094,4 +2094,29 @@ exports.validation = function () {
 		});
 
 	}); // suite "schema #14"
+
+	suite('schema #22 (date with dateValid: true)', function () {
+		var schema = {
+			type: 'object',
+			items: { type: 'date', dateValid: true }
+		};
+
+		test('candidate #1', function () {
+			var candidate = {
+				valid: new Date(),
+				invalid: new Date('invalid'),
+				nope: 'hello!'
+			};
+
+			var result = si.validate(schema, candidate);
+			result.should.be.an.Object;
+			result.should.have.property('valid').with.equal(false);
+			result.should.have.property('error').with.be.an.instanceof(Array)
+			.and.be.lengthOf(2);
+			result.error[0].property.should.equal('@[invalid]');
+			result.error[1].property.should.equal('@[nope]');
+		});
+
+	});
+
 };
