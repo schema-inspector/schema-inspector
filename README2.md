@@ -52,7 +52,9 @@ For Express.js or use express-cool-api?
 var validation = require('schema-inspector');
 validation.midd(schema)(req, res, next);
 // or
-validation.midd(schema, ['email', 'password'])(req, res, next); // required properties
+validation.midd(schema, ['email', 'password'])(req, res, function (req, res) {
+  // req.data
+}); // required properties
 ```
 
 - [ ] Error codes
