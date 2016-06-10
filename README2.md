@@ -52,5 +52,8 @@ For Express.js or use express-cool-api?
 var validation = require('schema-inspector');
 validation.midd(schema)(req, res, next);
 // or
-validation.midd(schema, ['email', 'password'])(req, res, next);
+validation.midd(schema, ['email', 'password'])(req, res, next); // required properties
 ```
+
+- [ ] Error codes
+- [ ] Messages (API?)
