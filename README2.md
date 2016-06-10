@@ -57,5 +57,7 @@ validation.midd(schema, ['email', 'password'])(req, res, function (req, res) {
 }); // required properties
 ```
 
+Keywords: https://github.com/epoberezkin/ajv/blob/master/KEYWORDS.md
+
 - [ ] Error codes
 - [ ] Messages (API?)
