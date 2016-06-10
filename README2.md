@@ -39,9 +39,10 @@ si.addRequired(schema, ['firstname', 'lastname', 'email', 'foo']); // '@' for ro
 ```
 
 ```js
-var validation = require('schema-inspector');
+var si = require('schema-inspector');
 var data = { firstname: '  sebastien ', lastname: 'chopin' };
-validation(schema, data, function (err, data) {
+// validate(schema, data[, requiredKeys], callback)
+si.validate(schema, data, ['email'], function (err, data) {
   if (err) return console.log(err);
   console.log(data);
 });
@@ -49,10 +50,10 @@ validation(schema, data, function (err, data) {
 
 For Express.js or use express-cool-api?
 ```js
-var validation = require('schema-inspector');
-validation.midd(schema)(req, res, next);
+var si = require('schema-inspector');
+si.midd(schema)(req, res, next);
 // or
-validation.midd(schema, ['email', 'password'])(req, res, function (req, res) {
+si.midd(schema, ['email', 'password'])(req, res, function (req, res) {
   // req.data
 }); // required properties
 ```
