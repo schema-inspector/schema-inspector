@@ -36,6 +36,7 @@ Extending for POST (by example) :
 ```js
 si.addRequired(schema, ['firstname', 'lastname', 'email', 'foo']); // '@' for root or not parameter
 // Will add required: true to the firstname, lastname, email and both foo properties
+si.extend(schema, { "required": ['firstname'] }) ?
 ```
 
 ```js
