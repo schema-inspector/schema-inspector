@@ -7,7 +7,7 @@ Use only one schema to sanitize and validate your JSON objects. Use it for valid
 ```js
 var schema = {
   type: "object",
-  removeAdditional true, // defaults: true
+  allowAdditional true, // defaults: false
   properties: {
     firstname: { type: "string", rules: ["trim", "title"], minLength: 1, maxLength: 30 },
     lastname: { type: "string", rules: ["trim", "title"], minLength: 1, maxLength: 30 },
