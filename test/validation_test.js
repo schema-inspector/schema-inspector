@@ -2125,4 +2125,38 @@ exports.validation = function () {
 
 	});
 
+
+	suite('schema #23 (dynamic change by exec / add a property)', function () {
+		var schema = {
+			type: 'object',
+			strict: true,
+			properties: {
+				key1: {type: 'string', optional: true}
+			},
+			exec: function (schema) {
+				//I can add dynamically a required property
+				schema.properties.key2 = {type: 'string', optional: false}
+			}
+		};
+
+		test('candidate #1 : a new dynamically added required property is checked', function () {
+			var candidate = {};
+			var result = si.validate(schema, candidate);
+			result.should.be.an.Object;
+			result.should.have.property('valid').with.equal(false);
+			result.should.have.property('error').with.be.an.instanceof(Array).and.be.lengthOf(1);
+			result.error[0].property.should.equal('@.key2');
+		});
+
+
+		test('candidate #2 : strict take account of dynamically changed schema', function () {
+			var candidate = {key2: "1"};
+			var result = si.validate(schema, candidate);
+			result.should.be.an.Object;
+			result.should.have.property('valid').with.equal(true);
+		});
+
+	});
+
+
 };
