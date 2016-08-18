@@ -85,7 +85,7 @@ if (!result.valid)
 */
 ```
 
-**Tips:** it's recommended to use one schema for the sanitzation and another for the validation,
+**Tips:** it's recommended to use one schema for the sanitization and another for the validation,
 
 ## In the browser
 
