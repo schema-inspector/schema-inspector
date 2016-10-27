@@ -854,7 +854,7 @@ var schema = {
 	properties: {
 		lorem: { type: 'number', optional: false, def: 12 },
 		ipsum: { type: 'string', optional: true, def: 23 },
-		dolor: { type: 'string', def: 'NikitaJS, def: 34 } // (optional: true)
+		dolor: { type: 'string', def: 'NikitaJS', def: 34 } // (optional: true)
 	}
 };
 
