@@ -14,7 +14,7 @@ It's designed to work both client-side and server-side and to be scalable with a
 
 ### Browser
 <pre>bower install schema-inspector</pre>
-(Or download [async.js](https://raw.github.com/caolan/async/master/lib/async.js) and [schema-inspetor.js](https://raw.github.com/Atinux/schema-inspector/master/lib/schema-inspector.js) manually).
+(Or download [async.js](https://raw.github.com/caolan/async/master/lib/async.js) and [schema-inspector.js](https://raw.github.com/Atinux/schema-inspector/master/lib/schema-inspector.js) manually).
 ```html
 <script type="text/javascript" src="bower_components/async/lib/async.js"></script>
 <script type="text/javascript" src="bower_components/schema-inspector/lib/schema-inspector.js"></script>
@@ -91,7 +91,7 @@ if (!result.valid)
 
 ```html
 <script type="text/javascript" src="async.js"></script>
-<script type="text/javascript" src="schema-inspetor.js"></script>
+<script type="text/javascript" src="schema-inspector.js"></script>
 <script type="text/javascript">
 	var schema = { /* ... */ };
 	var candidate = { /* ... */ };
