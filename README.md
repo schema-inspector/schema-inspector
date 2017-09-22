@@ -7,6 +7,10 @@ It's designed to work both client-side and server-side and to be scalable with a
 
 **See a live example:** http://atinux.github.io/schema-inspector/
 
+<a target='_blank' rel='nofollow' href='https://app.codesponsor.io/link/htiWA79uE8uubJymVd58XjBi/Atinux/schema-inspector'>
+  <img alt='Sponsor' width='888' height='68' src='https://app.codesponsor.io/embed/htiWA79uE8uubJymVd58XjBi/Atinux/schema-inspector.svg' />
+</a>
+
 ## Installation
 
 ### Node.js
