@@ -7,16 +7,13 @@ It's designed to work both client-side and server-side and to be scalable with a
 
 **See a live example:** http://atinux.github.io/schema-inspector/
 
-<a target='_blank' rel='nofollow' href='https://app.codesponsor.io/link/htiWA79uE8uubJymVd58XjBi/Atinux/schema-inspector'>
-  <img alt='Sponsor' width='888' height='68' src='https://app.codesponsor.io/embed/htiWA79uE8uubJymVd58XjBi/Atinux/schema-inspector.svg' />
-</a>
-
 ## Installation
 
 ### Node.js
 <pre>npm install schema-inspector</pre>
 
 ### Browser
+
 <pre>bower install schema-inspector</pre>
 (Or download [async.js](https://raw.github.com/caolan/async/master/lib/async.js) and [schema-inspector.js](https://raw.github.com/Atinux/schema-inspector/master/lib/schema-inspector.js) manually).
 ```html
@@ -140,11 +137,13 @@ In the example below, the `inspector` variable will be used.  For the client-sid
 * [items](#s_items)
 
 ### Custom fields
+
 * [punctual use](#cf_punctual)
 * [extension](#cf_extension)
 * [context](#cf_context)
 
 ### Asynchronous call
+
 * [How to](#a_howTo)
 
 ### Thanks to:
@@ -152,7 +151,6 @@ In the example below, the `inspector` variable will be used.  For the client-sid
 
 ## Validation
 
-<a name="v_type" />
 ### type
 
 * **type**: string, array of string.
@@ -222,7 +220,6 @@ inspector.validate(schema, c4); // Invalid: @.lorem must be a number, @dolor mus
 
 ---------------------------------------
 
-<a name="v_optional" />
 ### optional
 
 * **type**: boolean.
@@ -261,7 +258,6 @@ inspector.validate(schema2, c2); // Invalid: "@.lorem" is missing and not option
 
 ---------------------------------------
 
-<a name="v_uniqueness" />
 ### uniqueness
 
 * **type**: boolean.
@@ -289,7 +285,6 @@ inspector.validate(schema, c2); // Invalid: 12 exists twice in @.
 
 ---------------------------------------
 
-<a name="v_pattern" />
 ### pattern
 
 * **type**: string, RegExp object, array of string and RegExp.
@@ -327,7 +322,6 @@ inspector.validate(schema2, c2); // Invalid: @[2] ('amet@consectetur') does not 
 
 ---------------------------------------
 
-<a name="v_length" />
 ### minLength, maxLength, exactLength
 
 * **type**: integer.
@@ -362,7 +356,6 @@ inspector.validate(schema, c2); // Invalid: @.lorem must have a length between 4
 
 ---------------------------------------
 
-<a name="v_comparators" />
 ### lt, lte, gt, gte, eq, ne
 
 * **type**: number (string, number and boolean for eq).
@@ -401,7 +394,6 @@ inspector.validate(schema, c2); // Invalid
 
 ---------------------------------------
 
-<a name="v_someKeys" />
 ### someKeys
 
 * **type**: array of string.
@@ -436,7 +428,6 @@ inspector.validate(schema, c3); // Invalid: Neither @.lorem nor @.ipsum is in c3
 
 ---------------------------------------
 
-<a name="v_strict" />
 ### strict
 
 * **type**: boolean.
@@ -469,7 +460,6 @@ inspector.validate(schema, c2); // Invalid: @.sit should not exist.
 
 ---------------------------------------
 
-<a name="v_exec" />
 ### exec
 
 * **type**: function, array of function.
@@ -509,7 +499,6 @@ inspector.validate(schema, c2); // Invalid: "@.lorem must not equal 3 =(".
 
 ---------------------------------------
 
-<a name="v_properties" />
 ### properties
 
 * **type**: object.
@@ -568,7 +557,6 @@ inspector.validate(schema, c2); // Invalid: @.lorem.ipsum.dolor must be a string
 
 ---------------------------------------
 
-<a name="v_items" />
 ### items
 
 * **type**: object, array of object.
@@ -610,7 +598,6 @@ inspector.validate(schema2, c2); // Valid
 
 ---------------------------------------
 
-<a name="v_alias" />
 ### alias
 
 * **type**: string.
@@ -647,7 +634,6 @@ console.log(r2.format()); // Property id (@._id): must be string, but is number
 
 ---------------------------------------
 
-<a name="v_error" />
 ### error
 
 * **type**: string.
@@ -685,7 +671,6 @@ console.log(r2.format()); // Property @._id: must be a valid ID.
 
 ---------------------------------------
 
-<a name="v_code" />
 ### code
 
 * **type**: string.
@@ -722,7 +707,6 @@ console.log(r2.error[0].code); // 'id-format'
 
 ## Sanitization
 
-<a name="s_type" />
 ### type
 
 * **type**: string.
@@ -798,8 +782,8 @@ var r = inspector.sanitize(schema, c);
 
 ---------------------------------------
 
-<a name="s_def" />
 ### def
+
 * **type**: any.
 * **usable on**: any.
 
@@ -839,7 +823,6 @@ var r = inspector.sanitize(schema, c);
 
 ---------------------------------------
 
-<a name="s_optional" />
 ### optional
 
 * **type**: boolean.
@@ -874,7 +857,6 @@ var r = inspector.sanitize(schema, c);
 
 ---------------------------------------
 
-<a name="s_rules" />
 ### rules
 
 * **type**: string, array of string.
@@ -921,7 +903,6 @@ var r = inspector.sanitize(schema, c);
 
 ---------------------------------------
 
-<a name="s_comparators" />
 ### min, max
 
 * **type**: string, number.
@@ -955,7 +936,6 @@ var r = inspector.sanitize(schema, c);
 
 ---------------------------------------
 
-<a name="s_length" />
 ### minLength, maxLength
 
 * **type**: integer.
@@ -985,7 +965,6 @@ var r = inspector.sanitize(schema, c);
 
 ---------------------------------------
 
-<a name="s_strict" />
 ### strict
 
 * **type**: boolean.
@@ -1021,7 +1000,6 @@ var r = inspector.sanitize(schema, c);
 ```
 ---------------------------------------
 
-<a name="s_exec" />
 ### exec
 
 * **type**: function, array of functions.
@@ -1064,7 +1042,6 @@ var r = inspector.sanitize(schema, c);
 
 ---------------------------------------
 
-<a name="s_properties" />
 ### properties
 
 * **type**: object.
@@ -1074,7 +1051,6 @@ Work the same way as [validation "properties"](#v_properties).
 
 ---------------------------------------
 
-<a name="s_items" />
 ### items
 
 * **type**: object, array of object.
@@ -1084,7 +1060,6 @@ Work the same way as [validation "items"](#v_items).
 
 ## Custom fields
 
-<a name="cf_punctual" />
 ### punctual use
 
 When you need to use the same function in `exec` field several time, instead of
@@ -1126,7 +1101,6 @@ inspector.validate(schema, candidate, custom); // Invalid: "@.ipsum must be divi
 
 ---------------------------------------
 
-<a name="cf_extension" />
 ### extension
 
 Sometime you want to use a custom field everywhere in your program, so you may
@@ -1174,7 +1148,6 @@ inspector.validate(schema, candidate);
 */
 ```
 
-<a name="cf_context" />
 ### Context
 
 Every function you declare as a custom parameter, or with `exec` field will be
@@ -1200,7 +1173,6 @@ var result = inspector.validate(schema, candidate, custom);
 
 ## Asynchronous call
 
-<a name="a_howTo" />
 ### How to
 
 All of the examples above used synchronous calls (the simplest). But sometimes you
