@@ -1,14 +1,24 @@
 {
   "name": "schema-inspector",
   "description": "Schema-Inspector is a powerful tool to sanitize and validate JS objects.",
-  "version": "1.6.8",
+  "version": "1.6.9",
   "main": "index.js",
   "author": {
     "name": "Sebastien Chopin",
-    "url" : "https://twitter.com/atinux"
+    "url": "https://twitter.com/atinux"
   },
-  "maintainers": ["atinux"],
-  "keywords": ["validation", "sanitization", "inspector", "validator", "json", "validate", "sanitize"],
+  "maintainers": [
+    "atinux"
+  ],
+  "keywords": [
+    "validation",
+    "sanitization",
+    "inspector",
+    "validator",
+    "json",
+    "validate",
+    "sanitize"
+  ],
   "licenses": [
     {
       "type": "MIT",
