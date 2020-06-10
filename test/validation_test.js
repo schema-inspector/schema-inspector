@@ -499,6 +499,7 @@ exports.validation = function () {
 				{ type: 'string', pattern: 'date-time'} ,
 				{ type: 'string', pattern: 'decimal' },
 				{ type: 'string', pattern: 'color' },
+				{ type: 'string', pattern: 'v4uuid' }
 			]
 		};
 
@@ -510,7 +511,8 @@ exports.validation = function () {
 				'nikitaJS@pantera.com',
 				new Date().toISOString(),
 				'3.1459',
-				'#123456789ABCDEF0'
+				'#123456789ABCDEF0',
+				'0e0fa279-e041-442e-a182-30c9db270894'
 			];
 
 			var result = si.validate(schema, candidate);
@@ -528,7 +530,8 @@ exports.validation = function () {
 				'n@p.fr',
 				'2012-01-26T17:00:00Z',
 				'.1459',
-				'#123456789abcdef0'
+				'#123456789abcdef0',
+				'e5a2afe3-a398-4e49-8fe0-99dc8997119e'
 			];
 
 			var result = si.validate(schema, candidate);
@@ -546,20 +549,22 @@ exports.validation = function () {
 				'n@pfr',
 				'2012-01-26T17:00:00',
 				'0.1459.',
-				'#123456789abcdef0q'
+				'#123456789abcdef0q',
+				'c8ddb0d154eb-48e9-af48-9e59477c7895'
 			];
 
 			var result = si.validate(schema, candidate);
 			result.should.be.an.Object;
 			result.should.have.property('valid').with.equal(false);
 			result.should.have.property('error').with.be.an.instanceof(Array)
-			.and.be.lengthOf(6);
+			.and.be.lengthOf(7);
 			result.error[0].property.should.equal('@[0]');
 			result.error[1].property.should.equal('@[1]');
 			result.error[2].property.should.equal('@[2]');
 			result.error[3].property.should.equal('@[3]');
 			result.error[4].property.should.equal('@[5]');
 			result.error[5].property.should.equal('@[6]');
+			result.error[6].property.should.equal('@[7]');
 		});
 
 		test('candidate #4', function () {
@@ -570,20 +575,23 @@ exports.validation = function () {
 				'n@.fr',
 				'2012-01-26 17:00:00Z',
 				'.0.1459',
-				'12'
+				'12',
+				'bc9ffc8e-2d5b'
 			];
 
 			var result = si.validate(schema, candidate);
 			result.should.be.an.Object;
 			result.should.have.property('valid').with.equal(false);
 			result.should.have.property('error').with.be.an.instanceof(Array)
-			.and.be.lengthOf(7);
+			.and.be.lengthOf(8);
 			result.error[0].property.should.equal('@[0]');
 			result.error[1].property.should.equal('@[1]');
 			result.error[2].property.should.equal('@[2]');
 			result.error[3].property.should.equal('@[3]');
 			result.error[4].property.should.equal('@[4]');
 			result.error[5].property.should.equal('@[5]');
+			result.error[6].property.should.equal('@[6]');
+			result.error[7].property.should.equal('@[7]');
 		});
 
 		test('candidate #5', function () {
@@ -594,20 +602,23 @@ exports.validation = function () {
 				'ne.fr',
 				'2012-01-26Z17:00:00ZT',
 				'0,1459',
-				'123#123'
+				'123#123',
+				'@1da1602-#30c-$c33-&dbb-8d88*1796db3'
 			];
 
 			var result = si.validate(schema, candidate);
 			result.should.be.an.Object;
 			result.should.have.property('valid').with.equal(false);
 			result.should.have.property('error').with.be.an.instanceof(Array)
-			.and.be.lengthOf(7);
+			.and.be.lengthOf(8);
 			result.error[0].property.should.equal('@[0]');
 			result.error[1].property.should.equal('@[1]');
 			result.error[2].property.should.equal('@[2]');
 			result.error[3].property.should.equal('@[3]');
 			result.error[4].property.should.equal('@[4]');
 			result.error[5].property.should.equal('@[5]');
+			result.error[6].property.should.equal('@[6]');
+			result.error[7].property.should.equal('@[7]');
 		});
 
 	}); // suite "schema #5"

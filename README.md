@@ -290,7 +290,7 @@ inspector.validate(schema, c2); // Invalid: 12 exists twice in @.
 * **type**: string, RegExp object, array of string and RegExp.
 * **usable on**: string.
 * Possible values as a string: `void`, `url`, `date-time`, `date`,
-`coolDateTime`, `time`, `color`, `email`, `numeric`, `integer`, `decimal`,
+`coolDateTime`, `time`, `color`, `email`, `numeric`, `integer`, `decimal`, `v4uuid`,
 `alpha`, `alphaNumeric`, `alphaDash`, `javascript`, `upperString`, `lowerString`.
 
 Ask Schema-Inspector to check whether or not a given matches provided patterns.
