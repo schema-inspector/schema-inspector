@@ -1,11 +1,11 @@
-[![schema-inspector logo](https://raw.githubusercontent.com/Atinux/schema-inspector/master/misc/schema-inspector.png)](http://atinux.github.io/schema-inspector/)
+[![schema-inspector logo](https://raw.githubusercontent.com/schema-inspector/schema-inspector/master/misc/schema-inspector.png)](http://schema-inspector.github.io/schema-inspector/)
 
 Schema-Inspector is a powerful tool to sanitize and validate JS objects.
 It's designed to work both client-side and server-side and to be scalable with allowing asynchronous and synchronous calls.
 
-[![Build Status](https://travis-ci.org/Atinux/schema-inspector.png?branch=master)](https://travis-ci.org/Atinux/schema-inspector) [![Dependencies Status](https://david-dm.org/atinux/schema-inspector.png)](https://david-dm.org/atinux/schema-inspector) [![NPM version](https://badge.fury.io/js/schema-inspector.png)](http://badge.fury.io/js/schema-inspector)
+[![NPM version](https://badge.fury.io/js/schema-inspector.png)](http://badge.fury.io/js/schema-inspector)
 
-**See a live example:** http://atinux.github.io/schema-inspector/
+**See a live example:** http://schema-inspector.github.io/schema-inspector/
 
 ## Installation
 
@@ -15,7 +15,7 @@ It's designed to work both client-side and server-side and to be scalable with a
 ### Browser
 
 <pre>bower install schema-inspector</pre>
-(Or download [async.js](https://raw.github.com/caolan/async/master/lib/async.js) and [schema-inspector.js](https://raw.github.com/Atinux/schema-inspector/master/lib/schema-inspector.js) manually).
+(Or download [async.js](https://raw.github.com/caolan/async/master/lib/async.js) and [schema-inspector.js](https://raw.github.com/schema-inspector/schema-inspector/master/lib/schema-inspector.js) manually).
 ```html
 <script type="text/javascript" src="bower_components/async/lib/async.js"></script>
 <script type="text/javascript" src="bower_components/schema-inspector/lib/schema-inspector.js"></script>
@@ -23,7 +23,7 @@ It's designed to work both client-side and server-side and to be scalable with a
 
 ## How it looks like
 
-[![schema-inspector demo](http://atinux.github.io/schema-inspector/images/doc/example.png)](http://atinux.github.io/schema-inspector/)
+[![schema-inspector demo](http://schema-inspector.github.io/schema-inspector/images/doc/example.png)](http://schema-inspector.github.io/schema-inspector/)
 *Click to see it live!*
 
 ## Usage
@@ -723,9 +723,9 @@ console.log(r2.error[0].code); // 'id-format'
 Cast property to the given type according to the following description:
 * **to number from**:
 	* string (ex: "12.34" -> 12.34)
-![sanitization string to number](http://atinux.github.io/schema-inspector/images/doc/sanitization-type-string-to-number.gif)
+![sanitization string to number](http://schema-inspector.github.io/schema-inspector/images/doc/sanitization-type-string-to-number.gif)
 	* date (ex: new Date("2014-01-01") -> 1388534400000)
-![sanitization string to number](http://atinux.github.io/schema-inspector/images/doc/sanitization-type-date-to-number.gif)
+![sanitization string to number](http://schema-inspector.github.io/schema-inspector/images/doc/sanitization-type-date-to-number.gif)
 * **to integer from**:
 	* number
 		* 12.34 -> 12
@@ -872,7 +872,7 @@ var r = inspector.sanitize(schema, c);
 Apply the given rule to a string. If several rules are given (array), then they
 are applied in the same order than in the array.
 
-![sanitization min/max](http://atinux.github.io/schema-inspector/images/doc/sanitization-rules.gif)
+![sanitization min/max](http://schema-inspector.github.io/schema-inspector/images/doc/sanitization-rules.gif)
 
 __Example__
 
@@ -912,7 +912,7 @@ Define minimum and maximum value for a property. If it's less than minimum,
 then it's set to minimum. If it's greater than maximum, then it's set to
 maximum.
 
-![sanitization min/max](http://atinux.github.io/schema-inspector/images/doc/sanitization-min-max.gif)
+![sanitization min/max](http://schema-inspector.github.io/schema-inspector/images/doc/sanitization-min-max.gif)
 
 __Example__
 
