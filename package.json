@@ -34,7 +34,7 @@
   },
   "homepage": "http://atinux.github.io/schema-inspector/",
   "dependencies": {
-    "async": "~2.6.3"
+    "async": "~3.2.0"
   },
   "devDependencies": {
     "mocha": "^8.3.0",
