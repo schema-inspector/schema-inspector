@@ -527,7 +527,7 @@ exports.validation = function () {
 				'1234',
 				'abcdE',
 				'_QWErty_',
-				'n@p.fr',
+				'nn@p.fr',
 				'2012-01-26T17:00:00Z',
 				'.1459',
 				'#123456789abcdef0',
