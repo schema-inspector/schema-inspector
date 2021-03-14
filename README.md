@@ -21,6 +21,15 @@ It's designed to work both client-side and server-side and to be scalable with a
 <script type="text/javascript" src="bower_components/schema-inspector/lib/schema-inspector.js"></script>
 ```
 
+## Version 2.0.0
+
+To fix a security vulnerability in the 1.x.x email Regex expression used, a new Regex expression was used which may be
+less flexible than the expression used in 1.x.x. Therefore, version 2.0.0 was released with this new expression. It's
+highly-recommended to upgrade to this new version after testing it.
+
+If you need the old, insecure behavior, use version 1.x.x or use the custom validation function feature for your field
+and perform email address validation any way you like.
+
 ## How it looks like
 
 [![schema-inspector demo](http://schema-inspector.github.io/schema-inspector/images/doc/example.png)](http://schema-inspector.github.io/schema-inspector/)
