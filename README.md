@@ -408,7 +408,7 @@ inspector.validate(schema, c2); // Invalid
 
 ---------------------------------------
 
-<h3 id="v_someKey">someKey</h3>
+<h3 id="v_someKeys">someKeys</h3>
 
 * **type**: array of string.
 * **usable on**: object.
