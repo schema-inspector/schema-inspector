@@ -46,25 +46,25 @@ var inspector = require('schema-inspector');
 
 // Data that we want to sanitize and validate
 var data = {
- firstname: 'sterling  ',
- lastname: '  archer',
- jobs: 'Special agent, cocaine Dealer',
- email: 'NEVER!',
+    firstname: 'sterling  ',
+    lastname: '  archer',
+    jobs: 'Special agent, cocaine Dealer',
+    email: 'NEVER!',
 };
 
 // Sanitization Schema
 var sanitization = {
- type: 'object',
- properties: {
-  firstname: { type: 'string', rules: ['trim', 'title'] },
-  lastname: { type: 'string', rules: ['trim', 'title'] },
-  jobs: {
-   type: 'array',
-   splitWith: ',',
-   items: { type: 'string', rules: ['trim', 'title'] }
-  },
-  email: { type: 'string', rules: ['trim', 'lower'] }
- }
+    type: 'object',
+    properties: {
+        firstname: { type: 'string', rules: ['trim', 'title'] },
+        lastname: { type: 'string', rules: ['trim', 'title'] },
+        jobs: {
+            type: 'array',
+            splitWith: ',',
+            items: { type: 'string', rules: ['trim', 'title'] },
+        },
+        email: { type: 'string', rules: ['trim', 'lower'] },
+    },
 };
 // Let's update the data
 inspector.sanitize(sanitization, data);
@@ -80,20 +80,20 @@ data is now:
 
 // Validation schema
 var validation = {
- type: 'object',
- properties: {
-  firstname: { type: 'string', minLength: 1 },
-  lastname: { type: 'string', minLength: 1 },
-  jobs: {
-   type: 'array',
-   items: { type: 'string', minLength: 1 }
-  },
-  email: { type: 'string', pattern: 'email' }
- }
+    type: 'object',
+    properties: {
+        firstname: { type: 'string', minLength: 1 },
+        lastname: { type: 'string', minLength: 1 },
+        jobs: {
+            type: 'array',
+            items: { type: 'string', minLength: 1 },
+        },
+        email: { type: 'string', pattern: 'email' },
+    },
 };
 var result = inspector.validate(validation, data);
 if (!result.valid)
- console.log(result.format());
+    console.log(result.format());
 /*
  Property @.email: must match [email], but is equal to "never!"
 */
@@ -107,11 +107,11 @@ if (!result.valid)
 <script type="text/javascript" src="async.js"></script>
 <script type="text/javascript" src="schema-inspector.js"></script>
 <script type="text/javascript">
- var schema = { /* ... */ };
- var candidate = { /* ... */ };
- SchemaInspector.validate(schema, candidate, function (err, result) {
-  if (!result.valid)
-   return alert(result.format());
+    var schema = { /* ... */ };
+    var candidate = { /* ... */ };
+    SchemaInspector.validate(schema, candidate, function (err, result) {
+    if (!result.valid)
+        return alert(result.format());
  });
 </script>
 ```
@@ -192,38 +192,38 @@ var inspector = require('schema-inspector');
 function Class() {}
 
 var schema = {
- type: 'object',
- properties: {
-  lorem: {  type: 'number' },
-  ipsum: { type: 'any' },
-  dolor: { type: ['number' 'string', 'null'] },
-  sit: { type: Class }
- }
+    type: 'object',
+    properties: {
+        lorem: { type: 'number' },
+        ipsum: { type: 'any' },
+        dolor: { type: ['number', 'string', 'null'] },
+        sit: { type: Class },
+    },
 };
 
 var c1 = {
- lorem: 12,
- ipsum: 'sit amet',
- dolor: 23,
- sit: new Class()
+    lorem: 12,
+    ipsum: 'sit amet',
+    dolor: 23,
+    sit: new Class(),
 };
 var c2 = {
- lorem: 12,
- ipsum: 34,
- dolor: 'sit amet'
- sit: new Class();
+    lorem: 12,
+    ipsum: 34,
+    dolor: 'sit amet',
+    sit: new Class(),
 };
 var c3 = {
- lorem: 12,
- ipsum: [ 'sit amet' ],
- dolor: null,
- sit: new Class();
+    lorem: 12,
+    ipsum: ['sit amet'],
+    dolor: null,
+    sit: new Class(),
 };
 var c4 = {
- lorem: '12',
- ipsum: 'sit amet',
- dolor: new Date(),
- sit: {}
+    lorem: '12',
+    ipsum: 'sit amet',
+    dolor: new Date(),
+    sit: {},
 };
 
 inspector.validate(schema, c1); // Valid
@@ -248,21 +248,21 @@ This field indicates whether or not property has to exist.
 var inspector = require('Roadspector');
 
 var schema1 = {
- type: 'object',
- properties: {
-  lorem: { type: 'any', optional: true }
- }
+    type: 'object',
+    properties: {
+        lorem: { type: 'any', optional: true },
+    },
 };
 
 var schema2 = {
- type: 'object',
- properties: {
-  lorem: { type: 'any', optional: false } // default value
- }
+    type: 'object',
+    properties: {
+        lorem: { type: 'any', optional: false }, // default value
+    },
 };
 
 var c1 = { lorem: 'ipsum' };
-var c2 = { };
+var c2 = {};
 
 inspector.validate(schema1, c1); // Valid
 inspector.validate(schema1, c2); // Valid
@@ -286,8 +286,8 @@ If true, then we ensure no element in candidate exists more than once.
 var inspector = require('schema-inspector');
 
 var schema = {
- type: 'array',
- uniqueness: true
+    type: 'array',
+    uniqueness: true,
 };
 
 var c1 = [12, 23, 34, 45];
@@ -317,15 +317,15 @@ string, it's an alias of a RegExp.
 var inspector = require('schema-inspector');
 
 var schema1 = {
- type: 'array',
- items: { type: 'string', pattern: /^[A-C]/ }
+    type: 'array',
+    items: { type: 'string', pattern: /^[A-C]/ },
 };
 
 var c1 = ['Alorem', 'Bipsum', 'Cdolor', 'DSit amet'];
 
 var schema2 = {
- type: 'array',
- items: { type: 'string', pattern: 'email' }
+    type: 'array',
+    items: { type: 'string', pattern: 'email' },
 };
 
 var c2 = ['lorem@ipsum.com', 'dolor@sit.com', 'amet@consectetur'];
@@ -347,20 +347,20 @@ inspector.validate(schema2, c2); // Invalid: @[2] ('amet@consectetur') does not 
 var inspector = require('schema-inspector');
 
 var schema = {
- type: 'object',
- properties: {
-  lorem: { type: 'string', minLength: 4, maxLength: 8 },
-  ipsum: { type: 'array', exactLength: 6 },
- }
+    type: 'object',
+    properties: {
+        lorem: { type: 'string', minLength: 4, maxLength: 8 },
+        ipsum: { type: 'array', exactLength: 6 },
+    },
 };
 var c1 = {
- lorem: '12345',
- ipsum: [1, 2, 3, 4, 5, 6]
+    lorem: '12345',
+    ipsum: [1, 2, 3, 4, 5, 6],
 };
 
 var c2 = {
- lorem: '123456789',
- ipsum: [1, 2, 3, 4, 5]
+    lorem: '123456789',
+    ipsum: [1, 2, 3, 4, 5],
 };
 
 inspector.validate(schema, c1); // Valid
@@ -390,13 +390,13 @@ Check whether comparison is true:
 var inspector = require('schema-inspector');
 
 var schema = {
- type: 'object',
- properties: {
-  lorem: { type: 'number', gt: 0, lt: 5 }, // Between ]0; 5[
-  ipsum: { type: 'number', gte: 0, lte: 5 }, // Between [0; 5]
-  dolor: { type: 'number', eq: [0, 3, 6, 9] }, // Equal to 0, 3, 6 or 9
-  sit: { type: 'number', ne: [0, 3, 6, 9] } // Not equal to 0, 3, 6 nor 9
- }
+    type: 'object',
+    properties: {
+        lorem: { type: 'number', gt: 0, lt: 5 }, // Between ]0; 5[
+        ipsum: { type: 'number', gte: 0, lte: 5 }, // Between [0; 5]
+        dolor: { type: 'number', eq: [0, 3, 6, 9] }, // Equal to 0, 3, 6 or 9
+        sit: { type: 'number', ne: [0, 3, 6, 9] }, // Not equal to 0, 3, 6 nor 9
+    },
 };
 
 var c1 = { lorem: 3, ipsum: 0, dolor: 6, sit: 2 };
@@ -422,18 +422,18 @@ optional).
 var inspector = require('schema-inspector');
 
 var schema = {
- type: 'object',
- someKeys: ['lorem', 'ipsum']
- properties: {
-  lorem: { type: 'any', optional: true },
-  ipsum: { type: 'any', optional: true },
-  dolor: { type: 'any' }
- }
+    type: 'object',
+    someKeys: ['lorem', 'ipsum'],
+    properties: {
+        lorem: { type: 'any', optional: true },
+        ipsum: { type: 'any', optional: true },
+        dolor: { type: 'any' },
+    },
 };
 
-var c1 = { lorem: 0, ipsum: 1, dolor: 2  };
-var c2 = { lorem: 0, dolor: 2  };
-var c3 = { dolor: 2  };
+var c1 = { lorem: 0, ipsum: 1, dolor: 2 };
+var c2 = { lorem: 0, dolor: 2 };
+var c3 = { dolor: 2 };
 
 inspector.validate(schema, c1); // Valid
 inspector.validate(schema, c2); // Valid
@@ -456,17 +456,17 @@ Only keys provided in field "properties" may exist in object. Strict will be ign
 var inspector = require('schema-inspector');
 
 var schema = {
- type: 'object',
- strict: true,
- properties: {
-  lorem: { type: 'any' },
-  ipsum: { type: 'any' },
-  dolor: { type: 'any' }
- }
+    type: 'object',
+    strict: true,
+    properties: {
+        lorem: { type: 'any' },
+        ipsum: { type: 'any' },
+        dolor: { type: 'any' },
+    },
 };
 
-var c1 = { lorem: 0, ipsum: 1, dolor: 2  };
-var c2 = { lorem: 0, ipsum: 1, dolor: 2, sit: 3  };
+var c1 = { lorem: 0, ipsum: 1, dolor: 2 };
+var c2 = { lorem: 0, ipsum: 1, dolor: 2, sit: 3 };
 
 inspector.validate(schema, c1); // Valid
 inspector.validate(schema, c2); // Invalid: @.sit should not exist.
@@ -489,19 +489,19 @@ Very useful to make some custom validation.
 var inspector = require('schema-inspector');
 
 var schema = {
- type: 'object',
- properties: {
-  lorem: {
-   type: 'number',
-   exec: function (schema, post) {
-    // here scheme === schema.properties.lorem and post === @.lorem
-    if (post === 3) {
-     // As soon as `this.report()` is called, candidate is not valid.
-     this.report('must not equal 3 =('); // Ok...it's exactly like "ne: 3"
-    }
-   }
-  }
- }
+    type: 'object',
+    properties: {
+        lorem: {
+            type: 'number',
+            exec: function (schema, post) {
+                // here scheme === schema.properties.lorem and post === @.lorem
+                if (post === 3) {
+                    // As soon as `this.report()` is called, candidate is not valid.
+                    this.report('must not equal 3 =('); // Ok...it's exactly like "ne: 3"
+                }
+            },
+        },
+    },
 };
 
 var c1 = { lorem: 2 };
@@ -529,40 +529,40 @@ The special property '*' is validated against any properties not specifically li
 var inspector = require('schema-inspector');
 
 var schema = {
- type: 'object',
- properties: {
-  lorem: {
-   type: 'object',
-   properties: {
-    ipsum: {
-     type: 'object',
-     properties: {
-      dolor: { type: 'string' }
-     }
-    }
-   }
-  },
-  consectetur: { type: 'string' },
-  '*': { type: 'integer' }
- }
+    type: 'object',
+    properties: {
+        lorem: {
+            type: 'object',
+            properties: {
+                ipsum: {
+                    type: 'object',
+                    properties: {
+                        dolor: { type: 'string' },
+                    },
+                },
+            },
+        },
+        consectetur: { type: 'string' },
+        '*': { type: 'integer' },
+    },
 };
 
 var c1 = {
- lorem: {
-  ipsum: {
-   dolor: 'sit amet'
-  }
- },
- consectetur: 'adipiscing elit',
- adipiscing: 12
+    lorem: {
+        ipsum: {
+            dolor: 'sit amet',
+        },
+    },
+    consectetur: 'adipiscing elit',
+    adipiscing: 12,
 };
 var c2 = {
- lorem: {
-  ipsum: {
-   dolor: 12
-  }
- },
- consectetur: 'adipiscing elit'
+    lorem: {
+        ipsum: {
+            dolor: 12,
+        },
+    },
+    consectetur: 'adipiscing elit',
 };
 
 inspector.validate(schema, c1); // Valid
@@ -587,22 +587,17 @@ be checked with the schema which has the same position in the array.
 var inspector = require('schema-inspector');
 
 var schema1 = {
- type: 'array',
- items: { type: 'number' }
+    type: 'array',
+    items: { type: 'number' },
 };
 
 var schema2 = {
- type: 'array',
- items: [
-  { type: 'number' },
-  { type: 'number' },
-  { type: 'string' }
- ]
+    type: 'array',
+    items: [{ type: 'number' }, { type: 'number' }, { type: 'string' }],
 };
 
 var c1 = [1, 2, 3];
 var c2 = [1, 2, 'string!'];
-
 
 inspector.validate(schema1, c1); // Valid
 inspector.validate(schema1, c2); // Invalid: @[2] must be a number.
@@ -625,17 +620,17 @@ Allow to display a more explicit property name if an error is encounted.
 var inspector = require('schema-inspector');
 
 var schema1 = {
- type: 'object',
- properties: {
-  _id: { type: 'string'}
- }
+    type: 'object',
+    properties: {
+        _id: { type: 'string' },
+    },
 };
 
 var schema2 = {
- type: 'object',
- properties: {
-  _id: { alias: 'id', type: 'string'}
- }
+    type: 'object',
+    properties: {
+        _id: { alias: 'id', type: 'string' },
+    },
 };
 
 var c1 = { _id: 1234567890 };
@@ -662,17 +657,17 @@ an error is encounted.
 var inspector = require('schema-inspector');
 
 var schema1 = {
- type: 'object',
- properties: {
-  _id: { type: 'string' }
- }
+    type: 'object',
+    properties: {
+        _id: { type: 'string' },
+    },
 };
 
 var schema2 = {
- type: 'object',
- properties: {
-  _id: { type: 'string', error: 'must be a valid ID.' }
- }
+    type: 'object',
+    properties: {
+        _id: { type: 'string', error: 'must be a valid ID.' },
+    },
 };
 
 var c1 = { _id: 1234567890 };
@@ -698,17 +693,17 @@ This field contains a user code for displaying a more uniform system to personna
 var inspector = require('schema-inspector');
 
 var schema1 = {
- type: 'object',
- properties: {
-  _id: { type: 'string' }
- }
+    type: 'object',
+    properties: {
+        _id: { type: 'string' },
+    },
 };
 
 var schema2 = {
- type: 'object',
- properties: {
-  _id: { type: 'string', code: 'id-format' }
- }
+    type: 'object',
+    properties: {
+        _id: { type: 'string', code: 'id-format' },
+    },
 };
 
 var c1 = { _id: 1234567890 };
@@ -783,11 +778,11 @@ Cast property to the given type according to the following description:
 var inspector = require('schema-inspector');
 
 var schema = {
- type: 'array',
- items: { type: 'string' }
+    type: 'array',
+    items: { type: 'string' },
 };
 
-var c = [ 12.23, -34, true, false, 'true', 'false', [123, 234, 345], { obj: "yes" } ];
+var c = [12.23, -34, true, false, 'true', 'false', [123, 234, 345], { obj: "yes" }];
 
 var r = inspector.sanitize(schema, c);
 /*
@@ -811,19 +806,19 @@ because entry type is not valid (cf [type](#s_type)).
 var inspector = require('schema-inspector');
 
 var schema = {
- type: 'object',
- properties: {
-  lorem: { type: 'number', def: 10 },
-  ipsum: { type: 'string', def: 'NikitaJS', optional: false },
-  dolor: { type: 'string' }
- }
+    type: 'object',
+    properties: {
+        lorem: { type: 'number', def: 10 },
+        ipsum: { type: 'string', def: 'NikitaJS', optional: false },
+        dolor: { type: 'string' },
+    },
 };
 
 var c = {
- lorem: [12, 23], // convertion to number is about to fail
-          // (array -> number is not possible)
-          // ipsum is not privided
- dolor: 'sit amet' // "dolor" is already a string
+    lorem: [12, 23], // convertion to number is about to fail
+    // (array -> number is not possible)
+    // ipsum is not privided
+    dolor: 'sit amet', // "dolor" is already a string
 };
 
 var r = inspector.sanitize(schema, c);
@@ -852,15 +847,15 @@ Property is set to `schema.def` if not provided and if optional is `false`.
 var inspector = require('schema-inspector');
 
 var schema = {
- type: 'object',
- properties: {
-  lorem: { type: 'number', optional: false, def: 12 },
-  ipsum: { type: 'string', optional: true, def: 23 },
-  dolor: { type: 'string', def: 'NikitaJS', def: 34 } // (optional: true)
- }
+    type: 'object',
+    properties: {
+        lorem: { type: 'number', optional: false, def: 12 },
+        ipsum: { type: 'string', optional: true, def: 23 },
+        dolor: { type: 'string', def: 'NikitaJS', def: 34 }, // (optional: true)
+    },
 };
 
-var c = { };
+var c = {};
 
 var r = inspector.sanitize(schema, c);
 /*
@@ -895,16 +890,16 @@ are applied in the same order than in the array.
 var inspector = require('schema-inspector');
 
 var schema = {
- type: 'object',
- properties: {
-  lorem: { type: 'string', rules: 'upper' },
-  ipsum: { type: 'string', rules: [ 'trim', 'title'] }
- }
+    type: 'object',
+    properties: {
+        lorem: { type: 'string', rules: 'upper' },
+        ipsum: { type: 'string', rules: ['trim', 'title'] },
+    },
 };
 
 var c = {
- lorem: ' tHiS is sParTa! ',
- ipsum: '   tHiS is sParTa!    '
+    lorem: ' tHiS is sParTa! ',
+    ipsum: '   tHiS is sParTa!    ',
 };
 
 var r = inspector.sanitize(schema, c);
@@ -935,8 +930,8 @@ maximum.
 var inspector = require('schema-inspector');
 
 var schema = {
- type: 'array',
- items: { type: 'number', min: 10, max: 20 }
+    type: 'array',
+    items: { type: 'number', min: 10, max: 20 },
 };
 
 var c = [5, 10, 15, 20, 25];
@@ -966,8 +961,8 @@ __TODO:__ We must be able to choose which character we want to fill the string w
 var inspector = require('schema-inspector');
 
 var schema = {
- type: 'array',
- items: { type: 'string', minLength: 8, maxLength: 11 }
+    type: 'array',
+    items: { type: 'string', minLength: 8, maxLength: 11 },
 };
 
 var c = ['short', 'mediumSize', 'tooLongForThisSchema'];
@@ -994,16 +989,16 @@ Only key provided in field "properties" will exist in object, others will be del
 var inspector = require('schema-inspector');
 
 var schema = {
- type: 'object',
- strict: true,
- properties: {
-  good: { type: 'string' }
- }
+    type: 'object',
+    strict: true,
+    properties: {
+        good: { type: 'string' },
+    },
 };
 
 var c = {
- good: 'yes',
- bad: 'nope'
+    good: 'yes',
+    bad: 'nope',
 };
 
 var r = inspector.sanitize(schema, c);
@@ -1035,20 +1030,20 @@ do not return nothing (if you do so, the new value will be `undefined`).
 var inspector = require('schema-inspector');
 
 var schema = {
- type: 'array',
- items: {
-  type: 'string',
-  exec: function (schema, post) {
-   if (typeof post === 'string' && !/^nikita$/i.test(post)) {
-    this.report();
-    return '_INVALID_';
-   }
-   return post;
-  }
- }
+    type: 'array',
+    items: {
+        type: 'string',
+        exec: function (schema, post) {
+            if (typeof post === 'string' && !/^nikita$/i.test(post)) {
+                this.report();
+                return '_INVALID_';
+            }
+            return post;
+        },
+    },
 };
 
-var c = [ 'Nikita', 'lol', 'NIKITA', 'thisIsGonnaBeSanitized!' ];
+var c = ['Nikita', 'lol', 'NIKITA', 'thisIsGonnaBeSanitized!'];
 
 var r = inspector.sanitize(schema, c);
 /*
@@ -1093,25 +1088,25 @@ provide a custom field called "superiorMod", you can access it with name
 var inspector = require('schema-inspector');
 
 var schema = {
- type: 'object',
- properties: {
-  lorem: { type: 'number', $divisibleBy: 5 },
-  ipsum: { type: 'number', $divisibleBy: 3 }
- }
+    type: 'object',
+    properties: {
+        lorem: { type: 'number', $divisibleBy: 5 },
+        ipsum: { type: 'number', $divisibleBy: 3 },
+    },
 };
 
 var custom = {
- divisibleBy: function (schema, candidate) {
-  var dvb = schema.$divisibleBy;
-  if (candidate % dvb !== 0) {
-   this.report('must be divisible by ' + dvb);
-  }
- }
+    divisibleBy: function (schema, candidate) {
+        var dvb = schema.$divisibleBy;
+        if (candidate % dvb !== 0) {
+            this.report('must be divisible by ' + dvb);
+        }
+    },
 };
 
 var c = {
- lorem: 10,
- ipsum: 8
+    lorem: 10,
+    ipsum: 8,
 };
 inspector.validate(schema, candidate, custom); // Invalid: "@.ipsum must be divisible by 3"
 ```
@@ -1134,27 +1129,27 @@ _inspector.Sanitization.remove(field)_.
 var inspector = require('schema-inspector');
 
 var custom = {
- divisibleBy: function (schema, candidate) {
-  var dvb = schema.$divisibleBy;
-  if (candidate % dvb !== 0) {
-   this.report('must be divisible by ' + dvb);
-  }
- }
+    divisibleBy: function (schema, candidate) {
+        var dvb = schema.$divisibleBy;
+        if (candidate % dvb !== 0) {
+            this.report('must be divisible by ' + dvb);
+        }
+    },
 };
 
 var schema = {
- type: 'object',
- properties: {
-  lorem: { type: 'number', $divisibleBy: 5 },
-  ipsum: { type: 'number', $divisibleBy: 3 }
- }
+    type: 'object',
+    properties: {
+        lorem: { type: 'number', $divisibleBy: 5 },
+        ipsum: { type: 'number', $divisibleBy: 3 },
+    },
 };
 
 inspector.Validation.extend(custom);
 
 var candidate = {
- lorem: 10,
- ipsum: 8
+    lorem: 10,
+    ipsum: 8,
 };
 
 inspector.validate(schema, candidate);
@@ -1178,12 +1173,12 @@ sent to `inspector.validate()` or `inspector.sanitize()`.
 
 ```javascript
 // ...
-var schema = { ... };
+var schema = { /* ... */ };
 var custom = {
- divisibleBy: function (schema, candidate) {
-  // this.origin === [12, 23, 34, 45]
-  // ...
- }
+    divisibleBy: function (schema, candidate) {
+        // this.origin === [12, 23, 34, 45]
+        // ...
+    },
 };
 var candidate = [12, 23, 34, 45];
 var result = inspector.validate(schema, candidate, custom);
@@ -1213,11 +1208,11 @@ and asynchronous call.
 ```javascript
 var inspector = require('schema-inspector');
 
-var schema = { ... };
-var candidate = { ... };
+var schema = { /* ... */ };
+var candidate = { /* ... */ };
 
 inspector.validate(schema, candidate, function (err, result) {
- console.log(result.format());
+    console.log(result.format());
 });
 ```
 
@@ -1226,12 +1221,12 @@ inspector.validate(schema, candidate, function (err, result) {
 ```javascript
 var inspector = require('schema-inspector');
 
-var schema = { ... };
-var candidate = { ... };
-var custom = { ... };
+var schema = { /* ... */ };
+var candidate = { /* ... */ };
+var custom = { /* ... */ };
 
 inspector.validate(schema, candidate, custom, function (err, result) {
- console.log(result.format());
+    console.log(result.format());
 });
 ```
 
@@ -1241,41 +1236,44 @@ Here is a full example where you may have to use it:
 var inspector = require('schema-inspector');
 
 var schema = {
- type: 'object',
- properties: {
-  lorem: { type: 'number', $divisibleBy: 4 },
-  ipsum: { type: 'number', $divisibleBy: 5 },
-  dolor: { type: 'number', $divisibleBy: 0, optional: true }
- }
+    type: 'object',
+    properties: {
+        lorem: { type: 'number', $divisibleBy: 4 },
+        ipsum: { type: 'number', $divisibleBy: 5 },
+        dolor: { type: 'number', $divisibleBy: 0, optional: true },
+    },
 };
 
 var custom = {
- divisibleBy: function (schema, candidate, callback) { // Third parameter is declared:
-  // Schema-Inspector will wait this function to call this `callback` to keep running.
-  var dvb = schema.$divisibleBy;
-  if (typeof dvb !== 'number' || typeof candidate !== 'number') {
-   return callback();
-  }
-  var self = this;
-  process.nextTick(function () {
-   if (dvb === 0) {
-    return callback(new Error('Schema error: Divisor must not equal 0'));
-   }
-   var r = candidate / dvb;
-   if ((r | 0) !== r)  {
-    self.report('should be divisible by ' + dvb);
-   }
-   callback();
-  });
- }
+    divisibleBy: function (schema, candidate, callback) {
+        // Third parameter is declared:
+        // Schema-Inspector will wait this function to call this `callback` to keep running.
+        var dvb = schema.$divisibleBy;
+        if (typeof dvb !== 'number' || typeof candidate !== 'number') {
+            return callback();
+        }
+        var self = this;
+        process.nextTick(function () {
+            if (dvb === 0) {
+                return callback(
+                    new Error('Schema error: Divisor must not equal 0')
+                );
+            }
+            var r = candidate / dvb;
+            if ((r | 0) !== r) {
+                self.report('should be divisible by ' + dvb);
+            }
+            callback();
+        });
+    },
 };
 
 var candidate = {
- lorem: 12,
- ipsum: 25
+    lorem: 12,
+    ipsum: 25,
 };
 
 inspector.validate(schema, candidate, custom, function (err, result) {
- console.log(result.format());
+    console.log(result.format());
 });
 ```
