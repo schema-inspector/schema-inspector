@@ -71,10 +71,10 @@ inspector.sanitize(sanitization, data);
 /*
 data is now:
 {
- firstname: 'Sterling',
- lastname: 'Archer',
- jobs: ['Special Agent', 'Cocaine Dealer'],
- email: 'never!'
+    firstname: 'Sterling',
+    lastname: 'Archer',
+    jobs: ['Special Agent', 'Cocaine Dealer'],
+    email: 'never!'
 }
 */
 
@@ -786,7 +786,7 @@ var c = [12.23, -34, true, false, 'true', 'false', [123, 234, 345], { obj: "yes"
 
 var r = inspector.sanitize(schema, c);
 /*
- r.data: [ '12.23', '-34', 'true', 'false', 'true', 'false', '123,234,345', '{"obj":"yes"}' ]
+r.data: [ '12.23', '-34', 'true', 'false', 'true', 'false', '123,234,345', '{"obj":"yes"}' ]
 */
 ```
 
@@ -823,11 +823,11 @@ var c = {
 
 var r = inspector.sanitize(schema, c);
 /*
- r.data: {
-  lorem: 10,
-  ipsum: 'NikitaJS',
-  dolor: 'sit amet'
- }
+r.data: {
+    lorem: 10,
+    ipsum: 'NikitaJS',
+    dolor: 'sit amet'
+}
 */
 ```
 
@@ -859,9 +859,9 @@ var c = {};
 
 var r = inspector.sanitize(schema, c);
 /*
- r.data: {
-  lorem: 12 // Only lorem is set to 12 because it is not optional.
- }
+r.data: {
+    lorem: 12 // Only lorem is set to 12 because it is not optional.
+}
 */
 ```
 
@@ -904,10 +904,10 @@ var c = {
 
 var r = inspector.sanitize(schema, c);
 /*
- r.data: {
-  lorem: ' THIS IS SPARTA! ',
-  ipsum: 'This Is Sparta!' // has been trimed, then titled
- }
+r.data: {
+    lorem: ' THIS IS SPARTA! ',
+    ipsum: 'This Is Sparta!' // has been trimed, then titled
+}
 */
 ```
 
@@ -1003,9 +1003,9 @@ var c = {
 
 var r = inspector.sanitize(schema, c);
 /*
- r.data: {
-  good: 'yes'
- }
+r.data: {
+    good: 'yes'
+}
 */
 ```
 
