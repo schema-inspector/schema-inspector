@@ -1465,5 +1465,22 @@ exports.sanitization = function () {
 			candidate.should.be.eql(candidate);
 		});
 
+		test('candidate #4 | remove useless keys on custom classes', function () {
+			function G(obj) {
+				Object.keys(obj).forEach(key => {
+					this[key] = obj[key];
+				});
+			}
+
+			var candidate = new G({
+				good: 'key',
+				bad: 'key'
+			});
+
+			var result = si.sanitize(schema, candidate);
+			result.should.be.an.Object;
+			candidate.should.be.eql(new G({ good: 'key' }));
+		})
+
 	});
 };
