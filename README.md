@@ -494,7 +494,7 @@ var schema = {
         lorem: {
             type: 'number',
             exec: function (schema, post) {
-                // here scheme === schema.properties.lorem and post === @.lorem
+                // here schema === schema.properties.lorem and post === @.lorem
                 if (post === 3) {
                     // As soon as `this.report()` is called, candidate is not valid.
                     this.report('must not equal 3 =('); // Ok...it's exactly like "ne: 3"
