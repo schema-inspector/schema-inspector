@@ -143,7 +143,7 @@ exports.validation = function () {
 			result.error[0].property.should.equal('@[0]');
 			result.error[1].property.should.equal('@[3]');
 			result.error[2].property.should.equal('@[4]');
-			result.error[2].message.should.equal('must be and instance of F, but is an instance of G');
+			result.error[2].message.should.equal('must be an instance of F, but is an instance of G');
 		});
 	}); // suite "schema #1.1"
 

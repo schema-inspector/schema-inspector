@@ -174,7 +174,7 @@ In the example below, the `inspector` variable will be used.  For the client-sid
   * `boolean`
   * `null`
   * `date` (instanceof Date), you can use the `validDate: true` to check if the date is valid
-  * `object` (constructor === Object)
+  * `object` (typeof element === 'object') *Note: array, null, or dates don't match the object type*
   * `array` (constructor === Array)
   * A function (candidate isinstance)
   * `any` (it can be anything)
@@ -446,7 +446,7 @@ inspector.validate(schema, c3); // Invalid: Neither @.lorem nor @.ipsum is in c3
 * **default**: false.
 * **usable on**: object.
 
-Only keys provided in field "properties" may exist in object. Strict will be ignored if properties has the special key '*'.
+Only keys provided in field "properties" may exist in the object. Strict will be ignored if properties has the special key '*'.
 
 #### Example
 
