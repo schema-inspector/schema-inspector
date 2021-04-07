@@ -1,2 +1,5 @@
-.github
-
+.github/
+test/
+misc/
+.travis.yml
+Makefile
