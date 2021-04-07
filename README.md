@@ -17,13 +17,11 @@ It's designed to work both client-side and server-side and to be scalable with a
 
 ### Browser
 
-<pre>bower install schema-inspector</pre>
-(Or download [async.js](https://raw.github.com/caolan/async/master/lib/async.js) and [schema-inspector.js](https://raw.github.com/schema-inspector/schema-inspector/master/lib/schema-inspector.js) manually).
+Bower uses have reported success using the library this way, using bower overrides in `bower.json`.
 
-```html
-<script type="text/javascript" src="bower_components/async/lib/async.js"></script>
-<script type="text/javascript" src="bower_components/schema-inspector/lib/schema-inspector.js"></script>
-```
+![image](https://user-images.githubusercontent.com/37461352/111504514-808a8200-8726-11eb-8cbc-09c35d9c0c81.png)
+
+Bower is not officially-supported as a build tool and references to it will be removed from the repository in versions 3.0.0+.
 
 ## Version 2.0.0
 
