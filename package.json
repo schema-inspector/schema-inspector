@@ -19,20 +19,15 @@
     "validate",
     "sanitize"
   ],
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "https://github.com/Atinux/schema-inspector/raw/master/LICENSE"
-    }
-  ],
+  "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Atinux/schema-inspector.git"
+    "url": "https://github.com/schema-inspector/schema-inspector.git"
   },
   "bugs": {
-    "url": "https://github.com/Atinux/schema-inspector/issues"
+    "url": "https://github.com/schema-inspector/schema-inspector/issues"
   },
-  "homepage": "http://atinux.github.io/schema-inspector/",
+  "homepage": "http://schema-inspector.github.io/schema-inspector/",
   "dependencies": {
     "async": "~2.6.3"
   },
