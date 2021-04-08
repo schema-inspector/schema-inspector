@@ -8,3 +8,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/stale@v3
+        with:
+          days-before-stale: 60
+          days-before-close: 14
+          stale-issue-message: 'This issue is stale because it has had no activity for 60 days. It will be closed after 14 more days of no activity.'
+          stale-pr-message: 'This pull request is stale because it has had no activity for 60 days. It will be closed after 14 more days of no activity.'
