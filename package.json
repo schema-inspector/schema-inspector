@@ -19,7 +19,7 @@
     "validate",
     "sanitize"
   ],
-  "licenses": "MIT",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/schema-inspector/schema-inspector.git"
