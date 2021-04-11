@@ -676,7 +676,7 @@ exports.validation = function () {
 			}
 		};
 
-		test('candidat #1', function () {
+		test('candidate #1', function () {
 			var candidate = [
 				'2012-08-08T14:30:09.032+02:00',
 				'#0f0bcd',
@@ -690,7 +690,7 @@ exports.validation = function () {
 			result.should.have.property('error').with.be.an.instanceof(Array)
 			.and.be.lengthOf(0);		});
 
-		test('candidat #2', function () {
+		test('candidate #2', function () {
 			var candidate = [
 				'2012-08-08T14:30:09.02+02:00',
 				'OK#something'
@@ -1433,7 +1433,7 @@ exports.validation = function () {
 			}
 		};
 
-		test('candidat #1', function () {
+		test('candidate #1', function () {
 			var candidate = {
 				lorem: 12,
 				ipsum: 34,
@@ -1447,7 +1447,7 @@ exports.validation = function () {
 			.and.be.lengthOf(0);
 		});
 
-		test('candidat #2', function () {
+		test('candidate #2', function () {
 			var candidate = {
 				thisIs: 'anotherKey'
 			};
@@ -1460,7 +1460,7 @@ exports.validation = function () {
 			result.error[0].property.should.equal('@');
 		});
 
-		test('candidat #3 with deep someKeys and no parent key given [valid]', function () {
+		test('candidate #3 with deep someKeys and no parent key given [valid]', function () {
 			var schema = {
 				properties: {
 					parent: {
@@ -1477,7 +1477,7 @@ exports.validation = function () {
 			.and.be.lengthOf(0);
 		});
 
-		test('candidat #4 with deep someKeys and no parent key given [fail]', function () {
+		test('candidate #4 with deep someKeys and no parent key given [fail]', function () {
 			var schema = {
 				properties: {
 					parent: {

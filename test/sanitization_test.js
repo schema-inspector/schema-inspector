@@ -785,7 +785,7 @@ exports.sanitization = function () {
 		};
 		const STRING = 'cOucou a TouT lE moNDe';
 
-		test('candidat #1', function () {
+		test('candidate #1', function () {
 			var candidate = {
 				stringU: STRING,
 				stringL: STRING,
@@ -818,7 +818,7 @@ exports.sanitization = function () {
       }
     };
 
-		test('candidat #1', function () {
+		test('candidate #1', function () {
 			const STRING = 'cOucou a TouT lE moNDe';
 			var candidate = {
 				string: STRING
@@ -832,7 +832,7 @@ exports.sanitization = function () {
 			candidate.string.should.equal(STRING.toUpperCase());
 		});
 
-		test('candidat #2', function () {
+		test('candidate #2', function () {
 			var STRING = '    Hi! I shall be trimed!    ';
 			var candidate = {
 				toTrim: STRING
@@ -848,7 +848,7 @@ exports.sanitization = function () {
 
 		// rules have a higher proprity than minLength/maxLength
 		//
-		test('candidat #3', function () {
+		test('candidate #3', function () {
 			var STRING = '   coucou  ';
 			var candidate = {
 				complex: STRING
@@ -864,21 +864,21 @@ exports.sanitization = function () {
   }); // suite "schema #14"
 
 	suite('schema #15 (field "exec")', function () {
-		var schema = {
-			type: 'array',
-			items: {
-				type: 'string',
-				exec: function (schema, post) {
-					if ((/^nikita$/i).test(post)) {
-						this.report();
-						return 'God';
+		test('candidate #1 | reporting and main usage', function () {
+			const schema = {
+				type: 'array',
+				items: {
+					type: 'string',
+					exec: function (schema, post) {
+						if ((/^nikita$/i).test(post)) {
+							this.report();
+							return 'God';
+						}
+						return post;
 					}
-					return post;
 				}
-			}
-		};
+			};
 
-		test('candidat #1', function () {
 			var candidate = 'Hello Nikita is coding! nikita'.split(' ');
 
 			var result = si.sanitize(schema, candidate);
@@ -889,6 +889,63 @@ exports.sanitization = function () {
 			result.reporting[1].property.should.be.equal('@[4]');
 			candidate[1].should.equal('God');
 			candidate[4].should.equal('God');
+		});
+
+		test('candidate #2 | returning undefined should result in undefined', function () {
+			const schema = {
+				type: 'string',
+				exec: function () {
+					return undefined;
+				}
+			}
+
+			var candidate = 'test';
+
+			var result = si.sanitize(schema, candidate);
+			result.should.be.an.Object;
+			result.should.have.property('data').with.be.undefined;
+		});
+
+		test('candidate #3 | returning undefined should result in undefined in "properties"', function () {
+			const schema = {
+				type: 'object',
+				properties: {
+					key: {
+						type: 'string',
+						exec: function () {
+							return undefined;
+						}
+					}
+				}
+			}
+
+			var candidate = {
+				key: 'hello'
+			};
+
+			var result = si.sanitize(schema, candidate);
+			result.should.be.an.Object;
+			candidate.should.be.eql({ key: undefined });
+		});
+
+		test('candidate #4 | returning undefined should result in undefined in "items"', function () {
+			const schema = {
+				type: 'array',
+				items: {
+					type: 'any',
+					exec: function () {
+						return undefined;
+					}
+				}
+			}
+
+			var candidate = ['here', 'are', 'some', 'strings', 'you', 'are', 'looking', 'at', 1, 2, 3, true, { a: false, b: ['something'] }, [], [true, 4, 6, false]];
+			const length = candidate.length;
+
+			var result = si.sanitize(schema, candidate);
+			result.should.be.an.Object;
+			result.should.have.property('data').with.be.an.instanceof(Array).and.be.lengthOf(length);
+			candidate.should.matchEvery();
 		});
 	}); // suite "schema #15"
 
@@ -1082,7 +1139,7 @@ exports.sanitization = function () {
 			}
 		};
 
-		test('candidat #1', function (done) {
+		test('candidate #1', function (done) {
 			var candidate = 'Hello Nikita is coding! nikita'.split(/\s+/);
 
 			si.sanitize(schema, candidate, function (err, result) {
@@ -1097,7 +1154,7 @@ exports.sanitization = function () {
 			});
 		});
 
-		test('candidat #2', function (done) {
+		test('candidate #2', function (done) {
 			var candidate = 'niKita   is   nikita  and  is   cool'.split(/\s+/);
 
 			si.sanitize(schema, candidate, function (err, result) {
@@ -1186,7 +1243,7 @@ exports.sanitization = function () {
 			}
 		};
 
-		test('candidat #1', function (done) {
+		test('candidate #1', function (done) {
 			var candidate = {
 				lorem: 5
 			};
@@ -1200,7 +1257,7 @@ exports.sanitization = function () {
 			});
 		});
 
-		test('candidat #2', function (done) {
+		test('candidate #2', function (done) {
 			var candidate = {
 				lorem: 7
 			};
@@ -1289,7 +1346,7 @@ exports.sanitization = function () {
 
 		si.Sanitization.extend(custom);
 
-		test('candidat #1', function (done) {
+		test('candidate #1', function (done) {
 			var candidate = {
 				lorem: 5
 			};
@@ -1301,7 +1358,7 @@ exports.sanitization = function () {
 			done();
 		});
 
-		test('candidat #2', function (done) {
+		test('candidate #2', function (done) {
 			var candidate = {
 				lorem: 7
 			};
