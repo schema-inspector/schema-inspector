@@ -904,6 +904,7 @@ exports.sanitization = function () {
 			var result = si.sanitize(schema, candidate);
 			result.should.be.an.Object;
 			result.should.have.property('data').with.be.undefined;
+			should(candidate).be.undefined;
 		});
 
 		test('candidate #3 | returning undefined should result in undefined in "properties"', function () {
@@ -925,6 +926,7 @@ exports.sanitization = function () {
 
 			var result = si.sanitize(schema, candidate);
 			result.should.be.an.Object;
+			result.should.have.property('data').with.be.eql({ key: undefined });
 			candidate.should.be.eql({ key: undefined });
 		});
 
@@ -945,6 +947,8 @@ exports.sanitization = function () {
 			var result = si.sanitize(schema, candidate);
 			result.should.be.an.Object;
 			result.should.have.property('data').with.be.an.instanceof(Array).and.be.lengthOf(length);
+			result.should.have.property('data').and.matchEvery();
+			candidate.should.be.an.instanceof(Array).and.be.lengthOf(length);
 			candidate.should.matchEvery();
 		});
 	}); // suite "schema #15"
