@@ -783,12 +783,12 @@ exports.sanitization = function () {
 				stringC: { type: 'string', rules: 'capitalize' },
 				stringUC: { type: 'string', rules: 'ucfirst' },
 				stringTR: { type: 'string', rules: 'trim' },
-				stringEU: { type: 'string', rules: 'encodeURI' },
-				stringEUC: { type: 'string', rules: 'encodeURIComponent' },
-				stringDU: { type: 'string', rules: 'decodeURI' },
-				stringDUC: { type: 'string', rules: 'decodeURIComponent' },
-				stringEX: { type: 'string', rules: 'escapeXML' },
-				stringUX: { type: 'string', rules: 'unescapeXML' }
+				stringEU: { type: 'string', rules: 'encode-uri' },
+				stringEUC: { type: 'string', rules: 'encode-uri-component' },
+				stringDU: { type: 'string', rules: 'decode-uri' },
+				stringDUC: { type: 'string', rules: 'decode-uri-component' },
+				stringEX: { type: 'string', rules: 'escape-xml' },
+				stringUX: { type: 'string', rules: 'unescape-xml' }
 			}
 		};
 		const STRING = '  cOucou a TouTшеллы \\ //// ? """":a):: lE moNDe   ';
