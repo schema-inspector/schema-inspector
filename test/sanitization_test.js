@@ -779,32 +779,88 @@ exports.sanitization = function () {
 			properties: {
 				stringU: { type: 'string', rules: 'upper' },
 				stringL: { type: 'string', rules: 'lower' },
+				stringT: { type: 'string', rules: 'title' },
 				stringC: { type: 'string', rules: 'capitalize' },
-				stringUC: { type: 'string', rules: 'ucfirst' }
+				stringUC: { type: 'string', rules: 'ucfirst' },
+				stringTR: { type: 'string', rules: 'trim' },
+				stringEU: { type: 'string', rules: 'encodeURI' },
+				stringEUC: { type: 'string', rules: 'encodeURIComponent' },
+				stringDU: { type: 'string', rules: 'decodeURI' },
+				stringDUC: { type: 'string', rules: 'decodeURIComponent' },
+				stringEX: { type: 'string', rules: 'escapeXML' },
+				stringUX: { type: 'string', rules: 'unescapeXML' }
 			}
 		};
-		const STRING = 'cOucou a TouT lE moNDe';
+		const STRING = '  cOucou a TouTшеллы \\ //// ? """":a):: lE moNDe   ';
+		const ENCODED_STRING = '%20%20cOucou%20a%20TouT%D1%88%D0%B5%D0%BB%D0%BB%D1%8B%20%5C%20%2F%2F%2F%2F%20%3F%20%22%22%22%22%3Aa)%3A%3A%20lE%20moNDe%20%20%20';
+		const URI = 'http://hello.example.net/a page/another sub-page with \\/?x=шеллы'
+		const ENCODED_URI = 'http://hello.example.net/a%20page/another%20sub-page%20with%20%5C/?x=%D1%88%D0%B5%D0%BB%D0%BB%D1%8B';
+		const FILE_URI = 'file:///home/john/some/path/that/it/is/leading/to/ with spaces / and \\s/';
+		const ENCODED_FILE_URI = 'file:///home/john/some/path/that/it/is/leading/to/%20with%20spaces%20/%20and%20%5Cs/';
+		const XML = '<tag attr="something inside \'">this & that</tag><childlesstag />';
+		const ENCODED_XML = '&lt;tag attr=&quot;something inside &apos;&quot;&gt;this &amp; that&lt;/tag&gt;&lt;childlesstag /&gt;';
 
 		test('candidat #1', function () {
 			var candidate = {
 				stringU: STRING,
 				stringL: STRING,
+				stringT: STRING,
 				stringC: STRING,
 				stringUC: STRING,
+				stringTR: STRING,
+				stringEU: URI,
+				stringEUC: STRING,
+				stringDU: ENCODED_URI,
+				stringDUC: ENCODED_STRING,
+				stringEX: XML,
+				stringUX: ENCODED_XML
 			};
 
 			var result = si.sanitize(schema, candidate);
 			result.should.be.an.Object;
 			result.should.have.property('reporting').with.be.an.instanceof(Array)
-			.and.be.lengthOf(4);
+			.and.be.lengthOf(12);
 			result.reporting[0].property.should.be.equal('@.stringU');
 			result.reporting[1].property.should.be.equal('@.stringL');
-			result.reporting[2].property.should.be.equal('@.stringC');
-			result.reporting[3].property.should.be.equal('@.stringUC');
+			result.reporting[2].property.should.be.equal('@.stringT');
+			result.reporting[3].property.should.be.equal('@.stringC');
+			result.reporting[4].property.should.be.equal('@.stringUC');
+			result.reporting[5].property.should.be.equal('@.stringTR');
+			result.reporting[6].property.should.be.equal('@.stringEU');
+			result.reporting[7].property.should.be.equal('@.stringEUC');
+			result.reporting[8].property.should.be.equal('@.stringDU');
+			result.reporting[9].property.should.be.equal('@.stringDUC');
+			result.reporting[10].property.should.be.equal('@.stringEX');
 			candidate.stringU.should.equal(STRING.toUpperCase());
 			candidate.stringL.should.equal(STRING.toLowerCase());
+			candidate.stringT.should.equal(STRING.replace(/\S*/g, function (txt) {
+				return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+			}));
 			candidate.stringC.should.equal(STRING.charAt(0).toUpperCase() + STRING.substr(1).toLowerCase());
 			candidate.stringUC.should.equal(STRING.charAt(0).toUpperCase() + STRING.substr(1));
+			candidate.stringTR.should.equal(STRING.trim());
+			candidate.stringEU.should.equal(encodeURI(URI)).and.equal(ENCODED_URI);
+			candidate.stringEUC.should.equal(encodeURIComponent(STRING)).and.equal(ENCODED_STRING);
+			candidate.stringDU.should.equal(decodeURI(ENCODED_URI)).and.equal(URI);
+			candidate.stringDUC.should.equal(decodeURIComponent(ENCODED_STRING)).and.equal(STRING);
+			candidate.stringEX.should.equal(ENCODED_XML);
+			candidate.stringUX.should.equal(XML);
+		});
+
+		test('candidate #2 | file URIs decoding and encoding', function () {
+			var candidate = {
+				stringEU: FILE_URI,
+				stringDU: ENCODED_FILE_URI
+			};
+
+			var result = si.sanitize(schema, candidate);
+			result.should.be.an.Object;
+			result.should.have.property('reporting').with.be.an.instanceof(Array)
+			.and.be.lengthOf(2);
+			result.reporting[0].property.should.be.equal('@.stringEU');
+			result.reporting[1].property.should.be.equal('@.stringDU');
+			candidate.stringEU.should.equal(encodeURI(FILE_URI)).and.equal(ENCODED_FILE_URI);
+			candidate.stringDU.should.equal(decodeURI(ENCODED_FILE_URI)).and.equal(FILE_URI);
 		});
 	}); // suite "schema #13"
 
