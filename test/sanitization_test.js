@@ -799,6 +799,10 @@ exports.sanitization = function () {
 		const ENCODED_FILE_URI = 'file:///home/john/some/path/that/it/is/leading/to/%20with%20spaces%20/%20and%20%5Cs/';
 		const XML = '<tag attr="something inside \'">this & that</tag><childlesstag />';
 		const ENCODED_XML = '&lt;tag attr=&quot;something inside &apos;&quot;&gt;this &amp; that&lt;/tag&gt;&lt;childlesstag /&gt;';
+		const DOUBLE_ESCAPE_TEST_XML = 'some & & & sym&bols and brackets: < > <><&<<<>';
+		const ESCAPED_DOUBLE_ESCAPE_TEST_XML = 'some &amp; &amp; &amp; sym&amp;bols and brackets: &lt; &gt; &lt;&gt;&lt;&amp;&lt;&lt;&lt;&gt;';
+		const DOUBLE_UNESCAPE_TEST_XML = '&quot;a trick that can fail&quot;: &apos;&amp;lt;&apos;';
+		const UNESCAPED_DOUBLE_UNESCAPE_TEST_XML = '"a trick that can fail": \'&lt;\'';
 
 		test('candidat #1', function () {
 			var candidate = {
@@ -861,6 +865,22 @@ exports.sanitization = function () {
 			result.reporting[1].property.should.be.equal('@.stringDU');
 			candidate.stringEU.should.equal(encodeURI(FILE_URI)).and.equal(ENCODED_FILE_URI);
 			candidate.stringDU.should.equal(decodeURI(ENCODED_FILE_URI)).and.equal(FILE_URI);
+		});
+
+		test('candidate #3 | no double escaping or unescaping', function () {
+			var candidate = {
+				stringEX: DOUBLE_ESCAPE_TEST_XML,
+				stringUX: DOUBLE_UNESCAPE_TEST_XML
+			};
+
+			var result = si.sanitize(schema, candidate);
+			result.should.be.an.Object;
+			result.should.have.property('reporting').with.be.an.instanceof(Array)
+			.and.be.lengthOf(2);
+			result.reporting[0].property.should.be.equal('@.stringEX');
+			result.reporting[1].property.should.be.equal('@.stringUX');
+			candidate.stringEX.should.equal(ESCAPED_DOUBLE_ESCAPE_TEST_XML);
+			candidate.stringUX.should.equal(UNESCAPED_DOUBLE_UNESCAPE_TEST_XML);
 		});
 	}); // suite "schema #13"
 
