@@ -1320,6 +1320,7 @@ exports.sanitization = function () {
 			si.Sanitization.custom.should.eql({});
 		});
 	}); // suite "schema #16.6"
+
 	suite('schema #17 (type casting [array])', function () {
 		var schema = {
 			type: 'object',
@@ -1417,7 +1418,7 @@ exports.sanitization = function () {
 		});
 
 	});
-	// suite "schema #18"
+
 	suite('schema #18 (strict option)', function () {
 		var schema = {
 			type: 'object',
@@ -1501,5 +1502,363 @@ exports.sanitization = function () {
 			candidate.should.be.eql(new G({ good: 'key' }));
 		});
 
-	});
+	});	// suite "schema #18"
+
+	suite('schema #19 (globalStrict option)', function () {
+		var worksLikeStrictSchema = {
+			type: 'object',
+			globalStrict: true,
+			properties: {
+				good: { type: 'string' }
+			}
+		};
+
+		test('candidate #1 | works like "strict" (schema #18, candidate #1)', function () {
+			var candidate = {
+				good: 'key',
+				bad: 'key'
+			};
+
+			var result = si.sanitize(worksLikeStrictSchema, candidate);
+			result.should.be.an.Object;
+			candidate.should.be.eql({ good: 'key' });
+		});
+
+		test('candidate #2 | works like "strict" (schema #18, candidate #2)', function () {
+			var candidate = 'coucou';
+
+			var result = si.sanitize(worksLikeStrictSchema, candidate);
+			result.should.be.an.Object;
+			result.should.have.property('reporting').with.be.an.instanceof(Array)
+			.and.be.lengthOf(0);
+			candidate.should.be.eql('coucou');
+		});
+
+		test('candidate #3 | works like "strict" (schema #18, candidate #3)', function () {
+			var schema1 = {
+				type: 'object',
+				globalStrict: true
+			};
+			var candidate = {
+				good: 'key',
+				bad: 'key'
+			};
+
+			var result = si.sanitize(schema1, candidate);
+			result.should.be.an.Object;
+			result.should.have.property('reporting').with.be.an.instanceof(Array)
+			.and.be.lengthOf(0);
+			candidate.should.be.eql(candidate);
+		});
+
+		test('candidate #4 | works like "strict" (schema #18, candidate #4)', function () {
+			function G(obj) {
+				Object.keys(obj).forEach(key => {
+					this[key] = obj[key];
+				});
+			}
+
+			var candidate = new G({
+				good: 'key',
+				bad: 'key'
+			});
+
+			var result = si.sanitize(worksLikeStrictSchema, candidate);
+			result.should.be.an.Object;
+			candidate.should.be.eql(new G({ good: 'key' }));
+		});
+
+		test('candidate #5 | works like "strict" (schema #18, candidate #5)', function () {
+			class G {
+				constructor(obj) {
+					Object.keys(obj).forEach(key => {
+						this[key] = obj[key];
+					});
+				}
+			}
+
+			var candidate = new G({
+				good: 'key',
+				bad: 'key'
+			});
+
+			var result = si.sanitize(worksLikeStrictSchema, candidate);
+			result.should.be.an.Object;
+			candidate.should.be.eql(new G({ good: 'key' }));
+		});
+
+		test('candidate #6 | all extra nested properties are removed', function () {
+			var schema = {
+				type: 'object',
+				globalStrict: true,
+				properties: {
+					arr: {
+						type: 'array',
+						items: {
+							type: 'object',
+							properties: {
+								a: { type: 'any' },
+								b: { type: 'any' }
+							}
+						}
+					},
+					lorem: {
+						type: 'object',
+						properties: {
+							ipsum: {
+								type: 'object',
+								properties: {
+									nested: { type: 'number' }
+								}
+							}
+						}
+					},
+					a: { type: 'string' }
+				}
+			};
+
+			var candidate = {
+				arr: [
+					{
+						a: null,
+						b: new Map()
+					},
+					{
+						a: 'this'
+					},
+					{
+						a: -Infinity,
+						c: false
+					},
+					{
+						a: true,
+						b: {},
+						c: []
+					}
+				],
+				lorem: {
+					ipsum: {
+						nested: Infinity
+					},
+					extra: NaN,
+					notNeeded: true
+				},
+				a: 'hello'
+			};
+
+			var result = si.sanitize(schema, candidate);
+			result.should.be.an.Object;
+			result.should.have.property('reporting').with.be.an.instanceof(Array)
+			.and.be.lengthOf(0);
+			candidate.should.be.eql({
+				a: 'hello',
+				arr: [
+					{
+						a: null,
+						b: new Map()
+					},
+					{
+						a: 'this'
+					},
+					{
+						a: -Infinity,
+					},
+					{
+						a: true,
+						b: {},
+					}
+				],
+				lorem: {
+					ipsum: {
+						nested: Infinity
+					}
+				}
+			});
+		});
+
+		test('candidate #7 | globalStrict can disable', function () {
+			var schema = {
+				type: 'object',
+				globalStrict: true,
+				properties: {
+					arr: {
+						type: 'array',
+						items: {
+							type: 'object',
+							globalStrict: false,
+							properties: {
+								a: { type: 'any' },
+								b: { type: 'any' }
+							}
+						}
+					},
+					lorem: {
+						type: 'object',
+						properties: {
+							ipsum: {
+								type: 'object',
+								properties: {
+									nested: { type: 'number' }
+								}
+							}
+						}
+					},
+					a: { type: 'string' }
+				}
+			};
+
+			var candidate = {
+				arr: [
+					{
+						a: null,
+						b: new Map()
+					},
+					{
+						a: 'this'
+					},
+					{
+						a: -Infinity,
+						c: false
+					},
+					{
+						a: true,
+						b: {},
+						c: []
+					}
+				],
+				lorem: {
+					ipsum: {
+						nested: Infinity
+					},
+					extra: NaN,
+					notNeeded: true
+				},
+				a: 'hello'
+			};
+
+			var result = si.sanitize(schema, candidate);
+			result.should.be.an.Object;
+			result.should.have.property('reporting').with.be.an.instanceof(Array)
+			.and.be.lengthOf(0);
+			candidate.should.be.eql({
+				a: 'hello',
+				arr: [
+					{
+						a: null,
+						b: new Map()
+					},
+					{
+						a: 'this'
+					},
+					{
+						a: -Infinity,
+						c: false
+					},
+					{
+						a: true,
+						b: {},
+						c: []
+					}
+				],
+				lorem: {
+					ipsum: {
+						nested: Infinity
+					}
+				}
+			});
+		});
+
+		test('candidate #8 | globalStrict can disable with strict=false', function () {
+			var schema = {
+				type: 'object',
+				globalStrict: true,
+				properties: {
+					arr: {
+						type: 'array',
+						items: {
+							type: 'object',
+							strict: false,
+							properties: {
+								a: { type: 'any' },
+								b: { type: 'any' }
+							}
+						}
+					},
+					lorem: {
+						type: 'object',
+						properties: {
+							ipsum: {
+								type: 'object',
+								properties: {
+									nested: { type: 'number' }
+								}
+							}
+						}
+					},
+					a: { type: 'string' }
+				}
+			};
+
+			var candidate = {
+				arr: [
+					{
+						a: null,
+						b: new Map()
+					},
+					{
+						a: 'this'
+					},
+					{
+						a: -Infinity,
+						c: false
+					},
+					{
+						a: true,
+						b: {},
+						c: []
+					}
+				],
+				lorem: {
+					ipsum: {
+						nested: Infinity
+					},
+					extra: NaN,
+					notNeeded: true
+				},
+				a: 'hello'
+			};
+
+			var result = si.sanitize(schema, candidate);
+			result.should.be.an.Object;
+			result.should.have.property('reporting').with.be.an.instanceof(Array)
+			.and.be.lengthOf(0);
+			candidate.should.be.eql({
+				a: 'hello',
+				arr: [
+					{
+						a: null,
+						b: new Map()
+					},
+					{
+						a: 'this'
+					},
+					{
+						a: -Infinity,
+						c: false
+					},
+					{
+						a: true,
+						b: {},
+						c: []
+					}
+				],
+				lorem: {
+					ipsum: {
+						nested: Infinity
+					}
+				}
+			});
+		});
+
+	}); // suite "schema #19"
 };

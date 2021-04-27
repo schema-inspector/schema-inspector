@@ -144,6 +144,7 @@ In the example below, the `inspector` variable will be used.  For the client-sid
 * [min, max](#s_comparators)
 * [minLength, maxLength](#s_length)
 * [strict](#s_strict)
+* [globalStrict](#s_globalStrict)
 * [exec](#s_exec)
 * [properties](#s_properties)
 * [items](#s_items)
@@ -1055,6 +1056,73 @@ var r = inspector.sanitize(schema, c);
 /*
 r.data: {
     good: 'yes'
+}
+*/
+```
+
+---------------------------------------
+
+<h3 id="s_globalStrict">globalStrict</h3>
+
+* **type**: boolean.
+* **default**: false.
+* **usable on**: object.
+
+Similar to `globalStrict`, but instead runs on all inner properties and items. Useful to ensure strictness throughout the entire schema.
+
+#### Example
+
+```javascript
+var inspector = require('schema-inspector');
+
+var schema = {
+    type: 'object',
+    globalStrict: true,
+    properties: {
+        lorem: { type: 'any' },
+        ipsum: { type: 'any' },
+        dolor: { type: 'any' },
+    },
+};
+
+var schema2 = {
+    type: 'object',
+    globalStrict: true,
+    properties: {
+        lorem: {
+            type: 'object',
+            properties: {
+                a: { type: 'any' }
+            }
+        }
+    }
+};
+
+var c1 = { lorem: 0, ipsum: 1, dolor: 2 };
+var c2 = { lorem: 0, ipsum: 1, dolor: 2, sit: 3 };
+
+var r1 = inspector.validate(schema, c1);
+/*
+r1.data: c1
+*/
+
+var r2 = inspector.validate(schema, c2);
+/*
+r2.data: c1
+*/
+
+var c3 = { lorem: { a: 5 } };
+var c4 = { lorem: {}, ipsum: true }
+
+var r3 = inspector.validate(schema2, c3);
+/*
+r3.data: c3
+*/
+
+var r4 = inspector.validate(schema2, c4);
+/*
+r4.data: {
+    lorem: {}
 }
 */
 ```
