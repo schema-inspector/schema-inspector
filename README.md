@@ -127,6 +127,7 @@ In the example below, the `inspector` variable will be used.  For the client-sid
 * [lt, lte, gt, gte, eq, ne](#v_comparators)
 * [someKeys](#v_someKeys)
 * [strict](#v_strict)
+* [globalStrict](#v_globalStrict)
 * [exec](#v_exec)
 * [properties](#v_properties)
 * [items](#v_items)
@@ -468,6 +469,57 @@ var c2 = { lorem: 0, ipsum: 1, dolor: 2, sit: 3 };
 
 inspector.validate(schema, c1); // Valid
 inspector.validate(schema, c2); // Invalid: @.sit should not exist.
+```
+
+---------------------------------------
+
+<h3 id="v_globalStrict">globalStrict</h3>
+
+* **type**: boolean.
+* **default**: false.
+* **usable on**: object.
+
+Similar to `globalStrict`, but instead runs on all inner properties and items. Useful to ensure strictness throughout the entire schema.
+
+#### Example
+
+```javascript
+var inspector = require('schema-inspector');
+
+var schema = {
+    type: 'object',
+    globalStrict: true,
+    properties: {
+        lorem: { type: 'any' },
+        ipsum: { type: 'any' },
+        dolor: { type: 'any' },
+    },
+};
+
+var schema2 = {
+    type: 'object',
+    globalStrict: true,
+    properties: {
+        lorem: {
+            type: 'object',
+            properties: {
+                a: { type: 'any' }
+            }
+        }
+    }
+};
+
+var c1 = { lorem: 0, ipsum: 1, dolor: 2 };
+var c2 = { lorem: 0, ipsum: 1, dolor: 2, sit: 3 };
+
+inspector.validate(schema, c1); // Valid
+inspector.validate(schema, c2); // Invalid: @.sit should not exist.
+
+var c3 = { lorem: { a: 5 } };
+var c4 = { lorem: {}, ipsum: true }
+
+inspector.validate(schema2, c3); // Valid
+inspector.validate(schema2, c4); // Invalid: @.ipsum should not exist, @.lorem.a should exist.
 ```
 
 ---------------------------------------

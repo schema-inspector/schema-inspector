@@ -1594,7 +1594,198 @@ exports.validation = function () {
 		});
 	}); // suite "schema #18.1
 
-	suite('schema #19 (Asynchronous call)', function () {
+	suite('schema #19 | "globalStrict" field', function () {
+		var compareWithStrictSchema = {
+			type: 'object',
+			globalStrict: true,
+			properties: {
+				lorem: { type: 'number' },
+				ipsum: { type: 'number' },
+				dolor: { type: 'string' }
+			}
+		};
+
+		test('candidate #1 | behaves like "strict" (schema #18 | candidate #1)', function () {
+			var candidate = {
+				lorem: 12,
+				ipsum: 23,
+				dolor: 'sit amet'
+			};
+
+			var result = si.validate(compareWithStrictSchema, candidate);
+			result.should.be.an.Object;
+			result.should.have.property('valid').with.equal(true);
+			result.should.have.property('error').with.be.an.instanceof(Array)
+			.and.be.lengthOf(0);
+		});
+
+		test('candidate #2 | behaves like "strict" (schema #18 | candidate #2)', function () {
+			var candidate = {
+				lorem: 12,
+				ipsum: 23,
+				dolor: 'sit amet',
+				'these': false,
+				'keys': false,
+				'must': false,
+				'not': false,
+				'be': false,
+				'here': false
+			};
+
+			var result = si.validate(compareWithStrictSchema, candidate);
+			result.should.be.an.Object;
+			result.should.have.property('valid').with.equal(false);
+			result.should.have.property('error').with.be.an.instanceof(Array)
+			.and.be.lengthOf(1);
+			var keys = ['these', 'keys', 'must', 'not', 'be', 'here'].map(function (i) {
+				return '"' + i + '"';
+			}).join(', ');
+			result.format().indexOf(keys).should.not.equal(-1);
+		});
+
+		test('candidate #3 | behaves like "strict" (schema #18 | candidate #3)', function () {
+			var candidate = {
+				lorem: 12,
+				ipsum: 23,
+				dolor: 'sit amet',
+				'extra': false
+			};
+
+			var result = si.validate(compareWithStrictSchema, candidate);
+			result.should.be.an.Object;
+			result.should.have.property('valid').with.equal(false);
+			result.should.have.property('error').with.be.an.instanceof(Array)
+			.and.be.lengthOf(1);
+			var keys = ['extra'].map(function (i) {
+				return '"' + i + '"';
+			}).join(', ');
+			result.format().indexOf(keys).should.not.equal(-1);
+		});
+
+		test('candidate #4 | behaves like "strict" (schema #18.1 | candidate #1)', function () {
+			var schema = {
+				type: 'object',
+				globalStrict: false,
+				properties: {
+					lorem: { type: 'number '},
+					ipsum: { type: 'number '},
+					dolor: { type: 'string '}
+				}
+			};
+	
+			var candidate = {
+				lorem: 12,
+				ipsum: 23,
+				dolor: 'sit amet',
+				extra: true
+			};
+
+			var result = si.validate(schema, candidate);
+			result.should.be.an.Object;
+			result.should.have.property('valid').with.equal(true);
+			result.should.have.property('error').with.be.an.instanceof(Array)
+			.and.be.lengthOf(0);
+		});
+
+		test('candidate #5 | runs strict on nested properties', function () {
+			var schema = {
+				type: 'object',
+				globalStrict: true,
+				properties: {
+					a: {
+						type: 'object',
+						properties: {
+							only: { type: 'string' },
+							sub: {
+								type: 'object',
+								properties: {
+									these: { type: 'number' },
+									only: { type: 'string' }
+								}
+							},
+							sub2: {
+								type: 'array',
+								items: {
+									type: 'object',
+									properties: {
+										oneNum: { type: 'number' },
+										andString: { type: 'string' },
+										andBool: { type: 'boolean' }
+									}
+								}
+							}
+						}
+					},
+					b: {
+						type: 'object',
+						properties: {}
+					}
+				}
+			};
+
+			var candidate = {
+				a: {
+					only: 'abc',
+					sub2: [
+						{
+							oneNum: 5,
+							andString: 'hello',
+							andBool: 1
+						},
+						{
+							andString: 'something'
+						},
+						{
+							oneNum: 'someStuff',
+							andBool: false
+						}
+					],
+					another: 'error coming'
+				},
+				b: {
+					not_needed: 'here'
+				}
+			};
+
+			var result = si.validate(schema, candidate);
+			result.should.be.an.Object;
+			result.should.have.property('valid').with.equal(false);
+			result.should.have.property('error').with.be.an.instanceof(Array)
+			.and.be.lengthOf(8);
+			result.format().should.equal(`Property @.a: should not contains property ["another"]
+Property @.a.sub: is missing and not optional
+Property @.a.sub2[0].andBool: must be boolean, but is number
+Property @.a.sub2[1].oneNum: is missing and not optional
+Property @.a.sub2[1].andBool: is missing and not optional
+Property @.a.sub2[2].oneNum: must be number, but is string
+Property @.a.sub2[2].andString: is missing and not optional
+Property @.b: should not contains property ["not_needed"]`);
+		});
+
+		test('candidate #6 | setting strict to false should disable globalStrict at that position', function () {
+			var schema = {
+				type: 'object',
+				globalStrict: true,
+				strict: false,
+				properties: {
+					only: { type: 'string' }
+				}
+			};
+
+			var candidate = {
+				only: 'hello',
+				a: 5
+			}
+
+			var result = si.validate(schema, candidate);
+			result.should.be.an.Object;
+			result.should.have.property('valid').with.equal(true);
+			result.should.have.property('error').with.be.an.instanceof(Array)
+			.and.be.lengthOf(0);
+		});
+	}); // suite "schema #19"
+
+	suite('schema #20 (Asynchronous call)', function () {
 		var schema = {
 			type: 'object',
 			properties: {
@@ -1649,9 +1840,9 @@ exports.validation = function () {
 				done();
 			});
 		});
-	}); // suite "schema #19"
+	}); // suite "schema #20"
 
-	suite('schema #19.1 (Asynchronous call + asynchronous exec field)', function () {
+	suite('schema #20.1 (Asynchronous call + asynchronous exec field)', function () {
 		var schema = {
 			type: 'object',
 			properties: {
@@ -1743,9 +1934,9 @@ exports.validation = function () {
 				done();
 			});
 		});
-	}); // suite "schema #19.1"
+	}); // suite "schema #20.1"
 
-	suite('schema #19.2 (Asynchronous call + globing)', function () {
+	suite('schema #20.2 (Asynchronous call + globing)', function () {
 		var schema = {
 			type: 'object',
 			properties: {
@@ -1800,9 +1991,9 @@ exports.validation = function () {
 				done();
 			});
 		});
-	}); // suite "schema #19.2"
+	}); // suite "schema #20.2"
 
-	suite('schema #19.3 (Asynchronous call++)', function () {
+	suite('schema #20.3 (Asynchronous call++)', function () {
 		var schema = {
 			type: 'array',
 			minLength: 1,
@@ -1838,9 +2029,9 @@ exports.validation = function () {
 				done();
 			});
 		});
-	}); // suite "schema #19.2"
+	}); // suite "schema #20.2"
 
-	suite('schema #20 (custom schemas)', function () {
+	suite('schema #21 (custom schemas)', function () {
 		var schema = {
 			type: 'object',
 			properties: {
@@ -1889,9 +2080,9 @@ exports.validation = function () {
 			result.error[0].property.should.equal('@.lorem');
 			result.error[1].property.should.equal('@.ipsum');
 		});
-	}); // suite "schema #20"
+	}); // suite "schema #21"
 
-	suite('schema #20.1 (custom schemas + asynchronous call)', function () {
+	suite('schema #21.1 (custom schemas + asynchronous call)', function () {
 		var schema = {
 			type: 'object',
 			properties: {
@@ -1968,10 +2159,10 @@ exports.validation = function () {
 				done();
 			});
 		});
-	}); // suite "schema #20.1"
+	}); // suite "schema #21.1"
 
 
-	suite('schema #20.2 (default custom schemas)', function () {
+	suite('schema #21.2 (default custom schemas)', function () {
 		var schema = {
 			type: 'object',
 			properties: {
@@ -2055,9 +2246,9 @@ exports.validation = function () {
 			si.Validation.reset();
 			si.Validation.custom.should.eql({});
 		});
-	}); // suite "schema #20.2"
+	}); // suite "schema #21.2"
 
-	suite('schema #21 (field "code" testing)', function () {
+	suite('schema #22 (field "code" testing)', function () {
 		var schema = {
 			type: 'object',
 			properties: {
@@ -2110,9 +2301,9 @@ exports.validation = function () {
 			result.error[1].code.should.equal('array-item-format');
 		});
 
-	}); // suite "schema #14"
+	}); // suite "schema #22"
 
-	suite('schema #22 (date with validDate: true)', function () {
+	suite('schema #23 (date with validDate: true)', function () {
 		var schema = {
 			type: 'object',
 			items: { type: 'date', validDate: true }
@@ -2134,6 +2325,6 @@ exports.validation = function () {
 			result.error[1].property.should.equal('@[nope]');
 		});
 
-	});
+	}); // suite "schema #23"
 
 };
