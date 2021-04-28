@@ -809,6 +809,31 @@ exports.validation = function () {
 			result.error[2].property.should.equal('@[6]');
 		});
 
+		test('candidate #3 | multipleOf option', function () {
+			var multipleOfSchema = {
+				type: 'object',
+				properties: {
+					arr: {
+						type: 'array',
+						items: {
+							type: 'number',
+							multipleOf: 10
+						}
+					},
+					num: { type: 'number', multipleOf: 2 }
+				}
+			};
+
+			var candidate = {
+				arr: Array(5).map(() => Math.floor(Math.random() * 1000)),
+				num: Math.floor(Math.random() * 2000) * 2
+			};
+
+			var result = si.validate(multipleOfSchema, candidate);
+			result.should.be.an.Object;
+			result.should.have.property('valid').with.equal(true);
+		})
+
 	}); // suite "schema #8"
 
 	suite('schema #9 (uniqueness checking [uniquess === true])', function () {
