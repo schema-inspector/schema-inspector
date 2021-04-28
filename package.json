@@ -32,11 +32,14 @@
     "async": "~2.6.3"
   },
   "devDependencies": {
+    "eslint": "^7.25.0",
     "mocha": "^8.3.2",
     "should": "^13.2.3"
   },
   "scripts": {
-    "test": "make test"
+    "test": "make test",
+    "lint": "eslint --cache ./**/*.js .eslintrc.js",
+    "code-style": "eslint --fix --cache ./**/*.js .eslintrc.js"
   },
   "readmeFilename": "README.md"
 }

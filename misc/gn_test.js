@@ -1,3 +1,5 @@
+/* global SchemaInspector */
+
 var schema = {
 	type: 'object',
 	properties: {

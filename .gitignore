@@ -1,8 +1,8 @@
 node_modules/
 *~
-#*#
 npm-debug.log
 bower_components
 .vscode
+.eslintcache
 package-lock.json
 yarn.lock

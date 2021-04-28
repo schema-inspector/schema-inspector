@@ -1,4 +1,5 @@
-var should = require('should');
+/* global suite, test */
+
 var si = require('../');
 
 const NB_TEST = 25;

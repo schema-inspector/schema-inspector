@@ -2,4 +2,5 @@
 test/
 misc/
 .travis.yml
+.eslintrc.js
 Makefile

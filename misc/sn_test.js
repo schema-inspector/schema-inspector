@@ -1,12 +1,10 @@
+/* global jQuery */
+
 if (typeof require === 'function') {
   var SchemaInspector = require('../');
 }
 
 (function (SchemaInspector, $) {
-
-  var display = typeof alert === 'function' ? alert : function (o) {
-    return console.log(require('util').inspect(o, true, null));
-  };
 
   function format(json) {
     return JSON.stringify(json, null, 2)

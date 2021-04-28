@@ -28,7 +28,7 @@ vdr.validate(obj, function (err, r) {
 	console.log(r.format());
 });
 
-var schema = { strict: true };
-var obj = {};
+schema = { strict: true };
+obj = {};
 var result = SchemaInspector.validate(schema, obj);
 console.log(result);

@@ -19,7 +19,7 @@ var task = {  inputs: [
 };
 
 var schema = {
-  type: "object",
+  type: 'object',
   strict: true,
   properties: {
     inputs: {
@@ -50,9 +50,9 @@ function checkTaskParams() {
       console.log(result);
       console.log('Validator result', result);
       if (!result.valid) {
-        console.log("Use propalo", {info: result.format()})
+        console.log('Use propalo', {info: result.format()})
       } else {
-        console.log("Ok");
+        console.log('Ok');
         console.log(task.inputs[0].inputOptions);
       }
     });

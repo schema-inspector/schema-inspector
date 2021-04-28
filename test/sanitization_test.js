@@ -1,3 +1,5 @@
+/* global suite, test */
+
 var should = require('should');
 var si = require('../');
 
@@ -124,7 +126,7 @@ exports.sanitization = function () {
 
 		test('candidate #3 | date -> integer', function () {
 			var date = new Date();
-			var candidate = [ new Date(300), date, new Date("2014-01-01"), new Date("INVALID")];
+			var candidate = [ new Date(300), date, new Date('2014-01-01'), new Date('INVALID')];
 
 			var result = si.sanitize(schema, candidate);
 			result.should.be.an.Object;
@@ -208,7 +210,7 @@ exports.sanitization = function () {
 
 		test('candidate #2 | date -> number (same as integer)', function () {
 			var date = new Date();
-			var candidate = [ new Date(300), date, new Date("2013-12-01"), new Date("INVALID")];
+			var candidate = [ new Date(300), date, new Date('2013-12-01'), new Date('INVALID')];
 
 			var result = si.sanitize(schema, candidate);
 			result.should.be.an.Object;
@@ -218,7 +220,7 @@ exports.sanitization = function () {
 			result.reporting[1].property.should.be.equal('@[1]');
 			result.reporting[2].property.should.be.equal('@[2]');
 			result.reporting[3].property.should.be.equal('@[3]');
-			candidate.should.be.eql([300, +date, +new Date("2013-12-01"), -1]);
+			candidate.should.be.eql([300, +date, +new Date('2013-12-01'), -1]);
 		});
 
 	}); // suite "schema #3"
@@ -462,7 +464,7 @@ exports.sanitization = function () {
 						two: { type: 'integer', optional: false, def: 2 },
 						three: { type: 'integer', optional: false, def: 3 },
 						four: { type: 'integer', optional: false, def: 4 },
-						five: { type: 'integer', optional: "false", def: 5 }
+						five: { type: 'integer', optional: 'false', def: 5 }
 					}
 				}
 			}
@@ -1048,7 +1050,7 @@ exports.sanitization = function () {
 				result.should.be.an.Object;
 				result.should.have.property('reporting').with.be.an.instanceof(Array)
 				.and.be.lengthOf(3);
-	 			result.reporting[0].property.should.be.equal('@.lorem.ipsum');
+				result.reporting[0].property.should.be.equal('@.lorem.ipsum');
 				result.reporting[1].property.should.be.equal('@.lorem.sit');
 				result.reporting[2].property.should.be.equal('@.lorem.consectetur');
 				candidate.should.eql({
@@ -1124,7 +1126,7 @@ exports.sanitization = function () {
 					}
 				},
 				sit: {
-					exec: function (schema, candidate) {
+					exec: function () {
 						this.report();
 						return this.origin.lorem;
 					}

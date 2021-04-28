@@ -4,7 +4,7 @@ var inspector = require('../');
 var customValidation = {
 	validDate: function (schema, date) {
       if (schema.$validDate === true
-         && Object.prototype.toString.call(date) === "[object Date]"
+         && Object.prototype.toString.call(date) === '[object Date]'
          && isNaN(date.getTime())) {
           this.report('must be a valid date');
       }

@@ -15,7 +15,7 @@ var candidate = {
 	lorem: 'not_ipsum',
 	dolor: [ 12, 34, 'ERROR', 45, 'INVALID' ]
 };
-var result = inspector.validate(schema, candidate, function (err, result) {
+inspector.validate(schema, candidate, function (err, result) {
 	console.log(result);
 });
 

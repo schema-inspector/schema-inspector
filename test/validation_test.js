@@ -1,3 +1,5 @@
+/* global suite, test */
+
 var should = require('should');
 var si = require('../');
 
@@ -99,7 +101,7 @@ exports.validation = function () {
 	}); // suite "schema #1"
 
 	suite('schema #1.1 (Types tests)', function () {
-		function F() {};
+		function F() {}
 		var schema = {
 			type: 'array',
 			items: [
@@ -127,7 +129,7 @@ exports.validation = function () {
 		});
 
 		test('candidate #2', function () {
-			function G() {};
+			function G() {}
 			var candidate = [
 				null,
 				'Nikita',
@@ -650,7 +652,7 @@ exports.validation = function () {
 		test('candidate #2', function () {
 			var candidate = [
 				'2012-08-08T14:30:09.32+02:00',
-	      '2012-08-08T14:30:09+2:00',
+				'2012-08-08T14:30:09+2:00',
         '2012-08-08T14:30:09.032',
         '2012-08-08 14:30:09',
       ];
@@ -1283,9 +1285,9 @@ exports.validation = function () {
 
 		test('candidate #1', function () {
 			var candidate = [
-			 	'thisIsAString',
-			 	1234,
-			 	new Date()
+				'thisIsAString',
+				1234,
+				new Date()
 			];
 
 			var result = si.validate(schema, candidate);
@@ -1737,7 +1739,7 @@ exports.validation = function () {
 				},
 				arr: [12, 23, 34, 45, 56, 67, 78, 89, 90, 123]
 			};
-			si.validate(schema, candidate, function (err, result) {
+			si.validate(schema, candidate, function (err) {
 				should.exist(err);
 				err.message.should.equal('Array length is too damn high!');
 				done();
@@ -1962,7 +1964,7 @@ exports.validation = function () {
 				dolor: 32
 			};
 
-			si.validate(schema, candidate, custom, function (err, result) {
+			si.validate(schema, candidate, custom, function (err) {
 				should.exist(err);
 				err.message.should.equal('Schema error: Divisor must not equal 0');
 				done();
@@ -2044,7 +2046,7 @@ exports.validation = function () {
 				dolor: 32
 			};
 
-			si.validate(schema, candidate, function (err, result) {
+			si.validate(schema, candidate, function (err) {
 				should.exist(err);
 				err.message.should.equal('Schema error: Divisor must not equal 0');
 				done();
