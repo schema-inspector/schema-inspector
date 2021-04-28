@@ -832,7 +832,7 @@ exports.validation = function () {
 			var result = si.validate(multipleOfSchema, candidate);
 			result.should.be.an.Object;
 			result.should.have.property('valid').with.equal(true);
-		})
+		});
 
 	}); // suite "schema #8"
 
