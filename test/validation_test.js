@@ -109,7 +109,7 @@ exports.validation = function () {
 				{ type: 'string' },
 				{ type: 'number' },
 				{ type: 'integer' },
-				{ type: F },
+				{ type: F }
 			]
 		};
 
@@ -639,7 +639,7 @@ exports.validation = function () {
 				'2012-08-08T14:30:09.032+02:00',
 				'2012-08-08T14:30:09+02:00',
 				'2012-08-08T14:30:09.032Z',
-				'2012-08-08T14:30:09Z',
+				'2012-08-08T14:30:09Z'
 			];
 
 			var result = si.validate(schema, candidate);
@@ -654,7 +654,7 @@ exports.validation = function () {
 				'2012-08-08T14:30:09.32+02:00',
 				'2012-08-08T14:30:09+2:00',
         '2012-08-08T14:30:09.032',
-        '2012-08-08 14:30:09',
+        '2012-08-08 14:30:09'
       ];
 
 			var result = si.validate(schema, candidate);
@@ -1467,7 +1467,7 @@ exports.validation = function () {
 				properties: {
 					parent: {
 						someKeys: ['a', 'b'],
-						optional: true,
+						optional: true
 					}
 				}
 			};
@@ -1484,7 +1484,7 @@ exports.validation = function () {
 				properties: {
 					parent: {
 						someKeys: ['a', 'b'],
-						optional: true,
+						optional: true
 					}
 				}
 			};
@@ -1867,7 +1867,7 @@ exports.validation = function () {
 		test('candidate #1', function () {
 			var candidate = {
 				lorem: 12,
-				ipsum: 25,
+				ipsum: 25
 			};
 
 			var result = si.validate(schema, candidate, custom);
@@ -1880,7 +1880,7 @@ exports.validation = function () {
 		test('candidate #2', function () {
 			var candidate = {
 				lorem: 11,
-				ipsum: 22,
+				ipsum: 22
 			};
 
 			var result = si.validate(schema, candidate, custom);
@@ -1942,7 +1942,7 @@ exports.validation = function () {
 		test('candidate #2', function (done) {
 			var candidate = {
 				lorem: 11,
-				ipsum: 22,
+				ipsum: 22
 			};
 
 			si.validate(schema, candidate, custom, function (err, result) {
@@ -2024,7 +2024,7 @@ exports.validation = function () {
 		test('candidate #2', function (done) {
 			var candidate = {
 				lorem: 11,
-				ipsum: 22,
+				ipsum: 22
 			};
 
 			si.validate(schema, candidate, function (err, result) {

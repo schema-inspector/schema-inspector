@@ -164,7 +164,7 @@ exports.sanitization = function () {
 				def: {},
 				properties: {
 					orderProducts: { type: 'number', def: 0 }, // if he gives ''
-					orderServices: { type: 'number', def: 0 }, // if he gives ''
+					orderServices: { type: 'number', def: 0 } // if he gives ''
 				}
 			};
 			var result = si.sanitize(s, {});
@@ -178,7 +178,7 @@ exports.sanitization = function () {
 				def: {},
 				properties: {
 					orderProducts: { type: 'number', def: 0 }, // if he gives ''
-					orderServices: { type: 'number', def: 0 }, // if he gives ''
+					orderServices: { type: 'number', def: 0 } // if he gives ''
 				}
 			};
 			var result = si.sanitize(s, { orderProducts: '', orderServices: '' });
@@ -499,7 +499,7 @@ exports.sanitization = function () {
 		test('candidate #2', function () {
 			var candidate = {
 				hash: {
-					two: 22,
+					two: 22
 				}
 			};
 
@@ -618,7 +618,7 @@ exports.sanitization = function () {
 					type: 'object',
 					properties: {
 						ipsum: { type: 'string', def: 'Nikita', optional: true },
-						ipsum2: { type: 'string', def: 'Atinux', optional: 'true' },
+						ipsum2: { type: 'string', def: 'Atinux', optional: 'true' }
 					}
 				}
 			}
@@ -792,7 +792,7 @@ exports.sanitization = function () {
 				stringU: STRING,
 				stringL: STRING,
 				stringC: STRING,
-				stringUC: STRING,
+				stringUC: STRING
 			};
 
 			var result = si.sanitize(schema, candidate);
