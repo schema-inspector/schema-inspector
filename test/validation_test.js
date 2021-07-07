@@ -914,7 +914,6 @@ exports.validation = function () {
 
 	}); // suite "schema #10"
 
-
 	suite('schema #11 (uniqueness checking [uniquess is not given])', function () {
 		var schema = {
 			type: 'array',
@@ -1971,7 +1970,6 @@ exports.validation = function () {
 			});
 		});
 	}); // suite "schema #20.1"
-
 
 	suite('schema #20.2 (default custom schemas)', function () {
 		var schema = {
