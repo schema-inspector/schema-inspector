@@ -1459,7 +1459,7 @@ exports.sanitization = function () {
     });
 
     test('candidate #4 | remove useless keys on custom classes (constructor function)', function () {
-      function G (obj) {
+      function G(obj) {
         Object.keys(obj).forEach(key => {
           this[key] = obj[key];
         });
@@ -1477,7 +1477,7 @@ exports.sanitization = function () {
 
     test('candidate #5 | remove useless keys on custom classes (constructor class)', function () {
       class G {
-        constructor (obj) {
+        constructor(obj) {
           Object.keys(obj).forEach(key => {
             this[key] = obj[key];
           });

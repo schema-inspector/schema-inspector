@@ -106,7 +106,7 @@ exports.validation = function () {
   }); // suite "schema #1"
 
   suite('schema #1.1 (Types tests)', function () {
-    function F () { }
+    function F() { }
     const schema = {
       type: 'array',
       items: [
@@ -134,7 +134,7 @@ exports.validation = function () {
     });
 
     test('candidate #2', function () {
-      function G () { }
+      function G() { }
       const candidate = [
         null,
         'Nikita',
