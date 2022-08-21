@@ -1,13 +1,15 @@
-var should = require('should');
-var si = require('../');
+/* global suite test */
+
+const should = require('should');
+const si = require('../');
 
 const NB_TEST = 25;
 
 function testRandomCandidates(schema) {
-  for (var i = 1; i <= NB_TEST; i++) {
+  for (let i = 1; i <= NB_TEST; i++) {
     test('Random candidate #' + i, function () {
-      var candidate = si.generate(schema);
-      var result = si.validate(schema, candidate);
+      const candidate = si.generate(schema);
+      const result = si.validate(schema, candidate);
       result.should.be.an.Object;
       try {
         result.should.have.property('valid').with.equal(true);
@@ -23,7 +25,7 @@ function testRandomCandidates(schema) {
 
 exports.generator = function () {
   suite('Schema #1 (Basics schemas with nested object, only considering type)', function () {
-    var schema = {
+    const schema = {
       type: 'object',
       properties: {
         lorem: {
@@ -54,7 +56,7 @@ exports.generator = function () {
   }); // suite "schema #1"
 
   suite('Schema #2 (Basic schemas, considering *Length)', function () {
-    var schema = {
+    const schema = {
       type: 'object',
       properties: {
         lorem: {
@@ -90,7 +92,7 @@ exports.generator = function () {
   }); // suite "schema #2"
 
   suite('Schema #3 (Intermediate schemas, considering *Length, lt, lte, gt, gte, eq and ne)', function () {
-    var schema = {
+    const schema = {
       type: 'object',
       properties: {
         lorem: {
@@ -138,7 +140,7 @@ exports.generator = function () {
   }); // suite "schema #3"
 
   suite('Schema #4 (Advanced schemas, considering *Length, lt, lte, gt, gte, eq, array of ne and optional fields)', function () {
-    var schema = {
+    const schema = {
       type: 'object',
       properties: {
         lorem: {
@@ -191,7 +193,7 @@ exports.generator = function () {
   }); // suite "schema #4"
 
   suite('Schema #5 (Advanced schemas, considering *Length, eq and format fields)', function () {
-    var schema = {
+    const schema = {
       type: 'object',
       properties: {
         lorem: {
@@ -219,18 +221,18 @@ exports.generator = function () {
   }); // suite "schema #5"
 
   suite('Schema #6 (Generate several candidate with one call)', function () {
-    var schema = {
+    const schema = {
       type: 'object',
       properties: {
         lorem: { type: 'integer' }
       }
     };
 
-    var candidates = si.generate(schema, NB_TEST);
+    const candidates = si.generate(schema, NB_TEST);
     candidates.should.be.an.instanceof(Array).with.lengthOf(NB_TEST);
     candidates.forEach(function (candidate, i) {
       test('Random candidate #' + (i + 1), function () {
-        var result = si.validate(schema, candidate);
+        const result = si.validate(schema, candidate);
         result.should.be.an.Object;
         try {
           result.should.have.property('valid').with.equal(true);
@@ -246,7 +248,7 @@ exports.generator = function () {
   }); // suite "schema #6"
 
   suite('Schema #7 (Globing for Object keys)', function () {
-    var schema = {
+    const schema = {
       type: 'object',
       properties: {
         globString: {
@@ -264,10 +266,10 @@ exports.generator = function () {
       }
     };
 
-    for (var i = 1; i <= NB_TEST; i++) {
+    for (let i = 1; i <= NB_TEST; i++) {
       test('Random candidate #' + i, function () {
-        var candidate = si.generate(schema);
-        var result = si.validate(schema, candidate);
+        const candidate = si.generate(schema);
+        const result = si.validate(schema, candidate);
         result.should.be.an.Object;
         candidate.globString.should.not.have.property('*');
         candidate.globInteger.should.not.have.property('*');

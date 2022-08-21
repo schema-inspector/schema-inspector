@@ -1,17 +1,19 @@
-var should = require('should');
-var si = require('../');
+/* global suite test */
+
+const should = require('should');
+const si = require('../');
 
 exports.sanitization = function () {
   suite('schema #1 (type casting [string])', function () {
-    var schema = {
+    const schema = {
       type: 'array',
       items: { type: 'string' }
     };
 
     test('candidate #1 | boolean -> string', function () {
-      var candidate = [true, false, 'true', 'false'];
+      const candidate = [true, false, 'true', 'false'];
 
-      var result = si.sanitize(schema, candidate);
+      const result = si.sanitize(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('reporting').with.be.an.instanceof(Array)
         .and.be.lengthOf(2);
@@ -21,9 +23,9 @@ exports.sanitization = function () {
     });
 
     test('candidate #2 | number -> string', function () {
-      var candidate = [0, 12, 3.14159, -12, -3.14159, '1234', '-1234'];
+      const candidate = [0, 12, 3.14159, -12, -3.14159, '1234', '-1234'];
 
-      var result = si.sanitize(schema, candidate);
+      const result = si.sanitize(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('reporting').with.be.an.instanceof(Array)
         .and.be.lengthOf(5);
@@ -36,10 +38,10 @@ exports.sanitization = function () {
     });
 
     test('candidate #3 | date -> string', function () {
-      var d = new Date();
-      var candidate = [d, d.toString()];
+      const d = new Date();
+      const candidate = [d, d.toString()];
 
-      var result = si.sanitize(schema, candidate);
+      const result = si.sanitize(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('reporting').with.be.an.instanceof(Array)
         .and.be.lengthOf(1);
@@ -48,10 +50,10 @@ exports.sanitization = function () {
     });
 
     test('candidate #4 | object -> string', function () {
-      var obj = { test: true };
-      var candidate = [obj, JSON.stringify(obj)];
+      const obj = { test: true };
+      const candidate = [obj, JSON.stringify(obj)];
 
-      var result = si.sanitize(schema, candidate);
+      const result = si.sanitize(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('reporting').with.be.an.instanceof(Array)
         .and.be.lengthOf(1);
@@ -60,9 +62,9 @@ exports.sanitization = function () {
     });
 
     test('candidate #5 | array -> string', function () {
-      var candidate = [['one', 'two', true]];
+      const candidate = [['one', 'two', true]];
 
-      var result = si.sanitize(schema, candidate);
+      const result = si.sanitize(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('reporting').with.be.an.instanceof(Array)
         .and.be.lengthOf(1);
@@ -71,10 +73,10 @@ exports.sanitization = function () {
     });
 
     test('candidate #6 | array -> string with joinWith="|"', function () {
-      var candidate = [['one', 'two', true]];
+      const candidate = [['one', 'two', true]];
 
       schema.items.joinWith = '|';
-      var result = si.sanitize(schema, candidate);
+      const result = si.sanitize(schema, candidate);
       delete schema.items.joinWith;
       result.should.be.an.Object;
       result.should.have.property('reporting').with.be.an.instanceof(Array)
@@ -86,15 +88,15 @@ exports.sanitization = function () {
   }); // suite "schema #1"
 
   suite('schema #2 (type casting [integer])', function () {
-    var schema = {
+    const schema = {
       type: 'array',
       items: { type: 'integer', def: -1 }
     };
 
     test('candidate #1 | string -> integer', function () {
-      var candidate = ['foo', '4', '3', '2', '1', '1 500', '16,2', ''];
+      const candidate = ['foo', '4', '3', '2', '1', '1 500', '16,2', ''];
 
-      var result = si.sanitize(schema, candidate);
+      const result = si.sanitize(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('reporting').with.be.an.instanceof(Array)
         .and.be.lengthOf(8);
@@ -109,9 +111,9 @@ exports.sanitization = function () {
     });
 
     test('candidate #2 | number -> integer', function () {
-      var candidate = [12.25, -12.25, 12.75, -12.75, 0, 12];
+      const candidate = [12.25, -12.25, 12.75, -12.75, 0, 12];
 
-      var result = si.sanitize(schema, candidate);
+      const result = si.sanitize(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('reporting').with.be.an.instanceof(Array)
         .and.be.lengthOf(4);
@@ -123,10 +125,10 @@ exports.sanitization = function () {
     });
 
     test('candidate #3 | date -> integer', function () {
-      var date = new Date();
-      var candidate = [new Date(300), date, new Date("2014-01-01"), new Date("INVALID")];
+      const date = new Date();
+      const candidate = [new Date(300), date, new Date("2014-01-01"), new Date("INVALID")];
 
-      var result = si.sanitize(schema, candidate);
+      const result = si.sanitize(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('reporting').with.be.an.instanceof(Array)
         .and.be.lengthOf(4);
@@ -138,7 +140,7 @@ exports.sanitization = function () {
     });
 
     test('candidate #4 | string -> integer', function () {
-      var result = si.sanitize({ type: 'integer' }, '42');
+      const result = si.sanitize({ type: 'integer' }, '42');
       result.should.be.an.Object;
       result.should.have.property('reporting').with.be.an.instanceof(Array)
         .and.be.lengthOf(1);
@@ -147,7 +149,7 @@ exports.sanitization = function () {
     });
 
     test('candidate #5 | string -> integer or def: null', function () {
-      var result = si.sanitize({ type: 'integer', def: null }, 'abc');
+      const result = si.sanitize({ type: 'integer', def: null }, 'abc');
       result.should.be.an.Object;
       result.should.have.property('reporting').with.be.an.instanceof(Array)
         .and.be.lengthOf(1);
@@ -156,7 +158,7 @@ exports.sanitization = function () {
     });
 
     test('candidate #6 | object with properties -> number and def: 0', function () {
-      var s = {
+      const s = {
         type: 'object',
         optional: false,
         def: {},
@@ -165,12 +167,12 @@ exports.sanitization = function () {
           orderServices: { type: 'number', def: 0 }, // if he gives ''
         }
       };
-      var result = si.sanitize(s, {});
+      const result = si.sanitize(s, {});
       result.data.should.be.eql({})
     });
 
     test('candidate #6 | object with properties -> number and def: 0', function () {
-      var s = {
+      const s = {
         type: 'object',
         optional: false,
         def: {},
@@ -179,22 +181,22 @@ exports.sanitization = function () {
           orderServices: { type: 'number', def: 0 }, // if he gives ''
         }
       };
-      var result = si.sanitize(s, { orderProducts: '', orderServices: '' });
+      const result = si.sanitize(s, { orderProducts: '', orderServices: '' });
       result.data.should.be.eql({ orderProducts: 0, orderServices: 0 });
     });
 
   }); // suite "schema #2"
 
   suite('schema #3 (type casting [number])', function () {
-    var schema = {
+    const schema = {
       type: 'array',
       items: { type: 'number', def: -1 }
     };
 
     test('candidate #1 | string -> number', function () {
-      var candidate = ['foo', '-4', '-3.234', '2', '1.234', '14,45', ''];
+      const candidate = ['foo', '-4', '-3.234', '2', '1.234', '14,45', ''];
 
-      var result = si.sanitize(schema, candidate);
+      const result = si.sanitize(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('reporting').with.be.an.instanceof(Array)
         .and.be.lengthOf(candidate.length);
@@ -207,10 +209,10 @@ exports.sanitization = function () {
     });
 
     test('candidate #2 | date -> number (same as integer)', function () {
-      var date = new Date();
-      var candidate = [new Date(300), date, new Date("2013-12-01"), new Date("INVALID")];
+      const date = new Date();
+      const candidate = [new Date(300), date, new Date("2013-12-01"), new Date("INVALID")];
 
-      var result = si.sanitize(schema, candidate);
+      const result = si.sanitize(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('reporting').with.be.an.instanceof(Array)
         .and.be.lengthOf(4);
@@ -224,15 +226,15 @@ exports.sanitization = function () {
   }); // suite "schema #3"
 
   suite('schema #4 (type casting [boolean])', function () {
-    var schema = {
+    const schema = {
       type: 'array',
       items: { type: 'boolean' }
     };
 
     test('candidate #1 | number -> boolean', function () {
-      var candidate = [0, 12, -12];
+      const candidate = [0, 12, -12];
 
-      var result = si.sanitize(schema, candidate);
+      const result = si.sanitize(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('reporting').with.be.an.instanceof(Array)
         .and.be.lengthOf(3);
@@ -243,9 +245,9 @@ exports.sanitization = function () {
     });
 
     test('candidate #2 | string -> boolean', function () {
-      var candidate = ['', '12', 'NikitaJS'];
+      const candidate = ['', '12', 'NikitaJS'];
 
-      var result = si.sanitize(schema, candidate);
+      const result = si.sanitize(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('reporting').with.be.an.instanceof(Array)
         .and.be.lengthOf(3);
@@ -256,9 +258,9 @@ exports.sanitization = function () {
     });
 
     test('candidate #3 | null -> boolean', function () {
-      var candidate = [null];
+      const candidate = [null];
 
-      var result = si.sanitize(schema, candidate);
+      const result = si.sanitize(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('reporting').with.be.an.instanceof(Array)
         .and.be.lengthOf(1);
@@ -269,7 +271,7 @@ exports.sanitization = function () {
   }); // suite "schema #4"
 
   suite('schema #5 (type casting [object])', function () {
-    var schema = {
+    const schema = {
       type: 'object',
       properties: {
         json: { type: 'object' },
@@ -278,13 +280,13 @@ exports.sanitization = function () {
     };
 
     test('candidate #1 | string -> object', function () {
-      var obj = { lorem: { ipsum: 'dolor' } };
-      var candidate = {
+      const obj = { lorem: { ipsum: 'dolor' } };
+      const candidate = {
         json: JSON.stringify(obj),
         objt: obj
       };
 
-      var result = si.sanitize(schema, candidate);
+      const result = si.sanitize(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('reporting').with.be.an.instanceof(Array)
         .and.be.lengthOf(1);
@@ -298,7 +300,7 @@ exports.sanitization = function () {
   }); // suite "schema #5"
 
   suite('schema #6 (deeply nested object sanitization)', function () {
-    var schema = {
+    const schema = {
       type: 'object',
       properties: {
         lorem: {
@@ -326,11 +328,11 @@ exports.sanitization = function () {
     };
 
     test('candidate #1', function () {
-      var candidate = {
+      const candidate = {
         lorem: { ipsum: { dolor: { sit: { amet: '1234' } } } }
       };
 
-      var result = si.sanitize(schema, candidate);
+      const result = si.sanitize(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('reporting').with.be.an.instanceof(Array)
         .and.be.lengthOf(1);
@@ -338,11 +340,11 @@ exports.sanitization = function () {
     });
 
     test('candidate #2', function () {
-      var candidate = {
+      const candidate = {
         lorem: { ipsum: { dolor: { sit: JSON.stringify({ amet: '1234' }) } } }
       };
 
-      var result = si.sanitize(schema, candidate);
+      const result = si.sanitize(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('reporting').with.be.an.instanceof(Array)
         .and.be.lengthOf(2);
@@ -351,11 +353,11 @@ exports.sanitization = function () {
     });
 
     test('candidate #3', function () {
-      var candidate = {
+      const candidate = {
         lorem: { ipsum: { dolor: JSON.stringify({ sit: { amet: '1234' } }) } }
       };
 
-      var result = si.sanitize(schema, candidate);
+      const result = si.sanitize(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('reporting').with.be.an.instanceof(Array)
         .and.be.lengthOf(2);
@@ -366,7 +368,7 @@ exports.sanitization = function () {
   }); // suite "schema #6"
 
   suite('schema #7 (array sanitization with an array of schema)', function () {
-    var schema = {
+    const schema = {
       type: 'object',
       properties: {
         lorem: {
@@ -386,13 +388,13 @@ exports.sanitization = function () {
     };
 
     test('candidate #1', function () {
-      var candidate = {
+      const candidate = {
         lorem: {
           ipsum: ['123', '234', '345']
         }
       };
 
-      var result = si.sanitize(schema, candidate);
+      const result = si.sanitize(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('reporting').with.be.an.instanceof(Array)
         .and.be.lengthOf(2);
@@ -404,7 +406,7 @@ exports.sanitization = function () {
     });
 
     test('candidate #2', function () {
-      var result = si.sanitize({ type: 'array', optional: false, def: [], items: { type: 'object' } }, { prop: 'value' });
+      const result = si.sanitize({ type: 'array', optional: false, def: [], items: { type: 'object' } }, { prop: 'value' });
       result.should.be.an.Object;
       result.should.have.property('reporting').with.be.an.instanceof(Array)
         .and.be.lengthOf(1);
@@ -415,7 +417,7 @@ exports.sanitization = function () {
   }); // suite "schema #7"
 
   suite('schema #8 (array sanitization with an hash of schema)', function () {
-    var schema = {
+    const schema = {
       type: 'object',
       properties: {
         lorem: {
@@ -431,13 +433,13 @@ exports.sanitization = function () {
     };
 
     test('candidate #1', function () {
-      var candidate = {
+      const candidate = {
         lorem: {
           ipsum: ['123', '234', '345']
         }
       };
 
-      var result = si.sanitize(schema, candidate);
+      const result = si.sanitize(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('reporting').with.be.an.instanceof(Array)
         .and.be.lengthOf(3);
@@ -452,7 +454,7 @@ exports.sanitization = function () {
   }); // suite "schema #8"
 
   suite('schema #9 (Creation of a property if it does not exist)', function () {
-    var schema = {
+    const schema = {
       type: 'object',
       properties: {
         hash: {
@@ -469,7 +471,7 @@ exports.sanitization = function () {
     };
 
     test('candidate #1', function () {
-      var candidate = {
+      const candidate = {
         hash: {
           one: 11,
           two: 22,
@@ -477,7 +479,7 @@ exports.sanitization = function () {
         }
       };
 
-      var result = si.sanitize(schema, candidate);
+      const result = si.sanitize(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('reporting').with.be.an.instanceof(Array)
         .and.be.lengthOf(2);
@@ -495,13 +497,13 @@ exports.sanitization = function () {
     });
 
     test('candidate #2', function () {
-      var candidate = {
+      const candidate = {
         hash: {
           two: 22,
         }
       };
 
-      var result = si.sanitize(schema, candidate);
+      const result = si.sanitize(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('reporting').with.be.an.instanceof(Array)
         .and.be.lengthOf(4);
@@ -521,13 +523,13 @@ exports.sanitization = function () {
     });
 
     test('candidate #3', function () {
-      var candidate = {
+      const candidate = {
         hash: {
           four: 44
         }
       };
 
-      var result = si.sanitize(schema, candidate);
+      const result = si.sanitize(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('reporting').with.be.an.instanceof(Array)
         .and.be.lengthOf(4);
@@ -549,7 +551,7 @@ exports.sanitization = function () {
   }); // suite "schema #9"
 
   suite('schema #10 (Creation of a property [nested object] if it does not exist)', function () {
-    var schema = {
+    const schema = {
       type: 'object',
       properties: {
         one: {
@@ -582,11 +584,11 @@ exports.sanitization = function () {
     };
 
     test('candidate #1', function () {
-      var candidate = {
+      const candidate = {
         one: {}
       };
 
-      var result = si.sanitize(schema, candidate);
+      const result = si.sanitize(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('reporting').with.be.an.instanceof(Array)
         .and.be.lengthOf(3);
@@ -607,7 +609,7 @@ exports.sanitization = function () {
   }); // suite "schema #10"
 
   suite('schema #10.1 (test of optional: true)', function () {
-    var schema = {
+    const schema = {
       type: 'object',
       properties: {
         lorem: {
@@ -623,12 +625,12 @@ exports.sanitization = function () {
     };
 
     test('candidate #1', function () {
-      var candidate = {
+      const candidate = {
         lorem: {
         }
       };
 
-      var result = si.sanitize(schema, candidate);
+      const result = si.sanitize(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('reporting').with.be.an.instanceof(Array)
         .and.be.lengthOf(2);
@@ -643,10 +645,10 @@ exports.sanitization = function () {
     });
 
     test('candidate #2', function () {
-      var candidate = {
+      const candidate = {
       };
 
-      var result = si.sanitize(schema, candidate);
+      const result = si.sanitize(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('reporting').with.be.an.instanceof(Array)
         .and.be.lengthOf(3);
@@ -664,7 +666,7 @@ exports.sanitization = function () {
   }); // suite "schema 10.1"
 
   suite('schema #10.2 (test of optional: true, without field type)', function () {
-    var schema = {
+    const schema = {
       type: 'object',
       properties: {
         lorem: {
@@ -679,12 +681,12 @@ exports.sanitization = function () {
     };
 
     test('candidate #1', function () {
-      var candidate = {
+      const candidate = {
         lorem: {
         }
       };
 
-      var result = si.sanitize(schema, candidate);
+      const result = si.sanitize(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('reporting').with.be.an.instanceof(Array)
         .and.be.lengthOf(0);
@@ -695,10 +697,10 @@ exports.sanitization = function () {
     });
 
     test('candidate #2', function () {
-      var candidate = {
+      const candidate = {
       };
 
-      var result = si.sanitize(schema, candidate);
+      const result = si.sanitize(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('reporting').with.be.an.instanceof(Array)
         .and.be.lengthOf(0);
@@ -708,7 +710,7 @@ exports.sanitization = function () {
   }); // suite "schema 10.2"
 
   suite('schema #11 (hash sanitization with an hash of schema)', function () {
-    var schema = {
+    const schema = {
       type: 'object',
       properties: {
         specifications: {
@@ -724,14 +726,14 @@ exports.sanitization = function () {
     };
 
     test('candidate #1', function () {
-      var candidate = {
+      const candidate = {
         specifications: {
           couleur: ['rouge', 15],
           taille: 180
         }
       };
 
-      var result = si.sanitize(schema, candidate);
+      const result = si.sanitize(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('reporting').with.be.an.instanceof(Array)
         .and.be.lengthOf(2);
@@ -748,7 +750,7 @@ exports.sanitization = function () {
   }); // suite "schema #11"
 
   suite('schema #12 (field "alias" testing)', function () {
-    var schema = {
+    const schema = {
       type: 'object',
       properties: {
         id: {
@@ -759,11 +761,11 @@ exports.sanitization = function () {
     };
 
     test('candidate #1', function () {
-      var candidate = {
+      const candidate = {
         id: '1234'
       };
 
-      var result = si.sanitize(schema, candidate);
+      const result = si.sanitize(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('reporting').with.be.an.instanceof(Array)
         .and.be.lengthOf(1);
@@ -774,7 +776,7 @@ exports.sanitization = function () {
   }); // suite "schema #12"
 
   suite('schema #13 (field "rules" testing)', function () {
-    var schema = {
+    const schema = {
       type: 'object',
       properties: {
         stringU: { type: 'string', rules: 'upper' },
@@ -785,15 +787,15 @@ exports.sanitization = function () {
     };
     const STRING = 'cOucou a TouT lE moNDe';
 
-    test('candidat #1', function () {
-      var candidate = {
+    test('candidate #1', function () {
+      const candidate = {
         stringU: STRING,
         stringL: STRING,
         stringC: STRING,
         stringUC: STRING,
       };
 
-      var result = si.sanitize(schema, candidate);
+      const result = si.sanitize(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('reporting').with.be.an.instanceof(Array)
         .and.be.lengthOf(4);
@@ -809,7 +811,7 @@ exports.sanitization = function () {
   }); // suite "schema #13"
 
   suite('schema #14 (field "rules" with an array of string)', function () {
-    var schema = {
+    const schema = {
       type: 'object',
       properties: {
         string: { type: 'string', rules: ['lower', 'upper'] },
@@ -818,13 +820,13 @@ exports.sanitization = function () {
       }
     };
 
-    test('candidat #1', function () {
+    test('candidate #1', function () {
       const STRING = 'cOucou a TouT lE moNDe';
-      var candidate = {
+      const candidate = {
         string: STRING
       };
 
-      var result = si.sanitize(schema, candidate);
+      const result = si.sanitize(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('reporting').with.be.an.instanceof(Array)
         .and.be.lengthOf(1);
@@ -832,13 +834,13 @@ exports.sanitization = function () {
       candidate.string.should.equal(STRING.toUpperCase());
     });
 
-    test('candidat #2', function () {
-      var STRING = '    Hi! I shall be trimed!    ';
-      var candidate = {
+    test('candidate #2', function () {
+      const STRING = '    Hi! I shall be trimed!    ';
+      const candidate = {
         toTrim: STRING
       };
 
-      var result = si.sanitize(schema, candidate);
+      const result = si.sanitize(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('reporting').with.be.an.instanceof(Array)
         .and.be.lengthOf(1);
@@ -848,13 +850,13 @@ exports.sanitization = function () {
 
     // rules have a higher proprity than minLength/maxLength
     //
-    test('candidat #3', function () {
-      var STRING = '   coucou  ';
-      var candidate = {
+    test('candidate #3', function () {
+      const STRING = '   coucou  ';
+      const candidate = {
         complex: STRING
       };
 
-      var result = si.sanitize(schema, candidate);
+      const result = si.sanitize(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('reporting').with.be.an.instanceof(Array)
         .and.be.lengthOf(1);
@@ -864,7 +866,7 @@ exports.sanitization = function () {
   }); // suite "schema #14"
 
   suite('schema #15 (field "exec")', function () {
-    var schema = {
+    const schema = {
       type: 'array',
       items: {
         type: 'string',
@@ -878,10 +880,10 @@ exports.sanitization = function () {
       }
     };
 
-    test('candidat #1', function () {
-      var candidate = 'Hello Nikita is coding! nikita'.split(' ');
+    test('candidate #1', function () {
+      const candidate = 'Hello Nikita is coding! nikita'.split(' ');
 
-      var result = si.sanitize(schema, candidate);
+      const result = si.sanitize(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('reporting').with.be.an.instanceof(Array)
         .and.be.lengthOf(2);
@@ -893,7 +895,7 @@ exports.sanitization = function () {
   }); // suite "schema #15"
 
   suite('schema #16 (Asynchronous call)', function () {
-    var schema = {
+    const schema = {
       type: 'object',
       properties: {
         lorem: {
@@ -921,7 +923,7 @@ exports.sanitization = function () {
     };
 
     test('candidate #1', function (done) {
-      var candidate = {
+      const candidate = {
         lorem: { ipsum: { dolor: { sit: { amet: '1234' } } } }
       };
 
@@ -937,7 +939,7 @@ exports.sanitization = function () {
     });
 
     test('candidate #2', function (done) {
-      var candidate = {
+      const candidate = {
         lorem: { ipsum: { dolor: { sit: JSON.stringify({ amet: '1234' }) } } }
       };
 
@@ -953,7 +955,7 @@ exports.sanitization = function () {
     });
 
     test('candidate #3', function (done) {
-      var candidate = {
+      const candidate = {
         lorem: { ipsum: { dolor: JSON.stringify({ sit: { amet: '1234' } }) } }
       };
 
@@ -969,7 +971,7 @@ exports.sanitization = function () {
     });
 
     test('candidate #4', function (done) {
-      var customSchema = {
+      const customSchema = {
         type: 'array',
         items: {
           type: 'object',
@@ -995,7 +997,7 @@ exports.sanitization = function () {
   }); // suite "schema #16"
 
   suite('schema #16.1 (Asynchronous call + globing)', function () {
-    var schema = {
+    const schema = {
       type: 'object',
       properties: {
         lorem: {
@@ -1009,7 +1011,7 @@ exports.sanitization = function () {
     };
 
     test('candidate #1', function (done) {
-      var candidate = {
+      const candidate = {
         lorem: {
           ipsum: 12,
           dolor: 34,
@@ -1034,7 +1036,7 @@ exports.sanitization = function () {
     });
 
     test('candidate #2', function (done) {
-      var candidate = {
+      const candidate = {
         lorem: {
           ipsum: 5,
           dolor: 34,
@@ -1065,12 +1067,12 @@ exports.sanitization = function () {
   }); // suite "schema #16.1"
 
   suite('schema #16.2 (field "exec")', function () {
-    var schema = {
+    const schema = {
       type: 'array',
       items: {
         type: 'string',
         exec: function (schema, post, callback) {
-          var self = this;
+          const self = this;
           process.nextTick(function () {
             if ((/^nikita$/i).test(post)) {
               self.report();
@@ -1082,8 +1084,8 @@ exports.sanitization = function () {
       }
     };
 
-    test('candidat #1', function (done) {
-      var candidate = 'Hello Nikita is coding! nikita'.split(/\s+/);
+    test('candidate #1', function (done) {
+      const candidate = 'Hello Nikita is coding! nikita'.split(/\s+/);
 
       si.sanitize(schema, candidate, function (err, result) {
         should.not.exist(err);
@@ -1097,8 +1099,8 @@ exports.sanitization = function () {
       });
     });
 
-    test('candidat #2', function (done) {
-      var candidate = 'niKita   is   nikita  and  is   cool'.split(/\s+/);
+    test('candidate #2', function (done) {
+      const candidate = 'niKita   is   nikita  and  is   cool'.split(/\s+/);
 
       si.sanitize(schema, candidate, function (err, result) {
         should.not.exist(err);
@@ -1114,7 +1116,7 @@ exports.sanitization = function () {
   }); // suite "schema #16.2"
 
   suite('schema #16.3 (field "exec" and context)', function () {
-    var schema = {
+    const schema = {
       type: 'object',
       properties: {
         lorem: {
@@ -1133,7 +1135,7 @@ exports.sanitization = function () {
     };
 
     test('candidate #1', function () {
-      var candidate = {
+      const candidate = {
         lorem: {
           ipsum: 'dolor'
         },
@@ -1158,7 +1160,7 @@ exports.sanitization = function () {
   });
 
   suite('schema #16.4 (Asynchronous call with custom field)', function () {
-    var schema = {
+    const schema = {
       type: 'object',
       properties: {
         lorem: {
@@ -1168,15 +1170,15 @@ exports.sanitization = function () {
       }
     };
 
-    var custom = {
+    const custom = {
       superiorMod: function (schema, post, callback) {
-        var spm = schema.$superiorMod;
+        const spm = schema.$superiorMod;
         if (typeof spm !== 'number' || typeof post !== 'number') {
           callback();
         }
-        var self = this;
+        const self = this;
         process.nextTick(function () {
-          var mod = post % spm;
+          const mod = post % spm;
           if (mod !== 0) {
             self.report();
             return callback(null, post + spm - mod);
@@ -1186,8 +1188,8 @@ exports.sanitization = function () {
       }
     };
 
-    test('candidat #1', function (done) {
-      var candidate = {
+    test('candidate #1', function (done) {
+      const candidate = {
         lorem: 5
       };
 
@@ -1200,8 +1202,8 @@ exports.sanitization = function () {
       });
     });
 
-    test('candidat #2', function (done) {
-      var candidate = {
+    test('candidate #2', function (done) {
+      const candidate = {
         lorem: 7
       };
 
@@ -1218,7 +1220,7 @@ exports.sanitization = function () {
   }); // suite "schema #16.4"
 
   suite('Schema #16.5 (Asynchronous call with exec "field" with synchrous function', function () {
-    var schema = {
+    const schema = {
       type: 'array',
       items: {
         type: 'string',
@@ -1233,7 +1235,7 @@ exports.sanitization = function () {
     };
 
     test('candidate #1', function (done) {
-      var candidate = ['Nikita', 'nikita', 'NIKITA'];
+      const candidate = ['Nikita', 'nikita', 'NIKITA'];
 
       si.sanitize(schema, candidate, function (err, result) {
         should.not.exist(err);
@@ -1246,7 +1248,7 @@ exports.sanitization = function () {
     });
 
     test('candidate #2', function (done) {
-      var candidate = ['Nikita', 'lol', 'NIKITA', 'thisIsGonnaBeSanitized!'];
+      const candidate = ['Nikita', 'lol', 'NIKITA', 'thisIsGonnaBeSanitized!'];
 
       si.sanitize(schema, candidate, function (err, result) {
         should.not.exist(err);
@@ -1262,7 +1264,7 @@ exports.sanitization = function () {
   }); // suite "schema #16.5"
 
   suite('schema #16.6 (Default custom field)', function () {
-    var schema = {
+    const schema = {
       type: 'object',
       properties: {
         lorem: {
@@ -1272,13 +1274,13 @@ exports.sanitization = function () {
       }
     };
 
-    var custom = {
+    const custom = {
       superiorMod: function (schema, post) {
-        var spm = schema.$superiorMod;
+        const spm = schema.$superiorMod;
         if (typeof spm !== 'number' || typeof post !== 'number') {
           return post;
         }
-        var mod = post % spm;
+        const mod = post % spm;
         if (mod !== 0) {
           this.report();
           return (post + spm - mod);
@@ -1289,24 +1291,24 @@ exports.sanitization = function () {
 
     si.Sanitization.extend(custom);
 
-    test('candidat #1', function (done) {
-      var candidate = {
+    test('candidate #1', function (done) {
+      const candidate = {
         lorem: 5
       };
 
-      var result = si.sanitize(schema, candidate);
+      const result = si.sanitize(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('reporting').with.be.an.instanceof(Array)
         .and.be.lengthOf(0);
       done();
     });
 
-    test('candidat #2', function (done) {
-      var candidate = {
+    test('candidate #2', function (done) {
+      const candidate = {
         lorem: 7
       };
 
-      var result = si.sanitize(schema, candidate);
+      const result = si.sanitize(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('reporting').with.be.an.instanceof(Array)
         .and.be.lengthOf(1);
@@ -1321,7 +1323,7 @@ exports.sanitization = function () {
     });
   }); // suite "schema #16.6"
   suite('schema #17 (type casting [array])', function () {
-    var schema = {
+    const schema = {
       type: 'object',
       properties: {
         tab: {
@@ -1334,9 +1336,9 @@ exports.sanitization = function () {
     };
 
     test('candidate #1 | number -> [ string ]', function () {
-      var candidate = { tab: 15 };
+      const candidate = { tab: 15 };
 
-      var result = si.sanitize(schema, candidate);
+      const result = si.sanitize(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('reporting').with.be.an.instanceof(Array)
         .and.be.lengthOf(2);
@@ -1346,9 +1348,9 @@ exports.sanitization = function () {
     });
 
     test('candidate #2 | null -> [ null ]', function () {
-      var candidate = { tab: null };
+      const candidate = { tab: null };
 
-      var result = si.sanitize(schema, candidate);
+      const result = si.sanitize(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('reporting').with.be.an.instanceof(Array)
         .and.be.lengthOf(1);
@@ -1357,9 +1359,9 @@ exports.sanitization = function () {
     });
 
     test('candidate #3 | undefined -> []', function () {
-      var candidate = { tab: undefined };
+      const candidate = { tab: undefined };
 
-      var result = si.sanitize(schema, candidate);
+      const result = si.sanitize(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('reporting').with.be.an.instanceof(Array)
         .and.be.lengthOf(1);
@@ -1368,9 +1370,9 @@ exports.sanitization = function () {
     });
 
     test('candidate #4 | [ number, boolean ] -> [ string, string ]', function () {
-      var candidate = { tab: [15, true] };
+      const candidate = { tab: [15, true] };
 
-      var result = si.sanitize(schema, candidate);
+      const result = si.sanitize(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('reporting').with.be.an.instanceof(Array)
         .and.be.lengthOf(2);
@@ -1380,9 +1382,9 @@ exports.sanitization = function () {
     });
 
     test('candidate #5 | "one,two,three" -> [ "one", "two", "three" ]', function () {
-      var candidate = { tab: 'one,two,three' };
+      const candidate = { tab: 'one,two,three' };
 
-      var result = si.sanitize(schema, candidate);
+      const result = si.sanitize(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('reporting').with.be.an.instanceof(Array)
         .and.be.lengthOf(1);
@@ -1391,10 +1393,10 @@ exports.sanitization = function () {
     });
 
     test('candidate #6 | "one;two;three" -> [ "one", "two", "three" ]', function () {
-      var candidate = { tab: 'one;two;three' };
+      const candidate = { tab: 'one;two;three' };
 
       schema.properties.tab.splitWith = ';';
-      var result = si.sanitize(schema, candidate);
+      const result = si.sanitize(schema, candidate);
       delete schema.properties.tab.splitWith;
       result.should.be.an.Object;
       result.should.have.property('reporting').with.be.an.instanceof(Array)
@@ -1404,10 +1406,10 @@ exports.sanitization = function () {
     });
 
     test('candidate #7 | "[JSON String]" -> [ 1, "two", { three: true } ]', function () {
-      var candidate = { tab: JSON.stringify([1, 'two', { three: true }]) };
+      const candidate = { tab: JSON.stringify([1, 'two', { three: true }]) };
 
       schema.properties.tab.items.type = 'any';
-      var result = si.sanitize(schema, candidate);
+      const result = si.sanitize(schema, candidate);
       schema.properties.tab.items.type = 'string';
       result.should.be.an.Object;
       result.should.have.property('reporting').with.be.an.instanceof(Array)
@@ -1419,7 +1421,7 @@ exports.sanitization = function () {
   });
   // suite "schema #18"
   suite('schema #18 (strict option)', function () {
-    var schema = {
+    const schema = {
       type: 'object',
       strict: true,
       properties: {
@@ -1428,20 +1430,20 @@ exports.sanitization = function () {
     };
 
     test('candidate #1 | remove useless keys', function () {
-      var candidate = {
+      const candidate = {
         good: 'key',
         bad: 'key'
       };
 
-      var result = si.sanitize(schema, candidate);
+      const result = si.sanitize(schema, candidate);
       result.should.be.an.Object;
       candidate.should.be.eql({ good: 'key' });
     });
 
     test('candidate #2 | remove nothing because candidate is not an object', function () {
-      var candidate = 'coucou';
+      const candidate = 'coucou';
 
-      var result = si.sanitize(schema, candidate);
+      const result = si.sanitize(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('reporting').with.be.an.instanceof(Array)
         .and.be.lengthOf(0);
@@ -1449,16 +1451,16 @@ exports.sanitization = function () {
     });
 
     test('candidate #3 | remove nothing because candidate is not an object', function () {
-      var schema1 = {
+      const schema1 = {
         type: 'object',
         strict: true
       };
-      var candidate = {
+      const candidate = {
         good: 'key',
         bad: 'key'
       };
 
-      var result = si.sanitize(schema1, candidate);
+      const result = si.sanitize(schema1, candidate);
       result.should.be.an.Object;
       result.should.have.property('reporting').with.be.an.instanceof(Array)
         .and.be.lengthOf(0);
@@ -1472,12 +1474,12 @@ exports.sanitization = function () {
         });
       }
 
-      var candidate = new G({
+      const candidate = new G({
         good: 'key',
         bad: 'key'
       });
 
-      var result = si.sanitize(schema, candidate);
+      const result = si.sanitize(schema, candidate);
       result.should.be.an.Object;
       candidate.should.be.eql(new G({ good: 'key' }));
     });
@@ -1491,12 +1493,12 @@ exports.sanitization = function () {
         }
       }
 
-      var candidate = new G({
+      const candidate = new G({
         good: 'key',
         bad: 'key'
       });
 
-      var result = si.sanitize(schema, candidate);
+      const result = si.sanitize(schema, candidate);
       result.should.be.an.Object;
       candidate.should.be.eql(new G({ good: 'key' }));
     });

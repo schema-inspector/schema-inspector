@@ -1,9 +1,11 @@
-var should = require('should');
-var si = require('../');
+/* global suite test */
+
+const should = require('should');
+const si = require('../');
 
 exports.validation = function () {
   suite('schema #1 (Several types of test in the same inspection)', function () {
-    var schema = {
+    const schema = {
       type: 'object',
       properties: {
         name: { type: 'string', minLength: 4, maxLength: 12 },
@@ -23,14 +25,14 @@ exports.validation = function () {
     };
 
     test('candidate #1', function () {
-      var candidate = {
+      const candidate = {
         name: 'NikitaJS',
         age: 20,
         id: 'AbcdefgZ',
         site1: 'http://google.com',
         stuff: ['JavaScript', null, 1234]
       };
-      var result = si.validate(schema, candidate);
+      const result = si.validate(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('valid').with.equal(true);
       result.should.have.property('error').with.be.an.instanceof(Array)
@@ -38,14 +40,14 @@ exports.validation = function () {
     });
 
     test('candidate #2', function () {
-      var candidate = {
+      const candidate = {
         name: 'Nik',
         age: 20,
         id: 'Abcdefgb',
         site1: 'http://localhost:1234',
         stuff: ['', null, 1234]
       };
-      var result = si.validate(schema, candidate);
+      const result = si.validate(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('valid').with.equal(false);
       result.should.have.property('error').with.be.an.instanceof(Array)
@@ -56,14 +58,14 @@ exports.validation = function () {
     });
 
     test('candidate #3', function () {
-      var candidate = {
+      const candidate = {
         name: 'NikitaJS',
         age: 101,
         id: new Date(),
         site1: 'wat',
         stuff: []
       };
-      var result = si.validate(schema, candidate);
+      const result = si.validate(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('valid').with.equal(false);
       result.should.have.property('error').with.be.an.instanceof(Array)
@@ -75,14 +77,14 @@ exports.validation = function () {
     });
 
     test('candidate #4', function () {
-      var candidate = {
+      const candidate = {
         name: 'NikitaJS loves JavaScript but this string is too long',
         age: 20,
         id: 'aeeeeeeZ',
         site1: 'http://schema:inspector@schema-inspector.com',
         stuff: ['JavaScript', {}, []]
       };
-      var result = si.validate(schema, candidate);
+      const result = si.validate(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('valid').with.equal(false);
       result.should.have.property('error').with.be.an.instanceof(Array)
@@ -100,7 +102,7 @@ exports.validation = function () {
 
   suite('schema #1.1 (Types tests)', function () {
     function F() { };
-    var schema = {
+    const schema = {
       type: 'array',
       items: [
         { type: 'function' },
@@ -112,14 +114,14 @@ exports.validation = function () {
     };
 
     test('candidate #1', function () {
-      var candidate = [
+      const candidate = [
         function () { },
         'Nikita',
         1234.1234,
         1234,
         new F()
       ];
-      var result = si.validate(schema, candidate);
+      const result = si.validate(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('valid').with.equal(true);
       result.should.have.property('error').with.be.an.instanceof(Array)
@@ -128,14 +130,14 @@ exports.validation = function () {
 
     test('candidate #2', function () {
       function G() { };
-      var candidate = [
+      const candidate = [
         null,
         'Nikita',
         1234,
         1234.1234,
         new G()
       ];
-      var result = si.validate(schema, candidate);
+      const result = si.validate(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('valid').with.equal(false);
       result.should.have.property('error').with.be.an.instanceof(Array)
@@ -148,7 +150,7 @@ exports.validation = function () {
   }); // suite "schema #1.1"
 
   suite('schema #2 (deeply nested object inspection)', function () {
-    var schema = {
+    const schema = {
       type: 'object',
       properties: {
         lorem: {
@@ -176,11 +178,11 @@ exports.validation = function () {
     };
 
     test('candidate #1', function () {
-      var candidate = {
+      const candidate = {
         lorem: { ipsum: { dolor: { sit: { amet: 'truc' } } } }
       };
 
-      var result = si.validate(schema, candidate);
+      const result = si.validate(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('valid').with.equal(true);
       result.should.have.property('error').with.be.an.instanceof(Array)
@@ -188,11 +190,11 @@ exports.validation = function () {
     });
 
     test('candidate #2', function () {
-      var candidate = {
+      const candidate = {
         lorem: { ipsum: { dolor: { sit: { amet: new Date() } } } }
       };
 
-      var result = si.validate(schema, candidate);
+      const result = si.validate(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('valid').with.equal(true);
       result.should.have.property('error').with.be.an.instanceof(Array)
@@ -200,11 +202,11 @@ exports.validation = function () {
     });
 
     test('candidate #3', function () {
-      var candidate = {
+      const candidate = {
         lorem: { ipsum: { dolor: { sit: { amet: 1234 } } } }
       };
 
-      var result = si.validate(schema, candidate);
+      const result = si.validate(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('valid').with.equal(true);
       result.should.have.property('error').with.be.an.instanceof(Array)
@@ -212,11 +214,11 @@ exports.validation = function () {
     });
 
     test('candidate #4', function () {
-      var candidate = {
+      const candidate = {
         lorem: { ipsum: { dolor: { sit: { amet: /^regexp$/ } } } }
       };
 
-      var result = si.validate(schema, candidate);
+      const result = si.validate(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('valid').with.equal(true);
       result.should.have.property('error').with.be.an.instanceof(Array)
@@ -224,11 +226,11 @@ exports.validation = function () {
     });
 
     test('candidate #5', function () {
-      var candidate = {
+      const candidate = {
         lorem: { ipsum: { dolor: { sit: { amet: ['this', 'is', 'an', 'array'] } } } }
       };
 
-      var result = si.validate(schema, candidate);
+      const result = si.validate(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('valid').with.equal(true);
       result.should.have.property('error').with.be.an.instanceof(Array)
@@ -236,11 +238,11 @@ exports.validation = function () {
     });
 
     test('candidate #5', function () {
-      var candidate = {
+      const candidate = {
         lorem: { ipsum: { dolor: { sit: { amet: ['this', 'is', 'an', 'array'] } } } }
       };
 
-      var result = si.validate(schema, candidate);
+      const result = si.validate(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('valid').with.equal(true);
       result.should.have.property('error').with.be.an.instanceof(Array)
@@ -248,11 +250,11 @@ exports.validation = function () {
     });
 
     test('candidate #6', function () {
-      var candidate = {
+      const candidate = {
         lorem: { ipsum: { dolor: { sit: 0 } } }
       };
 
-      var result = si.validate(schema, candidate);
+      const result = si.validate(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('valid').with.equal(false);
       result.should.have.property('error').with.be.an.instanceof(Array)
@@ -261,11 +263,11 @@ exports.validation = function () {
     });
 
     test('candidate #7', function () {
-      var candidate = {
+      const candidate = {
         lorem: { ipsum: { dolor: 0 } }
       };
 
-      var result = si.validate(schema, candidate);
+      const result = si.validate(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('valid').with.equal(false);
       result.should.have.property('error').with.be.an.instanceof(Array)
@@ -274,11 +276,11 @@ exports.validation = function () {
     });
 
     test('candidate #8', function () {
-      var candidate = {
+      const candidate = {
         lorem: { ipsum: 0 }
       };
 
-      var result = si.validate(schema, candidate);
+      const result = si.validate(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('valid').with.equal(false);
       result.should.have.property('error').with.be.an.instanceof(Array)
@@ -289,7 +291,7 @@ exports.validation = function () {
   }); // suite "schema #2"
 
   suite('schema #3 (array inspection with an array of schema)', function () {
-    var schema = {
+    const schema = {
       type: 'object',
       properties: {
         array: {
@@ -313,7 +315,7 @@ exports.validation = function () {
     };
 
     test('candidate #1', function () {
-      var candidate = {
+      const candidate = {
         array: [
           { thisIs: 'aString' },
           1234,
@@ -321,7 +323,7 @@ exports.validation = function () {
         ]
       };
 
-      var result = si.validate(schema, candidate);
+      const result = si.validate(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('valid').with.equal(true);
       result.should.have.property('error').with.be.an.instanceof(Array)
@@ -329,7 +331,7 @@ exports.validation = function () {
     });
 
     test('candidate #2', function () {
-      var candidate = {
+      const candidate = {
         array: [
           { thisIs: 'aString' },
           1234,
@@ -338,7 +340,7 @@ exports.validation = function () {
         ]
       };
 
-      var result = si.validate(schema, candidate);
+      const result = si.validate(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('valid').with.equal(true);
       result.should.have.property('error').with.be.an.instanceof(Array)
@@ -346,7 +348,7 @@ exports.validation = function () {
     });
 
     test('candidate #3', function () {
-      var candidate = {
+      const candidate = {
         array: [
           { thisIs: 'aString' },
           'aString',
@@ -354,7 +356,7 @@ exports.validation = function () {
         ]
       };
 
-      var result = si.validate(schema, candidate);
+      const result = si.validate(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('valid').with.equal(false);
       result.should.have.property('error').with.be.an.instanceof(Array)
@@ -364,11 +366,11 @@ exports.validation = function () {
     });
 
     test('candidate #4', function () {
-      var candidate = {
+      const candidate = {
         array: [{}, 1234]
       };
 
-      var result = si.validate(schema, candidate);
+      const result = si.validate(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('valid').with.equal(false);
       result.should.have.property('error').with.be.an.instanceof(Array)
@@ -377,11 +379,11 @@ exports.validation = function () {
     });
 
     test('candidate #5', function () {
-      var candidate = {
+      const candidate = {
         array: [{ thisIs: 'anotherString' }]
       };
 
-      var result = si.validate(schema, candidate);
+      const result = si.validate(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('valid').with.equal(false);
       result.should.have.property('error').with.be.an.instanceof(Array)
@@ -392,7 +394,7 @@ exports.validation = function () {
   }); // suite "schema #3"
 
   suite('schema #4 (array inspection with a hash of schema)', function () {
-    var schema = {
+    const schema = {
       type: 'object',
       properties: {
         array: {
@@ -408,14 +410,14 @@ exports.validation = function () {
     };
 
     test('candidate #1', function () {
-      var candidate = {
+      const candidate = {
         array: [
           { thisIs: 'first' },
           { thisIs: 'second' },
           { thisIs: 'third' }
         ]
       };
-      var result = si.validate(schema, candidate);
+      const result = si.validate(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('valid').with.equal(true);
       result.should.have.property('error').with.be.an.instanceof(Array)
@@ -423,14 +425,14 @@ exports.validation = function () {
     });
 
     test('candidate #2', function () {
-      var candidate = {
+      const candidate = {
         array: [
           { thisIs: 'aString' },
           1234,
           { thisIs: new Date() }
         ]
       };
-      var result = si.validate(schema, candidate);
+      const result = si.validate(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('valid').with.equal(false);
       result.should.have.property('error').with.be.an.instanceof(Array)
@@ -440,7 +442,7 @@ exports.validation = function () {
     });
 
     test('candidate #3', function () {
-      var candidate = {
+      const candidate = {
         array: [
           { thisIs: 'first' },
           {},
@@ -449,7 +451,7 @@ exports.validation = function () {
           { thisIs: 'fifth' }
         ]
       };
-      var result = si.validate(schema, candidate);
+      const result = si.validate(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('valid').with.equal(false);
       result.should.have.property('error').with.be.an.instanceof(Array)
@@ -459,14 +461,14 @@ exports.validation = function () {
     });
 
     test('candidate #4', function () {
-      var candidate = {
+      const candidate = {
         array: [
           { thisIs: 'first but tooooooo long' },
           { thisIs: 'second' },
           { thisIs: 'ooh' }
         ]
       };
-      var result = si.validate(schema, candidate);
+      const result = si.validate(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('valid').with.equal(false);
       result.should.have.property('error').with.be.an.instanceof(Array)
@@ -476,10 +478,10 @@ exports.validation = function () {
     });
 
     test('candidate #5', function () {
-      var candidate = {
+      const candidate = {
         array: []
       };
-      var result = si.validate(schema, candidate);
+      const result = si.validate(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('valid').with.equal(true);
       result.should.have.property('error').with.be.an.instanceof(Array)
@@ -489,7 +491,7 @@ exports.validation = function () {
   }); // suite "schema #4"
 
   suite('schema #5 (formats and regular expressions)', function () {
-    var schema = {
+    const schema = {
       type: 'array',
       items: [
         { type: 'string', pattern: /^\d+$/ },
@@ -504,7 +506,7 @@ exports.validation = function () {
     };
 
     test('candidate #1', function () {
-      var candidate = [
+      const candidate = [
         '1234',
         'abcd',
         '_qwerty_',
@@ -515,7 +517,7 @@ exports.validation = function () {
         '0e0fa279-e041-442e-a182-30c9db270894'
       ];
 
-      var result = si.validate(schema, candidate);
+      const result = si.validate(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('valid').with.equal(true);
       result.should.have.property('error').with.be.an.instanceof(Array)
@@ -523,7 +525,7 @@ exports.validation = function () {
     });
 
     test('candidate #2', function () {
-      var candidate = [
+      const candidate = [
         '1234',
         'abcdE',
         '_QWErty_',
@@ -534,7 +536,7 @@ exports.validation = function () {
         'e5a2afe3-a398-4e49-8fe0-99dc8997119e'
       ];
 
-      var result = si.validate(schema, candidate);
+      const result = si.validate(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('valid').with.equal(true);
       result.should.have.property('error').with.be.an.instanceof(Array)
@@ -542,7 +544,7 @@ exports.validation = function () {
     });
 
     test('candidate #3', function () {
-      var candidate = [
+      const candidate = [
         '1234e',
         'abcdE3',
         '_QWErty',
@@ -553,7 +555,7 @@ exports.validation = function () {
         'c8ddb0d154eb-48e9-af48-9e59477c7895'
       ];
 
-      var result = si.validate(schema, candidate);
+      const result = si.validate(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('valid').with.equal(false);
       result.should.have.property('error').with.be.an.instanceof(Array)
@@ -568,7 +570,7 @@ exports.validation = function () {
     });
 
     test('candidate #4', function () {
-      var candidate = [
+      const candidate = [
         'e1234',
         '3abcdE',
         'QWErty_',
@@ -579,7 +581,7 @@ exports.validation = function () {
         'bc9ffc8e-2d5b'
       ];
 
-      var result = si.validate(schema, candidate);
+      const result = si.validate(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('valid').with.equal(false);
       result.should.have.property('error').with.be.an.instanceof(Array)
@@ -595,7 +597,7 @@ exports.validation = function () {
     });
 
     test('candidate #5', function () {
-      var candidate = [
+      const candidate = [
         '12e34',
         'abc3dE',
         '_QWE_rty_',
@@ -606,7 +608,7 @@ exports.validation = function () {
         '@1da1602-#30c-$c33-&dbb-8d88*1796db3'
       ];
 
-      var result = si.validate(schema, candidate);
+      const result = si.validate(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('valid').with.equal(false);
       result.should.have.property('error').with.be.an.instanceof(Array)
@@ -624,7 +626,7 @@ exports.validation = function () {
   }); // suite "schema #5"
 
   suite('schema #5.1 (formats date-time)', function () {
-    var schema = {
+    const schema = {
       type: 'array',
       items: {
         type: 'string',
@@ -633,14 +635,14 @@ exports.validation = function () {
     };
 
     test('candidate #1', function () {
-      var candidate = [
+      const candidate = [
         '2012-08-08T14:30:09.032+02:00',
         '2012-08-08T14:30:09+02:00',
         '2012-08-08T14:30:09.032Z',
         '2012-08-08T14:30:09Z',
       ];
 
-      var result = si.validate(schema, candidate);
+      const result = si.validate(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('valid').with.equal(true);
       result.should.have.property('error').with.be.an.instanceof(Array)
@@ -648,14 +650,14 @@ exports.validation = function () {
     });
 
     test('candidate #2', function () {
-      var candidate = [
+      const candidate = [
         '2012-08-08T14:30:09.32+02:00',
         '2012-08-08T14:30:09+2:00',
         '2012-08-08T14:30:09.032',
         '2012-08-08 14:30:09',
       ];
 
-      var result = si.validate(schema, candidate);
+      const result = si.validate(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('valid').with.equal(false);
       result.should.have.property('error').with.be.an.instanceof(Array)
@@ -668,7 +670,7 @@ exports.validation = function () {
   }); // suite "schema #5.1"
 
   suite('schema #5.2 (array of formats)', function () {
-    var schema = {
+    const schema = {
       type: 'array',
       items: {
         type: 'string',
@@ -677,14 +679,14 @@ exports.validation = function () {
     };
 
     test('candidat #1', function () {
-      var candidate = [
+      const candidate = [
         '2012-08-08T14:30:09.032+02:00',
         '#0f0bcd',
         'NikitaJS',
         'OK something'
       ];
 
-      var result = si.validate(schema, candidate);
+      const result = si.validate(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('valid').with.equal(true);
       result.should.have.property('error').with.be.an.instanceof(Array)
@@ -692,12 +694,12 @@ exports.validation = function () {
     });
 
     test('candidat #2', function () {
-      var candidate = [
+      const candidate = [
         '2012-08-08T14:30:09.02+02:00',
         'OK#something'
       ];
 
-      var result = si.validate(schema, candidate);
+      const result = si.validate(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('valid').with.equal(false);
       result.should.have.property('error').with.be.an.instanceof(Array)
@@ -709,17 +711,17 @@ exports.validation = function () {
   }); // suite "schema #5.2"
 
   suite('schema #6 (numbers inspection #1)', function () {
-    var schema = {
+    const schema = {
       type: 'array',
       items: { type: 'integer', gte: 100, lte: 200, ne: 150 }
     };
 
     test('candidate #1', function () {
-      var candidate = [
+      const candidate = [
         100, 200, 125, 175
       ];
 
-      var result = si.validate(schema, candidate);
+      const result = si.validate(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('valid').with.equal(true);
       result.should.have.property('error').with.be.an.instanceof(Array)
@@ -727,11 +729,11 @@ exports.validation = function () {
     });
 
     test('candidate #2', function () {
-      var candidate = [
+      const candidate = [
         100, 200, 99, 201, 150, 103.3
       ];
 
-      var result = si.validate(schema, candidate);
+      const result = si.validate(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('valid').with.equal(false);
       result.should.have.property('error').with.be.an.instanceof(Array)
@@ -745,17 +747,17 @@ exports.validation = function () {
   }); // suite "schema #6"
 
   suite('schema #7 (numbers inspection #2)', function () {
-    var schema = {
+    const schema = {
       type: 'array',
       items: { type: 'integer', gt: 100, lt: 200, ne: [125, 150, 175] }
     };
 
     test('candidate #1', function () {
-      var candidate = [
+      const candidate = [
         101, 199
       ];
 
-      var result = si.validate(schema, candidate);
+      const result = si.validate(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('valid').with.equal(true);
       result.should.have.property('error').with.be.an.instanceof(Array)
@@ -763,11 +765,11 @@ exports.validation = function () {
     });
 
     test('candidate #2', function () {
-      var candidate = [
+      const candidate = [
         101, 199, 100, 200, 125, 150, 175
       ];
 
-      var result = si.validate(schema, candidate);
+      const result = si.validate(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('valid').with.equal(false);
       result.should.have.property('error').with.be.an.instanceof(Array)
@@ -782,15 +784,15 @@ exports.validation = function () {
   }); // suite "schema #7"
 
   suite('schema #8 (numbers inspection #3)', function () {
-    var schema = {
+    const schema = {
       type: 'array',
       items: { type: 'number', eq: [100, 125, 150, 200] }
     };
 
     test('candidate #1', function () {
-      var candidate = [100, 125, 150, 200];
+      const candidate = [100, 125, 150, 200];
 
-      var result = si.validate(schema, candidate);
+      const result = si.validate(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('valid').with.equal(true);
       result.should.have.property('error').with.be.an.instanceof(Array)
@@ -798,9 +800,9 @@ exports.validation = function () {
     });
 
     test('candidate #2', function () {
-      var candidate = [100, 125, 150, 200, 0, 25, 50];
+      const candidate = [100, 125, 150, 200, 0, 25, 50];
 
-      var result = si.validate(schema, candidate);
+      const result = si.validate(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('valid').with.equal(false);
       result.should.have.property('error').with.be.an.instanceof(Array)
@@ -813,16 +815,16 @@ exports.validation = function () {
   }); // suite "schema #8"
 
   suite('schema #9 (uniqueness checking [uniquess === true])', function () {
-    var schema = {
+    const schema = {
       type: 'array',
       items: { type: 'any' },
       uniqueness: true
     };
 
     test('candidate #1', function () {
-      var candidate = [123, 234, 345, 456, 567];
+      const candidate = [123, 234, 345, 456, 567];
 
-      var result = si.validate(schema, candidate);
+      const result = si.validate(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('valid').with.equal(true);
       result.should.have.property('error').with.be.an.instanceof(Array)
@@ -830,9 +832,9 @@ exports.validation = function () {
     });
 
     test('candidate #2', function () {
-      var candidate = ['123', 123, '256', 256, false, 0, ''];
+      const candidate = ['123', 123, '256', 256, false, 0, ''];
 
-      var result = si.validate(schema, candidate);
+      const result = si.validate(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('valid').with.equal(true);
       result.should.have.property('error').with.be.an.instanceof(Array)
@@ -840,9 +842,9 @@ exports.validation = function () {
     });
 
     test('candidate #3', function () {
-      var candidate = [123, 234, 345, 456, 567, 123, 345];
+      const candidate = [123, 234, 345, 456, 567, 123, 345];
 
-      var result = si.validate(schema, candidate);
+      const result = si.validate(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('valid').with.equal(false);
       result.should.have.property('error').with.be.an.instanceof(Array)
@@ -852,9 +854,9 @@ exports.validation = function () {
     });
 
     test('candidate #4', function () {
-      var candidate = ['123', null, '1234', '12', '123'];
+      const candidate = ['123', null, '1234', '12', '123'];
 
-      var result = si.validate(schema, candidate);
+      const result = si.validate(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('valid').with.equal(false);
       result.should.have.property('error').with.be.an.instanceof(Array)
@@ -865,16 +867,16 @@ exports.validation = function () {
   }); // suite "schema #9"
 
   suite('schema #10 (uniqueness checking [uniquess === false])', function () {
-    var schema = {
+    const schema = {
       type: 'array',
       items: { type: 'any' },
       uniqueness: false
     };
 
     test('candidate #1', function () {
-      var candidate = [123, 234, 345, 456, 567];
+      const candidate = [123, 234, 345, 456, 567];
 
-      var result = si.validate(schema, candidate);
+      const result = si.validate(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('valid').with.equal(true);
       result.should.have.property('error').with.be.an.instanceof(Array)
@@ -882,9 +884,9 @@ exports.validation = function () {
     });
 
     test('candidate #2', function () {
-      var candidate = ['123', 123, '256', 256, false, 0, ''];
+      const candidate = ['123', 123, '256', 256, false, 0, ''];
 
-      var result = si.validate(schema, candidate);
+      const result = si.validate(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('valid').with.equal(true);
       result.should.have.property('error').with.be.an.instanceof(Array)
@@ -892,9 +894,9 @@ exports.validation = function () {
     });
 
     test('candidate #3', function () {
-      var candidate = [123, 234, 345, 456, 567, 123, 345];
+      const candidate = [123, 234, 345, 456, 567, 123, 345];
 
-      var result = si.validate(schema, candidate);
+      const result = si.validate(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('valid').with.equal(true);
       result.should.have.property('error').with.be.an.instanceof(Array)
@@ -902,9 +904,9 @@ exports.validation = function () {
     });
 
     test('candidate #4', function () {
-      var candidate = ['123', null, '1234', '12', '123'];
+      const candidate = ['123', null, '1234', '12', '123'];
 
-      var result = si.validate(schema, candidate);
+      const result = si.validate(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('valid').with.equal(true);
       result.should.have.property('error').with.be.an.instanceof(Array)
@@ -915,15 +917,15 @@ exports.validation = function () {
 
 
   suite('schema #11 (uniqueness checking [uniquess is not given])', function () {
-    var schema = {
+    const schema = {
       type: 'array',
       items: { type: 'any' }
     };
 
     test('candidate #1', function () {
-      var candidate = [123, 234, 345, 456, 567];
+      const candidate = [123, 234, 345, 456, 567];
 
-      var result = si.validate(schema, candidate);
+      const result = si.validate(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('valid').with.equal(true);
       result.should.have.property('error').with.be.an.instanceof(Array)
@@ -931,9 +933,9 @@ exports.validation = function () {
     });
 
     test('candidate #2', function () {
-      var candidate = ['123', 123, '256', 256, false, 0, ''];
+      const candidate = ['123', 123, '256', 256, false, 0, ''];
 
-      var result = si.validate(schema, candidate);
+      const result = si.validate(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('valid').with.equal(true);
       result.should.have.property('error').with.be.an.instanceof(Array)
@@ -941,9 +943,9 @@ exports.validation = function () {
     });
 
     test('candidate #3', function () {
-      var candidate = [123, 234, 345, 456, 567, 123, 345];
+      const candidate = [123, 234, 345, 456, 567, 123, 345];
 
-      var result = si.validate(schema, candidate);
+      const result = si.validate(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('valid').with.equal(true);
       result.should.have.property('error').with.be.an.instanceof(Array)
@@ -951,9 +953,9 @@ exports.validation = function () {
     });
 
     test('candidate #4', function () {
-      var candidate = ['123', null, '1234', '12', '123'];
+      const candidate = ['123', null, '1234', '12', '123'];
 
-      var result = si.validate(schema, candidate);
+      const result = si.validate(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('valid').with.equal(true);
       result.should.have.property('error').with.be.an.instanceof(Array)
@@ -963,7 +965,7 @@ exports.validation = function () {
   }); // suite "schema #11"
 
   suite('schema #12 (optionnal attribut testing)', function () {
-    var schema = {
+    const schema = {
       type: 'object',
       properties: {
         id: { type: 'integer' },
@@ -973,13 +975,13 @@ exports.validation = function () {
     };
 
     test('candidate #1', function () {
-      var candidate = {
+      const candidate = {
         id: 1111,
         nickname: 'NikitaJS',
         age: 20
       };
 
-      var result = si.validate(schema, candidate);
+      const result = si.validate(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('valid').with.equal(true);
       result.should.have.property('error').with.be.an.instanceof(Array)
@@ -987,12 +989,12 @@ exports.validation = function () {
     });
 
     test('candidate #2', function () {
-      var candidate = {
+      const candidate = {
         id: 1111,
         nickname: 'NikitaJS'
       };
 
-      var result = si.validate(schema, candidate);
+      const result = si.validate(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('valid').with.equal(true);
       result.should.have.property('error').with.be.an.instanceof(Array)
@@ -1000,11 +1002,11 @@ exports.validation = function () {
     });
 
     test('candidate #3', function () {
-      var candidate = {
+      const candidate = {
         age: 20
       };
 
-      var result = si.validate(schema, candidate);
+      const result = si.validate(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('valid').with.equal(false);
       result.should.have.property('error').with.be.an.instanceof(Array)
@@ -1016,7 +1018,7 @@ exports.validation = function () {
   }); // suite "schema #12"
 
   suite('schema #13 (field "error" testing)', function () {
-    var schema = {
+    const schema = {
       type: 'object',
       properties: {
         id: {
@@ -1029,11 +1031,11 @@ exports.validation = function () {
     };
 
     test('candidate #1', function () {
-      var candidate = {
+      const candidate = {
         id: 15
       };
 
-      var result = si.validate(schema, candidate);
+      const result = si.validate(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('valid').with.equal(true);
       result.should.have.property('error').with.be.an.instanceof(Array)
@@ -1041,11 +1043,11 @@ exports.validation = function () {
     });
 
     test('candidate #2', function () {
-      var candidate = {
+      const candidate = {
         id: 25
       };
 
-      var result = si.validate(schema, candidate);
+      const result = si.validate(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('valid').with.equal(false);
       result.should.have.property('error').with.be.an.instanceof(Array)
@@ -1055,11 +1057,11 @@ exports.validation = function () {
     });
 
     test('candidate #3', function () {
-      var candidate = {
+      const candidate = {
         id: 'NikitaJS'
       };
 
-      var result = si.validate(schema, candidate);
+      const result = si.validate(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('valid').with.equal(false);
       result.should.have.property('error').with.be.an.instanceof(Array)
@@ -1071,7 +1073,7 @@ exports.validation = function () {
   }); // suite "schema #13"
 
   suite('schema #14 (field "alias" testing)', function () {
-    var schema = {
+    const schema = {
       type: 'object',
       properties: {
         id: {
@@ -1092,11 +1094,11 @@ exports.validation = function () {
     };
 
     test('candidate #1', function () {
-      var candidate = {
+      const candidate = {
         id: 25
       };
 
-      var result = si.validate(schema, candidate);
+      const result = si.validate(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('valid').with.equal(false);
       result.should.have.property('error').with.be.an.instanceof(Array)
@@ -1105,12 +1107,12 @@ exports.validation = function () {
     });
 
     test('candidate #2', function () {
-      var candidate = {
+      const candidate = {
         id: 0,
         array: ['NikitaJS', 'Atinux', 1234]
       };
 
-      var result = si.validate(schema, candidate);
+      const result = si.validate(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('valid').with.equal(false);
       result.should.have.property('error').with.be.an.instanceof(Array)
@@ -1122,7 +1124,7 @@ exports.validation = function () {
   }); // suite "schema #14"
 
   suite('schema #15 (globing testing)', function () {
-    var schema = {
+    const schema = {
       type: 'object',
       properties: {
         globString: {
@@ -1141,7 +1143,7 @@ exports.validation = function () {
     };
 
     test('candidate #1', function () {
-      var candidate = {
+      const candidate = {
         globString: {
           lorem: 'ipsum',
           dolor: 'sit amet'
@@ -1153,7 +1155,7 @@ exports.validation = function () {
         }
       };
 
-      var result = si.validate(schema, candidate);
+      const result = si.validate(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('valid').with.equal(true);
       result.should.have.property('error').with.be.an.instanceof(Array)
@@ -1161,14 +1163,14 @@ exports.validation = function () {
     });
 
     test('candidate #2', function () {
-      var candidate = {
+      const candidate = {
         globString: {
         },
         globInteger: {
         }
       };
 
-      var result = si.validate(schema, candidate);
+      const result = si.validate(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('valid').with.equal(true);
       result.should.have.property('error').with.be.an.instanceof(Array)
@@ -1176,7 +1178,7 @@ exports.validation = function () {
     });
 
     test('candidate #3', function () {
-      var candidate = {
+      const candidate = {
         globString: {
           lorem: 'ipsum',
           dolor: 77
@@ -1188,7 +1190,7 @@ exports.validation = function () {
         }
       };
 
-      var result = si.validate(schema, candidate);
+      const result = si.validate(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('valid').with.equal(false);
       result.should.have.property('error').with.be.an.instanceof(Array)
@@ -1200,7 +1202,7 @@ exports.validation = function () {
   }); // suite "schema #15"
 
   suite('schema #16 ("exec" field testing)', function () {
-    var schema = {
+    const schema = {
       type: 'object',
       properties: {
         lorem: {
@@ -1225,7 +1227,7 @@ exports.validation = function () {
     };
 
     test('candidate #1', function () {
-      var candidate = {
+      const candidate = {
         lorem: {
           ipsum: [
             1234,
@@ -1234,7 +1236,7 @@ exports.validation = function () {
         }
       };
 
-      var result = si.validate(schema, candidate);
+      const result = si.validate(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('valid').with.equal(true);
       result.should.have.property('error').with.be.an.instanceof(Array)
@@ -1242,7 +1244,7 @@ exports.validation = function () {
     });
 
     test('candidate #2', function () {
-      var candidate = {
+      const candidate = {
         lorem: {
           ipsum: [
             1234,
@@ -1253,7 +1255,7 @@ exports.validation = function () {
         }
       };
 
-      var result = si.validate(schema, candidate);
+      const result = si.validate(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('valid').with.equal(false);
       result.should.have.property('error').with.be.an.instanceof(Array)
@@ -1263,7 +1265,7 @@ exports.validation = function () {
   }); // suite "schema #16"
 
   suite('schema #16.1 ("exec" field with an array of function testing)', function () {
-    var schema = {
+    const schema = {
       type: 'array',
       items: {
         type: ['string', 'number', 'date'],
@@ -1283,13 +1285,13 @@ exports.validation = function () {
     };
 
     test('candidate #1', function () {
-      var candidate = [
+      const candidate = [
         'thisIsAString',
         1234,
         new Date()
       ];
 
-      var result = si.validate(schema, candidate);
+      const result = si.validate(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('valid').with.equal(false);
       result.should.have.property('error').with.be.an.instanceof(Array)
@@ -1301,7 +1303,7 @@ exports.validation = function () {
   }); // suite "schema #16.1"
 
   suite('Schema #16.2 (Asynchronous call with exec "field" with synchrous function', function () {
-    var schema = {
+    const schema = {
       type: 'array',
       items: {
         type: 'string',
@@ -1313,7 +1315,7 @@ exports.validation = function () {
       }
     };
     test('candidate #1', function (done) {
-      var candidate = [
+      const candidate = [
         'teub',
         'teub',
         'teub'
@@ -1330,7 +1332,7 @@ exports.validation = function () {
     });
 
     test('candidate #2', function (done) {
-      var candidate = [
+      const candidate = [
         'thisIsAString',
         'teub',
         'notValid',
@@ -1352,7 +1354,7 @@ exports.validation = function () {
     });
 
     test('candidate #3', function (done) {
-      var candidate = [
+      const candidate = [
         1234,
         'teub',
         new Date(),
@@ -1375,7 +1377,7 @@ exports.validation = function () {
   }); // suite "schema #16.2"
 
   suite('schema #16.2 ("exec" field testing with context)', function () {
-    var schema = {
+    const schema = {
       type: 'object',
       properties: {
         lorem: {
@@ -1396,13 +1398,13 @@ exports.validation = function () {
     };
 
     test('candidate #1', function () {
-      var candidate = {
+      const candidate = {
         lorem: {
           ipsum: 'dolor'
         },
         sit: 'amet'
       };
-      var result = si.validate(schema, candidate);
+      const result = si.validate(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('valid').with.equal(true);
       result.should.have.property('error').with.be.an.instanceof(Array)
@@ -1410,13 +1412,13 @@ exports.validation = function () {
     });
 
     test('candidate #2', function () {
-      var candidate = {
+      const candidate = {
         lorem: {
           ipsum: 'dolor'
         },
         sit: 'dolor'
       };
-      var result = si.validate(schema, candidate);
+      const result = si.validate(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('valid').with.equal(false);
       result.should.have.property('error').with.be.an.instanceof(Array)
@@ -1426,7 +1428,7 @@ exports.validation = function () {
   }); // suite "schema #16.2"
 
   suite('schema #17 ("someKeys" field)', function () {
-    var schema = {
+    const schema = {
       type: 'object',
       someKeys: ['lorem', 'ipsum', 'dolor', 'sit_amet'],
       properties: {
@@ -1435,13 +1437,13 @@ exports.validation = function () {
     };
 
     test('candidat #1', function () {
-      var candidate = {
+      const candidate = {
         lorem: 12,
         ipsum: 34,
         thisIs: 'anotherKey'
       };
 
-      var result = si.validate(schema, candidate);
+      const result = si.validate(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('valid').with.equal(true);
       result.should.have.property('error').with.be.an.instanceof(Array)
@@ -1449,11 +1451,11 @@ exports.validation = function () {
     });
 
     test('candidat #2', function () {
-      var candidate = {
+      const candidate = {
         thisIs: 'anotherKey'
       };
 
-      var result = si.validate(schema, candidate);
+      const result = si.validate(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('valid').with.equal(false);
       result.should.have.property('error').with.be.an.instanceof(Array)
@@ -1462,7 +1464,7 @@ exports.validation = function () {
     });
 
     test('candidat #3 with deep someKeys and no parent key given [valid]', function () {
-      var schema = {
+      const schema = {
         properties: {
           parent: {
             someKeys: ['a', 'b'],
@@ -1470,8 +1472,8 @@ exports.validation = function () {
           }
         }
       };
-      var candidate = {};
-      var result = si.validate(schema, candidate);
+      const candidate = {};
+      const result = si.validate(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('valid').with.equal(true);
       result.should.have.property('error').with.be.an.instanceof(Array)
@@ -1479,7 +1481,7 @@ exports.validation = function () {
     });
 
     test('candidat #4 with deep someKeys and no parent key given [fail]', function () {
-      var schema = {
+      const schema = {
         properties: {
           parent: {
             someKeys: ['a', 'b'],
@@ -1487,10 +1489,10 @@ exports.validation = function () {
           }
         }
       };
-      var candidate = {
+      const candidate = {
         parent: {}
       };
-      var result = si.validate(schema, candidate);
+      const result = si.validate(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('valid').with.equal(false);
       result.should.have.property('error').with.be.an.instanceof(Array)
@@ -1500,7 +1502,7 @@ exports.validation = function () {
   }); // suite "schema #17"
 
   suite('schema #18 ("strict" field)', function () {
-    var schema = {
+    const schema = {
       type: 'object',
       strict: true,
       properties: {
@@ -1511,13 +1513,13 @@ exports.validation = function () {
     };
 
     test('candidate #1', function () {
-      var candidate = {
+      const candidate = {
         lorem: 12,
         ipsum: 23,
         dolor: 'sit amet'
       };
 
-      var result = si.validate(schema, candidate);
+      const result = si.validate(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('valid').with.equal(true);
       result.should.have.property('error').with.be.an.instanceof(Array)
@@ -1525,7 +1527,7 @@ exports.validation = function () {
     });
 
     test('candidate #2', function () {
-      var candidate = {
+      const candidate = {
         lorem: 12,
         ipsum: 23,
         dolor: 'sit amet',
@@ -1537,31 +1539,31 @@ exports.validation = function () {
         'here': false
       };
 
-      var result = si.validate(schema, candidate);
+      const result = si.validate(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('valid').with.equal(false);
       result.should.have.property('error').with.be.an.instanceof(Array)
         .and.be.lengthOf(1);
-      var keys = ['these', 'keys', 'must', 'not', 'be', 'here'].map(function (i) {
+        const keys = ['these', 'keys', 'must', 'not', 'be', 'here'].map(function (i) {
         return '"' + i + '"';
       }).join(', ');
       result.format().indexOf(keys).should.not.equal(-1);
     });
 
     test('candidate #3', function () {
-      var candidate = {
+      const candidate = {
         lorem: 12,
         ipsum: 23,
         dolor: 'sit amet',
         'extra': false
       };
 
-      var result = si.validate(schema, candidate);
+      const result = si.validate(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('valid').with.equal(false);
       result.should.have.property('error').with.be.an.instanceof(Array)
         .and.be.lengthOf(1);
-      var keys = ['extra'].map(function (i) {
+        const keys = ['extra'].map(function (i) {
         return '"' + i + '"';
       }).join(', ');
       result.format().indexOf(keys).should.not.equal(-1);
@@ -1569,7 +1571,7 @@ exports.validation = function () {
   }); // suite "schema #18"
 
   suite('schema #18.1 ("strict" field, strict=false)', function () {
-    var schema = {
+    const schema = {
       type: 'object',
       strict: false,
       properties: {
@@ -1580,14 +1582,14 @@ exports.validation = function () {
     };
 
     test('candidate #1', function () {
-      var candidate = {
+      const candidate = {
         lorem: 12,
         ipsum: 23,
         dolor: 'sit amet',
         extra: true
       };
 
-      var result = si.validate(schema, candidate);
+      const result = si.validate(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('valid').with.equal(true);
       result.should.have.property('error').with.be.an.instanceof(Array)
@@ -1596,7 +1598,7 @@ exports.validation = function () {
   }); // suite "schema #18.1
 
   suite('schema #19 (Asynchronous call)', function () {
-    var schema = {
+    const schema = {
       type: 'object',
       properties: {
         name: { type: 'string', minLength: 4, maxLength: 12 },
@@ -1615,7 +1617,7 @@ exports.validation = function () {
     };
 
     test('candidate #1', function (done) {
-      var candidate = {
+      const candidate = {
         name: 'NikitaJS',
         age: 20,
         id: 'AbcdefgZ',
@@ -1632,7 +1634,7 @@ exports.validation = function () {
     });
 
     test('candidate #2', function (done) {
-      var candidate = {
+      const candidate = {
         name: 'Nik',
         age: 20,
         id: 'Abcdefgb',
@@ -1653,7 +1655,7 @@ exports.validation = function () {
   }); // suite "schema #19"
 
   suite('schema #19.1 (Asynchronous call + asynchronous exec field)', function () {
-    var schema = {
+    const schema = {
       type: 'object',
       properties: {
         lorem: {
@@ -1662,7 +1664,7 @@ exports.validation = function () {
             ipsum: {
               type: 'string',
               exec: function (schema, post, callback) {
-                var self = this;
+                const self = this;
                 process.nextTick(function () {
                   if (post !== 'dolor sit amet') {
                     self.report('should equal dolor sit amet')
@@ -1680,7 +1682,7 @@ exports.validation = function () {
             if (!Array.isArray(post)) {
               return callback();
             }
-            var self = this;
+            const self = this;
             process.nextTick(function () {
               if (post.length > 8) {
                 return callback(new Error('Array length is too damn high!'));
@@ -1696,7 +1698,7 @@ exports.validation = function () {
     };
 
     test('candidate #1', function (done) {
-      var candidate = {
+      const candidate = {
         lorem: {
           ipsum: 'dolor sit amet'
         },
@@ -1713,7 +1715,7 @@ exports.validation = function () {
     });
 
     test('candidate #2', function (done) {
-      var candidate = {
+      const candidate = {
         lorem: {
           ipsum: 'wrong phrase'
         },
@@ -1732,7 +1734,7 @@ exports.validation = function () {
     });
 
     test('candidate #3', function (done) {
-      var candidate = {
+      const candidate = {
         lorem: {
           ipsum: 'wrong phrase'
         },
@@ -1747,7 +1749,7 @@ exports.validation = function () {
   }); // suite "schema #19.1"
 
   suite('schema #19.2 (Asynchronous call + globing)', function () {
-    var schema = {
+    const schema = {
       type: 'object',
       properties: {
         lorem: {
@@ -1761,7 +1763,7 @@ exports.validation = function () {
     };
 
     test('candidate #1', function (done) {
-      var candidate = {
+      const candidate = {
         lorem: {
           ipsum: 12,
           dolor: 34,
@@ -1780,7 +1782,7 @@ exports.validation = function () {
     });
 
     test('candidate #2', function (done) {
-      var candidate = {
+      const candidate = {
         lorem: {
           ipsum: 5,
           dolor: 34,
@@ -1804,7 +1806,7 @@ exports.validation = function () {
   }); // suite "schema #19.2"
 
   suite('schema #19.3 (Asynchronous call++)', function () {
-    var schema = {
+    const schema = {
       type: 'array',
       minLength: 1,
       items: [{
@@ -1829,7 +1831,7 @@ exports.validation = function () {
       }]
     };
     test('object #1', function (done) {
-      var candidate = ['thisIsAString'];
+      const candidate = ['thisIsAString'];
       si.validate(schema, candidate, function (err, result) {
         should.not.exist(err);
         result.should.be.an.Object;
@@ -1842,7 +1844,7 @@ exports.validation = function () {
   }); // suite "schema #19.2"
 
   suite('schema #20 (custom schemas)', function () {
-    var schema = {
+    const schema = {
       type: 'object',
       properties: {
         lorem: { type: 'number', $divisibleBy: 4 },
@@ -1850,13 +1852,13 @@ exports.validation = function () {
       }
     };
 
-    var custom = {
+    const custom = {
       divisibleBy: function (schema, candidate) {
-        var dvb = schema.$divisibleBy;
+        const dvb = schema.$divisibleBy;
         if (typeof dvb !== 'number' || typeof candidate !== 'number') {
           return;
         }
-        var r = candidate / dvb;
+        const r = candidate / dvb;
         if ((r | 0) !== r) {
           this.report('should be divisible by ' + dvb);
         }
@@ -1864,12 +1866,12 @@ exports.validation = function () {
     };
 
     test('candidate #1', function () {
-      var candidate = {
+      const candidate = {
         lorem: 12,
         ipsum: 25,
       };
 
-      var result = si.validate(schema, candidate, custom);
+      const result = si.validate(schema, candidate, custom);
       result.should.be.an.Object;
       result.should.have.property('valid').with.equal(true);
       result.should.have.property('error').with.be.an.instanceof(Array)
@@ -1877,12 +1879,12 @@ exports.validation = function () {
     });
 
     test('candidate #2', function () {
-      var candidate = {
+      const candidate = {
         lorem: 11,
         ipsum: 22,
       };
 
-      var result = si.validate(schema, candidate, custom);
+      const result = si.validate(schema, candidate, custom);
       result.should.be.an.Object;
       result.should.have.property('valid').with.equal(false);
       result.should.have.property('error').with.be.an.instanceof(Array)
@@ -1893,7 +1895,7 @@ exports.validation = function () {
   }); // suite "schema #20"
 
   suite('schema #20.1 (custom schemas + asynchronous call)', function () {
-    var schema = {
+    const schema = {
       type: 'object',
       properties: {
         lorem: { type: 'number', $divisibleBy: 4 },
@@ -1902,18 +1904,18 @@ exports.validation = function () {
       }
     };
 
-    var custom = {
+    const custom = {
       divisibleBy: function (schema, candidate, callback) {
-        var dvb = schema.$divisibleBy;
+        const dvb = schema.$divisibleBy;
         if (typeof dvb !== 'number' || typeof candidate !== 'number') {
           return callback();
         }
-        var self = this;
+        const self = this;
         process.nextTick(function () {
           if (dvb === 0) {
             return callback(new Error('Schema error: Divisor must not equal 0'));
           }
-          var r = candidate / dvb;
+          const r = candidate / dvb;
           if ((r | 0) !== r) {
             self.report('should be divisible by ' + dvb);
           }
@@ -1923,7 +1925,7 @@ exports.validation = function () {
     };
 
     test('candidate #1', function (done) {
-      var candidate = {
+      const candidate = {
         lorem: 12,
         ipsum: 25
       };
@@ -1939,7 +1941,7 @@ exports.validation = function () {
     });
 
     test('candidate #2', function (done) {
-      var candidate = {
+      const candidate = {
         lorem: 11,
         ipsum: 22,
       };
@@ -1957,7 +1959,7 @@ exports.validation = function () {
     });
 
     test('candidate #3', function (done) {
-      var candidate = {
+      const candidate = {
         lorem: 11,
         ipsum: 4,
         dolor: 32
@@ -1973,7 +1975,7 @@ exports.validation = function () {
 
 
   suite('schema #20.2 (default custom schemas)', function () {
-    var schema = {
+    const schema = {
       type: 'object',
       properties: {
         lorem: { type: 'number', $divisibleBy: 4 },
@@ -1982,18 +1984,18 @@ exports.validation = function () {
       }
     };
 
-    var custom = {
+    const custom = {
       divisibleBy: function (schema, candidate, callback) {
-        var dvb = schema.$divisibleBy;
+        const dvb = schema.$divisibleBy;
         if (typeof dvb !== 'number' || typeof candidate !== 'number') {
           return callback();
         }
-        var self = this;
+        const self = this;
         process.nextTick(function () {
           if (dvb === 0) {
             return callback(new Error('Schema error: Divisor must not equal 0'));
           }
-          var r = candidate / dvb;
+          const r = candidate / dvb;
           if ((r | 0) !== r) {
             self.report('should be divisible by ' + dvb);
           }
@@ -2005,7 +2007,7 @@ exports.validation = function () {
     si.Validation.extend(custom);
 
     test('candidate #1', function (done) {
-      var candidate = {
+      const candidate = {
         lorem: 12,
         ipsum: 25
       };
@@ -2021,7 +2023,7 @@ exports.validation = function () {
     });
 
     test('candidate #2', function (done) {
-      var candidate = {
+      const candidate = {
         lorem: 11,
         ipsum: 22,
       };
@@ -2039,7 +2041,7 @@ exports.validation = function () {
     });
 
     test('candidate #3', function (done) {
-      var candidate = {
+      const candidate = {
         lorem: 11,
         ipsum: 4,
         dolor: 32
@@ -2059,7 +2061,7 @@ exports.validation = function () {
   }); // suite "schema #20.2"
 
   suite('schema #21 (field "code" testing)', function () {
-    var schema = {
+    const schema = {
       type: 'object',
       properties: {
         id: {
@@ -2084,11 +2086,11 @@ exports.validation = function () {
     };
 
     test('candidate #1', function () {
-      var candidate = {
+      const candidate = {
         id: 25
       };
 
-      var result = si.validate(schema, candidate);
+      const result = si.validate(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('valid').with.equal(false);
       result.should.have.property('error').with.be.an.instanceof(Array)
@@ -2097,12 +2099,12 @@ exports.validation = function () {
     });
 
     test('candidate #2', function () {
-      var candidate = {
+      const candidate = {
         id: 15,
         array: ['NikitaJS', 'Atinux', 1234]
       };
 
-      var result = si.validate(schema, candidate);
+      const result = si.validate(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('valid').with.equal(false);
       result.should.have.property('error').with.be.an.instanceof(Array)
@@ -2114,19 +2116,19 @@ exports.validation = function () {
   }); // suite "schema #14"
 
   suite('schema #22 (date with validDate: true)', function () {
-    var schema = {
+    const schema = {
       type: 'object',
       items: { type: 'date', validDate: true }
     };
 
     test('candidate #1', function () {
-      var candidate = {
+      const candidate = {
         valid: new Date(),
         invalid: new Date('invalid'),
         nope: 'hello!'
       };
 
-      var result = si.validate(schema, candidate);
+      const result = si.validate(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('valid').with.equal(false);
       result.should.have.property('error').with.be.an.instanceof(Array)
