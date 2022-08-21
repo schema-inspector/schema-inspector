@@ -23,6 +23,11 @@ Bower uses have reported success using the library this way, using bower overrid
 
 Bower is not officially-supported as a build tool and references to it will be removed from the repository in versions 3.0.0+.
 
+## Comparison with JSON Schema
+
+`schema-inspector` is not compatable with JSON Schema. They are two different ways to validate data.
+However, the main difference is that `schema-inspector` supports sanitization of data.
+
 ## Version 2.0.0
 
 To fix a security vulnerability in the 1.x.x email Regex expression used, a new Regex expression was used which may be
