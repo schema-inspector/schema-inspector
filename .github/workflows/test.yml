@@ -3,6 +3,11 @@ on:
   push:
     branches:
       - master
+    paths-ignore:
+      - .gitignore
+      - .npmignore
+      - LICENSE
+      - README.md      
   pull_request:
     branches:
       - master
