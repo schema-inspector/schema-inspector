@@ -1,33 +1,27 @@
 name: Run tests on Pull Request or Push
 on:
-  push:
-    branches:
-      - master
   pull_request:
     branches:
       - master
-    types:
-      - opened
-      - synchronize
-      - ready_for_review
+    paths-ignore:
+      - .gitignore
+      - .npmignore
+      - LICENSE
+      - README.md    
 jobs:
   test:
-    name: Run tests
+    name: Run tests (Node.js ${{ matrix.node }})
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [10.x, 12.x, 14.x, 15.x]
+        node: [12, 14, 16, 17]
     steps:
       - name: Clone repository
-        uses: actions/checkout@v2
-
-      - name: Set up Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2
+        uses: actions/checkout@v3
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
-
-      - name: Install npm dependencies
-        run: npm install
-
-      - name: Run test against code
-        run: npm run test
+          node-version: ${{ matrix.node }}
+      # Not using "npm ci" because not using lockfile
+      - run: npm i
+      - run: npm test
