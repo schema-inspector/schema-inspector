@@ -1,6 +1,5 @@
 /* global suite test */
 /* eslint-disable no-unused-expressions */
-/* eslint-disable space-before-function-paren */
 
 const si = require('../');
 
