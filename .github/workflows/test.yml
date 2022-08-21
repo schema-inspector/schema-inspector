@@ -30,4 +30,4 @@ jobs:
       - name: Report NYC coverage
         uses: sidx1024/report-nyc-coverage-github-action@v1.1
         with:
-          coverage_file: "coverage/coverage-summary.json"
+          coverage_output_directory: "coverage"
