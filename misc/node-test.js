@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 var inspector = require('../');
 
 var schema = {

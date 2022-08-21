@@ -33,10 +33,12 @@
   },
   "devDependencies": {
     "mocha": "^8.3.2",
+    "semistandard": "^16.0.1",
     "should": "^13.2.3"
   },
   "scripts": {
-    "test": "mocha -u tdd -t 30000 -R spec"
+    "test": "mocha -u tdd -t 30000 -R spec",
+    "lint": "semistandard"
   },
   "readmeFilename": "README.md"
 }
