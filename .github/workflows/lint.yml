@@ -1,4 +1,4 @@
-name: Run tests on Pull Request
+name: Lint on Pull Request
 on:
   pull_request:
     branches:
@@ -10,7 +10,7 @@ on:
       - README.md    
 jobs:
   test:
-    name: Run tests (Node.js ${{ matrix.node }})
+    name: Lint (Node.js ${{ matrix.node }})
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -24,4 +24,4 @@ jobs:
           node-version: ${{ matrix.node }}
       # Not using "npm ci" because not using lockfile
       - run: npm i
-      - run: npm test
+      - run: npm run lint
