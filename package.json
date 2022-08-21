@@ -36,7 +36,7 @@
     "should": "^13.2.3"
   },
   "scripts": {
-    "test": "make test"
+    "test": "mocha -u tdd -t 30000 -R spec"
   },
   "readmeFilename": "README.md"
 }

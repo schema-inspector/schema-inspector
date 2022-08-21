@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [10.x, 12.x, 14.x, 15.x]
+        node-version: [10.x, 12.x, 14.x, 16.x, 17.x]
     steps:
       - name: Clone repository
         uses: actions/checkout@v2
@@ -30,4 +30,4 @@ jobs:
         run: npm install
 
       - name: Run test against code
-        run: npm run test
+        run: npm test
