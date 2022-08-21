@@ -1,4 +1,5 @@
-/* global suite test */
+/* global suite */
+/* eslint no-extend-native: ["error", { "exceptions": ["Array"] }] */
 
 const validation = require('./validation_test').validation;
 const sanitization = require('./sanitization_test').sanitization;

@@ -1,4 +1,7 @@
 /* global suite test */
+// Disabling no-unused-expressions because we use Chai in tests.
+/* eslint-disable no-unused-expressions */
+/* eslint-disable comma-dangle */
 
 const should = require('should');
 const si = require('../');
@@ -101,7 +104,7 @@ exports.validation = function () {
   }); // suite "schema #1"
 
   suite('schema #1.1 (Types tests)', function () {
-    function F() { };
+    function F () { }
     const schema = {
       type: 'array',
       items: [
@@ -129,7 +132,7 @@ exports.validation = function () {
     });
 
     test('candidate #2', function () {
-      function G() { };
+      function G () { }
       const candidate = [
         null,
         'Nikita',
@@ -287,7 +290,6 @@ exports.validation = function () {
         .and.be.lengthOf(1);
       result.error[0].property.should.equal('@.lorem.ipsum');
     });
-
   }); // suite "schema #2"
 
   suite('schema #3 (array inspection with an array of schema)', function () {
@@ -390,7 +392,6 @@ exports.validation = function () {
         .and.be.lengthOf(1);
       result.error[0].property.should.equal('@.array[1]');
     });
-
   }); // suite "schema #3"
 
   suite('schema #4 (array inspection with a hash of schema)', function () {
@@ -487,7 +488,6 @@ exports.validation = function () {
       result.should.have.property('error').with.be.an.instanceof(Array)
         .and.be.lengthOf(0);
     });
-
   }); // suite "schema #4"
 
   suite('schema #5 (formats and regular expressions)', function () {
@@ -622,7 +622,6 @@ exports.validation = function () {
       result.error[6].property.should.equal('@[6]');
       result.error[7].property.should.equal('@[7]');
     });
-
   }); // suite "schema #5"
 
   suite('schema #5.1 (formats date-time)', function () {
@@ -666,7 +665,6 @@ exports.validation = function () {
       result.error[1].property.should.equal('@[1]');
       result.error[2].property.should.equal('@[3]');
     });
-
   }); // suite "schema #5.1"
 
   suite('schema #5.2 (array of formats)', function () {
@@ -707,7 +705,6 @@ exports.validation = function () {
       result.error[0].property.should.equal('@[0]');
       result.error[1].property.should.equal('@[1]');
     });
-
   }); // suite "schema #5.2"
 
   suite('schema #6 (numbers inspection #1)', function () {
@@ -743,7 +740,6 @@ exports.validation = function () {
       result.error[2].property.should.equal('@[4]');
       result.error[3].property.should.equal('@[5]');
     });
-
   }); // suite "schema #6"
 
   suite('schema #7 (numbers inspection #2)', function () {
@@ -780,7 +776,6 @@ exports.validation = function () {
       result.error[3].property.should.equal('@[5]');
       result.error[4].property.should.equal('@[6]');
     });
-
   }); // suite "schema #7"
 
   suite('schema #8 (numbers inspection #3)', function () {
@@ -811,7 +806,6 @@ exports.validation = function () {
       result.error[1].property.should.equal('@[5]');
       result.error[2].property.should.equal('@[6]');
     });
-
   }); // suite "schema #8"
 
   suite('schema #9 (uniqueness checking [uniquess === true])', function () {
@@ -863,7 +857,6 @@ exports.validation = function () {
         .and.be.lengthOf(1);
       result.error[0].property.should.equal('@');
     });
-
   }); // suite "schema #9"
 
   suite('schema #10 (uniqueness checking [uniquess === false])', function () {
@@ -912,9 +905,7 @@ exports.validation = function () {
       result.should.have.property('error').with.be.an.instanceof(Array)
         .and.be.lengthOf(0);
     });
-
   }); // suite "schema #10"
-
 
   suite('schema #11 (uniqueness checking [uniquess is not given])', function () {
     const schema = {
@@ -961,7 +952,6 @@ exports.validation = function () {
       result.should.have.property('error').with.be.an.instanceof(Array)
         .and.be.lengthOf(0);
     });
-
   }); // suite "schema #11"
 
   suite('schema #12 (optionnal attribut testing)', function () {
@@ -1014,7 +1004,6 @@ exports.validation = function () {
       result.error[0].property.should.equal('@.id');
       result.error[1].property.should.equal('@.nickname');
     });
-
   }); // suite "schema #12"
 
   suite('schema #13 (field "error" testing)', function () {
@@ -1069,7 +1058,6 @@ exports.validation = function () {
       result.error[0].property.should.equal('@.id');
       result.error[0].message.should.equal(schema.properties.id.error);
     });
-
   }); // suite "schema #13"
 
   suite('schema #14 (field "alias" testing)', function () {
@@ -1120,7 +1108,6 @@ exports.validation = function () {
       result.error[0].property.should.equal(schema.properties.id.alias + ' (@.id)');
       result.error[1].property.should.equal(schema.properties.array.items.alias + ' (@.array[2])');
     });
-
   }); // suite "schema #14"
 
   suite('schema #15 (globing testing)', function () {
@@ -1130,13 +1117,17 @@ exports.validation = function () {
         globString: {
           type: 'object',
           properties: {
+            /* eslint-disable quote-props */
             '*': { type: 'string' }
+            /* eslint-enable quote-props */
           }
         },
         globInteger: {
           type: 'object',
           properties: {
+            /* eslint-disable quote-props */
             '*': { type: 'integer' }
+            /* eslint-enable quote-props */
           }
         }
       }
@@ -1198,7 +1189,6 @@ exports.validation = function () {
       result.error[0].property.should.equal('@.globString.dolor');
       result.error[1].property.should.equal('@.globInteger.seventy');
     });
-
   }); // suite "schema #15"
 
   suite('schema #16 ("exec" field testing)', function () {
@@ -1299,7 +1289,6 @@ exports.validation = function () {
       result.error[0].property.should.equal('@[0]');
       result.error[1].property.should.equal('@[1]');
     });
-
   }); // suite "schema #16.1"
 
   suite('Schema #16.2 (Asynchronous call with exec "field" with synchrous function', function () {
@@ -1527,6 +1516,7 @@ exports.validation = function () {
     });
 
     test('candidate #2', function () {
+      /* eslint-disable quote-props */
       const candidate = {
         lorem: 12,
         ipsum: 23,
@@ -1538,32 +1528,35 @@ exports.validation = function () {
         'be': false,
         'here': false
       };
+      /* eslint-enable quote-props */
 
       const result = si.validate(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('valid').with.equal(false);
       result.should.have.property('error').with.be.an.instanceof(Array)
         .and.be.lengthOf(1);
-        const keys = ['these', 'keys', 'must', 'not', 'be', 'here'].map(function (i) {
+      const keys = ['these', 'keys', 'must', 'not', 'be', 'here'].map(function (i) {
         return '"' + i + '"';
       }).join(', ');
       result.format().indexOf(keys).should.not.equal(-1);
     });
 
     test('candidate #3', function () {
+      /* eslint-disable quote-props */
       const candidate = {
         lorem: 12,
         ipsum: 23,
         dolor: 'sit amet',
         'extra': false
       };
+      /* eslint-enable quote-props */
 
       const result = si.validate(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('valid').with.equal(false);
       result.should.have.property('error').with.be.an.instanceof(Array)
         .and.be.lengthOf(1);
-        const keys = ['extra'].map(function (i) {
+      const keys = ['extra'].map(function (i) {
         return '"' + i + '"';
       }).join(', ');
       result.format().indexOf(keys).should.not.equal(-1);
@@ -1667,7 +1660,7 @@ exports.validation = function () {
                 const self = this;
                 process.nextTick(function () {
                   if (post !== 'dolor sit amet') {
-                    self.report('should equal dolor sit amet')
+                    self.report('should equal dolor sit amet');
                   }
                   callback();
                 });
@@ -1755,8 +1748,10 @@ exports.validation = function () {
         lorem: {
           type: 'object',
           properties: {
+            /* eslint-disable quote-props */
             '*': { type: ['number', 'string'], gte: 10, minLength: 4 },
             consectetur: { type: 'string', optional: true, maxLength: 10 }
+            /* eslint-enable quote-props */
           }
         }
       }
@@ -1973,7 +1968,6 @@ exports.validation = function () {
     });
   }); // suite "schema #20.1"
 
-
   suite('schema #20.2 (default custom schemas)', function () {
     const schema = {
       type: 'object',
@@ -2070,8 +2064,9 @@ exports.validation = function () {
           lte: 20,
           code: 'id-format',
           exec: function (schema, post) {
-            if (post === 15)
+            if (post === 15) {
               this.report('Test error in report', 'test-code');
+            }
           }
         },
         array: {
@@ -2112,7 +2107,6 @@ exports.validation = function () {
       result.error[0].code.should.equal('test-code');
       result.error[1].code.should.equal('array-item-format');
     });
-
   }); // suite "schema #14"
 
   suite('schema #22 (date with validDate: true)', function () {
@@ -2136,7 +2130,5 @@ exports.validation = function () {
       result.error[0].property.should.equal('@[invalid]');
       result.error[1].property.should.equal('@[nope]');
     });
-
   });
-
 };

@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 var schema = {
 	type: 'object',
 	properties: {

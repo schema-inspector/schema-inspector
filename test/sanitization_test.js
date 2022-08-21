@@ -1,4 +1,6 @@
 /* global suite test */
+/* eslint-disable comma-dangle */
+/* eslint-disable no-unused-expressions */
 
 const should = require('should');
 const si = require('../');
@@ -84,7 +86,6 @@ exports.sanitization = function () {
       result.reporting[0].property.should.be.equal('@[0]');
       candidate.should.eql(['one|two|true']);
     });
-
   }); // suite "schema #1"
 
   suite('schema #2 (type casting [integer])', function () {
@@ -126,7 +127,7 @@ exports.sanitization = function () {
 
     test('candidate #3 | date -> integer', function () {
       const date = new Date();
-      const candidate = [new Date(300), date, new Date("2014-01-01"), new Date("INVALID")];
+      const candidate = [new Date(300), date, new Date('2014-01-01'), new Date('INVALID')];
 
       const result = si.sanitize(schema, candidate);
       result.should.be.an.Object;
@@ -168,7 +169,7 @@ exports.sanitization = function () {
         }
       };
       const result = si.sanitize(s, {});
-      result.data.should.be.eql({})
+      result.data.should.be.eql({});
     });
 
     test('candidate #6 | object with properties -> number and def: 0', function () {
@@ -184,7 +185,6 @@ exports.sanitization = function () {
       const result = si.sanitize(s, { orderProducts: '', orderServices: '' });
       result.data.should.be.eql({ orderProducts: 0, orderServices: 0 });
     });
-
   }); // suite "schema #2"
 
   suite('schema #3 (type casting [number])', function () {
@@ -210,7 +210,7 @@ exports.sanitization = function () {
 
     test('candidate #2 | date -> number (same as integer)', function () {
       const date = new Date();
-      const candidate = [new Date(300), date, new Date("2013-12-01"), new Date("INVALID")];
+      const candidate = [new Date(300), date, new Date('2013-12-01'), new Date('INVALID')];
 
       const result = si.sanitize(schema, candidate);
       result.should.be.an.Object;
@@ -220,9 +220,8 @@ exports.sanitization = function () {
       result.reporting[1].property.should.be.equal('@[1]');
       result.reporting[2].property.should.be.equal('@[2]');
       result.reporting[3].property.should.be.equal('@[3]');
-      candidate.should.be.eql([300, +date, +new Date("2013-12-01"), -1]);
+      candidate.should.be.eql([300, +date, +new Date('2013-12-01'), -1]);
     });
-
   }); // suite "schema #3"
 
   suite('schema #4 (type casting [boolean])', function () {
@@ -267,7 +266,6 @@ exports.sanitization = function () {
       result.reporting[0].property.should.be.equal('@[0]');
       candidate.should.eql([false]);
     });
-
   }); // suite "schema #4"
 
   suite('schema #5 (type casting [object])', function () {
@@ -296,7 +294,6 @@ exports.sanitization = function () {
       candidate.objt.should.be.an.instanceof(Object);
       candidate.objt.should.eql(obj);
     });
-
   }); // suite "schema #5"
 
   suite('schema #6 (deeply nested object sanitization)', function () {
@@ -364,7 +361,6 @@ exports.sanitization = function () {
       result.reporting[0].property.should.be.equal('@.lorem.ipsum.dolor');
       result.reporting[1].property.should.be.equal('@.lorem.ipsum.dolor.sit.amet');
     });
-
   }); // suite "schema #6"
 
   suite('schema #7 (array sanitization with an array of schema)', function () {
@@ -413,7 +409,6 @@ exports.sanitization = function () {
       result.reporting[0].property.should.be.equal('@');
       result.data.should.eql([{ prop: 'value' }]);
     });
-
   }); // suite "schema #7"
 
   suite('schema #8 (array sanitization with an hash of schema)', function () {
@@ -450,7 +445,6 @@ exports.sanitization = function () {
         lorem: { ipsum: [123, 234, 345] }
       });
     });
-
   }); // suite "schema #8"
 
   suite('schema #9 (Creation of a property if it does not exist)', function () {
@@ -464,7 +458,7 @@ exports.sanitization = function () {
             two: { type: 'integer', optional: false, def: 2 },
             three: { type: 'integer', optional: false, def: 3 },
             four: { type: 'integer', optional: false, def: 4 },
-            five: { type: 'integer', optional: "false", def: 5 }
+            five: { type: 'integer', optional: 'false', def: 5 }
           }
         }
       }
@@ -547,7 +541,6 @@ exports.sanitization = function () {
         }
       });
     });
-
   }); // suite "schema #9"
 
   suite('schema #10 (Creation of a property [nested object] if it does not exist)', function () {
@@ -605,7 +598,6 @@ exports.sanitization = function () {
         }
       });
     });
-
   }); // suite "schema #10"
 
   suite('schema #10.1 (test of optional: true)', function () {
@@ -662,7 +654,6 @@ exports.sanitization = function () {
         }
       });
     });
-
   }); // suite "schema 10.1"
 
   suite('schema #10.2 (test of optional: true, without field type)', function () {
@@ -746,7 +737,6 @@ exports.sanitization = function () {
         }
       });
     });
-
   }); // suite "schema #11"
 
   suite('schema #12 (field "alias" testing)', function () {
@@ -772,7 +762,6 @@ exports.sanitization = function () {
       result.reporting[0].property.should.be.equal(schema.properties.id.alias + ' (@.id)');
       candidate.should.eql({ id: 1234 });
     });
-
   }); // suite "schema #12"
 
   suite('schema #13 (field "rules" testing)', function () {
@@ -1094,7 +1083,7 @@ exports.sanitization = function () {
           .and.be.lengthOf(2);
         result.reporting[0].property.should.be.equal('@[1]');
         result.reporting[1].property.should.be.equal('@[4]');
-        candidate.should.eql(['Hello', 'God', 'is', 'coding!', 'God'])
+        candidate.should.eql(['Hello', 'God', 'is', 'coding!', 'God']);
         done();
       });
     });
@@ -1257,7 +1246,7 @@ exports.sanitization = function () {
           .and.be.lengthOf(2);
         result.reporting[0].property.should.be.equal('@[1]');
         result.reporting[1].property.should.be.equal('@[3]');
-        candidate.should.eql(['Nikita', 'INVALID', 'NIKITA', 'INVALID'])
+        candidate.should.eql(['Nikita', 'INVALID', 'NIKITA', 'INVALID']);
         done();
       });
     });
@@ -1417,8 +1406,8 @@ exports.sanitization = function () {
       result.reporting[0].property.should.be.equal('@.tab');
       candidate.should.eql({ tab: [1, 'two', { three: true }] });
     });
-
   });
+
   // suite "schema #18"
   suite('schema #18 (strict option)', function () {
     const schema = {
@@ -1468,7 +1457,7 @@ exports.sanitization = function () {
     });
 
     test('candidate #4 | remove useless keys on custom classes (constructor function)', function () {
-      function G(obj) {
+      function G (obj) {
         Object.keys(obj).forEach(key => {
           this[key] = obj[key];
         });

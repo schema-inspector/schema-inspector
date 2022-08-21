@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 if (typeof require === 'function') {
   var SchemaInspector = require('../');
 }

@@ -1,6 +1,7 @@
 /* global suite test */
+/* eslint-disable no-unused-expressions */
+/* eslint-disable space-before-function-paren */
 
-const should = require('should');
 const si = require('../');
 
 const NB_TEST = 25;
@@ -15,8 +16,7 @@ function testRandomCandidates(schema) {
         result.should.have.property('valid').with.equal(true);
         result.should.have.property('error').with.be.an.instanceof(Array)
           .and.be.lengthOf(0);
-      }
-      catch (e) {
+      } catch (e) {
         throw new Error(result.format());
       }
     });
@@ -238,13 +238,11 @@ exports.generator = function () {
           result.should.have.property('valid').with.equal(true);
           result.should.have.property('error').with.be.an.instanceof(Array)
             .and.be.lengthOf(0);
-        }
-        catch (e) {
+        } catch (e) {
           throw new Error(result.format());
         }
       });
     });
-
   }); // suite "schema #6"
 
   suite('Schema #7 (Globing for Object keys)', function () {
@@ -277,12 +275,10 @@ exports.generator = function () {
           result.should.have.property('valid').with.equal(true);
           result.should.have.property('error').with.be.an.instanceof(Array)
             .and.be.lengthOf(0);
-        }
-        catch (e) {
+        } catch (e) {
           throw new Error(result.format());
         }
       });
     }
   }); // suite "schema #7"
-
 };
