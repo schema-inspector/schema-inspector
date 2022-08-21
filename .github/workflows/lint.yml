@@ -1,0 +1,24 @@
+name: Lint on Pull Request
+on:
+  pull_request:
+    branches:
+      - master
+    paths-ignore:
+      - .gitignore
+      - .npmignore
+      - LICENSE
+      - README.md    
+jobs:
+  test:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v3
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 17
+      # Not using "npm ci" because not using lockfile
+      - run: npm i
+      - run: npm run lint

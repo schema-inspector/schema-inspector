@@ -37,7 +37,7 @@
     "should": "^13.2.3"
   },
   "scripts": {
-    "test": "npm run lint && nyc --reporter json-summary --reporter text mocha -u tdd -t 30000 -R spec",
+    "test": "nyc --reporter json-summary --reporter text mocha -u tdd -t 30000 -R spec",
     "lint": "semistandard"
   }
 }
