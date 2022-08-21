@@ -1,20 +1,13 @@
 name: Run tests on Pull Request or Push
 on:
-  push:
+  pull_request:
     branches:
       - master
     paths-ignore:
       - .gitignore
       - .npmignore
       - LICENSE
-      - README.md      
-  pull_request:
-    branches:
-      - master
-    types:
-      - opened
-      - synchronize
-      - ready_for_review
+      - README.md    
 jobs:
   test:
     name: Run tests
