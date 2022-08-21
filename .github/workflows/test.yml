@@ -23,10 +23,8 @@ jobs:
           node-version: ${{ matrix.node }}
       # Not using "npm ci" because not using lockfile
       - run: npm i
-      # Run tests and create coverage report from running tests
-      - run: npm run coverage
-      # Save coverage report to GitHub PR as comment
-      - name: Report NYC coverage
-        uses: sidx1024/report-nyc-coverage-github-action@v1.1
+      - name: Report test coverage
+        uses: PoorlyDefinedBehaviour/nyc-reporter@v1
         with:
-          coverage_output_directory: "coverage"
+          command: "npm test"
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
