@@ -1,5 +1,7 @@
 /* global suite test */
 /* eslint-disable no-unused-expressions */
+// Disable space-before-function-paren for compatibility with VS Code default JS formatter.
+/* eslint-disable space-before-function-paren */
 
 const si = require('../');
 

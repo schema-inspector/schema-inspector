@@ -2,6 +2,8 @@
 // Disabling no-unused-expressions because we use Chai in tests.
 /* eslint-disable no-unused-expressions */
 /* eslint-disable comma-dangle */
+// Disable space-before-function-paren for compatibility with VS Code default JS formatter.
+/* eslint-disable space-before-function-paren */
 
 const should = require('should');
 const si = require('../');

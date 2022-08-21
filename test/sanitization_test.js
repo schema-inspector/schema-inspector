@@ -1,6 +1,8 @@
 /* global suite test */
 /* eslint-disable comma-dangle */
 /* eslint-disable no-unused-expressions */
+// Disable space-before-function-paren for compatibility with VS Code default JS formatter.
+/* eslint-disable space-before-function-paren */
 
 const should = require('should');
 const si = require('../');
