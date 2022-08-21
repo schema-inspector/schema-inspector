@@ -4,11 +4,10 @@
   "version": "2.0.1",
   "main": "index.js",
   "author": {
-    "name": "Sebastien Chopin",
-    "url": "https://twitter.com/atinux"
+    "name": "Sebastien Chopin (https://twitter.com/atinux)"
   },
   "maintainers": [
-    "atinux"
+    "Matt Welke (https://github.com/mattwelke)"
   ],
   "keywords": [
     "validation",
@@ -33,12 +32,13 @@
   },
   "devDependencies": {
     "mocha": "^10.0.0",
+    "nyc": "^15.1.0",
     "semistandard": "^16.0.1",
     "should": "^13.2.3"
   },
   "scripts": {
-    "test": "mocha -u tdd -t 30000 -R spec",
+    "coverage": "npm run lint && nyc --reporter json-summary --reporter text mocha -u tdd -t 30000 -R spec",
+    "test": "npm run lint && mocha -u tdd -t 30000 -R spec",
     "lint": "semistandard"
-  },
-  "readmeFilename": "README.md"
+  }
 }

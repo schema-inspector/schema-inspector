@@ -1,3 +1,5 @@
 .github/
 test/
 misc/
+.nyc_output/
+coverage/
