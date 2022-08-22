@@ -24,7 +24,9 @@ jobs:
       # Not using "npm ci" because not using lockfile
       - run: npm i
       - name: Report test coverage
-        uses: PoorlyDefinedBehaviour/nyc-reporter@v1
+        # Fork from PoorlyDefinedBehavior/nyc-reporter that fixes bug. Using
+        # fork until bug fix PR is merged.
+        uses: mattwelke/nyc-reporter@39f8b0b43df90f1dab97443f503af44245b8207b
         with:
           command: "npm test"
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
