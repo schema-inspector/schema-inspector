@@ -872,9 +872,9 @@ exports.sanitization = function () {
         }
       };
 
-      var candidate = 'Hello Nikita is coding! nikita'.split(' ');
+      const candidate = 'Hello Nikita is coding! nikita'.split(' ');
 
-      var result = si.sanitize(schema, candidate);
+      const result = si.sanitize(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('reporting').with.be.an.instanceof(Array)
         .and.be.lengthOf(2);
@@ -892,9 +892,9 @@ exports.sanitization = function () {
         }
       }
 
-      var candidate = 'test';
+      const candidate = 'test';
 
-      var result = si.sanitize(schema, candidate);
+      const result = si.sanitize(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('data').with.be.undefined;
       should(candidate).be.undefined;
@@ -913,11 +913,11 @@ exports.sanitization = function () {
         }
       }
 
-      var candidate = {
+      const candidate = {
         key: 'hello'
       };
 
-      var result = si.sanitize(schema, candidate);
+      const result = si.sanitize(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('data').with.be.eql({ key: undefined });
       candidate.should.be.eql({ key: undefined });
@@ -934,10 +934,10 @@ exports.sanitization = function () {
         }
       }
 
-      var candidate = ['here', 'are', 'some', 'strings', 'you', 'are', 'looking', 'at', 1, 2, 3, true, { a: false, b: ['something'] }, [], [true, 4, 6, false]];
+      const candidate = ['here', 'are', 'some', 'strings', 'you', 'are', 'looking', 'at', 1, 2, 3, true, { a: false, b: ['something'] }, [], [true, 4, 6, false]];
       const length = candidate.length;
 
-      var result = si.sanitize(schema, candidate);
+      const result = si.sanitize(schema, candidate);
       result.should.be.an.Object;
       result.should.have.property('data').with.be.an.instanceof(Array).and.be.lengthOf(length);
       result.should.have.property('data').and.matchEvery();
