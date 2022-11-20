@@ -7,21 +7,18 @@ on:
       - .gitignore
       - .npmignore
       - LICENSE
-      - README.md    
+      - README.md
 jobs:
   test:
-    name: Lint (Node.js ${{ matrix.node }})
+    name: Lint
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node: [12, 14, 16, 17]
     steps:
       - name: Clone repository
         uses: actions/checkout@v3
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node }}
+          node-version: 18
       # Not using "npm ci" because not using lockfile
       - run: npm i
       - run: npm run lint
