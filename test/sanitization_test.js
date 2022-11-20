@@ -890,7 +890,7 @@ exports.sanitization = function () {
         exec: function () {
           return undefined;
         }
-      }
+      };
 
       const candidate = 'test';
 
@@ -911,7 +911,7 @@ exports.sanitization = function () {
             }
           }
         }
-      }
+      };
 
       const candidate = {
         key: 'hello'
@@ -932,7 +932,7 @@ exports.sanitization = function () {
             return undefined;
           }
         }
-      }
+      };
 
       const candidate = ['here', 'are', 'some', 'strings', 'you', 'are', 'looking', 'at', 1, 2, 3, true, { a: false, b: ['something'] }, [], [true, 4, 6, false]];
       const length = candidate.length;
