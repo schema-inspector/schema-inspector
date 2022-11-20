@@ -7,7 +7,7 @@ on:
       - .gitignore
       - .npmignore
       - LICENSE
-      - README.md    
+      - README.md
 jobs:
   test:
     name: Lint
@@ -18,7 +18,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 17
+          node-version: 18
       # Not using "npm ci" because not using lockfile
       - run: npm i
       - run: npm run lint
