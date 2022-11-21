@@ -1,11 +1,15 @@
 <!-- markdownlint-disable MD041 MD033 MD024 -->
 
-[![schema-inspector logo](https://raw.githubusercontent.com/schema-inspector/schema-inspector/master/misc/schema-inspector.png)](http://schema-inspector.github.io/schema-inspector/)
+# schema-inspector
+
+![Lint workflow](https://github.com/schema-inspector/schema-inspector/actions/workflows/lint.yml/badge.svg)
+![CodeQL workflow](https://github.com/schema-inspector/schema-inspector/actions/workflows/codeql-analysis.yml/badge.svg)
+![Test workflow](https://github.com/schema-inspector/schema-inspector/actions/workflows/test.yml/badge.svg)
+
+[![NPM version](https://badge.fury.io/js/schema-inspector.png)](http://badge.fury.io/js/schema-inspector)
 
 Schema-Inspector is a powerful tool to sanitize and validate JS objects.
 It's designed to work both client-side and server-side and to be scalable with allowing asynchronous and synchronous calls.
-
-[![NPM version](https://badge.fury.io/js/schema-inspector.png)](http://badge.fury.io/js/schema-inspector)
 
 **See a live example:** <http://schema-inspector.github.io/schema-inspector/>
 
