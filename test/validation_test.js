@@ -8,7 +8,85 @@
 const should = require('should');
 const si = require('../');
 
+// Produces a string with "n" of the char in a row. Used for creating
+// long strings for tests. "c" is the char.
+function nChar(n, c) {
+  let str = '';
+  for (let i = 0; i < n; i++) {
+    str = `${str}${c}`;
+  }
+  return str;
+}
+
 exports.validation = function () {
+  suite('email addresses', function () {
+    const schema = {
+      type: 'string',
+      pattern: 'email',
+    };
+
+    suite('valid email addresses', function () {
+      const candidates = [
+        // Allow as few as one character in each part
+        'a@b.c',
+        // Allow many characters in each part
+        `${nChar(100, 'a')}@${nChar(100, 'b')}.${nChar(100, 'c')}`,
+        // Allow numeric non-alphabetic characters in each part, except the last
+        // part
+        '1@2.com',
+        // Allow special character non-alphabetic characters in each part, except
+        // the last part
+        '!@!.com',
+        // Allow a mixture of alphabetic, numeric, and special characters in
+        // each part that allows non-alphabetic characters.
+        'a1!@a1!.com',
+      ];
+
+      for (const candidate of candidates) {
+        test(`candidate "${candidate}"`, function () {
+          const result = si.validate(schema, candidate);
+
+          result.should.be.an.Object;
+          if (!result.valid) {
+            throw new Error('candidate deemed invalid when it should have been deemed valid');
+          }
+        });
+      }
+    });
+
+    suite('invalid email addresses', function () {
+      const candidates = [
+        // Disallow no characters in each part
+        '@.',
+        // Disallow no characters in the first part
+        '@b.c',
+        // Disallow no characters in the second part
+        'a@.c',
+        // Disallow missing the @ character between the first part and second
+        // part
+        'ab.c',
+        // Disallow missing the . character between the second part and the
+        // third part.
+        'a@bc',
+        // Disallow numeric characters in the third part
+        'a@b.1',
+        // Disallow special characters in the third part
+        'a@b.!',
+      ];
+
+      for (const candidate of candidates) {
+        test(`candidate "${candidate}"`, function () {
+          const result = si.validate(schema, candidate);
+
+          result.should.be.an.Object;
+          if (result.valid) {
+            throw new Error('candidate deemed valid when it should have been deemed invalid');
+          }
+        });
+      }
+    });
+  });
+
   suite('schema #1 (Several types of test in the same inspection)', function () {
     const schema = {
       type: 'object',
@@ -499,7 +577,6 @@ exports.validation = function () {
         { type: 'string', pattern: /^\d+$/ },
         { type: 'string', pattern: /^[a-z]+$/i },
         { type: 'string', pattern: /^_[a-zA-Z]+_$/ },
-        { type: 'string', pattern: 'email' },
         { type: 'string', pattern: 'date-time' },
         { type: 'string', pattern: 'decimal' },
         { type: 'string', pattern: 'color' },
@@ -512,7 +589,6 @@ exports.validation = function () {
         '1234',
         'abcd',
         '_qwerty_',
-        'nikitaJS@pantera.com',
         new Date().toISOString(),
         '3.1459',
         '#123456789ABCDEF0',
@@ -531,7 +607,6 @@ exports.validation = function () {
         '1234',
         'abcdE',
         '_QWErty_',
-        'nn@p.fr',
         '2012-01-26T17:00:00Z',
         '.1459',
         '#123456789abcdef0',
@@ -550,11 +625,34 @@ exports.validation = function () {
         '1234e',
         'abcdE3',
         '_QWErty',
-        'n@pfr',
         '2012-01-26T17:00:00',
         '0.1459.',
         '#123456789abcdef0q',
         'c8ddb0d154eb-48e9-af48-9e59477c7895'
+      ];
+
+      const result = si.validate(schema, candidate);
+      result.should.be.an.Object;
+      result.should.have.property('valid').with.equal(false);
+      result.should.have.property('error').with.be.an.instanceof(Array)
+        .and.be.lengthOf(6);
+      result.error[0].property.should.equal('@[0]');
+      result.error[1].property.should.equal('@[1]');
+      result.error[2].property.should.equal('@[2]');
+      result.error[3].property.should.equal('@[4]');
+      result.error[4].property.should.equal('@[5]');
+      result.error[5].property.should.equal('@[6]');
+    });
+
+    test('candidate #4', function () {
+      const candidate = [
+        'e1234',
+        '3abcdE',
+        'QWErty_',
+        '2012-01-26 17:00:00Z',
+        '.0.1459',
+        '12',
+        'bc9ffc8e-2d5b'
       ];
 
       const result = si.validate(schema, candidate);
@@ -566,36 +664,8 @@ exports.validation = function () {
       result.error[1].property.should.equal('@[1]');
       result.error[2].property.should.equal('@[2]');
       result.error[3].property.should.equal('@[3]');
-      result.error[4].property.should.equal('@[5]');
-      result.error[5].property.should.equal('@[6]');
-      result.error[6].property.should.equal('@[7]');
-    });
-
-    test('candidate #4', function () {
-      const candidate = [
-        'e1234',
-        '3abcdE',
-        'QWErty_',
-        'n@.fr',
-        '2012-01-26 17:00:00Z',
-        '.0.1459',
-        '12',
-        'bc9ffc8e-2d5b'
-      ];
-
-      const result = si.validate(schema, candidate);
-      result.should.be.an.Object;
-      result.should.have.property('valid').with.equal(false);
-      result.should.have.property('error').with.be.an.instanceof(Array)
-        .and.be.lengthOf(8);
-      result.error[0].property.should.equal('@[0]');
-      result.error[1].property.should.equal('@[1]');
-      result.error[2].property.should.equal('@[2]');
-      result.error[3].property.should.equal('@[3]');
       result.error[4].property.should.equal('@[4]');
       result.error[5].property.should.equal('@[5]');
-      result.error[6].property.should.equal('@[6]');
-      result.error[7].property.should.equal('@[7]');
     });
 
     test('candidate #5', function () {
@@ -603,7 +673,6 @@ exports.validation = function () {
         '12e34',
         'abc3dE',
         '_QWE_rty_',
-        'ne.fr',
         '2012-01-26Z17:00:00ZT',
         '0,1459',
         '123#123',
@@ -614,7 +683,7 @@ exports.validation = function () {
       result.should.be.an.Object;
       result.should.have.property('valid').with.equal(false);
       result.should.have.property('error').with.be.an.instanceof(Array)
-        .and.be.lengthOf(8);
+        .and.be.lengthOf(7);
       result.error[0].property.should.equal('@[0]');
       result.error[1].property.should.equal('@[1]');
       result.error[2].property.should.equal('@[2]');
@@ -622,7 +691,6 @@ exports.validation = function () {
       result.error[4].property.should.equal('@[4]');
       result.error[5].property.should.equal('@[5]');
       result.error[6].property.should.equal('@[6]');
-      result.error[7].property.should.equal('@[7]');
     });
   }); // suite "schema #5"
 

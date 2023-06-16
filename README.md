@@ -32,7 +32,9 @@ Bower is not officially-supported as a build tool and references to it will be r
 `schema-inspector` is not compatable with JSON Schema. They are two different ways to validate data.
 However, the main difference is that `schema-inspector` supports sanitization of data.
 
-## Version 2.0.0
+## Notable changelogs
+
+### Version 2.0.0
 
 To fix a security vulnerability in the 1.x.x email Regex expression used, a new Regex expression was used which may be
 less flexible than the expression used in 1.x.x. Therefore, version 2.0.0 was released with this new expression. It's
@@ -40,6 +42,10 @@ highly-recommended to upgrade to this new version after testing it.
 
 If you need the old, insecure behavior, use version 1.x.x or use the custom validation function feature for your field
 and perform email address validation any way you like.
+
+### Version 2.0.3
+
+The email address regular expression was changed again in this version, this time to the new approach towards email address validation that the library will use from now on. For details, see [How email address validation works](#v_pattern_email).
 
 ## How it looks like
 
@@ -316,7 +322,15 @@ inspector.validate(schema, c2); // Invalid: 12 exists twice in @.
 
 Ask Schema-Inspector to check whether or not a given matches provided patterns.
 When a pattern is a RegExp, it directly test the string with it. When it's a
-string, it's an alias of a RegExp.
+string, it's an alias of a built-in RegExp that the library supports. For example, using the string `email` causes the built-in RegExp for email addresses to be used.
+
+<h4 id="v_pattern_email">How email address validation works</h4>
+
+It is a very flexible regular expression, so that the library is only designed to catch obvious mistakes a user might make in the front end of a system that would have a 100% chance to cause email delivery to fail. An exception is made to forbid email addresses that lack a domain (used only by internal systems). It is based on the recommended regular expression posted on [www.regular-expressions.info](https://www.regular-expressions.info/email.html), modified to allow lowercase alphabetic characters too.
+
+You should perform more thorough checking of email addresses that involves checking whether delivery to the email address would succeed or fail, from your server side code. This library should only be used as basic front end validation for user convenience (e.g. an error displayed in the front end before they submit a form vs. a system failure that may not make it clear to them what went wrong).
+
+If you want to validate strings more strictly than this, you should use your own custom regular expression instead of the `email` pattern.
 
 #### Example
 
