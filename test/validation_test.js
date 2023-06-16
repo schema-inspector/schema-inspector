@@ -11,12 +11,12 @@ const si = require('../');
 // Produces a string with "n" of the char in a row. Used for creating
 // long strings for tests. "c" is the char.
 function nChar(n, c) {
-  let str = ``;
+  let str = '';
   for (let i = 0; i < n; i++) {
     str = `${str}${c}`;
   }
   return str;
-};
+}
 
 exports.validation = function () {
   suite('email addresses', function () {
