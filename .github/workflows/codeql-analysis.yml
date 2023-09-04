@@ -1,13 +1,13 @@
 name: "CodeQL"
 
-on: 
+on:
   pull_request:
     branches: [ master ]
     paths-ignore:
       - .gitignore
       - .npmignore
       - LICENSE
-      - README.md   
+      - README.md
   schedule:
     - cron: '37 22 * * 5'
 
@@ -23,7 +23,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v1
