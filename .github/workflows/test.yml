@@ -7,16 +7,16 @@ on:
       - .gitignore
       - .npmignore
       - LICENSE
-      - README.md    
+      - README.md
 jobs:
   test:
     name: Run tests (Node.js ${{ matrix.node }})
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node: [12, 14, 16, 18]
+        node: [14, 16, 18, 20]
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
