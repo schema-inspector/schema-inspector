@@ -140,6 +140,7 @@ In the example below, the `inspector` variable will be used.  For the client-sid
 * [pattern](#v_pattern)
 * [minLength, maxLength, exactLength](#v_length)
 * [lt, lte, gt, gte, eq, ne](#v_comparators)
+* [multipleOf](#v_multipleOf)
 * [someKeys](#v_someKeys)
 * [strict](#v_strict)
 * [exec](#v_exec)
@@ -425,6 +426,32 @@ var c2 = { lorem: 0, ipsum: -1, dolor: 5, sit: 3 };
 
 inspector.validate(schema, c1); // Valid
 inspector.validate(schema, c2); // Invalid
+```
+
+---------------------------------------
+
+<h3 id="v_multipleOf">multipleOf</h3>
+
+* **type**: number
+* **usable on**: number, array
+
+Check whether the candidate is a multiple of the provided option. If the candidate is an array of numbers, it performs this validation on each number in the array.
+
+#### Example
+
+```javascript
+var inspector = require('schema-inspector');
+
+var schema = {
+    type: 'number',
+    multipleOf: 2 // Even
+};
+
+var c1 = 100;
+var c2 = 73;
+
+inspector.validate(schema, c1); // Valid
+inspector.validate(schema, c2); // Invalid: 73 is not divisible by 2
 ```
 
 ---------------------------------------
