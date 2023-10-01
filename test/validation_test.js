@@ -876,6 +876,78 @@ exports.validation = function () {
       result.error[1].property.should.equal('@[5]');
       result.error[2].property.should.equal('@[6]');
     });
+
+    test('candidate #3 | multipleOf option', function () {
+      const multipleOfSchema = {
+        type: 'object',
+        properties: {
+          arr: {
+            type: 'array',
+            items: {
+              type: 'number',
+              multipleOf: 10,
+            },
+          },
+          num: {
+            type: 'number',
+            multipleOf: 2,
+          },
+        },
+      };
+
+      const validCandidates = [
+        // Allows multiples
+        {
+          arr: [20, 40],
+          num: 4,
+        },
+        // Also considers number itself to be a multiple
+        {
+          arr: [10, 20, 40],
+          num: 2,
+        },
+        // Allows array with only one number
+        {
+          arr: [10],
+          num: 2,
+        },
+        // Allows empty array
+        {
+          arr: [],
+          num: 2,
+        },
+      ];
+
+      for (const candidate of validCandidates) {
+        const result = si.validate(multipleOfSchema, candidate);
+        result.should.be.an.Object;
+        result.should.have.property('valid').with.equal(true);
+      }
+
+      const invalidCandidates = [
+        // All properties incorrect
+        {
+          arr: [15],
+          num: 3,
+        },
+        // Just array property incorrect
+        {
+          arr: [15],
+          num: 2,
+        },
+        // Just number property incorrect
+        {
+          arr: [10],
+          num: 3,
+        },
+      ];
+
+      for (const candidate of invalidCandidates) {
+        const result = si.validate(multipleOfSchema, candidate);
+        result.should.be.an.Object;
+        result.should.have.property('valid').with.equal(false);
+      }
+    });
   }); // suite "schema #8"
 
   suite('schema #9 (uniqueness checking [uniquess === true])', function () {
